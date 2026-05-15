@@ -1,0 +1,5 @@
+test,F_or_H,p,kruskal_H,kruskal_p,pearson_r,spearman_rho,spearman_p,U,mean_absent,mean_present,K_growth,H_growth,chapter_ratio,growth_ratio
+Baconian_ANOVA_growth,0.147,0.865,0.46,0.794,,,,,,,,,,
+Depth_vs_Subclasses,,0.002,,,0.689,0.606,0.01,,,,,,,
+Absent_vs_Present_Mann_Whitney,,0.66,,,,,,46.0,295.7,199.8,,,,
+K_vs_H_focal,,,,,,,,,,,62.3,776.2,12.0,12.5

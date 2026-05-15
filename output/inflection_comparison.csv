@@ -1,0 +1,2 @@
+mean_absent_inflection,mean_present_inflection,median_absent,median_present,mann_whitney_U,p_value,ttest_t,ttest_p,n_absent,n_present
+2001.0,2007.8,1997.6,1999.4,4087.0,0.0759,-2.259,0.025,117,82
