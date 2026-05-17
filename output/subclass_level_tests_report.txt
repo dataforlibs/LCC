@@ -1,0 +1,194 @@
+SUBCLASS-LEVEL TESTS REPORT (04)
+Tests 1-4 at two-letter LCC subclass level (n=202)
+Companion to 03_sigmoid_hierarchy_analysis.py (class-level, n=21)
+======================================================================
+
+  Total subclasses:          202
+  Usable for growth tests:   115 (v1815 >= 50)
+  Reliable sigmoid fits:     198 (r2 >= 0.85)
+
+  Jefferson status breakdown:
+    ABSENT     120
+    MERGED     73
+    DIRECT     6
+    RENAMED    3
+
+======================================================================
+TEST 1 [Subclass-level, n~115]  Baconian group vs. growth factor
+H0: growth factor distributions are equal across Memory / Reason / Imagination
+H1: at least one Baconian group grew faster (hierarchy persistence predicts
+    Memory or Reason — the groups Jefferson privileged — grew more)
+Restricted to subclasses with >=50 cumulative records by 1815
+----------------------------------------------------------------------
+  n = 115 subclasses with usable growth factors
+  (87 excluded with <50 records by 1815)
+
+  Memory        n= 56  mean=     274x  median=     189x  range=[4, 1897]
+  Reason        n= 37  mean=     363x  median=     159x  range=[8, 2717]
+  Imagination   n= 22  mean=     408x  median=     306x  range=[24, 1421]
+
+  Shapiro-Wilk Memory        : W=0.684, p=0.0000 (NON-NORMAL)
+  Shapiro-Wilk Reason        : W=0.555, p=0.0000 (NON-NORMAL)
+  Shapiro-Wilk Imagination   : W=0.818, p=0.0010 (NON-NORMAL)
+  Levene: F=0.986, p=0.3764 (equal variances)
+
+  Kruskal-Wallis:  H=3.930,  p=0.1402  [primary]
+  ANOVA (check):   F=0.950,  p=0.3896
+  Effect size: eta-squared = 0.017 (small)
+
+  RESULT: NOT SIGNIFICANT (p=0.1402)
+  Highest-growth group: Imagination (mean 408x)
+  H0 retained. No Baconian group shows significantly higher growth.
+
+  NOTE on subclass-level inheritance: all subclasses within a parent class
+  share the same Baconian group. Variation within each group reflects
+  different subclass sizes and coverage trajectories. Effective independent
+  observations per group are bounded by the number of parent classes,
+  not the number of subclasses. Power is substantially higher than n=21
+  but should not be treated as equivalent to 115 independent units.
+
+======================================================================
+TEST 2 [Subclass-level, n~198]  Baconian group vs. inflection year (t0)
+H0: median inflection year is equal across Baconian groups
+H1: Memory / Reason (Jefferson-privileged groups) inflect earlier
+Restricted to reliable sigmoid fits (r2>=0.85)
+----------------------------------------------------------------------
+  n = 198 subclasses with reliable sigmoid fits
+
+  Memory        n=111  mean=1981.6  median=1984.0  range=[1883, 2000]
+  Reason        n= 57  mean=1987.7  median=1988.2  range=[1966, 2005]
+  Imagination   n= 30  mean=1984.6  median=1984.8  range=[1972, 2003]
+
+  Shapiro-Wilk Memory        : W=0.527, p=0.0000 (NON-NORMAL)
+  Shapiro-Wilk Reason        : W=0.931, p=0.0030 (NON-NORMAL)
+  Shapiro-Wilk Imagination   : W=0.958, p=0.2757 (normal)
+  Levene: F=0.790, p=0.4553 (equal variances)
+
+  Kruskal-Wallis:  H=19.413,  p=0.0001  [primary]
+  ANOVA (check):   F=5.500,  p=0.0047
+  Effect size: eta-squared = 0.053 (small)
+
+  RESULT: SIGNIFICANT (p=0.0001)
+  Earliest-inflecting group: Memory (mean 1981.6)
+  H0 rejected. Check whether the earliest group is the one hierarchy
+  persistence would predict (Memory or Reason, not Imagination).
+
+======================================================================
+TEST 3 [Subclass-level]  Jefferson chapter count vs. growth factor
+H0: rho = 0 (no correlation between Jefferson coverage and post-1815 growth)
+H1: positive rho (more chapters -> higher growth = hierarchy persistence)
+
+PRIMARY:   Jeffersonian subclasses only (MERGED+DIRECT) — the correct scope.
+           Including ABSENT (all have jeff_ch=0) would merely recode Test 4.
+SECONDARY: All subclasses (including ABSENT, zero-chapter) for comparison.
+----------------------------------------------------------------------
+  All subclasses with growth factor:       n = 115
+  Jeffersonian only (MERGED+DIRECT):       n = 60
+
+  Jefferson chapter distribution — Jeffersonian subclasses only:
+    jeff_ch=0.5  n=  2  mean_growth=280x  median_growth=280x
+    jeff_ch=1.0  n= 11  mean_growth=347x  median_growth=221x
+    jeff_ch=2.0  n= 18  mean_growth=182x  median_growth=109x
+    jeff_ch=3.0  n=  6  mean_growth=150x  median_growth=125x
+    jeff_ch=6.0  n=  5  mean_growth=89x  median_growth=15x
+    jeff_ch=9.0  n= 18  mean_growth=257x  median_growth=190x
+
+  [PRIMARY — Jeffersonian subclasses only (MERGED+DIRECT)]  n=60
+    Pearson  r   = -0.021,  p = 0.8746,  R2 = 0.000
+    Spearman rho = -0.068,  p = 0.6064
+    RESULT: NOT SIGNIFICANT (Spearman p=0.6064)  Direction: NEGATIVE
+    Negative trend (non-significant): weakly contradicts hierarchy.
+
+  [SECONDARY — All subclasses including ABSENT]  n=115
+    Pearson  r   = -0.072,  p = 0.4457,  R2 = 0.005
+    Spearman rho = -0.045,  p = 0.6327
+    RESULT: NOT SIGNIFICANT (Spearman p=0.6327)  Direction: NEGATIVE
+    Negative trend (non-significant): weakly contradicts hierarchy.
+
+  METHODOLOGICAL CAVEATS:
+  1. Pseudo-replication: jeff_ch is a class-level step function with
+     only ~7 distinct values after correction. All subclasses of the
+     same parent class share one chapter count. Effective df for this
+     correlation is closer to 7 than to n_jeff. Per-chapter descriptives
+     above are a more reliable primary evidence source.
+  2. Geographic hierarchy ambiguity: ch.29 Geography (G class, now
+     corrected to 'Reason') has 5 sub-entries (General/Europe/Asia/Africa/
+     America) each mapping to different LCC subclasses. This means the
+     chapter count for G subclasses is inherently ambiguous at the
+     subclass level — a limitation of the Jefferson classification itself.
+  3. The primary test of the suppression hypothesis is Test 4 (ABSENT vs
+     classified), which uses the binary status variable assigned at the
+     subclass level — not this correlation.
+
+======================================================================
+TEST 4 [Subclass-level, n~112]  ABSENT vs. classified (MERGED+DIRECT) growth
+H0: growth factor distributions are equal
+H1: ABSENT subclasses grow less (suppression predicts lower growth)
+RENAMED subclasses excluded (n=3: AC, AE, AG — ambiguous status).
+----------------------------------------------------------------------
+  ABSENT      n= 52  mean=462x  median=283x  std=569
+  Classified  n= 60  mean=227x  median=168x  std=216
+
+  Shapiro-Wilk ABSENT        : W=0.669, p=0.0000 (NON-NORMAL)
+  Shapiro-Wilk Classified    : W=0.815, p=0.0000 (NON-NORMAL)
+
+  Mann-Whitney  U = 2043.0,  p = 0.0049  [primary]
+  Welch t         = 2.810,   p = 0.0066  [secondary]
+  Cohen's d       = +0.546  (ABSENT grew MORE)
+  Rank-biserial r = -0.310  (medium)
+
+  RESULT: SIGNIFICANT (p=0.0049)
+  Direction CONTRADICTS suppression: ABSENT mean (462x) > Classified mean (227x).
+
+  Top 10 highest-growth ABSENT subclasses:
+    HD     Land / Agriculture Economics            2717x
+    HC     Economic History                        2500x
+    LB     Theory / Practice of Education          1897x
+    PK     Indo-Iranian Languages                  1421x
+    PG     Slavic Languages & Literatures          1323x
+    HB     Economic Theory                         942x
+    HQ     Family / Gender / Sexuality             793x
+    CS     Genealogy                               700x
+    NK     Decorative Arts                         685x
+    HV     Social Pathology / Criminology          625x
+
+  Top 10 highest-growth Classified subclasses:
+    T      Technology (General)                    1082x  [MERGED]
+    TA     Engineering (General)                   907x  [MERGED]
+    QE     Geology / Mineralogy                    623x  [MERGED]
+    N      Visual Arts (General)                   606x  [MERGED]
+    PS     American Literature                     606x  [MERGED]
+    P      Linguistics (General)                   555x  [MERGED]
+    ND     Painting                                525x  [MERGED]
+    TP     Chemical Technology                     450x  [MERGED]
+    PT     Germanic Literature                     425x  [MERGED]
+    HF     Commerce                                417x  [MERGED]
+
+======================================================================
+SUMMARY — Subclass-level Tests 1–4
+----------------------------------------------------------------------
+  Test       Statistic                         p-value  Result
+----------------------------------------------------------------------
+  Test 1     KW (Baconian groups vs growth)     0.1402  NOT SIGNIFICANT  eta2=0.017
+  Test 2     KW (Baconian groups vs timing)     0.0001  SIGNIFICANT  eta2=0.053
+  Test 3     Spearman (jeff_ch vs growth)       0.6064  NOT SIGNIFICANT  rho=-0.068
+  Test 4     MW (ABSENT vs classified)          0.0049  SIGNIFICANT  d=+0.546
+----------------------------------------------------------------------
+
+  Comparison to class-level results (paper, n=21):
+    Test 1 class-level p=0.132  |  subclass-level p=0.1402
+    Test 2 class-level p=0.107  |  subclass-level p=0.0001
+    Test 3 class-level Pearson p=0.003  |  subclass-level Spearman p=0.6064
+    Test 4 class-level p=0.836  |  subclass-level p=0.0049
+
+  Key caveat (Tests 1–3): Baconian group and jefferson chapter count are
+  inherited from parent classes, so subclasses cluster into only 21 parent-
+  level values. The effective independent observations are bounded by the
+  number of distinct parent classes per group, not the number of subclasses.
+  Higher n improves power over the class-level tests but does not eliminate
+  the clustering dependency.
+
+  Test 4 does NOT share this limitation: jefferson_status is assigned at
+  the subclass level (from the sigmoid CSV), so ABSENT vs MERGED/DIRECT
+  is a genuinely subclass-level comparison with ~112 independent units.
+======================================================================

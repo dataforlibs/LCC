@@ -1,0 +1,203 @@
+code,label,jefferson_status,parent_class,jeff_ch,baconian,v1815,v2020,growth_factor,inflection_year,sigmoid_r2,reliable
+AC,General Collections,RENAMED,A,0.0,Memory,5319.0,21246.0,3.994359842075578,1902.7,0.9592,True
+AE,Encyclopedias (General),RENAMED,A,0.0,Memory,63.0,1508.0,23.936507936507937,1974.3,0.9693,True
+AG,Dictionaries (General),RENAMED,A,0.0,Memory,80.0,2970.0,37.125,1981.3,0.9776,True
+AI,Indexes,ABSENT,A,0.0,Memory,0.0,247.0,,1978.0,0.9832,True
+AM,Museums / Exhibitions,ABSENT,A,0.0,Memory,6.0,4538.0,,1990.0,0.9945,True
+AN,Newspapers,ABSENT,A,0.0,Memory,0.0,2.0,,,,False
+AS,Academies / Societies,ABSENT,A,0.0,Memory,20.0,15217.0,,1970.2,0.9946,True
+B,Philosophy (General),MERGED,B,2.0,Reason,845.0,111087.0,131.4639053254438,1988.6,0.9888,True
+BC,Logic,MERGED,B,2.0,Reason,18.0,4386.0,,1983.4,0.9929,True
+BD,Speculative Philosophy,MERGED,B,2.0,Reason,30.0,17349.0,,1988.6,0.9886,True
+BF,Psychology,ABSENT,B,2.0,Reason,305.0,85825.0,281.39344262295083,1987.1,0.9879,True
+BH,Aesthetics,MERGED,B,2.0,Reason,14.0,5441.0,,1989.6,0.9902,True
+BJ,Ethics,MERGED,B,2.0,Reason,395.0,24126.0,61.07848101265823,1985.8,0.9715,True
+BL,Religion / Mythology,MERGED,B,2.0,Reason,274.0,67934.0,247.93430656934308,1989.4,0.9877,True
+BM,Judaism,MERGED,B,2.0,Reason,623.0,45180.0,72.52006420545746,1990.8,0.9756,True
+BP,Islam,MERGED,B,2.0,Reason,26.0,46458.0,,1994.9,0.9888,True
+BR,Christianity,MERGED,B,2.0,Reason,746.0,40279.0,53.993297587131366,1982.9,0.9787,True
+BS,Bible,MERGED,B,2.0,Reason,885.0,62192.0,70.27344632768362,1986.2,0.974,True
+BT,Doctrinal Theology,MERGED,B,2.0,Reason,753.0,42184.0,56.02124833997344,1984.3,0.9784,True
+BV,Practical Theology,MERGED,B,2.0,Reason,1351.0,76914.0,56.93116210214656,1985.1,0.9757,True
+BX,Christian Denominations,MERGED,B,2.0,Reason,3092.0,123705.0,40.00808538163001,1981.4,0.9738,True
+CB,History of Civilization,ABSENT,C,0.0,Memory,26.0,10708.0,,1983.8,0.9935,True
+CC,Archaeology,ABSENT,C,0.0,Memory,4.0,4298.0,,1993.5,0.9897,True
+CD,Diplomatics / Archives,ABSENT,C,0.0,Memory,18.0,10401.0,,1983.1,0.9893,True
+CE,Chronology,ABSENT,C,0.0,Memory,34.0,986.0,,1979.5,0.949,True
+CJ,Numismatics,ABSENT,C,0.0,Memory,60.0,6454.0,107.56666666666666,1982.3,0.9843,True
+CN,Inscriptions / Epigraphy,ABSENT,C,0.0,Memory,9.0,1751.0,,1989.7,0.9776,True
+CR,Heraldry,ABSENT,C,0.0,Memory,86.0,4932.0,57.348837209302324,1985.4,0.9701,True
+CS,Genealogy,ABSENT,C,0.0,Memory,79.0,55337.0,700.4683544303797,1985.2,0.9866,True
+CT,Biography (General),ABSENT,C,0.0,Memory,152.0,26234.0,172.5921052631579,1985.4,0.981,True
+D,History (General),MERGED,D,3.0,Memory,407.0,113027.0,277.7076167076167,1981.5,0.9842,True
+DA,British History,MERGED,D,3.0,Memory,1483.0,54783.0,36.940660822656774,1971.2,0.9739,True
+DAW,Central Europe,ABSENT,D,3.0,Memory,0.0,283.0,,2000.1,0.9956,True
+DB,Austria / Bohemia,ABSENT,D,3.0,Memory,69.0,21823.0,316.27536231884056,1981.7,0.9909,True
+DC,French History,MERGED,D,3.0,Memory,1010.0,44853.0,44.40891089108911,1976.7,0.9658,True
+DD,German History,MERGED,D,3.0,Memory,156.0,45453.0,291.36538461538464,1980.7,0.9902,True
+DE,Greco-Roman World,MERGED,D,3.0,Memory,22.0,1671.0,,1984.0,0.9668,True
+DF,Greek History,MERGED,D,3.0,Memory,76.0,11336.0,149.1578947368421,1984.7,0.9849,True
+DG,Italian History / Rome,MERGED,D,3.0,Memory,405.0,40781.0,100.69382716049383,1986.4,0.9796,True
+DH,Low Countries History,ABSENT,D,3.0,Memory,80.0,4390.0,54.875,1975.9,0.979,True
+DJ,Netherlands,ABSENT,D,3.0,Memory,67.0,4953.0,73.92537313432835,1982.3,0.9907,True
+DJK,Eastern Europe (General),ABSENT,D,3.0,Memory,7.0,2323.0,,1994.9,0.9985,True
+DK,Russia / Former Soviet States,ABSENT,D,3.0,Memory,218.0,83137.0,381.36238532110093,1990.6,0.9821,True
+DL,Scandinavian History,ABSENT,D,3.0,Memory,96.0,15143.0,157.73958333333334,1981.1,0.9914,True
+DP,Iberian History,ABSENT,D,3.0,Memory,252.0,32519.0,129.04365079365078,1986.0,0.9862,True
+DQ,Switzerland,ABSENT,D,3.0,Memory,37.0,5270.0,,1979.4,0.9878,True
+DR,Balkan History,ABSENT,D,3.0,Memory,62.0,36545.0,589.4354838709677,1992.5,0.9866,True
+DS,Asian History,ABSENT,D,3.0,Memory,834.0,296746.0,355.810551558753,1991.4,0.9882,True
+DT,African History,ABSENT,D,3.0,Memory,106.0,57568.0,543.0943396226415,1985.0,0.9903,True
+DU,Oceania,ABSENT,D,3.0,Memory,29.0,15626.0,,1980.9,0.9931,True
+DX,Romani People,ABSENT,D,3.0,Memory,2.0,1205.0,,1992.0,0.9734,True
+E18,African American History (E185),ABSENT,E,1.0,Memory,54.0,25802.0,477.81481481481484,1987.6,0.9866,True
+E99,Native Americans (E99),ABSENT,E,1.0,Memory,22.0,10451.0,,1987.9,0.9903,True
+G,Geography (General),MERGED,G,1.0,Reason,555.0,31262.0,56.32792792792793,1981.6,0.9793,True
+GA,Mathematical Geography,MERGED,G,1.0,Reason,43.0,3714.0,,1983.2,0.9889,True
+GB,Physical Geography,MERGED,G,1.0,Reason,19.0,19889.0,,1987.1,0.9956,True
+GC,Oceanography,ABSENT,G,1.0,Reason,2.0,6916.0,,1985.9,0.9973,True
+GE,Environmental Sciences,ABSENT,G,1.0,Reason,0.0,7511.0,,2000.4,0.9971,True
+GF,Human Ecology,ABSENT,G,1.0,Reason,1.0,5349.0,,1992.3,0.9952,True
+GN,Anthropology,ABSENT,G,1.0,Reason,11.0,34788.0,,1988.2,0.9902,True
+GR,Folklore,ABSENT,G,1.0,Reason,6.0,22855.0,,1988.9,0.9935,True
+GT,Manners & Customs,ABSENT,G,1.0,Reason,121.0,19230.0,158.92561983471074,1993.7,0.9866,True
+GV,Recreation / Leisure,ABSENT,G,1.0,Reason,292.0,109996.0,376.6986301369863,1989.5,0.9901,True
+HA,Statistics,ABSENT,H,0.5,Reason,22.0,14766.0,,1981.4,0.9951,True
+HB,Economic Theory,ABSENT,H,0.5,Reason,68.0,64038.0,941.7352941176471,1987.2,0.993,True
+HC,Economic History,ABSENT,H,0.5,Reason,62.0,155017.0,2500.2741935483873,1986.8,0.9964,True
+HD,Land / Agriculture Economics,ABSENT,H,0.5,Reason,118.0,320570.0,2716.6949152542375,1986.6,0.9964,True
+HE,Transportation & Comms,ABSENT,H,0.5,Reason,147.0,48735.0,331.53061224489795,1981.7,0.9915,True
+HF,Commerce,MERGED,H,0.5,Reason,282.0,117627.0,417.1170212765957,1986.6,0.9919,True
+HG,Finance,ABSENT,H,0.5,Reason,153.0,85584.0,559.3725490196078,1988.2,0.9882,True
+HJ,Public Finance,MERGED,H,0.5,Reason,207.0,29505.0,142.53623188405797,1981.6,0.9861,True
+HM,Sociology,ABSENT,H,0.5,Reason,8.0,37950.0,,1991.5,0.9905,True
+HN,Social History,ABSENT,H,0.5,Reason,10.0,53353.0,,1989.9,0.9945,True
+HQ,Family / Gender / Sexuality,ABSENT,H,0.5,Reason,135.0,107072.0,793.1259259259259,1992.0,0.9932,True
+HS,Societies / Clubs,ABSENT,H,0.5,Reason,66.0,6384.0,96.72727272727273,1982.7,0.9668,True
+HT,Communities / Classes / Race,ABSENT,H,0.5,Reason,77.0,39829.0,517.2597402597403,1988.9,0.9955,True
+HV,Social Pathology / Criminology,ABSENT,H,0.5,Reason,214.0,133807.0,625.2663551401869,1991.8,0.9907,True
+HX,Socialism / Communism,ABSENT,H,0.5,Reason,9.0,33668.0,,1980.5,0.9956,True
+JC,Political Theory,MERGED,J,2.0,Reason,345.0,30097.0,87.23768115942029,1990.2,0.9814,True
+JK,US Political Institutions,MERGED,J,2.0,Reason,115.0,24663.0,214.4608695652174,1976.3,0.9783,True
+JL,Canadian / Latin American Politics,MERGED,J,2.0,Reason,1.0,13132.0,,1989.2,0.989,True
+JN,European Politics,ABSENT,J,2.0,Reason,302.0,40947.0,135.58609271523179,1987.3,0.9917,True
+JQ,Asian / African Politics,ABSENT,J,2.0,Reason,75.0,33549.0,447.32,1992.4,0.9922,True
+JS,Local Government,ABSENT,J,2.0,Reason,50.0,16932.0,338.64,1984.2,0.9906,True
+JV,Colonies / Colonialism,ABSENT,J,2.0,Reason,10.0,9749.0,,1991.6,0.9662,True
+JX,International Law (old),ABSENT,J,2.0,Reason,159.0,29542.0,185.7987421383648,1967.5,0.9876,True
+JZ,International Relations,ABSENT,J,2.0,Reason,8.0,11071.0,,2004.8,0.9975,True
+K,Law (General),MERGED,K,6.0,Reason,1550.0,232299.0,149.87032258064517,1994.6,0.9899,True
+KB,Religious Law,MERGED,K,6.0,Reason,888.0,8015.0,9.0259009009009,,0.67,False
+KD,UK Law,MERGED,K,6.0,Reason,2836.0,22633.0,7.980606488011284,1965.8,0.889,True
+KE,Canadian Law,ABSENT,K,6.0,Reason,5.0,7870.0,,1985.6,0.9964,True
+KF,US Law,MERGED,K,6.0,Reason,721.0,191158.0,265.128987517337,1986.2,0.9916,True
+KG,Latin American Law,ABSENT,K,6.0,Reason,44.0,18652.0,,1989.8,0.9753,True
+KH,South American Law,ABSENT,K,6.0,Reason,3.0,47820.0,,1992.9,0.9891,True
+KJ,European Law,MERGED,K,6.0,Reason,3049.0,45037.0,14.77107248278124,1991.5,0.888,True
+KL,Asian / African Law,ABSENT,K,6.0,Reason,73.0,16293.0,223.1917808219178,2001.9,0.9928,True
+KZ,International Law,ABSENT,K,6.0,Reason,157.0,7726.0,49.210191082802545,2000.2,0.9282,True
+LA,History of Education,ABSENT,L,0.0,Memory,1274.0,97538.0,76.56043956043956,1975.5,0.9913,True
+LB,Theory / Practice of Education,ABSENT,L,0.0,Memory,56.0,106253.0,1897.375,1985.6,0.9939,True
+LC,Social Aspects of Education,ABSENT,L,0.0,Memory,44.0,52085.0,,1989.1,0.9951,True
+LD,US Universities,ABSENT,L,0.0,Memory,52.0,5806.0,111.65384615384616,1966.0,0.9804,True
+LE,American Universities (other),ABSENT,L,0.0,Memory,12.0,2983.0,,1969.6,0.9447,True
+LF,European Universities,ABSENT,L,0.0,Memory,37.0,5829.0,,1980.8,0.9826,True
+LG,Asian / African Universities,ABSENT,L,0.0,Memory,0.0,3529.0,,1990.1,0.9954,True
+LH,College Publications,ABSENT,L,0.0,Memory,0.0,36.0,,,,False
+LJ,Student Fraternities,ABSENT,L,0.0,Memory,2.0,341.0,,1955.5,0.9903,True
+M,Music Scores,DIRECT,M,1.0,Imagination,770.0,124462.0,161.63896103896104,1971.5,0.9721,True
+ML,Literature on Music,DIRECT,M,1.0,Imagination,6403.0,773679.0,120.83070435733251,1989.5,0.9909,True
+MT,Musical Instruction,DIRECT,M,1.0,Imagination,185.0,14617.0,79.01081081081081,1977.4,0.9921,True
+N,Visual Arts (General),MERGED,N,2.0,Imagination,182.0,110348.0,606.3076923076923,1990.3,0.9915,True
+NB,Sculpture,MERGED,N,2.0,Imagination,18.0,19859.0,,1987.1,0.9927,True
+NC,Drawing / Design,MERGED,N,2.0,Imagination,83.0,26983.0,325.09638554216866,1985.1,0.9923,True
+ND,Painting,MERGED,N,2.0,Imagination,154.0,80851.0,525.0064935064935,1986.9,0.9908,True
+NE,Print Media,ABSENT,N,2.0,Imagination,139.0,13570.0,97.62589928057554,1978.9,0.9818,True
+NK,Decorative Arts,ABSENT,N,2.0,Imagination,77.0,52755.0,685.1298701298701,1988.4,0.99,True
+NX,Arts in General,ABSENT,N,2.0,Imagination,10.0,13690.0,,1992.0,0.9968,True
+P,Linguistics (General),MERGED,P,9.0,Imagination,611.0,338833.0,554.5548281505728,1977.1,0.9905,True
+PA,Classical Languages & Literature,MERGED,P,9.0,Imagination,1467.0,35928.0,24.49079754601227,1977.5,0.9547,True
+PB,Celtic Languages,MERGED,P,9.0,Imagination,25.0,5380.0,,1983.9,0.9853,True
+PC,Romanic Languages,MERGED,P,9.0,Imagination,157.0,45050.0,286.94267515923565,1985.4,0.9907,True
+PD,Germanic Languages (Old),MERGED,P,9.0,Imagination,10.0,3879.0,,1973.8,0.9803,True
+PE,English Language,MERGED,P,9.0,Imagination,242.0,34036.0,140.64462809917356,1983.3,0.9782,True
+PF,West Germanic Languages,MERGED,P,9.0,Imagination,30.0,11044.0,,1981.8,0.9887,True
+PG,Slavic Languages & Literatures,ABSENT,P,9.0,Imagination,105.0,138935.0,1323.1904761904761,1988.0,0.9905,True
+PH,Uralic / Basque Languages,ABSENT,P,9.0,Imagination,4.0,19806.0,,1986.8,0.9957,True
+PJ,Oriental Languages & Literature,ABSENT,P,9.0,Imagination,112.0,51776.0,462.2857142857143,1987.8,0.9878,True
+PK,Indo-Iranian Languages,ABSENT,P,9.0,Imagination,70.0,99477.0,1421.1,1984.5,0.9952,True
+PL,E Asian / African / Pacific,ABSENT,P,9.0,Imagination,639.0,181616.0,284.21909233176837,1989.7,0.9961,True
+PM,Indigenous American Languages,ABSENT,P,9.0,Imagination,31.0,5908.0,,1984.0,0.9756,True
+PN,General Literature,MERGED,P,9.0,Imagination,514.0,208463.0,405.57003891050584,1988.6,0.986,True
+PQ,French/Italian/Spanish Lit.,MERGED,P,9.0,Imagination,1666.0,291535.0,174.99099639855942,1983.8,0.9904,True
+PR,English Literature,MERGED,P,9.0,Imagination,2664.0,183098.0,68.73048048048048,1982.6,0.9759,True
+PS,American Literature,MERGED,P,9.0,Imagination,376.0,227722.0,605.6436170212766,1990.7,0.9661,True
+PT,Germanic Literature,MERGED,P,9.0,Imagination,282.0,119726.0,424.56028368794324,1980.1,0.9919,True
+Q,Science (General),MERGED,Q,9.0,Memory,218.0,40463.0,185.61009174311926,1980.6,0.99,True
+QA,Mathematics,MERGED,Q,9.0,Memory,606.0,135992.0,224.40924092409242,1989.6,0.9898,True
+QB,Astronomy,MERGED,Q,9.0,Memory,339.0,23145.0,68.27433628318585,1983.1,0.9748,True
+QC,Physics,MERGED,Q,9.0,Memory,365.0,70917.0,194.2931506849315,1982.8,0.9925,True
+QD,Chemistry,MERGED,Q,9.0,Memory,221.0,35092.0,158.78733031674207,1975.2,0.9906,True
+QE,Geology / Mineralogy,MERGED,Q,9.0,Memory,91.0,56663.0,622.6703296703297,1979.3,0.9938,True
+QH,Natural History / Biology,ABSENT,Q,9.0,Memory,318.0,53598.0,168.54716981132074,1986.7,0.9901,True
+QK,Botany,MERGED,Q,9.0,Memory,240.0,30611.0,127.54583333333333,1980.3,0.9848,True
+QL,Zoology,MERGED,Q,9.0,Memory,208.0,69446.0,333.875,1986.0,0.9874,True
+QM,Human Anatomy,MERGED,Q,9.0,Memory,151.0,4835.0,32.019867549668874,1975.6,0.9738,True
+QP,Physiology,ABSENT,Q,9.0,Memory,126.0,33773.0,268.03968253968253,1985.1,0.9925,True
+QR,Microbiology,ABSENT,Q,9.0,Memory,1.0,9576.0,,1985.1,0.992,True
+R,Medicine (General),MERGED,R,2.0,Memory,481.0,33159.0,68.93762993762994,1988.6,0.9812,True
+RA,Public Health,ABSENT,R,2.0,Memory,199.0,64171.0,322.4673366834171,1991.1,0.9907,True
+RB,Pathology,ABSENT,R,2.0,Memory,30.0,6897.0,,1987.1,0.9875,True
+RC,Internal Medicine,MERGED,R,2.0,Memory,407.0,102274.0,251.2874692874693,1989.2,0.9924,True
+RD,Surgery,MERGED,R,2.0,Memory,82.0,17123.0,208.8170731707317,1986.2,0.9897,True
+RE,Ophthalmology,ABSENT,R,2.0,Memory,50.0,4530.0,90.6,1982.5,0.982,True
+RF,Otorhinolaryngology,ABSENT,R,2.0,Memory,4.0,2602.0,,1986.1,0.9857,True
+RG,Gynecology / Obstetrics,ABSENT,R,2.0,Memory,53.0,12089.0,228.0943396226415,1988.3,0.9884,True
+RJ,Pediatrics,ABSENT,R,2.0,Memory,18.0,19154.0,,1991.1,0.9941,True
+RK,Dentistry,ABSENT,R,2.0,Memory,3.0,4751.0,,1980.0,0.9911,True
+RL,Dermatology,ABSENT,R,2.0,Memory,5.0,2216.0,,1984.8,0.975,True
+RM,Pharmacology,ABSENT,R,2.0,Memory,142.0,19785.0,139.33098591549296,1988.5,0.9833,True
+RS,Pharmacy,ABSENT,R,2.0,Memory,157.0,7225.0,46.01910828025478,1985.7,0.9733,True
+RT,Nursing,ABSENT,R,2.0,Memory,0.0,9375.0,,1988.8,0.9938,True
+RV,Botanic Medicine,ABSENT,R,2.0,Memory,0.0,97.0,,1882.6,0.9708,True
+RX,Homeopathy,ABSENT,R,2.0,Memory,0.0,755.0,,1964.9,0.9213,True
+RZ,Other Medical Systems,ABSENT,R,2.0,Memory,2.0,2145.0,,1988.3,0.9695,True
+S,Agriculture (General),DIRECT,S,1.0,Memory,157.0,33900.0,215.9235668789809,1980.1,0.9954,True
+SB,Plant Culture,DIRECT,S,1.0,Memory,187.0,41235.0,220.50802139037432,1984.1,0.9896,True
+SD,Forestry,MERGED,S,1.0,Memory,16.0,14096.0,,1985.4,0.9919,True
+SF,Animal Culture,MERGED,S,1.0,Memory,125.0,32765.0,262.12,1986.7,0.9872,True
+SH,Aquaculture / Fisheries,ABSENT,S,1.0,Memory,15.0,14631.0,,1984.3,0.9942,True
+SK,Hunting / Wildlife,ABSENT,S,1.0,Memory,16.0,6976.0,,1977.9,0.9908,True
+T,Technology (General),MERGED,T,1.0,Memory,57.0,61675.0,1082.017543859649,1989.0,0.991,True
+TA,Engineering (General),MERGED,T,1.0,Memory,54.0,48997.0,907.3518518518518,1987.0,0.9959,True
+TC,Hydraulic Engineering,MERGED,T,1.0,Memory,39.0,10973.0,,1978.8,0.9877,True
+TD,Environmental Technology,ABSENT,T,1.0,Memory,5.0,36671.0,,1989.4,0.9966,True
+TE,Highway Engineering,MERGED,T,1.0,Memory,2.0,5698.0,,1982.7,0.9979,True
+TF,Railroad Engineering,ABSENT,T,1.0,Memory,0.0,9243.0,,1983.4,0.9852,True
+TG,Bridge Engineering,MERGED,T,1.0,Memory,7.0,2903.0,,1976.5,0.9816,True
+TH,Building Construction,MERGED,T,1.0,Memory,80.0,20799.0,259.9875,1984.7,0.9927,True
+TJ,Mechanical Engineering,MERGED,T,1.0,Memory,44.0,30082.0,,1982.9,0.9941,True
+TK,Electrical Engineering,ABSENT,T,1.0,Memory,2.0,65477.0,,1989.5,0.9914,True
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1.0,Memory,79.0,48163.0,609.6582278481013,1983.9,0.9941,True
+TN,Mining / Metallurgy,MERGED,T,1.0,Memory,47.0,30543.0,,1977.1,0.9912,True
+TP,Chemical Technology,MERGED,T,1.0,Memory,65.0,29238.0,449.81538461538463,1983.3,0.9927,True
+TR,Photography,ABSENT,T,1.0,Memory,0.0,29635.0,,1992.9,0.9867,True
+TS,Manufactures,MERGED,T,1.0,Memory,34.0,28435.0,,1981.3,0.9941,True
+TX,Home Economics,ABSENT,T,1.0,Memory,430.0,64446.0,149.87441860465117,1988.3,0.9875,True
+UA,Armies / Land Forces,ABSENT,U,0.0,Memory,48.0,21004.0,,1989.2,0.9907,True
+UB,Military Administration,ABSENT,U,0.0,Memory,45.0,6977.0,,1987.0,0.9799,True
+UC,Military Maintenance,ABSENT,U,0.0,Memory,9.0,2681.0,,1984.2,0.9897,True
+UD,Infantry,ABSENT,U,0.0,Memory,24.0,1223.0,,1979.0,0.9607,True
+UF,Artillery,ABSENT,U,0.0,Memory,28.0,2267.0,,1977.0,0.9847,True
+UG,Military Engineering,ABSENT,U,0.0,Memory,65.0,12448.0,191.5076923076923,1990.4,0.9877,True
+UH,Military Medicine,ABSENT,U,0.0,Memory,4.0,1316.0,,1982.9,0.976,True
+VA,Navies,ABSENT,V,0.0,Memory,12.0,3202.0,,1985.3,0.9881,True
+VB,Naval Administration,ABSENT,V,0.0,Memory,6.0,446.0,,1975.7,0.9712,True
+VC,Naval Maintenance,ABSENT,V,0.0,Memory,2.0,253.0,,1977.5,0.9883,True
+VD,Naval Seamen,ABSENT,V,0.0,Memory,0.0,38.0,,,,False
+VF,Naval Ordnance,ABSENT,V,0.0,Memory,1.0,193.0,,1968.0,0.9253,True
+VG,Naval Auxiliaries,ABSENT,V,0.0,Memory,0.0,1033.0,,1983.7,0.9936,True
+VK,Navigation / Seamanship,ABSENT,V,0.0,Memory,89.0,6221.0,69.89887640449439,1979.5,0.9835,True
+VM,Naval Architecture,ABSENT,V,0.0,Memory,24.0,8194.0,,1979.8,0.9939,True
+Z,Books / Writing (General),DIRECT,Z,2.0,Imagination,820.0,164602.0,200.7341463414634,1979.4,0.991,True
+ZA,Information Resources,ABSENT,Z,2.0,Imagination,0.0,1331.0,,2003.3,0.997,True

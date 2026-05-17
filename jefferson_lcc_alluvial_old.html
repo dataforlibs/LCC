@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jefferson 1815 to LCC Alluvial</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+<style>
+:root {
+  --bg:#0f0e0c; --surface:#171612; --surface2:#211f1a; --text:#e2dccf;
+  --dim:#9f988b; --border:#343027; --green:#4ac48a; --blue:#5b9bd5;
+  --gold:#c4a84a; --orange:#d47c5b;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:Georgia, serif; }
+header { padding:28px 34px 18px; border-bottom:1px solid var(--border); }
+h1 { margin:0 0 7px; font-size:25px; letter-spacing:.02em; }
+.sub { color:var(--dim); font-style:italic; font-size:13px; line-height:1.45; max-width:1200px; }
+.controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:14px 34px; background:#14130f; border-bottom:1px solid var(--border); }
+label { color:var(--dim); font-size:12px; font-family:"Source Code Pro", monospace; }
+select, input { background:var(--surface2); color:var(--text); border:1px solid var(--border); border-radius:4px; padding:7px 9px; }
+button { background:#2b5f89; border:1px solid #3d7fb2; color:white; border-radius:4px; padding:7px 11px; cursor:pointer; }
+.stats { margin-left:auto; color:var(--dim); font-size:12px; font-family:"Source Code Pro", monospace; }
+main { padding:22px 34px 34px; }
+.chart-shell { background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:auto; }
+svg { display:block; min-width:1240px; }
+.node rect { stroke:rgba(255,255,255,.22); stroke-width:1; rx:2; }
+.node text { fill:var(--text); font-size:11px; dominant-baseline:middle; pointer-events:none; text-shadow:0 1px 2px #090806; }
+.node .count { fill:var(--dim); font-size:9px; font-family:"Source Code Pro", monospace; }
+.col-title { fill:#b8b0a3; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+.link { fill:none; stroke-linecap:butt; mix-blend-mode:screen; cursor:pointer; }
+.link:hover { stroke-opacity:.86 !important; }
+.axis-note { fill:var(--dim); font-size:10px; font-style:italic; }
+.tooltip { position:fixed; pointer-events:none; background:rgba(15,14,12,.96); color:var(--text); border:1px solid var(--border); border-radius:4px; padding:8px 10px; font-size:12px; max-width:360px; box-shadow:0 8px 28px rgba(0,0,0,.4); display:none; z-index:10; }
+.legend { display:flex; gap:16px; flex-wrap:wrap; padding:12px 0 0; color:var(--dim); font-size:12px; }
+.dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Jefferson 1815 Classes → LCC Main Classes → Current Subclasses</h1>
+  <div class="sub">Alluvial crosswalk built from the 1815 Jefferson hierarchy plus local LCC subclass status/count files. Flows are weighted by 2020 cumulative record counts. The Jefferson→LCC step is a broad main-class crosswalk; subclass status comes from the local MERGED/DIRECT/RENAMED/ABSENT labels.</div>
+</header>
+<div class="controls">
+  <label>Status
+    <select id="statusFilter">
+      <option value="JEFFERSON">Jefferson-linked only</option>
+      <option value="ALL">All, including absent</option>
+      <option value="DIRECT">DIRECT only</option>
+      <option value="MERGED">MERGED only</option>
+      <option value="RENAMED">RENAMED only</option>
+      <option value="ABSENT">ABSENT only</option>
+    </select>
+  </label>
+  <label>Subclass limit
+    <input id="limit" type="range" min="20" max="202" value="100" step="10">
+    <span id="limitLabel">100</span>
+  </label>
+  <button id="showAll">show all subclasses</button>
+  <div class="stats" id="stats"></div>
+</div>
+<main>
+  <div class="chart-shell"><svg id="chart" role="img" aria-label="Alluvial chart of Jefferson classes mapped to LCC classes and current subclasses"></svg></div>
+  <div class="legend">
+    <span><i class="dot" style="background:#4ac48a"></i>DIRECT</span>
+    <span><i class="dot" style="background:#5b9bd5"></i>MERGED</span>
+    <span><i class="dot" style="background:#c4a84a"></i>RENAMED</span>
+    <span><i class="dot" style="background:#d47c5b"></i>ABSENT</span>
+  </div>
+</main>
+<div class="tooltip" id="tooltip"></div>
+<script>
+const records = [{"source":"IV. Polygraphical","main":"A","mainLabel":"A — General Works","subclass":"AC","label":"General Collections","status":"RENAMED","count2020":21246,"inflection":1902.7},{"source":"IV. Polygraphical","main":"A","mainLabel":"A — General Works","subclass":"AE","label":"Encyclopedias (General)","status":"RENAMED","count2020":1508,"inflection":1974.3},{"source":"IV. Polygraphical","main":"A","mainLabel":"A — General Works","subclass":"AG","label":"Dictionaries (General)","status":"RENAMED","count2020":2970,"inflection":1981.3},{"source":"Not in Jefferson","main":"A","mainLabel":"A — General Works","subclass":"AI","label":"Indexes","status":"ABSENT","count2020":247,"inflection":1978},{"source":"Not in Jefferson","main":"A","mainLabel":"A — General Works","subclass":"AM","label":"Museums / Exhibitions","status":"ABSENT","count2020":4538,"inflection":1990},{"source":"Not in Jefferson","main":"A","mainLabel":"A — General Works","subclass":"AN","label":"Newspapers","status":"ABSENT","count2020":2,"inflection":null},{"source":"Not in Jefferson","main":"A","mainLabel":"A — General Works","subclass":"AS","label":"Academies / Societies","status":"ABSENT","count2020":15217,"inflection":1970.2},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"B","label":"Philosophy (General)","status":"MERGED","count2020":111087,"inflection":1988.6},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BC","label":"Logic","status":"MERGED","count2020":4386,"inflection":1983.4},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BD","label":"Speculative Philosophy","status":"MERGED","count2020":17349,"inflection":1988.6},{"source":"Not in Jefferson","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BF","label":"Psychology","status":"ABSENT","count2020":85825,"inflection":1987.1},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BH","label":"Aesthetics","status":"MERGED","count2020":5441,"inflection":1989.6},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BJ","label":"Ethics","status":"MERGED","count2020":24126,"inflection":1985.8},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BL","label":"Religion / Mythology","status":"MERGED","count2020":67934,"inflection":1989.4},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BM","label":"Judaism","status":"MERGED","count2020":45180,"inflection":1990.8},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BP","label":"Islam","status":"MERGED","count2020":46458,"inflection":1994.9},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BR","label":"Christianity","status":"MERGED","count2020":40279,"inflection":1982.9},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BS","label":"Bible","status":"MERGED","count2020":62192,"inflection":1986.2},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BT","label":"Doctrinal Theology","status":"MERGED","count2020":42184,"inflection":1984.3},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BV","label":"Practical Theology","status":"MERGED","count2020":76914,"inflection":1985.1},{"source":"II. Philosophy","main":"B","mainLabel":"B — Philosophy / Religion","subclass":"BX","label":"Christian Denominations","status":"MERGED","count2020":123705,"inflection":1981.4},{"source":"Not in Jefferson","main":"C","mainLabel":"C — Auxiliary Sciences of History","subclass":"CB","label":"History of Civilization","status":"ABSENT","count2020":10708,"inflection":1983.8},{"source":"Not in Jefferson","main":"C","mainLabel":"C — Auxiliary Sciences of History","subclass":"CC","label":"Archaeology","status":"ABSENT","count2020":4298,"inflection":1993.5},{"source":"Not in Jefferson","main":"C","mainLabel":"C — Auxiliary Sciences of History","subclass":"CD","label":"Diplomatics / Archives","status":"ABSENT","count2020":10401,"inflection":1983.1},{"source":"Not in Jefferson","main":"C","mainLabel":"C — Auxiliary Sciences of History","subclass":"CE","label":"Chronology","status":"ABSENT","count2020":986,"inflection":1979.5},{"source":"Not in Jefferson","main":"C","mainLabel":"C — Auxiliary Sciences of History","subclass":"CJ","label":"Numismatics","status":"ABSENT","count2020":6454,"inflection":1982.3},{"source":"Not in Jefferson","main":"C","mainLabel":"C — Auxiliary Sciences of History","subclass":"CN","label":"Inscriptions / Epigraphy","status":"ABSENT","count2020":1751,"inflection":1989.7},{"source":"Not in Jefferson","main":"C","mainLabel":"C — Auxiliary Sciences of History","subclass":"CR","label":"Heraldry","status":"ABSENT","count2020":4932,"inflection":1985.4},{"source":"Not in Jefferson","main":"C","mainLabel":"C — Auxiliary Sciences of History","subclass":"CS","label":"Genealogy","status":"ABSENT","count2020":55337,"inflection":1985.2},{"source":"Not in Jefferson","main":"C","mainLabel":"C — Auxiliary Sciences of History","subclass":"CT","label":"Biography (General)","status":"ABSENT","count2020":26234,"inflection":1985.4},{"source":"I. History","main":"D","mainLabel":"D — World History","subclass":"D","label":"History (General)","status":"MERGED","count2020":113027,"inflection":1981.5},{"source":"I. History","main":"D","mainLabel":"D — World History","subclass":"DA","label":"British History","status":"MERGED","count2020":54783,"inflection":1971.2},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DAW","label":"Central Europe","status":"ABSENT","count2020":283,"inflection":2000.1},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DB","label":"Austria / Bohemia","status":"ABSENT","count2020":21823,"inflection":1981.7},{"source":"I. History","main":"D","mainLabel":"D — World History","subclass":"DC","label":"French History","status":"MERGED","count2020":44853,"inflection":1976.7},{"source":"I. History","main":"D","mainLabel":"D — World History","subclass":"DD","label":"German History","status":"MERGED","count2020":45453,"inflection":1980.7},{"source":"I. History","main":"D","mainLabel":"D — World History","subclass":"DE","label":"Greco-Roman World","status":"MERGED","count2020":1671,"inflection":1984},{"source":"I. History","main":"D","mainLabel":"D — World History","subclass":"DF","label":"Greek History","status":"MERGED","count2020":11336,"inflection":1984.7},{"source":"I. History","main":"D","mainLabel":"D — World History","subclass":"DG","label":"Italian History / Rome","status":"MERGED","count2020":40781,"inflection":1986.4},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DH","label":"Low Countries History","status":"ABSENT","count2020":4390,"inflection":1975.9},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DJ","label":"Netherlands","status":"ABSENT","count2020":4953,"inflection":1982.3},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DJK","label":"Eastern Europe (General)","status":"ABSENT","count2020":2323,"inflection":1994.9},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DK","label":"Russia / Former Soviet States","status":"ABSENT","count2020":83137,"inflection":1990.6},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DL","label":"Scandinavian History","status":"ABSENT","count2020":15143,"inflection":1981.1},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DP","label":"Iberian History","status":"ABSENT","count2020":32519,"inflection":1986},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DQ","label":"Switzerland","status":"ABSENT","count2020":5270,"inflection":1979.4},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DR","label":"Balkan History","status":"ABSENT","count2020":36545,"inflection":1992.5},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DS","label":"Asian History","status":"ABSENT","count2020":296746,"inflection":1991.4},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DT","label":"African History","status":"ABSENT","count2020":57568,"inflection":1985},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DU","label":"Oceania","status":"ABSENT","count2020":15626,"inflection":1980.9},{"source":"Not in Jefferson","main":"D","mainLabel":"D — World History","subclass":"DX","label":"Romani People","status":"ABSENT","count2020":1205,"inflection":1992},{"source":"Not in Jefferson","main":"E","mainLabel":"E — History of the Americas","subclass":"E18","label":"African American History (E185)","status":"ABSENT","count2020":25802,"inflection":1987.6},{"source":"Not in Jefferson","main":"E","mainLabel":"E — History of the Americas","subclass":"E99","label":"Native Americans (E99)","status":"ABSENT","count2020":10451,"inflection":1987.9},{"source":"II. Philosophy","main":"G","mainLabel":"G — Geography / Anthropology / Recreation","subclass":"G","label":"Geography (General)","status":"MERGED","count2020":31262,"inflection":1981.6},{"source":"II. Philosophy","main":"G","mainLabel":"G — Geography / Anthropology / Recreation","subclass":"GA","label":"Mathematical Geography","status":"MERGED","count2020":3714,"inflection":1983.2},{"source":"II. Philosophy","main":"G","mainLabel":"G — Geography / Anthropology / Recreation","subclass":"GB","label":"Physical Geography","status":"MERGED","count2020":19889,"inflection":1987.1},{"source":"Not in Jefferson","main":"G","mainLabel":"G — Geography / Anthropology / Recreation","subclass":"GC","label":"Oceanography","status":"ABSENT","count2020":6916,"inflection":1985.9},{"source":"Not in Jefferson","main":"G","mainLabel":"G — Geography / Anthropology / Recreation","subclass":"GE","label":"Environmental Sciences","status":"ABSENT","count2020":7511,"inflection":2000.4},{"source":"Not in Jefferson","main":"G","mainLabel":"G — Geography / Anthropology / Recreation","subclass":"GF","label":"Human Ecology","status":"ABSENT","count2020":5349,"inflection":1992.3},{"source":"Not in Jefferson","main":"G","mainLabel":"G — Geography / Anthropology / Recreation","subclass":"GN","label":"Anthropology","status":"ABSENT","count2020":34788,"inflection":1988.2},{"source":"Not in Jefferson","main":"G","mainLabel":"G — Geography / Anthropology / Recreation","subclass":"GR","label":"Folklore","status":"ABSENT","count2020":22855,"inflection":1988.9},{"source":"Not in Jefferson","main":"G","mainLabel":"G — Geography / Anthropology / Recreation","subclass":"GT","label":"Manners & Customs","status":"ABSENT","count2020":19230,"inflection":1993.7},{"source":"Not in Jefferson","main":"G","mainLabel":"G — Geography / Anthropology / Recreation","subclass":"GV","label":"Recreation / Leisure","status":"ABSENT","count2020":109996,"inflection":1989.5},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HA","label":"Statistics","status":"ABSENT","count2020":14766,"inflection":1981.4},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HB","label":"Economic Theory","status":"ABSENT","count2020":64038,"inflection":1987.2},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HC","label":"Economic History","status":"ABSENT","count2020":155017,"inflection":1986.8},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HD","label":"Land / Agriculture Economics","status":"ABSENT","count2020":320570,"inflection":1986.6},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HE","label":"Transportation & Comms","status":"ABSENT","count2020":48735,"inflection":1981.7},{"source":"II. Philosophy","main":"H","mainLabel":"H — Social Sciences","subclass":"HF","label":"Commerce","status":"MERGED","count2020":117627,"inflection":1986.6},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HG","label":"Finance","status":"ABSENT","count2020":85584,"inflection":1988.2},{"source":"II. Philosophy","main":"H","mainLabel":"H — Social Sciences","subclass":"HJ","label":"Public Finance","status":"MERGED","count2020":29505,"inflection":1981.6},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HM","label":"Sociology","status":"ABSENT","count2020":37950,"inflection":1991.5},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HN","label":"Social History","status":"ABSENT","count2020":53353,"inflection":1989.9},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HQ","label":"Family / Gender / Sexuality","status":"ABSENT","count2020":107072,"inflection":1992},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HS","label":"Societies / Clubs","status":"ABSENT","count2020":6384,"inflection":1982.7},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HT","label":"Communities / Classes / Race","status":"ABSENT","count2020":39829,"inflection":1988.9},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HV","label":"Social Pathology / Criminology","status":"ABSENT","count2020":133807,"inflection":1991.8},{"source":"Not in Jefferson","main":"H","mainLabel":"H — Social Sciences","subclass":"HX","label":"Socialism / Communism","status":"ABSENT","count2020":33668,"inflection":1980.5},{"source":"II. Philosophy","main":"J","mainLabel":"J — Political Science","subclass":"JC","label":"Political Theory","status":"MERGED","count2020":30097,"inflection":1990.2},{"source":"II. Philosophy","main":"J","mainLabel":"J — Political Science","subclass":"JK","label":"US Political Institutions","status":"MERGED","count2020":24663,"inflection":1976.3},{"source":"II. Philosophy","main":"J","mainLabel":"J — Political Science","subclass":"JL","label":"Canadian / Latin American Politics","status":"MERGED","count2020":13132,"inflection":1989.2},{"source":"Not in Jefferson","main":"J","mainLabel":"J — Political Science","subclass":"JN","label":"European Politics","status":"ABSENT","count2020":40947,"inflection":1987.3},{"source":"Not in Jefferson","main":"J","mainLabel":"J — Political Science","subclass":"JQ","label":"Asian / African Politics","status":"ABSENT","count2020":33549,"inflection":1992.4},{"source":"Not in Jefferson","main":"J","mainLabel":"J — Political Science","subclass":"JS","label":"Local Government","status":"ABSENT","count2020":16932,"inflection":1984.2},{"source":"Not in Jefferson","main":"J","mainLabel":"J — Political Science","subclass":"JV","label":"Colonies / Colonialism","status":"ABSENT","count2020":9749,"inflection":1991.6},{"source":"Not in Jefferson","main":"J","mainLabel":"J — Political Science","subclass":"JX","label":"International Law (old)","status":"ABSENT","count2020":29542,"inflection":1967.5},{"source":"Not in Jefferson","main":"J","mainLabel":"J — Political Science","subclass":"JZ","label":"International Relations","status":"ABSENT","count2020":11071,"inflection":2004.8},{"source":"II. Philosophy","main":"K","mainLabel":"K — Law","subclass":"K","label":"Law (General)","status":"MERGED","count2020":232299,"inflection":1994.6},{"source":"II. Philosophy","main":"K","mainLabel":"K — Law","subclass":"KB","label":"Religious Law","status":"MERGED","count2020":8015,"inflection":1992.9},{"source":"II. Philosophy","main":"K","mainLabel":"K — Law","subclass":"KD","label":"UK Law","status":"MERGED","count2020":22633,"inflection":1965.8},{"source":"Not in Jefferson","main":"K","mainLabel":"K — Law","subclass":"KE","label":"Canadian Law","status":"ABSENT","count2020":7870,"inflection":1985.6},{"source":"II. Philosophy","main":"K","mainLabel":"K — Law","subclass":"KF","label":"US Law","status":"MERGED","count2020":191158,"inflection":1986.2},{"source":"Not in Jefferson","main":"K","mainLabel":"K — Law","subclass":"KG","label":"Latin American Law","status":"ABSENT","count2020":18652,"inflection":1989.8},{"source":"Not in Jefferson","main":"K","mainLabel":"K — Law","subclass":"KH","label":"South American Law","status":"ABSENT","count2020":47820,"inflection":1992.9},{"source":"II. Philosophy","main":"K","mainLabel":"K — Law","subclass":"KJ","label":"European Law","status":"MERGED","count2020":45037,"inflection":1991.5},{"source":"Not in Jefferson","main":"K","mainLabel":"K — Law","subclass":"KL","label":"Asian / African Law","status":"ABSENT","count2020":16293,"inflection":2001.9},{"source":"Not in Jefferson","main":"K","mainLabel":"K — Law","subclass":"KZ","label":"International Law","status":"ABSENT","count2020":7726,"inflection":2000.2},{"source":"Not in Jefferson","main":"L","mainLabel":"L — Education","subclass":"LA","label":"History of Education","status":"ABSENT","count2020":97538,"inflection":1975.5},{"source":"Not in Jefferson","main":"L","mainLabel":"L — Education","subclass":"LB","label":"Theory / Practice of Education","status":"ABSENT","count2020":106253,"inflection":1985.6},{"source":"Not in Jefferson","main":"L","mainLabel":"L — Education","subclass":"LC","label":"Social Aspects of Education","status":"ABSENT","count2020":52085,"inflection":1989.1},{"source":"Not in Jefferson","main":"L","mainLabel":"L — Education","subclass":"LD","label":"US Universities","status":"ABSENT","count2020":5806,"inflection":1966},{"source":"Not in Jefferson","main":"L","mainLabel":"L — Education","subclass":"LE","label":"American Universities (other)","status":"ABSENT","count2020":2983,"inflection":1969.6},{"source":"Not in Jefferson","main":"L","mainLabel":"L — Education","subclass":"LF","label":"European Universities","status":"ABSENT","count2020":5829,"inflection":1980.8},{"source":"Not in Jefferson","main":"L","mainLabel":"L — Education","subclass":"LG","label":"Asian / African Universities","status":"ABSENT","count2020":3529,"inflection":1990.1},{"source":"Not in Jefferson","main":"L","mainLabel":"L — Education","subclass":"LH","label":"College Publications","status":"ABSENT","count2020":36,"inflection":null},{"source":"Not in Jefferson","main":"L","mainLabel":"L — Education","subclass":"LJ","label":"Student Fraternities","status":"ABSENT","count2020":341,"inflection":1955.5},{"source":"III. Fine Arts","main":"M","mainLabel":"M — Music","subclass":"M","label":"Music Scores","status":"DIRECT","count2020":124462,"inflection":1971.5},{"source":"III. Fine Arts","main":"M","mainLabel":"M — Music","subclass":"ML","label":"Literature on Music","status":"DIRECT","count2020":773679,"inflection":1989.5},{"source":"III. Fine Arts","main":"M","mainLabel":"M — Music","subclass":"MT","label":"Musical Instruction","status":"DIRECT","count2020":14617,"inflection":1977.4},{"source":"III. Fine Arts","main":"N","mainLabel":"N — Fine Arts","subclass":"N","label":"Visual Arts (General)","status":"MERGED","count2020":110348,"inflection":1990.3},{"source":"III. Fine Arts","main":"N","mainLabel":"N — Fine Arts","subclass":"NB","label":"Sculpture","status":"MERGED","count2020":19859,"inflection":1987.1},{"source":"III. Fine Arts","main":"N","mainLabel":"N — Fine Arts","subclass":"NC","label":"Drawing / Design","status":"MERGED","count2020":26983,"inflection":1985.1},{"source":"III. Fine Arts","main":"N","mainLabel":"N — Fine Arts","subclass":"ND","label":"Painting","status":"MERGED","count2020":80851,"inflection":1986.9},{"source":"Not in Jefferson","main":"N","mainLabel":"N — Fine Arts","subclass":"NE","label":"Print Media","status":"ABSENT","count2020":13570,"inflection":1978.9},{"source":"Not in Jefferson","main":"N","mainLabel":"N — Fine Arts","subclass":"NK","label":"Decorative Arts","status":"ABSENT","count2020":52755,"inflection":1988.4},{"source":"Not in Jefferson","main":"N","mainLabel":"N — Fine Arts","subclass":"NX","label":"Arts in General","status":"ABSENT","count2020":13690,"inflection":1992},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"P","label":"Linguistics (General)","status":"MERGED","count2020":338833,"inflection":1977.1},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PA","label":"Classical Languages & Literature","status":"MERGED","count2020":35928,"inflection":1977.5},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PB","label":"Celtic Languages","status":"MERGED","count2020":5380,"inflection":1983.9},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PC","label":"Romanic Languages","status":"MERGED","count2020":45050,"inflection":1985.4},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PD","label":"Germanic Languages (Old)","status":"MERGED","count2020":3879,"inflection":1973.8},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PE","label":"English Language","status":"MERGED","count2020":34036,"inflection":1983.3},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PF","label":"West Germanic Languages","status":"MERGED","count2020":11044,"inflection":1981.8},{"source":"Not in Jefferson","main":"P","mainLabel":"P — Language and Literature","subclass":"PG","label":"Slavic Languages & Literatures","status":"ABSENT","count2020":138935,"inflection":1988},{"source":"Not in Jefferson","main":"P","mainLabel":"P — Language and Literature","subclass":"PH","label":"Uralic / Basque Languages","status":"ABSENT","count2020":19806,"inflection":1986.8},{"source":"Not in Jefferson","main":"P","mainLabel":"P — Language and Literature","subclass":"PJ","label":"Oriental Languages & Literature","status":"ABSENT","count2020":51776,"inflection":1987.8},{"source":"Not in Jefferson","main":"P","mainLabel":"P — Language and Literature","subclass":"PK","label":"Indo-Iranian Languages","status":"ABSENT","count2020":99477,"inflection":1984.5},{"source":"Not in Jefferson","main":"P","mainLabel":"P — Language and Literature","subclass":"PL","label":"E Asian / African / Pacific","status":"ABSENT","count2020":181616,"inflection":1989.7},{"source":"Not in Jefferson","main":"P","mainLabel":"P — Language and Literature","subclass":"PM","label":"Indigenous American Languages","status":"ABSENT","count2020":5908,"inflection":1984},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PN","label":"General Literature","status":"MERGED","count2020":208463,"inflection":1988.6},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PQ","label":"French/Italian/Spanish Lit.","status":"MERGED","count2020":291535,"inflection":1983.8},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PR","label":"English Literature","status":"MERGED","count2020":183098,"inflection":1982.6},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PS","label":"American Literature","status":"MERGED","count2020":227722,"inflection":1990.7},{"source":"III. Fine Arts","main":"P","mainLabel":"P — Language and Literature","subclass":"PT","label":"Germanic Literature","status":"MERGED","count2020":119726,"inflection":1980.1},{"source":"I. History","main":"Q","mainLabel":"Q — Science","subclass":"Q","label":"Science (General)","status":"MERGED","count2020":40463,"inflection":1980.6},{"source":"I. History","main":"Q","mainLabel":"Q — Science","subclass":"QA","label":"Mathematics","status":"MERGED","count2020":135992,"inflection":1989.6},{"source":"I. History","main":"Q","mainLabel":"Q — Science","subclass":"QB","label":"Astronomy","status":"MERGED","count2020":23145,"inflection":1983.1},{"source":"I. History","main":"Q","mainLabel":"Q — Science","subclass":"QC","label":"Physics","status":"MERGED","count2020":70917,"inflection":1982.8},{"source":"I. History","main":"Q","mainLabel":"Q — Science","subclass":"QD","label":"Chemistry","status":"MERGED","count2020":35092,"inflection":1975.2},{"source":"I. History","main":"Q","mainLabel":"Q — Science","subclass":"QE","label":"Geology / Mineralogy","status":"MERGED","count2020":56663,"inflection":1979.3},{"source":"Not in Jefferson","main":"Q","mainLabel":"Q — Science","subclass":"QH","label":"Natural History / Biology","status":"ABSENT","count2020":53598,"inflection":1986.7},{"source":"I. History","main":"Q","mainLabel":"Q — Science","subclass":"QK","label":"Botany","status":"MERGED","count2020":30611,"inflection":1980.3},{"source":"I. History","main":"Q","mainLabel":"Q — Science","subclass":"QL","label":"Zoology","status":"MERGED","count2020":69446,"inflection":1986},{"source":"I. History","main":"Q","mainLabel":"Q — Science","subclass":"QM","label":"Human Anatomy","status":"MERGED","count2020":4835,"inflection":1975.6},{"source":"Not in Jefferson","main":"Q","mainLabel":"Q — Science","subclass":"QP","label":"Physiology","status":"ABSENT","count2020":33773,"inflection":1985.1},{"source":"Not in Jefferson","main":"Q","mainLabel":"Q — Science","subclass":"QR","label":"Microbiology","status":"ABSENT","count2020":9576,"inflection":1985.1},{"source":"I. History","main":"R","mainLabel":"R — Medicine","subclass":"R","label":"Medicine (General)","status":"MERGED","count2020":33159,"inflection":1988.6},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RA","label":"Public Health","status":"ABSENT","count2020":64171,"inflection":1991.1},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RB","label":"Pathology","status":"ABSENT","count2020":6897,"inflection":1987.1},{"source":"I. History","main":"R","mainLabel":"R — Medicine","subclass":"RC","label":"Internal Medicine","status":"MERGED","count2020":102274,"inflection":1989.2},{"source":"I. History","main":"R","mainLabel":"R — Medicine","subclass":"RD","label":"Surgery","status":"MERGED","count2020":17123,"inflection":1986.2},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RE","label":"Ophthalmology","status":"ABSENT","count2020":4530,"inflection":1982.5},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RF","label":"Otorhinolaryngology","status":"ABSENT","count2020":2602,"inflection":1986.1},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RG","label":"Gynecology / Obstetrics","status":"ABSENT","count2020":12089,"inflection":1988.3},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RJ","label":"Pediatrics","status":"ABSENT","count2020":19154,"inflection":1991.1},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RK","label":"Dentistry","status":"ABSENT","count2020":4751,"inflection":1980},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RL","label":"Dermatology","status":"ABSENT","count2020":2216,"inflection":1984.8},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RM","label":"Pharmacology","status":"ABSENT","count2020":19785,"inflection":1988.5},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RS","label":"Pharmacy","status":"ABSENT","count2020":7225,"inflection":1985.7},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RT","label":"Nursing","status":"ABSENT","count2020":9375,"inflection":1988.8},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RV","label":"Botanic Medicine","status":"ABSENT","count2020":97,"inflection":1882.6},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RX","label":"Homeopathy","status":"ABSENT","count2020":755,"inflection":1964.9},{"source":"Not in Jefferson","main":"R","mainLabel":"R — Medicine","subclass":"RZ","label":"Other Medical Systems","status":"ABSENT","count2020":2145,"inflection":1988.3},{"source":"I. History","main":"S","mainLabel":"S — Agriculture","subclass":"S","label":"Agriculture (General)","status":"DIRECT","count2020":33900,"inflection":1980.1},{"source":"I. History","main":"S","mainLabel":"S — Agriculture","subclass":"SB","label":"Plant Culture","status":"DIRECT","count2020":41235,"inflection":1984.1},{"source":"I. History","main":"S","mainLabel":"S — Agriculture","subclass":"SD","label":"Forestry","status":"MERGED","count2020":14096,"inflection":1985.4},{"source":"I. History","main":"S","mainLabel":"S — Agriculture","subclass":"SF","label":"Animal Culture","status":"MERGED","count2020":32765,"inflection":1986.7},{"source":"Not in Jefferson","main":"S","mainLabel":"S — Agriculture","subclass":"SH","label":"Aquaculture / Fisheries","status":"ABSENT","count2020":14631,"inflection":1984.3},{"source":"Not in Jefferson","main":"S","mainLabel":"S — Agriculture","subclass":"SK","label":"Hunting / Wildlife","status":"ABSENT","count2020":6976,"inflection":1977.9},{"source":"I. History","main":"T","mainLabel":"T — Technology","subclass":"T","label":"Technology (General)","status":"MERGED","count2020":61675,"inflection":1989},{"source":"I. History","main":"T","mainLabel":"T — Technology","subclass":"TA","label":"Engineering (General)","status":"MERGED","count2020":48997,"inflection":1987},{"source":"I. History","main":"T","mainLabel":"T — Technology","subclass":"TC","label":"Hydraulic Engineering","status":"MERGED","count2020":10973,"inflection":1978.8},{"source":"Not in Jefferson","main":"T","mainLabel":"T — Technology","subclass":"TD","label":"Environmental Technology","status":"ABSENT","count2020":36671,"inflection":1989.4},{"source":"I. History","main":"T","mainLabel":"T — Technology","subclass":"TE","label":"Highway Engineering","status":"MERGED","count2020":5698,"inflection":1982.7},{"source":"Not in Jefferson","main":"T","mainLabel":"T — Technology","subclass":"TF","label":"Railroad Engineering","status":"ABSENT","count2020":9243,"inflection":1983.4},{"source":"I. History","main":"T","mainLabel":"T — Technology","subclass":"TG","label":"Bridge Engineering","status":"MERGED","count2020":2903,"inflection":1976.5},{"source":"I. History","main":"T","mainLabel":"T — Technology","subclass":"TH","label":"Building Construction","status":"MERGED","count2020":20799,"inflection":1984.7},{"source":"I. History","main":"T","mainLabel":"T — Technology","subclass":"TJ","label":"Mechanical Engineering","status":"MERGED","count2020":30082,"inflection":1982.9},{"source":"Not in Jefferson","main":"T","mainLabel":"T — Technology","subclass":"TK","label":"Electrical Engineering","status":"ABSENT","count2020":65477,"inflection":1989.5},{"source":"Not in Jefferson","main":"T","mainLabel":"T — Technology","subclass":"TL","label":"Motor Vehicles / Aeronautics","status":"ABSENT","count2020":48163,"inflection":1983.9},{"source":"I. History","main":"T","mainLabel":"T — Technology","subclass":"TN","label":"Mining / Metallurgy","status":"MERGED","count2020":30543,"inflection":1977.1},{"source":"I. History","main":"T","mainLabel":"T — Technology","subclass":"TP","label":"Chemical Technology","status":"MERGED","count2020":29238,"inflection":1983.3},{"source":"Not in Jefferson","main":"T","mainLabel":"T — Technology","subclass":"TR","label":"Photography","status":"ABSENT","count2020":29635,"inflection":1992.9},{"source":"I. History","main":"T","mainLabel":"T — Technology","subclass":"TS","label":"Manufactures","status":"MERGED","count2020":28435,"inflection":1981.3},{"source":"Not in Jefferson","main":"T","mainLabel":"T — Technology","subclass":"TX","label":"Home Economics","status":"ABSENT","count2020":64446,"inflection":1988.3},{"source":"Not in Jefferson","main":"U","mainLabel":"U — Military Science","subclass":"UA","label":"Armies / Land Forces","status":"ABSENT","count2020":21004,"inflection":1989.2},{"source":"Not in Jefferson","main":"U","mainLabel":"U — Military Science","subclass":"UB","label":"Military Administration","status":"ABSENT","count2020":6977,"inflection":1987},{"source":"Not in Jefferson","main":"U","mainLabel":"U — Military Science","subclass":"UC","label":"Military Maintenance","status":"ABSENT","count2020":2681,"inflection":1984.2},{"source":"Not in Jefferson","main":"U","mainLabel":"U — Military Science","subclass":"UD","label":"Infantry","status":"ABSENT","count2020":1223,"inflection":1979},{"source":"Not in Jefferson","main":"U","mainLabel":"U — Military Science","subclass":"UF","label":"Artillery","status":"ABSENT","count2020":2267,"inflection":1977},{"source":"Not in Jefferson","main":"U","mainLabel":"U — Military Science","subclass":"UG","label":"Military Engineering","status":"ABSENT","count2020":12448,"inflection":1990.4},{"source":"Not in Jefferson","main":"U","mainLabel":"U — Military Science","subclass":"UH","label":"Military Medicine","status":"ABSENT","count2020":1316,"inflection":1982.9},{"source":"Not in Jefferson","main":"V","mainLabel":"V — Naval Science","subclass":"VA","label":"Navies","status":"ABSENT","count2020":3202,"inflection":1985.3},{"source":"Not in Jefferson","main":"V","mainLabel":"V — Naval Science","subclass":"VB","label":"Naval Administration","status":"ABSENT","count2020":446,"inflection":1975.7},{"source":"Not in Jefferson","main":"V","mainLabel":"V — Naval Science","subclass":"VC","label":"Naval Maintenance","status":"ABSENT","count2020":253,"inflection":1977.5},{"source":"Not in Jefferson","main":"V","mainLabel":"V — Naval Science","subclass":"VD","label":"Naval Seamen","status":"ABSENT","count2020":38,"inflection":null},{"source":"Not in Jefferson","main":"V","mainLabel":"V — Naval Science","subclass":"VF","label":"Naval Ordnance","status":"ABSENT","count2020":193,"inflection":1968},{"source":"Not in Jefferson","main":"V","mainLabel":"V — Naval Science","subclass":"VG","label":"Naval Auxiliaries","status":"ABSENT","count2020":1033,"inflection":1983.7},{"source":"Not in Jefferson","main":"V","mainLabel":"V — Naval Science","subclass":"VK","label":"Navigation / Seamanship","status":"ABSENT","count2020":6221,"inflection":1979.5},{"source":"Not in Jefferson","main":"V","mainLabel":"V — Naval Science","subclass":"VM","label":"Naval Architecture","status":"ABSENT","count2020":8194,"inflection":1979.8},{"source":"III. Fine Arts","main":"Z","mainLabel":"Z — Bibliography / Library Science","subclass":"Z","label":"Books / Writing (General)","status":"DIRECT","count2020":164602,"inflection":1979.4},{"source":"Not in Jefferson","main":"Z","mainLabel":"Z — Bibliography / Library Science","subclass":"ZA","label":"Information Resources","status":"ABSENT","count2020":1331,"inflection":2003.3}];
+const colors = {"DIRECT":"#4ac48a","MERGED":"#5b9bd5","RENAMED":"#c4a84a","ABSENT":"#d47c5b"};
+const sourceColors = {
+  'I. History':'#7fa8ce',
+  'II. Philosophy':'#83c8a4',
+  'III. Fine Arts':'#d1b55f',
+  'IV. Polygraphical':'#a997cf',
+  'Not in Jefferson':'#d47c5b',
+  'Jefferson-linked, uncrosswalked':'#9a9488'
+};
+
+const svg = document.getElementById('chart');
+const tip = document.getElementById('tooltip');
+const statusFilter = document.getElementById('statusFilter');
+const limit = document.getElementById('limit');
+const limitLabel = document.getElementById('limitLabel');
+const stats = document.getElementById('stats');
+
+function fmt(n) { return Math.round(n).toLocaleString(); }
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+}
+function colorFor(rec) {
+  if (rec.status === 'ABSENT') return colors.ABSENT;
+  return sourceColors[rec.source] || colors[rec.status] || '#9a9488';
+}
+function filteredRecords() {
+  const filter = statusFilter.value;
+  let rows = records.slice();
+  if (filter === 'JEFFERSON') rows = rows.filter(r => r.status !== 'ABSENT');
+  else if (filter !== 'ALL') rows = rows.filter(r => r.status === filter);
+  rows.sort((a, b) => b.count2020 - a.count2020);
+  return rows.slice(0, +limit.value);
+}
+function shortLabel(s, n) {
+  return s.length > n ? s.slice(0, n - 1) + '…' : s;
+}
+function makeGraph(rows) {
+  const nodeMap = new Map();
+  const links = [];
+  function addNode(id, label, layer, color, kind) {
+    if (!nodeMap.has(id)) nodeMap.set(id, { id, name:label, layer, color, kind, total:0 });
+    return nodeMap.get(id);
+  }
+  const sourceMain = new Map();
+  rows.forEach(r => {
+    const source = addNode('J:' + r.source, r.source, 0, sourceColors[r.source] || colorFor(r), 'Jefferson 1815');
+    const main = addNode('L:' + r.main, r.mainLabel, 1, '#647f9d', 'LCC main class');
+    const sub = addNode('S:' + r.subclass, `${r.subclass} — ${r.label}`, 2, colors[r.status] || '#9a9488', r.status);
+    source.total += r.count2020;
+    main.total += r.count2020;
+    sub.total += r.count2020;
+    const k = source.id + '|' + main.id;
+    const old = sourceMain.get(k) || { source:source.id, target:main.id, value:0, color:colorFor(r), title:`${source.name} → ${main.name}`, status:'aggregate' };
+    old.value += r.count2020;
+    sourceMain.set(k, old);
+    links.push({
+      source:main.id,
+      target:sub.id,
+      value:r.count2020,
+      color:colors[r.status] || colorFor(r),
+      title:`${main.name} → ${sub.name}`,
+      detail:`${r.source} → ${r.mainLabel} → ${r.subclass} — ${r.label}<br><b>${fmt(r.count2020)}</b> records in 2020 · ${r.status}`,
+      status:r.status
+    });
+  });
+  sourceMain.forEach(l => {
+    l.detail = `${l.title}<br><b>${fmt(l.value)}</b> records in selected subclasses`;
+    links.push(l);
+  });
+  return { nodes:[...nodeMap.values()], links };
+}
+function draw() {
+  limitLabel.textContent = limit.value;
+  const rows = filteredRecords();
+  const total = rows.reduce((a,r) => a + r.count2020, 0);
+  stats.textContent = `${rows.length} subclasses · ${fmt(total)} 2020 records`;
+  const raw = makeGraph(rows);
+  const width = 1480;
+  const height = Math.max(780, rows.length * 8 + 260);
+  const margin = { top:78, right:34, bottom:34, left:34 };
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  d3.select(svg).selectAll('*').remove();
+
+  const graph = d3.sankey()
+    .nodeId(d => d.id)
+    .nodeWidth(18)
+    .nodePadding(10)
+    .nodeAlign(d3.sankeyJustify)
+    .nodeSort((a, b) => a.layer === b.layer ? d3.descending(a.value, b.value) : d3.ascending(a.layer, b.layer))
+    .linkSort((a, b) => d3.descending(a.value, b.value))
+    .extent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]])({
+      nodes: raw.nodes.map(d => ({...d})),
+      links: raw.links.map(d => ({...d}))
+    });
+
+  const root = d3.select(svg);
+  root.append('text').attr('x', margin.left).attr('y', 34).attr('class', 'col-title').text('Jefferson 1815 class');
+  root.append('text').attr('x', width * .39).attr('y', 34).attr('class', 'col-title').text('LCC main class, 1897');
+  root.append('text').attr('x', width * .71).attr('y', 34).attr('class', 'col-title').text('Current LCC subclass');
+  root.append('text').attr('x', margin.left).attr('y', 56).attr('class', 'axis-note').text('Broad Jefferson source bucket');
+  root.append('text').attr('x', width * .39).attr('y', 56).attr('class', 'axis-note').text('First letter of current LCC subclass');
+  root.append('text').attr('x', width * .71).attr('y', 56).attr('class', 'axis-note').text('Weighted by 2020 cumulative records');
+
+  const link = root.append('g')
+    .attr('fill', 'none')
+    .selectAll('path')
+    .data(graph.links)
+    .join('path')
+      .attr('class', 'link')
+      .attr('d', d3.sankeyLinkHorizontal())
+      .attr('stroke', d => d.color)
+      .attr('stroke-width', d => Math.max(1, d.width))
+      .attr('stroke-opacity', d => d.status === 'aggregate' ? .16 : .34)
+      .sort((a, b) => b.width - a.width);
+
+  link.on('mousemove', (event, d) => {
+      tip.innerHTML = d.detail || `${escapeHtml(d.title)}<br><b>${fmt(d.value)}</b> records`;
+      tip.style.display = 'block';
+      tip.style.left = Math.min(window.innerWidth - 380, event.clientX + 14) + 'px';
+      tip.style.top = Math.min(window.innerHeight - 120, event.clientY + 14) + 'px';
+    })
+    .on('mouseleave', () => tip.style.display = 'none');
+
+  const node = root.append('g')
+    .selectAll('g')
+    .data(graph.nodes)
+    .join('g')
+      .attr('class', 'node');
+
+  node.append('rect')
+    .attr('x', d => d.x0)
+    .attr('y', d => d.y0)
+    .attr('height', d => Math.max(1, d.y1 - d.y0))
+    .attr('width', d => d.x1 - d.x0)
+    .attr('fill', d => d.color)
+    .attr('fill-opacity', d => d.layer === 2 ? .74 : .64);
+
+  node.append('text')
+    .attr('x', d => d.layer === 2 ? d.x0 - 8 : d.x1 + 8)
+    .attr('y', d => (d.y0 + d.y1) / 2 - ((d.y1 - d.y0) > 24 ? 5 : 0))
+    .attr('text-anchor', d => d.layer === 2 ? 'end' : 'start')
+    .text(d => shortLabel(d.name, d.layer === 2 ? 46 : 34));
+
+  node.filter(d => (d.y1 - d.y0) > 24).append('text')
+    .attr('class', 'count')
+    .attr('x', d => d.layer === 2 ? d.x0 - 8 : d.x1 + 8)
+    .attr('y', d => (d.y0 + d.y1) / 2 + 9)
+    .attr('text-anchor', d => d.layer === 2 ? 'end' : 'start')
+    .text(d => `${fmt(d.value)} records · ${d.kind}`);
+
+  node.on('mousemove', (event, d) => {
+      tip.innerHTML = `${escapeHtml(d.name)}<br><b>${fmt(d.value)}</b> records in selected view<br>${escapeHtml(d.kind)}`;
+      tip.style.display = 'block';
+      tip.style.left = Math.min(window.innerWidth - 380, event.clientX + 14) + 'px';
+      tip.style.top = Math.min(window.innerHeight - 120, event.clientY + 14) + 'px';
+    })
+    .on('mouseleave', () => tip.style.display = 'none');
+}
+statusFilter.addEventListener('change', draw);
+limit.addEventListener('input', draw);
+document.getElementById('showAll').addEventListener('click', () => { limit.value = limit.max; draw(); });
+draw();
+</script>
+</body>
+</html>

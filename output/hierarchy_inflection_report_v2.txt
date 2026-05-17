@@ -27,7 +27,7 @@ HD     Land / Agriculture Economics     ABSENT      1987  0.996  1991: Soviet co
 PH     Uralic / Basque Languages        ABSENT      1987  0.996  1991: Soviet collapse
 HC     Economic History                 ABSENT      1987  0.996  1991: Soviet collapse
 E18    African American History (E185)  ABSENT      1988  0.987  1991: Soviet collapse
-PJ     Oriental Languages & Literature  ABSENT      1988  0.988  1991: Soviet collapse
+PJ     Oriental Languages / Literature  ABSENT      1988  0.988  1991: Soviet collapse
 E99    Native Americans (E99)           ABSENT      1988  0.990  1991: Soviet collapse
 PG     Slavic Languages & Literatures   ABSENT      1988  0.991  1991: Soviet collapse
 PN     General Literature               MERGED      1989  0.986  1991: Soviet collapse
