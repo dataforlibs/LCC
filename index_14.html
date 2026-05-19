@@ -2102,10 +2102,11 @@ function buildScatter() {
     }
   });
 
-  // Row label + mean lines plugin
+  // Row label + mean lines plugin — scoped to scatterChart only
   const rowLabelPlugin = {
     id:'rowLabels',
     afterDraw(chart) {
+      if (chart.canvas.id !== 'scatterChart') return;
       const ctx=chart.ctx, xS=chart.scales.x, yS=chart.scales.y;
       [[2,'#5b9bd5','Jeffersonian (MERGED/DIRECT)'],[1,'#d47c5b','Non-Jeffersonian (ABSENT)']].forEach(([yv,col,lbl])=>{
         const y=yS.getPixelForValue(yv);
