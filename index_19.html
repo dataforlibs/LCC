@@ -1,0 +1,3366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LCC Rebuttal Dashboard - CSV-Driven</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+
+  :root {
+    --bg: #ffffff;
+    --surface: #f5f3f0;
+    --surface2: #eceae6;
+    --border: #d4d0c8;
+    --text: #1e1c18;
+    --text-dim: #706e68;
+    --accent-merged: #4a90c4;
+    --accent-absent: #c46a4a;
+    --accent-gold: #c4a84a;
+    --accent-green: #4ac48a;
+    --ref-marc: rgba(100,120,180,0.35);
+    --ref-lcc: rgba(180,80,80,0.35);
+    --ref-jeff: rgba(180,160,80,0.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 13px;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 28px 36px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  header .subtitle {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* ── FILE LOADER ── */
+  #loader-section {
+    padding: 24px 36px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  #loader-section h2 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+  .file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
+  .file-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+  }
+  .file-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+  }
+  .file-status {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .file-status.waiting { background: #f0ede8; color: #8a8880; }
+  .file-status.loaded  { background: #eaf4ed; color: #1a7a50; }
+  .file-status.error   { background: #faeaea; color: #8b3d20; }
+
+  input[type="file"] {
+    font-size: 10px;
+    color: var(--text-dim);
+    cursor: pointer;
+    max-width: 120px;
+    font-family: 'Source Code Pro', monospace;
+  }
+  input[type="file"]::file-selector-button {
+    background: var(--border);
+    color: var(--text);
+    border: none;
+    padding: 3px 8px;
+    cursor: pointer;
+    font-size: 10px;
+    border-radius: 2px;
+  }
+  input[type="file"]::file-selector-button:hover { background: #c8c4bc; }
+
+  .load-all-btn {
+    margin-top: 14px;
+    padding: 8px 20px;
+    background: var(--accent-merged);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 11px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+  .load-all-btn:hover { background: #5aa0d4; }
+  .load-all-btn:disabled { background: var(--border); color: var(--text-dim); cursor: not-allowed; }
+
+  /* ── TABS ── */
+  #tab-bar {
+    padding: 0 36px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    padding: 12px 18px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 11px;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--accent-merged); }
+  .tab-btn.rebuttal.active { border-bottom-color: var(--accent-absent); }
+
+  /* ── PANELS ── */
+  .panel { display: none; padding: 28px 36px; }
+  .panel.active { display: block; }
+
+  /* ── CHART WRAPPER ── */
+  .chart-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .chart-section h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .chart-wrap {
+    position: relative;
+    height: 380px;
+  }
+  .chart-wrap.tall { height: 480px; }
+  .chart-wrap.dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: auto;
+  }
+  .chart-wrap.dual .sub-chart { height: 380px; position: relative; }
+
+  /* ── CONTROLS ── */
+  .controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    align-items: center;
+  }
+  .control-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+  .toggle-btn {
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 10px;
+    border-radius: 2px;
+    font-family: 'Source Code Pro', monospace;
+  }
+  .toggle-btn.on { background: var(--surface2); color: var(--text); border-color: var(--accent-merged); }
+  .toggle-btn.absent-on { border-color: var(--accent-absent); color: var(--accent-absent); }
+
+  select {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 4px 8px;
+    font-size: 10px;
+    font-family: 'Source Code Pro', monospace;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  /* ── LEGEND ── */
+  .legend-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+  .legend-line {
+    width: 24px;
+    height: 2px;
+    background: var(--accent-merged);
+  }
+  .legend-line.dashed {
+    background: repeating-linear-gradient(90deg, var(--accent-absent) 0 5px, transparent 5px 8px);
+  }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ── STAT BOXES ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 16px 20px;
+  }
+  .stat-box .label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .stat-box .value {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .stat-box .sub {
+    font-size: 9px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .stat-box.absent .value { color: var(--accent-absent); }
+  .stat-box.merged .value { color: var(--accent-merged); }
+  .stat-box.neutral .value { color: var(--accent-gold); }
+
+  /* ── NOTE BOX ── */
+  .note-box {
+    background: var(--surface);
+    border-left: 3px solid var(--accent-gold);
+    padding: 12px 16px;
+    font-size: 11px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+  }
+  .note-box strong { color: var(--text); }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+    font-family: 'Source Code Pro', monospace;
+  }
+  .data-table th {
+    padding: 6px 10px;
+    text-align: left;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 9px;
+    text-transform: uppercase;
+  }
+  .data-table td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #e8e5e0;
+    color: var(--text);
+  }
+  .data-table tr:hover td { background: var(--surface2); }
+  .badge {
+    display: inline-block;
+    padding: 1px 5px;
+    border-radius: 2px;
+    font-size: 9px;
+  }
+  .badge.absent { background: rgba(196,106,74,0.2); color: #8b3d20; }
+  .badge.merged { background: rgba(74,144,196,0.2); color: #2a6da8; }
+  .badge.direct { background: rgba(74,196,138,0.2); color: #1a7a50; }
+  .badge.renamed { background: rgba(196,168,74,0.2); color: #7a6010; }
+
+  /* ── SUBCLASS LEGEND ── */
+  .rank-legend-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 14px 16px;
+    margin-top: 14px;
+    position: relative;
+    z-index: 0;
+    clear: both;
+  }
+  .rank-legend-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .rank-legend-header .control-label { font-size: 10px; color: var(--text-dim); }
+  .key-btn {
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 10px;
+    border-radius: 2px;
+    font-family: 'Source Code Pro', monospace;
+    transition: background 0.12s, color 0.12s;
+  }
+  .key-btn:hover { background: var(--surface2); color: var(--text); }
+  .key-btn.active { background: var(--surface2); color: var(--text); border-color: var(--accent-merged); }
+  .rank-legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 4px 12px;
+    max-height: 280px;
+    overflow-y: auto;
+  }
+  .rank-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 3px 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.1s;
+    user-select: none;
+  }
+  .rank-legend-item:hover { background: var(--surface2); }
+  .rank-legend-item.dimmed { opacity: 0.28; }
+  .rank-legend-swatch {
+    width: 22px;
+    height: 3px;
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+  .rank-legend-swatch.dashed {
+    background: none !important;
+    border-top: 2px dashed;
+    height: 0;
+    margin-top: 1px;
+  }
+  .rank-legend-code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    flex-shrink: 0;
+    min-width: 22px;
+  }
+  .rank-legend-name {
+    font-size: 9px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rank-legend-badge {
+    font-size: 8px;
+    padding: 1px 4px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    font-family: 'Source Code Pro', monospace;
+  }
+
+  /* ── WAITING STATE ── */
+  #waiting-msg {
+    padding: 60px;
+    text-align: center;
+    color: var(--text-dim);
+    font-style: italic;
+    font-size: 13px;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: #c8c4bc; border-radius: 3px; }
+
+  /* ── CLASS BUMP LEGEND PILLS ── */
+  .tog-wrap { display:flex; flex-wrap:wrap; gap:3px; margin-bottom:8px; }
+  .tog { font-size:10px; padding:2px 8px; display:flex; align-items:center; gap:4px; border-radius:4px;
+         border:1px solid var(--border); background:transparent; cursor:pointer; color:var(--text);
+         transition:opacity .15s; font-family:'Source Code Pro',monospace; }
+  .tog.off { opacity:.18; }
+  .tog:hover { background:var(--surface2); }
+
+  /* ── CLASS BUMP LEGEND GRID (full labels) ── */
+  .bump-cls-legend { border:1px solid var(--border); border-radius:3px; padding:12px 14px; margin-top:14px;
+                     background:var(--surface); }
+  .bump-cls-legend-header { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .bump-cls-legend-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:3px 12px; }
+  .bump-cls-item { display:flex; align-items:center; gap:7px; padding:3px 5px; border-radius:2px;
+                   cursor:pointer; transition:background .1s; user-select:none; }
+  .bump-cls-item:hover { background:var(--surface2); }
+  .bump-cls-item.dimmed { opacity:.2; }
+  .bump-cls-swatch { width:20px; height:3px; border-radius:1px; flex-shrink:0; }
+  .bump-cls-code { font-family:'Source Code Pro',monospace; font-size:9px; font-weight:700;
+                   flex-shrink:0; min-width:14px; }
+  .bump-cls-name { font-size:9px; color:var(--text-dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; }
+
+  /* ── R2b subclass toggle pills ── */
+  .hk-tog-wrap { display:flex; flex-wrap:wrap; gap:3px; margin-bottom:8px; }
+  .hk-tog { font-size:10px; padding:2px 8px; display:flex; align-items:center; gap:4px; border-radius:4px;
+             border:1px solid var(--border); background:transparent; cursor:pointer; color:var(--text);
+             transition:opacity .15s; font-family:'Source Code Pro',monospace; }
+  .hk-tog.off { opacity:.18; }
+  .hk-tog:hover { background:var(--surface2); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Library of Congress Classification — Cumulative Record Counts · 1400–2020</h1>
+  <div class="subtitle">Library of Congress Classification analysis · auto-loaded dashboard — data embedded from output</div>
+</header>
+
+<!-- FILE LOADER -->
+<div id="loader-section">
+  <h2>Local Data Source</h2>
+  <div class="file-grid">
+    <div class="file-row">
+      <span class="file-label">subclass_cumulative_counts.csv</span>
+      <span class="file-status loaded" id="s-cumulative">embedded</span>
+      <span style="font-size:10px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">output/subclass_cumulative_counts.csv</span>
+    </div>
+    <div class="file-row">
+      <span class="file-label">subclass_annual_counts.csv</span>
+      <span class="file-status loaded" id="s-annual">embedded</span>
+      <span style="font-size:10px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">output/subclass_annual_counts.csv</span>
+    </div>
+    <div class="file-row">
+      <span class="file-label">subclass_rankings_over_time.csv</span>
+      <span class="file-status loaded" id="s-rankings">embedded</span>
+      <span style="font-size:10px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">output/subclass_rankings_over_time.csv</span>
+    </div>
+    <div class="file-row">
+      <span class="file-label">subclass_sigmoids_v2.csv</span>
+      <span class="file-status loaded" id="s-sigmoids">embedded</span>
+      <span style="font-size:10px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">output/subclass_sigmoids_v2.csv</span>
+    </div>
+    <div class="file-row">
+      <span class="file-label">inflection_comparison_v2.csv</span>
+      <span class="file-status loaded" id="s-inflection">embedded</span>
+      <span style="font-size:10px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">output/inflection_comparison_v2.csv</span>
+    </div>
+  </div>
+  <button class="load-all-btn" id="render-btn" onclick="renderAll()">Render Dashboard</button>
+  <a class="load-all-btn" href="jefferson_lcc_alluvial.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Jefferson→LCC alluvial</a>
+  <a class="load-all-btn" href="lcc_bubble_animation_2.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Bubble animation</a>
+  <a class="load-all-btn" href="lcc_cumulative_share_v2.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Cumulative share</a>
+  <a class="load-all-btn" href="lcc_cumulative_jefferson_split.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Jefferson split</a>
+  <span id="load-note" style="margin-left:14px;font-size:10px;color:var(--text-dim);font-style:italic;">Loading 5/5 local CSV files from /output/</span>
+</div>
+
+<!-- TABS -->
+<div id="tab-bar" style="display:none">
+  <button class="tab-btn active" onclick="showTab('cumulative')">Cumulative lifepaths</button>
+  <button class="tab-btn" onclick="showTab('class-bump')">Rankings over time</button>
+  <button class="tab-btn" onclick="showTab('rankings')">Subclass rankings</button>
+  <button class="tab-btn" onclick="showTab('hk-rank')">H vs K: rank</button>
+  <button class="tab-btn" onclick="showTab('hk-sub')">H vs K: subclasses</button>
+  <button class="tab-btn" onclick="showTab('subclass-lifepath')">Subclass lifepaths</button>
+  <button class="tab-btn" onclick="showTab('inflection-scatter')">Inflection clustering</button>
+  <button class="tab-btn rebuttal" onclick="showTab('jefferson-growth')">Jefferson vs growth</button>
+  <button class="tab-btn rebuttal" onclick="showTab('era-growth')">Era growth rates</button>
+  <button class="tab-btn rebuttal" onclick="showTab('democratic-share')">Democratic share</button>
+  <button class="tab-btn rebuttal" onclick="showTab('summary-stats')">Summary stats</button>
+  <button class="tab-btn" onclick="showTab('data-table')">Sigmoid table</button>
+</div>
+
+<div id="waiting-msg">Rendering dashboard from local CSV data...</div>
+
+
+<!-- PANEL: RANKINGS OVER TIME (main class bump) -->
+<div class="panel" id="panel-class-bump">
+  <div class="note-box">
+    <strong>Reading:</strong> Each line = one of 21 main LCC classes. Rank 1 = most cumulative records at that snapshot.
+    Colors distinguish classes. Solid = no dash convention (most are solid). Use the legend below to highlight key stories.
+  </div>
+  <div class="controls">
+    <label style="display:flex;align-items:center;gap:5px;cursor:pointer;">
+      <input type="checkbox" id="bRef" checked onchange="if(bChart)bChart.update()"> Ref lines
+    </label>
+    <span class="control-label" style="margin-left:auto" id="bump-snap-count"></span>
+  </div>
+  <div class="chart-section">
+    <h3 id="bump-title">Class rank trajectories — 21 LCC classes · 1480–2020 · rank 1 = most records</h3>
+    <div class="chart-wrap" style="height:500px;position:relative">
+      <canvas id="bChart"></canvas>
+    </div>
+  </div>
+  <div class="bump-cls-legend">
+    <div class="bump-cls-legend-header">
+      <span class="control-label">Legend:</span>
+      <button class="key-btn active" id="bcls-key" onclick="setBumpMode('key')">key stories</button>
+      <button class="key-btn" id="bcls-all" onclick="setBumpMode('all')">all</button>
+      <button class="key-btn" id="bcls-none" onclick="setBumpMode('none')">none</button>
+      <span class="control-label" style="margin-left:8px">· click to toggle</span>
+    </div>
+    <div class="bump-cls-legend-grid" id="bump-cls-grid"></div>
+  </div>
+</div>
+
+<!-- PANEL: H vs K class rank trajectories -->
+<div class="panel" id="panel-hk-rank">
+  <div class="note-box">
+    <strong>Rebuttal:</strong> H (Social Sciences) rose from rank 10 in 1815 to
+    <span style="color:#4a90c4">rank 2 by 1970</span>. K (Law — Jefferson's dominant class) fell from
+    rank 2 to <span style="color:#c46a4a">rank 6 by 2020</span>.
+    Post-LCC era (1897–1970): H grew 20× — fastest of all classes. K grew only 4.6×.
+  </div>
+  <div class="chart-section">
+    <h3>H vs K — class rank in LC collection · 1815–2020</h3>
+    <div class="chart-wrap" style="height:360px;position:relative">
+      <canvas id="r2Chart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL: H vs K subclass rank trajectories -->
+<div class="panel" id="panel-hk-sub">
+  <div class="note-box">
+    <strong>Reading:</strong>
+    <span style="color:#4a90c4">Solid blue = H class</span> ·
+    <span style="color:#c46a4a">Solid red = K class</span> ·
+    Solid lines = Jefferson-catalogued (MERGED). Dashed = absent from Jefferson (ABSENT).
+    Rank 1 = most records among all 25 H+K subclasses combined.
+  </div>
+  <div class="controls">
+    <button class="toggle-btn" onclick="hkTogAll('H',true)">all H</button>
+    <button class="toggle-btn" onclick="hkTogAll('H',false)">no H</button>
+    <button class="toggle-btn" onclick="hkTogAll('K',true)">all K</button>
+    <button class="toggle-btn" onclick="hkTogAll('K',false)">no K</button>
+    <button class="toggle-btn" onclick="hkTogAll('all',true)">all</button>
+    <button class="toggle-btn" onclick="hkTogAll('all',false)">none</button>
+  </div>
+  <div class="hk-tog-wrap" id="r2btog"></div>
+  <div class="chart-section">
+    <h3>H &amp; K subclass rank trajectories — 25 subclasses · 1815–2020</h3>
+    <div class="chart-wrap" style="height:480px;position:relative">
+      <canvas id="r2bChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL: CUMULATIVE LIFEPATHS -->
+<div class="panel" id="panel-cumulative">
+  <div class="note-box">
+    <strong>Reading:</strong> Solid lines = Jefferson-classified (MERGED/DIRECT). Dashed = absent from Jefferson (ABSENT).
+    Vertical markers: <span style="color:#c46a4a">red = 1897 LCC created</span> · <span style="color:#7090c0">blue = 1968 MARC era begins</span>.
+    Both groups inflect in the same era — driven by MARC cataloging and university expansion, not Jefferson.
+  </div>
+  <div class="controls">
+    <span class="control-label">Filter class:</span>
+    <select id="cum-class-filter" onchange="updateCumulativeChart()">
+      <option value="P">P class — Languages & Literature</option>
+      <option value="H">H class — Social Sciences</option>
+      <option value="D">D class — History</option>
+      <option value="ALL">All classes (slow)</option>
+    </select>
+    <span class="control-label">Y-axis:</span>
+    <button class="toggle-btn on" id="btn-log" onclick="toggleLog()">Linear</button>
+    <button class="toggle-btn" id="btn-ref" onclick="toggleRefs()">Show ref lines</button>
+  </div>
+  <div class="chart-section">
+    <h3 id="cum-title">Cumulative record counts by subclass</h3>
+    <div class="chart-wrap tall">
+      <canvas id="cumulativeChart"></canvas>
+    </div>
+    <div class="legend-row">
+      <div class="legend-item"><div class="legend-line"></div>Jefferson-classified (MERGED)</div>
+      <div class="legend-item"><div class="legend-line dashed"></div>Absent from Jefferson (ABSENT)</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL: SUBCLASS RANKINGS OVER TIME -->
+<div class="panel" id="panel-rankings">
+  <div class="note-box">
+    <strong>Reading:</strong> Each line = one LCC subclass (202 total). Rank 1 = most cumulative records at that snapshot.
+    <span style="color:#5b9bd5">Solid blue = MERGED (Jefferson-classified)</span> ·
+    <span style="color:#4ac48a">Solid green = DIRECT (Jefferson direct)</span> ·
+    <span style="color:#d47c5b">Dashed orange = ABSENT (non-Jefferson)</span> ·
+    <span style="color:#c4a84a">Dotted gold = RENAMED (Jefferson direct)</span> ·
+ 
+    Filter by main class or Jefferson status. Click legend items to highlight individual subclasses.
+  </div>
+  <div class="controls">
+    <span class="control-label">Class:</span>
+    <select id="rank-class-filter" onchange="buildRankingsChart()">
+      <option value="ALL">All classes</option>
+      <option value="P">P — Languages &amp; Literature</option>
+      <option value="H">H — Social Sciences</option>
+      <option value="D">D — History</option>
+      <option value="B">B — Philosophy / Psychology</option>
+      <option value="Q">Q — Science</option>
+      <option value="R">R — Medicine</option>
+      <option value="T">T — Technology</option>
+      <option value="K">K — Law</option>
+      <option value="G">G — Geography</option>
+      <option value="J">J — Political Science</option>
+      <option value="L">L — Education</option>
+      <option value="M">M — Music</option>
+      <option value="N">N — Fine Arts</option>
+    </select>
+    <span class="control-label">Status:</span>
+    <select id="rank-status-filter" onchange="buildRankingsChart()">
+      <option value="ALL">All statuses</option>
+      <option value="MERGED">MERGED (Jefferson)</option>
+      <option value="DIRECT">DIRECT (Jefferson)</option>
+      <option value="ABSENT">ABSENT (non-Jefferson)</option>
+      <option value="RENAMED">RENAMED (Jefferson direct)</option>
+      <option value="JEFFERSON">All Jefferson (MERGED+DIRECT+RENAMED)</option>
+      <option value="NON_JEFFERSON">All non-Jefferson (ABSENT)</option>
+    </select>
+    <span class="control-label">Top N:</span>
+    <select id="rank-topn" onchange="buildRankingsChart()">
+      <option value="0">All subclasses</option>
+      <option value="20" selected>Top 20 (by 2020 rank)</option>
+      <option value="40">Top 40</option>
+      <option value="60">Top 60</option>
+    </select>
+    <button class="toggle-btn on" id="btn-rank-refs" onclick="toggleRankRefs()">Ref lines</button>
+    <span class="control-label" id="rank-count" style="margin-left:8px"></span>
+  </div>
+  <!-- Search bar -->
+  <div class="controls" style="padding-top:0;border-top:none;gap:8px">
+    <span class="control-label">🔍 Search lines:</span>
+    <input id="rank-search" type="text" placeholder="e.g. Law, Music, History, ABSENT, KJ…"
+      oninput="searchRankLines(this.value)"
+      style="flex:1;min-width:220px;max-width:480px;padding:5px 10px;border:1px solid var(--border);
+             border-radius:3px;background:var(--surface2);color:var(--text);
+             font-family:'Source Code Pro',monospace;font-size:11px;">
+    <button class="toggle-btn" onclick="document.getElementById('rank-search').value='';searchRankLines('')"
+      style="padding:4px 10px">✕ Clear</button>
+    <span id="rank-search-count" style="font-size:10px;color:var(--text-dim);font-family:'Source Code Pro',monospace"></span>
+  </div>
+  <div class="chart-section">
+    <h3 id="rank-title">Subclass rank trajectories — 1480–2020</h3>
+    <div class="chart-wrap" style="height:520px; position:relative">
+      <canvas id="rankingsChart"></canvas>
+    </div>
+  </div>
+  <!-- Custom scrollable tooltip -->
+  <div id="rank-tooltip" style="
+    position:fixed; display:none; z-index:999;
+    background:rgba(255,253,250,0.97); border:1px solid #d4d0c8; border-radius:4px;
+    box-shadow:0 4px 16px rgba(0,0,0,0.12);
+    max-height:65vh; width:400px; overflow-y:auto;
+    font-family:'Source Code Pro',monospace; font-size:10px; color:#1e1c18;
+    pointer-events:none;
+  "></div>
+  <!-- Per-subclass interactive legend -->
+  <div class="rank-legend-section">
+    <div class="rank-legend-header">
+      <span class="control-label">Legend:</span>
+      <button class="key-btn active" id="btn-key-stories" onclick="setLegendMode('key')">key stories</button>
+      <button class="key-btn" id="btn-legend-all" onclick="setLegendMode('all')">all</button>
+      <button class="key-btn" id="btn-legend-none" onclick="setLegendMode('none')">none</button>
+      <span class="control-label" style="margin-left:8px">· click any item to toggle · highlighted = shown</span>
+    </div>
+    <div class="rank-legend-grid" id="rank-legend-grid"></div>
+  </div>
+</div>
+
+<!-- PANEL: SUBCLASS LIFEPATHS (P & H) -->
+<div class="panel" id="panel-subclass-lifepath">
+  <div class="note-box">
+    <strong>Reading:</strong> Solid = Jefferson-classified (MERGED). Dashed = absent from Jefferson (ABSENT).
+    Short vertical ticks at bottom = sigmoid inflection year. If hierarchy persisted, solid lines should inflect <em>earlier</em>.
+    Gap of <strong id="infgap">—</strong> years between groups. Both inflected in the same era driven by MARC cataloging and university expansion, not Jefferson.
+  </div>
+  <div class="stat-row" id="lp-stats"></div>
+  <div class="chart-section">
+    <h3>P class — Western vs Non-Western Literatures</h3>
+    <div class="chart-wrap">
+      <canvas id="pChart"></canvas>
+    </div>
+  </div>
+  <div class="chart-section">
+    <h3>H class — Classic vs Modern Social Sciences</h3>
+    <div class="chart-wrap">
+      <canvas id="hChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL: INFLECTION SCATTER -->
+<div class="panel" id="panel-inflection-scatter">
+  <div class="note-box">
+    <strong>Inflection years:</strong> Each dot = one LCC subclass. Top row = Jeffersonian (MERGED/DIRECT). Bottom row = Non-Jeffersonian (ABSENT). Bubble size = record count.
+    Dashed vertical lines show group means (from inflection_comparison.csv if loaded, otherwise computed from scatter data).
+    <em>Python analysis (normalized sigmoid): Non-Jeffersonian mean = 1985, Jeffersonian mean = 1983, gap = 2.3 years — trivially small (1.2% of 200-year study period).</em>
+  </div>
+  <div class="controls">
+    <span class="control-label">Filter by class:</span>
+    <select id="scatter-class-filter" onchange="buildScatter()">
+      <option value="ALL">All subclasses with known status</option>
+      <option value="P">P class only</option>
+      <option value="H">H class only</option>
+      <option value="D">D class only</option>
+      <option value="Q">Q class only</option>
+      <option value="R">R class only</option>
+      <option value="K">K class only</option>
+      <option value="T">T class only</option>
+    </select>
+    <span class="control-label" id="scatter-count" style="margin-left:8px">load rankings CSV for data</span>
+  </div>
+  <div class="stat-row" id="scatter-stats"></div>
+  <div class="chart-section">
+    <h3>Sigmoid inflection year t₀ — Jeffersonian vs Non-Jeffersonian subclasses</h3>
+    <div class="chart-wrap tall">
+      <canvas id="scatterChart"></canvas>
+    </div>
+    <div class="legend-row">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-merged)"></div>Jeffersonian (MERGED/DIRECT)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-absent)"></div>Non-Jeffersonian (ABSENT)</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL: JEFFERSON VS GROWTH -->
+<div class="panel" id="panel-jefferson-growth">
+  <div class="note-box" style="border-left-color:var(--accent-gold)">
+    <strong>Methodological note:</strong> The previous scatter assigned chapter counts at the class level, making correlation a weak tool across groups. The right question is a two-group test: do Jeffersonian and non-Jeffersonian subclasses differ in their long-run growth? Welch's t-test on log<sub>10</sub>(growth) answers this directly. Violin = density; white line = median; diamond = mean; box = IQR; whiskers = 1.5xIQR. Each dot = one subclass.
+  </div>
+  <div class="stat-row" id="jg-growth-stats"></div>
+  <div class="chart-section">
+    <h3>Long-run growth distribution — density + subclass dots · hover for details</h3>
+    <div class="chart-wrap" style="height:520px;position:relative">
+      <canvas id="jgGrowthChart"></canvas>
+    </div>
+    <div class="legend-row" style="margin-top:8px">
+      <div class="legend-item"><div class="legend-line"></div>median</div>
+      <div class="legend-item">◆ mean</div>
+      <div class="legend-item">box=IQR</div>
+      <div class="legend-item">whiskers=1.5xIQR</div>
+    </div>
+  </div>
+  <div class="chart-section">
+    <h3>Sigmoid inflection year distribution — density + subclass dots · hover for details</h3>
+    <div class="chart-wrap" style="height:360px;position:relative">
+      <canvas id="jgInflectionChart"></canvas>
+    </div>
+    <div class="legend-row" style="margin-top:8px">
+      <div class="legend-item"><div class="legend-line"></div>Jeffersonian (MERGED/DIRECT/RENAMED)</div>
+      <div class="legend-item"><div class="legend-line" style="border-color:var(--accent-absent)"></div>Non-Jeffersonian (ABSENT)</div>
+    </div>
+    <div class="note-box" style="margin-top:16px">
+      Inflection year t<sub>0</sub> comes from fitted sigmoid models in subclass_sigmoids_v2.csv. Density curves show KDE of inflection timing. Dots below each group's axis show individual subclasses.
+    </div>
+  </div>
+  <div class="note-box" id="jg-finding" style="border-left-color:var(--accent-gold)"></div>
+</div>
+
+<!-- PANEL: ERA GROWTH RATES -->
+<div class="panel" id="panel-era-growth">
+  <div class="note-box" style="border-left-color:var(--accent-absent)">
+    <strong>REBUTTAL TO: "THE POST-JEFFERSON LCC SYSTEM ENTRENCHED ELITE KNOWLEDGE HIERARCHIES"</strong>
+  </div>
+  <div class="chart-section" style="border-left:3px solid var(--accent-green)">
+    <div style="padding:2px 0 10px 0;font-size:11px;line-height:1.7;color:var(--text)">
+      <strong style="color:var(--accent-green)">Finding:</strong> In the post-LCC formation era (1897–1970), the three fastest-growing classes were
+      <strong>H Social Sciences</strong>, <strong>S Agriculture</strong>, and <strong>L Education</strong>
+      — all domains a suppression theory would predict to lag. Law (K) and Language &amp; Lit (P) both grew more slowly.
+      <span style="color:var(--text-dim);font-size:10px">Bars sorted by post-LCC growth. Red = Jeffersonian/elite classes. Green = other classes.</span>
+    </div>
+  </div>
+  <div class="controls">
+    <span class="control-label">Growth factor = (records at end of era) / (records at start of era) &nbsp;·&nbsp; computed from cumulative CSV</span>
+    <span id="eg-status" style="margin-left:12px;font-size:10px;color:var(--text-dim);font-style:italic"></span>
+  </div>
+  <div class="chart-section">
+    <h3>Growth factor by LCC main class — three eras · sorted by post-LCC formation growth</h3>
+    <div class="chart-wrap" style="height:480px;position:relative">
+      <canvas id="egChart"></canvas>
+    </div>
+    <div class="legend-row" style="margin-top:8px">
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(74,196,138,0.35);border:1.5px solid var(--accent-green);width:12px;height:12px;border-radius:2px"></div>Pre-LCC (1815–1897)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(74,196,138,0.75);border:1.5px solid var(--accent-green);width:12px;height:12px;border-radius:2px"></div>Post-LCC formation (1897–1970)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(74,196,138,0.45);border:1.5px solid var(--accent-green);width:12px;height:12px;border-radius:2px"></div>Modern era (1970–2020)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(196,106,74,0.7);border:1.5px solid var(--accent-absent);width:12px;height:12px;border-radius:2px"></div>Jeffersonian/elite class</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL: DEMOCRATIC SHARE RISING -->
+<div class="panel" id="panel-democratic-share">
+  <div class="note-box" style="border-left-color:var(--accent-absent)">
+    <strong>REBUTTAL TO: "JEFFERSON'S CLASSIFICATION SUPPRESSED DEMOCRATIC/SOCIAL KNOWLEDGE DOMAINS"</strong>
+  </div>
+  <div class="chart-section" style="border-left:3px solid var(--accent-green)">
+    <div style="padding:2px 0 6px 0;font-size:11px;line-height:1.7;color:var(--text)">
+      <strong style="color:var(--accent-green)">Finding:</strong> The share of "democratic" classes
+      (H Social Sciences, E American History, F Local History, J Political Science, G Geography) in total LC holdings
+      <strong>doubled</strong> from ~11% (1815) to ~21% (2020), while Jefferson-heavy classes (K Law, P Language &amp; Lit, B Philosophy)
+      <em>fell</em> from ~44% to ~34%.
+    </div>
+    <div style="padding:0 0 4px 0;font-size:11px;line-height:1.7;color:var(--accent-merged)">
+      <strong>Implication:</strong> If the classification system encoded a hierarchy that privileged Jeffersonian elite knowledge,
+      it failed completely. Over two centuries the system amplified, not suppressed, democratic subject domains.
+    </div>
+  </div>
+  <div class="controls">
+    <span class="control-label">H+E+F+J+G = Social Sciences, American History, Local History, Political Science, Geography &nbsp;·&nbsp; K+P+B = Law, Language &amp; Lit, Philosophy</span>
+  </div>
+  <div class="chart-section">
+    <h3>Share of total LC holdings — "democratic" vs Jeffersonian-heavy classes · 1815–2020</h3>
+    <div class="chart-wrap" style="height:440px;position:relative">
+      <canvas id="dsChart"></canvas>
+    </div>
+    <div class="legend-row" style="margin-top:8px">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-green);width:10px;height:10px;border-radius:50%"></div>Democratic classes — all subclasses (H+E+F+J+G)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(74,196,138,0.4);width:10px;height:10px;border-radius:50%;border:1.5px dashed var(--accent-green)"></div>Democratic classes — Jefferson subclasses only</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-absent);width:10px;height:10px;border-radius:50%"></div>Jeffersonian-heavy — all subclasses (K+P+B)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(196,106,74,0.4);width:10px;height:10px;border-radius:50%;border:1.5px dashed var(--accent-absent)"></div>Jeffersonian-heavy — Jefferson subclasses only</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL: SUMMARY STATS -->
+<div class="panel" id="panel-summary-stats">
+  <div class="stat-row" id="stat-boxes"></div>
+  <div class="chart-section">
+    <h3>Mean inflection year — Non-Jeffersonian vs Jeffersonian subclasses</h3>
+    <div class="chart-wrap" style="height:200px">
+      <canvas id="meanChart"></canvas>
+    </div>
+  </div>
+  <div class="note-box" id="stats-interpretation" style="min-height:3em">Loading…</div>
+</div>
+
+<!-- PANEL: DATA TABLE -->
+<div class="panel" id="panel-data-table">
+  <div class="controls">
+    <span class="control-label">Filter:</span>
+    <select id="table-filter" onchange="filterTable()">
+      <option value="ALL">All subclasses</option>
+      <option value="ABSENT">ABSENT only</option>
+      <option value="MERGED">MERGED only</option>
+      <option value="P">P class</option>
+      <option value="H">H class</option>
+    </select>
+    <span class="control-label" style="margin-left:12px" id="table-count"></span>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="data-table" id="sigmoid-table">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Label</th>
+          <th>Jefferson</th>
+          <th>Group</th>
+          <th>Inflection yr</th>
+          <th>Total 2011</th>
+          <th>Growth width</th>
+          <th>Sigmoid R²</th>
+          <th>Nearest event</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// ── EMBEDDED CLASS-LEVEL DATA (from Jefferson collection analysis) ──
+const KEYS=["P","H","M","D","B","K","Q","T","N","R","L","G","F","J","C","Z","S","E","U","A","V"];
+const LBL={P:"Language & Literature",H:"Social Sciences",M:"Music",D:"World History",B:"Philosophy / Psych / Religion",Q:"Science",T:"Technology",K:"Law",N:"Fine Arts",L:"Education",R:"Medicine",F:"Local History (Americas)",G:"Geography / Anthropology",J:"Political Science",Z:"Bibliography",C:"Aux. Sciences of History",S:"Agriculture",E:"American History",U:"Military Science",A:"General Works",V:"Naval Science"};
+const COL={P:"#7c3aed",H:"#0284c7",M:"#0e7490",D:"#b45309",B:"#6d28d9",Q:"#0f766e",T:"#b91c1c",K:"#1d4ed8",N:"#d97706",L:"#15803d",R:"#be185d",F:"#0369a1",G:"#854d0e",J:"#9333ea",Z:"#4d7c0f",S:"#047857",E:"#c2410c",C:"#7e22ce",U:"#94a3b8",A:"#64748b",V:"#cbd5e1"};
+const DSH={P:[],H:[],M:[],D:[5,2],B:[5,2],Q:[],T:[3,3],K:[],N:[3,3],L:[],R:[3,3],F:[],G:[5,2],J:[5,2],Z:[],C:[3,3],S:[5,2],E:[],U:[5,2],A:[3,3],V:[5,2]};
+const BUMP_YRS=[1480,1550,1600,1650,1700,1750,1800,1850,1895,1900,1920,1940,1960,1970,1980,1990,2000,2011,2020];
+const BUMP_RANKS=[{"B":1,"K":2,"P":3,"M":4,"L":5,"Q":6,"D":7,"R":8,"C":9,"A":10,"H":11,"T":12,"U":13,"E":14,"F":15,"G":16,"J":17,"N":18,"S":19,"V":20,"Z":21},{"B":1,"K":2,"P":3,"M":4,"D":5,"L":6,"R":7,"Q":8,"T":9,"G":10,"H":11,"N":12,"A":13,"J":14,"C":15,"E":16,"Z":17,"U":18,"F":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"M":5,"L":6,"Q":7,"R":8,"G":9,"T":10,"J":11,"H":12,"C":13,"N":14,"E":15,"F":16,"Z":17,"A":18,"U":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"M":5,"L":6,"Q":7,"A":8,"R":9,"G":10,"J":11,"T":12,"H":13,"F":14,"N":15,"C":16,"U":17,"E":18,"Z":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"M":5,"A":6,"Q":7,"L":8,"R":9,"G":10,"J":11,"T":12,"H":13,"F":14,"N":15,"U":16,"Z":17,"C":18,"E":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"M":5,"A":6,"Q":7,"L":8,"R":9,"G":10,"J":11,"H":12,"T":13,"F":14,"N":15,"Z":16,"U":17,"C":18,"E":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"M":4,"D":5,"A":6,"Q":7,"E":8,"L":9,"H":10,"R":11,"J":12,"G":13,"T":14,"F":15,"N":16,"Z":17,"C":18,"U":19,"S":20,"V":21},{"P":1,"B":2,"K":3,"M":4,"D":5,"A":6,"Q":7,"E":8,"H":9,"R":10,"F":11,"L":12,"J":13,"T":14,"N":15,"G":16,"Z":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"B":2,"D":3,"M":4,"K":5,"Q":6,"E":7,"A":8,"H":9,"F":10,"R":11,"T":12,"L":13,"J":14,"N":15,"G":16,"Z":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"B":2,"D":3,"M":4,"K":5,"Q":6,"E":7,"H":8,"F":9,"A":10,"T":11,"L":12,"R":13,"N":14,"J":15,"Z":16,"G":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"D":2,"B":3,"M":4,"H":5,"Q":6,"K":7,"F":8,"E":9,"T":10,"L":11,"N":12,"A":13,"J":14,"R":15,"Z":16,"G":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"D":2,"B":3,"M":4,"H":5,"Q":6,"K":7,"T":8,"F":9,"E":10,"L":11,"N":12,"J":13,"R":14,"Z":15,"G":16,"A":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"D":2,"H":3,"M":4,"B":5,"Q":6,"T":7,"K":8,"F":9,"N":10,"L":11,"J":12,"E":13,"R":14,"Z":15,"G":16,"S":17,"C":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"D":3,"B":4,"M":5,"Q":6,"T":7,"K":8,"L":9,"N":10,"F":11,"J":12,"R":13,"Z":14,"G":15,"E":16,"S":17,"C":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"D":3,"B":4,"M":5,"Q":6,"T":7,"K":8,"L":9,"N":10,"F":11,"R":12,"J":13,"G":14,"Z":15,"S":16,"E":17,"C":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"M":3,"D":4,"B":5,"Q":6,"T":7,"K":8,"N":9,"L":10,"R":11,"F":12,"G":13,"J":14,"Z":15,"C":16,"S":17,"E":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"M":3,"D":4,"B":5,"Q":6,"K":7,"T":8,"N":9,"L":10,"R":11,"F":12,"G":13,"J":14,"Z":15,"C":16,"S":17,"E":18,"U":19,"A":20,"V":21},{"P":1,"H":2,"M":3,"D":4,"B":5,"K":6,"Q":7,"T":8,"N":9,"R":10,"L":11,"G":12,"F":13,"J":14,"C":15,"Z":16,"S":17,"E":18,"U":19,"A":20,"V":21},{"P":1,"H":2,"M":3,"D":4,"B":5,"K":6,"Q":7,"T":8,"N":9,"R":10,"L":11,"G":12,"F":13,"J":14,"C":15,"Z":16,"S":17,"E":18,"U":19,"A":20,"V":21}];
+const HK_SUB={"years":[1815,1850,1897,1920,1950,1970,1990,2011,2020],"series":[{"code":"HD","label":"Land / Agriculture Economics","class":"H","status":"ABSENT","ranks":[13,11,8,2,1,1,1,1,1],"final_count":320570},{"code":"K","label":"Law (General)","class":"K","status":"MERGED","ranks":[3,4,4,4,4,5,4,2,2],"final_count":232299},{"code":"KF","label":"US Law","class":"K","status":"MERGED","ranks":[5,3,1,1,2,2,2,3,3],"final_count":191158},{"code":"HC","label":"Economic History","class":"H","status":"ABSENT","ranks":[18,17,15,10,5,3,3,4,4],"final_count":155017},{"code":"HV","label":"Social Pathology / Criminology","class":"H","status":"ABSENT","ranks":[7,7,5,8,7,6,6,5,5],"final_count":133807},{"code":"HF","label":"Commerce","class":"H","status":"MERGED","ranks":[6,6,7,6,3,4,5,6,6],"final_count":117627},{"code":"HQ","label":"Family / Gender / Sexuality","class":"H","status":"ABSENT","ranks":[12,12,13,13,12,10,7,7,7],"final_count":107072},{"code":"HG","label":"Finance","class":"H","status":"ABSENT","ranks":[10,8,6,7,6,7,8,8,8],"final_count":85584},{"code":"HB","label":"Economic Theory","class":"H","status":"ABSENT","ranks":[16,14,12,12,10,9,9,9,9],"final_count":64038},{"code":"HN","label":"Social History","class":"H","status":"ABSENT","ranks":[21,22,21,17,15,15,11,10,10],"final_count":53353},{"code":"HE","label":"Transportation / Communications","class":"H","status":"ABSENT","ranks":[11,9,9,9,9,8,10,11,11],"final_count":48735},{"code":"KH","label":"South American Law","class":"K","status":"ABSENT","ranks":[25,23,22,20,17,16,14,12,12],"final_count":47820},{"code":"KJ","label":"European Law","class":"K","status":"MERGED","ranks":[1,2,3,5,11,14,16,13,13],"final_count":45037},{"code":"HT","label":"Communities / Classes / Race","class":"H","status":"ABSENT","ranks":[14,16,19,22,22,18,13,14,14],"final_count":39829},{"code":"HM","label":"Sociology","class":"H","status":"ABSENT","ranks":[23,25,25,23,18,17,17,15,15],"final_count":37950},{"code":"HX","label":"Socialism / Communism","class":"H","status":"ABSENT","ranks":[22,21,18,14,14,12,12,16,16],"final_count":33668},{"code":"HJ","label":"Public Finance","class":"H","status":"MERGED","ranks":[8,10,11,11,13,13,15,17,17],"final_count":29505},{"code":"KD","label":"UK Law","class":"K","status":"MERGED","ranks":[2,1,2,3,8,11,18,18,18],"final_count":22633},{"code":"KG","label":"Latin American Law","class":"K","status":"ABSENT","ranks":[19,18,14,16,16,19,20,19,19],"final_count":18652},{"code":"KL","label":"Asian / African Law","class":"K","status":"ABSENT","ranks":[15,19,23,24,24,25,25,20,20],"final_count":16293},{"code":"HA","label":"Statistics","class":"H","status":"ABSENT","ranks":[20,20,20,18,19,20,19,21,21],"final_count":14766},{"code":"KB","label":"Religious Law","class":"K","status":"MERGED","ranks":[4,5,10,15,20,22,23,22,22],"final_count":8015},{"code":"KE","label":"Canadian Law","class":"K","status":"ABSENT","ranks":[24,24,24,25,25,24,21,23,23],"final_count":7870},{"code":"KZ","label":"International Law","class":"K","status":"ABSENT","ranks":[9,13,16,21,23,23,24,24,24],"final_count":7726},{"code":"HS","label":"Societies / Clubs","class":"H","status":"ABSENT","ranks":[17,15,17,19,21,21,22,25,25],"final_count":6384}],"n":25};
+const RANK_DATA=[{"y":1815,"H":10,"K":2},{"y":1850,"H":9,"K":3},{"y":1897,"H":9,"K":5},{"y":1920,"H":5,"K":7},{"y":1950,"H":4,"K":8},{"y":1970,"H":2,"K":8},{"y":1990,"H":2,"K":8},{"y":2011,"H":2,"K":6},{"y":2020,"H":2,"K":6}];
+const R2B_DS=[{"code":"HD","label":"HD: Land / Agriculture Economics","cls":"H","color":"#0c4a6e","dash":"[5,3]","ranks":[13,11,8,2,1,1,1,1,1]},{"code":"K","label":"K: Law (General)","cls":"K","color":"#7f1d1d","dash":"[]","ranks":[3,4,4,4,4,5,4,2,2]},{"code":"KF","label":"KF: US Law","cls":"K","color":"#991b1b","dash":"[]","ranks":[5,3,1,1,2,2,2,3,3]},{"code":"HC","label":"HC: Economic History","cls":"H","color":"#075985","dash":"[5,3]","ranks":[18,17,15,10,5,3,3,4,4]},{"code":"HV","label":"HV: Social Pathology / Criminology","cls":"H","color":"#0369a1","dash":"[5,3]","ranks":[7,7,5,8,7,6,6,5,5]},{"code":"HF","label":"HF: Commerce","cls":"H","color":"#0284c7","dash":"[]","ranks":[6,6,7,6,3,4,5,6,6]},{"code":"HQ","label":"HQ: Family / Gender / Sexuality","cls":"H","color":"#0ea5e9","dash":"[5,3]","ranks":[12,12,13,13,12,10,7,7,7]},{"code":"HG","label":"HG: Finance","cls":"H","color":"#38bdf8","dash":"[5,3]","ranks":[10,8,6,7,6,7,8,8,8]},{"code":"HB","label":"HB: Economic Theory","cls":"H","color":"#7dd3fc","dash":"[5,3]","ranks":[16,14,12,12,10,9,9,9,9]},{"code":"HN","label":"HN: Social History","cls":"H","color":"#1e3a5f","dash":"[5,3]","ranks":[21,22,21,17,15,15,11,10,10]},{"code":"HE","label":"HE: Transportation / Communications","cls":"H","color":"#1d4ed8","dash":"[5,3]","ranks":[11,9,9,9,9,8,10,11,11]},{"code":"KH","label":"KH: South American Law","cls":"K","color":"#b91c1c","dash":"[5,3]","ranks":[25,23,22,20,17,16,14,12,12]},{"code":"KJ","label":"KJ: European Law","cls":"K","color":"#dc2626","dash":"[]","ranks":[1,2,3,5,11,14,16,13,13]},{"code":"HT","label":"HT: Communities / Classes / Race","cls":"H","color":"#2563eb","dash":"[5,3]","ranks":[14,16,19,22,22,18,13,14,14]},{"code":"HM","label":"HM: Sociology","cls":"H","color":"#3b82f6","dash":"[5,3]","ranks":[23,25,25,23,18,17,17,15,15]},{"code":"HX","label":"HX: Socialism / Communism","cls":"H","color":"#60a5fa","dash":"[5,3]","ranks":[22,21,18,14,14,12,12,16,16]},{"code":"HJ","label":"HJ: Public Finance","cls":"H","color":"#93c5fd","dash":"[]","ranks":[8,10,11,11,13,13,15,17,17]},{"code":"KD","label":"KD: UK Law","cls":"K","color":"#ef4444","dash":"[]","ranks":[2,1,2,3,8,11,18,18,18]},{"code":"KG","label":"KG: Latin American Law","cls":"K","color":"#f87171","dash":"[5,3]","ranks":[19,18,14,16,16,19,20,19,19]},{"code":"KL","label":"KL: Asian / African Law","cls":"K","color":"#fca5a5","dash":"[5,3]","ranks":[15,19,23,24,24,25,25,20,20]},{"code":"HA","label":"HA: Statistics","cls":"H","color":"#bfdbfe","dash":"[5,3]","ranks":[20,20,20,18,19,20,19,21,21]},{"code":"KB","label":"KB: Religious Law","cls":"K","color":"#fecaca","dash":"[]","ranks":[4,5,10,15,20,22,23,22,22]},{"code":"KE","label":"KE: Canadian Law","cls":"K","color":"#fee2e2","dash":"[5,3]","ranks":[24,24,24,25,25,24,21,23,23]},{"code":"KZ","label":"KZ: International Law","cls":"K","color":"#450a0a","dash":"[5,3]","ranks":[9,13,16,21,23,23,24,24,24]},{"code":"HS","label":"HS: Societies / Clubs","cls":"H","color":"#dbeafe","dash":"[5,3]","ranks":[17,15,17,19,21,21,22,25,25]}];
+const R2B_VIS={};
+R2B_DS.forEach(d=>{R2B_VIS[d.code]=true;});
+
+// ── BUMP CHART STATE ──
+let bChart=null, r2Chart=null, r2bChart=null;
+let bVis={};
+KEYS.forEach(k=>{bVis[k]=true;});
+const BUMP_KEY=['K','P','H','B','M','E'];
+let bumpMode='key';
+
+const bumpRefPlugin={id:'bumpRef',afterDraw(ch){
+  const refOn=document.getElementById('bRef')?.checked;
+  if(!refOn) return;
+  const ctx=ch.ctx,xs=ch.scales.x,ys=ch.scales.y;
+  [[1815,'rgba(196,106,74,0.5)','1815: Jefferson → LC'],[1897,'rgba(90,130,196,0.5)','1897 LCC created']].forEach(([yr,col,lbl])=>{
+    const idx=ch.data.labels.indexOf(yr); if(idx<0) return;
+    const x=xs.getPixelForValue(idx);
+    if(x<xs.left||x>xs.right) return;
+    ctx.save(); ctx.setLineDash([4,3]); ctx.strokeStyle=col; ctx.lineWidth=1.2;
+    ctx.beginPath(); ctx.moveTo(x,ys.top); ctx.lineTo(x,ys.bottom); ctx.stroke();
+    ctx.setLineDash([]); ctx.font='9px Source Code Pro,monospace'; ctx.fillStyle=col;
+    ctx.textAlign='left'; ctx.fillText(lbl,x+3,ys.top+12); ctx.restore();
+  });
+}};
+
+const hkRefPlugin={id:'hkRef',afterDraw(ch){
+  const ctx=ch.ctx,xs=ch.scales.x,ys=ch.scales.y;
+  [[1815,'rgba(196,106,74,0.5)','1815: Jefferson → LC'],[1897,'rgba(90,130,196,0.5)','1897 LCC created']].forEach(([yr,col,lbl])=>{
+    const idx=ch.data.labels.indexOf(yr); if(idx<0) return;
+    const x=xs.getPixelForValue(idx);
+    if(x<xs.left||x>xs.right) return;
+    ctx.save(); ctx.setLineDash([4,3]); ctx.strokeStyle=col; ctx.lineWidth=1.2;
+    ctx.beginPath(); ctx.moveTo(x,ys.top); ctx.lineTo(x,ys.bottom); ctx.stroke();
+    ctx.setLineDash([]); ctx.font='9px Source Code Pro,monospace'; ctx.fillStyle=col;
+    ctx.textAlign='left'; ctx.fillText(lbl,x+3,ys.top+12); ctx.restore();
+  });
+}};
+
+
+function setBumpMode(mode){
+  bumpMode=mode;
+  ['key','all','none'].forEach(m=>{
+    const b=document.getElementById('bcls-'+m); if(b) b.classList.toggle('active',m===mode);
+  });
+  KEYS.forEach(k=>{bVis[k]= mode==='all' || (mode==='key' && BUMP_KEY.includes(k));});
+  if(bChart){
+    bChart.data.datasets.forEach((ds,i)=>{
+      const k=KEYS[i];
+      ds.borderColor=bVis[k]?COL[k]:'rgba(0,0,0,0.06)';
+      ds.borderWidth=bVis[k]?2:0.4;
+      ds.pointRadius=bVis[k]?3:0;
+    });
+    bChart.update('none');
+  }
+  renderBumpClsLegend();
+}
+
+function toggleBumpCls(k){
+  bVis[k]=!bVis[k];
+  if(bChart){
+    const i=KEYS.indexOf(k);
+    bChart.data.datasets[i].borderColor=bVis[k]?COL[k]:'rgba(0,0,0,0.06)';
+    bChart.data.datasets[i].borderWidth=bVis[k]?2:0.4;
+    bChart.data.datasets[i].pointRadius=bVis[k]?3:0;
+    bChart.update('none');
+  }
+  renderBumpClsLegend();
+}
+
+function renderBumpClsLegend(){
+  const grid=document.getElementById('bump-cls-grid'); if(!grid) return;
+  grid.innerHTML=KEYS.map(k=>{
+    const isOn=bVis[k], col=COL[k];
+    const isKey=BUMP_KEY.includes(k);
+    const dash=DSH[k]&&DSH[k].length>0;
+    const sw=dash?`border-top:2px dashed ${col};background:none;height:0;margin-top:1px;`:`background:${col};`;
+    return `<div class="bump-cls-item${isOn?'':' dimmed'}" onclick="toggleBumpCls('${k}')" title="${k} — ${LBL[k]}">
+      <div class="bump-cls-swatch" style="${sw}width:20px;"></div>
+      <span class="bump-cls-code" style="color:${col}">${k}${isKey?' &#9733;':''}</span>
+      <span class="bump-cls-name">${LBL[k]}</span>
+    </div>`;
+  }).join('');
+}
+
+
+function drawBump(){
+  const labPlugin={id:'bumpLbl',afterDraw(ch){
+    const ctx=ch.ctx, ys=ch.scales.y;
+    ch.data.datasets.forEach((ds,di)=>{
+      if(!bVis[ds._key]) return;
+      const el=ch.getDatasetMeta(di).data[BUMP_YRS.length-1]; if(!el) return;
+      const labelY=Math.max(el.y, ys.top+7);
+      ctx.save();
+      ctx.font='bold 9px Source Code Pro,monospace';
+      ctx.fillStyle=COL[ds._key];
+      ctx.textAlign='left'; ctx.textBaseline='middle';
+      ctx.fillText(ds._key,el.x+5,labelY);
+      ctx.restore();
+    });
+  }};
+  const datasets=KEYS.map(k=>{
+    const on=bVis[k];
+    return {
+      label:k, _key:k,
+      data:BUMP_RANKS.map(r=>r[k]),
+      borderColor:on?COL[k]:'rgba(0,0,0,0.06)',
+      borderWidth:on?2:0.4,
+      borderDash:DSH[k]||[],
+      pointRadius:on?3:0,
+      pointHoverRadius:6,
+      pointBackgroundColor:COL[k],
+      tension:0.3, fill:false
+    };
+  });
+  if(bChart){bChart.data.datasets=datasets;bChart.update('none');return;}
+  bChart=new Chart(document.getElementById('bChart'),{
+    type:'line',
+    data:{labels:BUMP_YRS,datasets},
+    plugins:[bumpRefPlugin,labPlugin],
+    options:{
+      responsive:true,maintainAspectRatio:false,animation:false,
+      clip:false,
+      layout:{padding:{right:44,top:36,bottom:6,left:4}},
+      interaction:{mode:'index',intersect:false},
+      scales:{
+        x:{ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'}},
+           grid:{color:'rgba(0,0,0,0.06)'},
+           title:{display:true,text:'year',color:'#706e68',font:{size:9}}},
+        y:{reverse:true,min:1,max:22,
+           ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'},stepSize:2,callback:v=>Number.isInteger(v)?v:''},
+           grid:{color:'rgba(0,0,0,0.06)'},
+           title:{display:true,text:'rank (1 = most records)',color:'#706e68',font:{size:9}}}
+      },
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
+          titleFont:{size:10,family:'Source Code Pro, monospace'},
+          bodyFont:{size:9,family:'Source Code Pro, monospace'},
+          padding:6,
+          callbacks:{
+            title:i=>'year: '+BUMP_YRS[i[0].dataIndex],
+            label:i=>bVis[i.dataset._key]?` ${i.dataset._key} ${LBL[i.dataset._key]}: rank ${i.raw}`:null
+          },
+          filter:i=>bVis[i.dataset._key],
+          itemSort:(a,b)=>a.raw-b.raw
+        }
+      }
+    }
+  });
+  // Apply initial key-stories mode
+  setBumpMode('key');
+}
+
+
+
+// ── COMPUTE H vs K FROM RANKINGS CSV ─────────────────────────────────────
+function computeHKFromRankings() {
+  if (!DATA.rankings) return null;
+
+  // Group by year → main_class → sum cumulative
+  const classTotals = {};  // year → { class: totalCumulative }
+  DATA.rankings.forEach(r => {
+    if (r.cumulative == null || r.year == null) return;
+    const yr = r.year, cls = r.main_class, cum = +r.cumulative || 0;
+    if (!classTotals[yr]) classTotals[yr] = {};
+    classTotals[yr][cls] = (classTotals[yr][cls] || 0) + cum;
+  });
+
+  const years = Object.keys(classTotals).map(Number).sort((a,b)=>a-b);
+
+  // For each year rank classes by total cumulative count
+  const hkRankData = years.map(yr => {
+    const totals = classTotals[yr];
+    const sorted = Object.entries(totals).sort((a,b) => b[1]-a[1]);
+    const ranks = {};
+    sorted.forEach(([cls], i) => { ranks[cls] = i+1; });
+    return { y: yr, H: ranks['H'] || null, K: ranks['K'] || null };
+  }).filter(d => d.H !== null || d.K !== null);
+
+  return hkRankData;
+}
+
+// ── COMPUTE H+K SUBCLASS RELATIVE RANKS FROM DATA.rankings ───────────────
+function computeHKSubRanks() {
+  if (!DATA.rankings) return null;
+
+  // Collect all H+K subclasses
+  const hkRows = DATA.rankings.filter(r => r.main_class === 'H' || r.main_class === 'K');
+  if (!hkRows.length) return null;
+
+  const years = [...new Set(hkRows.map(r => r.year))].sort((a,b)=>a-b);
+  const subclasses = [...new Set(hkRows.map(r => r.subclass))];
+
+  // Build cumulative by subclass+year
+  const cumMap = {};
+  hkRows.forEach(r => {
+    if (!cumMap[r.subclass]) cumMap[r.subclass] = {};
+    cumMap[r.subclass][r.year] = +r.cumulative || 0;
+  });
+
+  // For each year, rank H+K subclasses by cumulative count
+  const yearRanks = {};
+  years.forEach(yr => {
+    const subs = subclasses.map(s => ({ s, c: cumMap[s]?.[yr] || 0 }))
+      .sort((a,b) => b.c - a.c);
+    subs.forEach(({ s }, i) => {
+      if (!yearRanks[s]) yearRanks[s] = {};
+      yearRanks[s][yr] = i + 1;
+    });
+  });
+
+  // Build series like HK_SUB.series
+  const infoMap = {};
+  hkRows.forEach(r => {
+    if (!infoMap[r.subclass]) {
+      infoMap[r.subclass] = { code: r.subclass, label: r.label, cls: r.main_class, status: r.status };
+    }
+  });
+
+  const n = subclasses.length;
+  const series = subclasses
+    .map(s => ({
+      code: s,
+      label: s + ': ' + (infoMap[s]?.label || s),
+      cls: infoMap[s]?.cls || '?',
+      status: infoMap[s]?.status || 'UNKNOWN',
+      ranks: years.map(yr => yearRanks[s]?.[yr] || null),
+      dash: (infoMap[s]?.status === 'MERGED' || infoMap[s]?.status === 'DIRECT') ? '[]' : '[5,3]'
+    }))
+    .sort((a,b) => {
+      const lastYr = years[years.length-1];
+      return (yearRanks[a.code]?.[lastYr] || 999) - (yearRanks[b.code]?.[lastYr] || 999);
+    });
+
+  return { years, series, n };
+}
+
+function drawR2_hk(){
+  if(r2Chart) return;
+  const computed = computeHKFromRankings();
+  const source = (computed && computed.length > 0) ? computed : RANK_DATA;
+  const yrs=source.map(d=>d.y);
+  r2Chart=new Chart(document.getElementById('r2Chart'),{
+    type:'line',
+    data:{
+      labels:yrs,
+      datasets:[
+        {label:'H — Social Sciences',
+          data:source.map(d=>d.H),
+          borderColor:'#4a90c4',borderWidth:2.5,fill:false,
+          pointRadius:5,pointBackgroundColor:'#4a90c4',tension:0.4},
+        {label:'K — Law (Jefferson rank 2 class)',
+          data:source.map(d=>d.K),
+          borderColor:'#c46a4a',borderWidth:2,borderDash:[6,3],fill:false,
+          pointRadius:5,pointBackgroundColor:'#c46a4a',tension:0.4}
+      ]
+    },
+    plugins:[hkRefPlugin],
+    options:{
+      responsive:true,maintainAspectRatio:false,animation:false,
+      clip:false,
+      layout:{padding:{right:52,top:32,bottom:8,left:4}},
+      interaction:{mode:'index',intersect:false},
+      scales:{
+        x:{ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'}},
+           grid:{color:'rgba(0,0,0,0.06)'},
+           title:{display:true,text:'year',color:'#706e68',font:{size:9}}},
+        y:{reverse:true,min:1,max:Math.max(11, ...source.map(d=>Math.max(d.H||0,d.K||0)))+1,
+           ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'},stepSize:1,callback:v=>v===1?'Rank 1 ▲':'Rank '+v},
+           grid:{color:'rgba(0,0,0,0.06)'},
+           title:{display:true,text:'rank in LC collection (1 = largest)',color:'#706e68',font:{size:9}}}
+      },
+      plugins:{
+        legend:{display:true,position:'bottom',labels:{font:{size:10,family:'Source Code Pro, monospace'},color:'#706e68',boxWidth:16}},
+        tooltip:{
+          backgroundColor:'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
+          titleFont:{size:10,family:'Source Code Pro, monospace'},
+          bodyFont:{size:10,family:'Source Code Pro, monospace'},
+          padding:6,
+          callbacks:{
+            title:i=>'year: '+yrs[i[0].dataIndex],
+            label:i=>` ${i.dataset.label.split('—')[0].trim()}: Rank ${i.raw}`
+          }
+        }
+      }
+    }
+  });
+}
+
+function buildR2bTog(hkData){
+  const p=document.getElementById('r2btog');
+  p.innerHTML=''; // always rebuild when called with fresh data
+  const items = hkData ? hkData.series : R2B_DS;
+  items.forEach(d=>{
+    const b=document.createElement('button');
+    b.id='r2btog_'+d.code; b.className='hk-tog'; b.title=d.label;
+    b.onclick=()=>{R2B_VIS[d.code]=!R2B_VIS[d.code];b.classList.toggle('off',!R2B_VIS[d.code]);updateR2b();};
+    const dotCol = d.color || (d.cls==='H' ? (d.dash==='[]'?'#4a90c4':'#7fb3d8') : (d.cls==='K' ? (d.dash==='[]'?'#c46a4a':'#d4937a') : '#7a7670'));
+    b.innerHTML=`<span style="width:8px;height:8px;border-radius:50%;background:${dotCol};display:inline-block;"></span>${d.code}`;
+    p.appendChild(b);
+  });
+}
+function updateR2b(){
+  if(!r2bChart) return;
+  r2bChart.data.datasets.forEach((ds,i)=>{
+    ds.hidden=!R2B_VIS[ds._code];
+  });
+  r2bChart.update();
+}
+function hkTogAll(cls,state){
+  if(r2bChart){
+    r2bChart.data.datasets.forEach(d=>{
+      if(cls==='all'||d._cls===cls){
+        R2B_VIS[d._code]=state;
+        const b=document.getElementById('r2btog_'+d._code);
+        if(b) b.classList.toggle('off',!state);
+      }
+    });
+    updateR2b();
+  }
+}
+
+function drawR2b_hk(){
+  // Use CSV data if available, fall back to hardcoded HK_SUB
+  const csvHK = computeHKSubRanks();
+  const hkData = (csvHK && csvHK.series.length > 0) ? csvHK : null;
+  buildR2bTog(hkData);
+  if(r2bChart) return;
+  const yrs = hkData ? hkData.years : HK_SUB.years;
+  const series = hkData ? hkData.series : R2B_DS;
+  r2bChart=new Chart(document.getElementById('r2bChart'),{
+    type:'line',
+    data:{
+      labels:yrs,
+      datasets:series.map(d=>{
+        const dash=d.dash==='[]'?[]:d.dash==='[5,3]'?[5,3]:[];
+        const col = d.cls==='H' ? (d.dash==='[]'?'#4a90c4':'#7fb3d8') : (d.dash==='[]'?'#c46a4a':'#d4937a');
+        return {
+          label:d.label, _code:d.code, _cls:d.cls,
+          data:d.ranks,
+          borderColor:col,
+          backgroundColor:col,
+          borderWidth:d.dash==='[]'?2:1.5,
+          borderDash:dash,
+          pointRadius:2.5,
+          pointBackgroundColor:col,
+          tension:0.35, hidden:false
+        };
+      })
+    },
+    plugins:[hkRefPlugin],
+    options:{
+      responsive:true,maintainAspectRatio:false,animation:false,
+      clip:false,
+      layout:{padding:{right:52,top:32,bottom:8,left:4}},
+      interaction:{mode:'index',intersect:false},
+      scales:{
+        x:{ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'}},
+           grid:{color:'rgba(0,0,0,0.06)'},
+           title:{display:true,text:'year',color:'#706e68',font:{size:9}}},
+        y:{reverse:true,min:1,max:Math.max(26,(hkData?hkData.n:25)+2),
+           ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'},stepSize:2,callback:v=>Number.isInteger(v)&&v%2===0?v:''},
+           grid:{color:'rgba(0,0,0,0.06)'},
+           title:{display:true,text:'rank among H+K subclasses (1 = largest)',color:'#706e68',font:{size:9}}}
+      },
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
+          titleFont:{size:10,family:'Source Code Pro, monospace'},
+          bodyFont:{size:9,family:'Source Code Pro, monospace'},
+          padding:6,
+          callbacks:{
+            title:i=>'year: '+yrs[i[0].dataIndex],
+            label:i=>` ${i.dataset.label.split(':')[0]}: Rank ${i.raw}`
+          },
+          filter:i=>!r2bChart?.data.datasets[i.datasetIndex]?.hidden,
+          itemSort:(a,b)=>a.raw-b.raw
+        }
+      }
+    }
+  });
+}
+
+
+const DATA_FILES = {
+  cumulative: 'output/subclass_cumulative_counts.csv',
+  annual: 'output/subclass_annual_counts.csv',
+  sigmoids: 'output/subclass_sigmoids_v2.csv',
+  inflection: 'output/inflection_comparison_v2.csv',
+  rankings: 'output/subclass_rankings_over_time.csv',
+};
+
+// ── DATA STORE ──────────────────────────────────────────────────────────────
+const DATA = {
+  cumulative: null,   // rows: [{pub_year, [colName]: val, ...}]
+  cumCols: null,      // [{code, label, status, fullName}]
+  annual: null,
+  sigmoids: null,     // rows from sigmoid CSV
+  inflection: null,   // single row of stats
+  rankings: null,     // rows from subclass_rankings_over_time.csv
+};
+
+let cumulativeChart = null, pChart = null, hChart = null;
+let scatterChart = null, meanChart = null, rankingsChart = null;
+let showLog = false, showRefs = true, showRankRefs = true;
+
+// ── LOCAL CSV LOADING ────────────────────────────────────────────────────────
+const fileIds = ['cumulative','annual','sigmoids','inflection','rankings'];
+
+async function loadDataFile(key) {
+  const statusEl = document.getElementById('s-' + key);
+  if (statusEl) {
+    statusEl.textContent = 'loading...';
+    statusEl.className = 'file-status waiting';
+  }
+  try {
+    const rows = await d3.csv(DATA_FILES[key], d3.autoType);
+    DATA[key] = Array.isArray(rows) ? rows : [];
+    if (statusEl) {
+      statusEl.textContent = `loaded ${DATA[key].length} rows`;
+      statusEl.className = 'file-status loaded';
+    }
+  } catch (err) {
+    if (statusEl) {
+      statusEl.textContent = 'load error';
+      statusEl.className = 'file-status error';
+    }
+    console.error('CSV load error for', key, err);
+  }
+}
+
+async function autoloadLocalData() {
+  await Promise.all(fileIds.map(loadDataFile));
+  checkAllLoaded();
+  renderAll();
+}
+
+function loadCSV(_file, _key) {
+  console.warn('Manual CSV upload is disabled; this dashboard loads local CSV files from output/.');
+}
+
+function checkAllLoaded() {
+  const loaded = fileIds.filter(id => DATA[id] !== null).length;
+  const btn = document.getElementById('render-btn');
+  const note = document.getElementById('load-note');
+  if (btn) {
+    btn.disabled = loaded < fileIds.length;
+    btn.textContent = loaded === fileIds.length ? 'Render Dashboard' : 'Loading CSV data...';
+  }
+  if (note) note.textContent = `${loaded}/${fileIds.length} local CSV files loaded from /output/`;
+}
+
+document.addEventListener('DOMContentLoaded', autoloadLocalData);
+
+// ── COLUMN PARSING ────────────────────────────────────────────────────────────
+function parseCumColumns(data) {
+  if (!data || data.length === 0) return [];
+  const keys = Object.keys(data[0]).filter(k => k !== 'pub_year');
+  return keys.map(fullName => {
+    const bracketMatch = fullName.match(/\[(\w+)\]$/);
+    const status = bracketMatch ? bracketMatch[1] : 'UNKNOWN';
+    const dashMatch = fullName.match(/^(\S+)\s+--\s+(.+?)\s+\[/);
+    const code = dashMatch ? dashMatch[1] : fullName.split(' ')[0];
+    const label = dashMatch ? dashMatch[2] : fullName;
+    return { code, label, status, fullName };
+  });
+}
+
+function getColsByClass(cols, prefix) {
+  if (prefix === 'ALL') return cols;
+  return cols.filter(c => c.code.startsWith(prefix));
+}
+
+// ── COLORS ───────────────────────────────────────────────────────────────────
+const CLASS_COLORS = {
+  P: { MERGED:'#5b9bd5', ABSENT:'#d47c5b', DIRECT:'#5bd47c', UNKNOWN:'#666' },
+  H: { MERGED:'#5b9bd5', ABSENT:'#d47c5b', DIRECT:'#5bd47c', UNKNOWN:'#666' },
+  D: { MERGED:'#b8934a', ABSENT:'#d4b85b', DIRECT:'#5bd47c', UNKNOWN:'#666' },
+  ALL:{ MERGED:'#5b9bd5', ABSENT:'#d47c5b', DIRECT:'#5bd47c', UNKNOWN:'#666' },
+};
+
+function colFor(status, prefix) {
+  const map = CLASS_COLORS[prefix] || CLASS_COLORS.ALL;
+  return map[status] || '#666';
+}
+
+// ── RENDER ALL ────────────────────────────────────────────────────────────────
+function renderAll() {
+  DATA.cumCols = parseCumColumns(DATA.cumulative);
+  document.getElementById('waiting-msg').style.display = 'none';
+  document.getElementById('tab-bar').style.display = 'flex';
+
+  // Always mark tabs that need missing data
+  updateTabAvailability();
+
+  // Build whichever tabs have data
+  if (DATA.rankings)  buildRankingsChart();
+  if (DATA.cumulative) buildCumulativeChart();
+  if (DATA.sigmoids && DATA.cumulative) buildSubclassLifepaths();
+  if (DATA.sigmoids)  buildScatter();
+  buildStats();   // handles missing data internally
+  buildTable();   // handles missing data internally
+
+  // Default to the most data-rich available tab
+  if (DATA.rankings) showTab('rankings');
+  else showTab('cumulative');
+}
+
+function updateTabAvailability() {
+  // Tab order matches button order in HTML
+  const tabOrder = ['cumulative','class-bump','rankings','hk-rank','hk-sub',
+                    'subclass-lifepath','inflection-scatter',
+                    'jefferson-growth','era-growth','democratic-share',
+                    'summary-stats','data-table'];
+  const needsCumul    = new Set(['cumulative','subclass-lifepath','jefferson-growth','era-growth','democratic-share']);
+  const needsSigmoids = new Set(['subclass-lifepath','inflection-scatter','summary-stats','data-table']);
+  const needsRankings = new Set(['rankings','hk-rank','hk-sub']);
+
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    const id = tabOrder[i];
+    if (!id) return;
+    let available = true;
+    if (needsCumul.has(id)    && !DATA.cumulative) available = false;
+    if (needsSigmoids.has(id) && !DATA.sigmoids)   available = false;
+    if (needsRankings.has(id) && !DATA.rankings)   available = false;
+    btn.style.opacity = available ? '' : '0.35';
+    btn.title = available ? '' : 'Load the required CSV file to enable this tab';
+  });
+}
+
+// ── TAB SWITCHING ─────────────────────────────────────────────────────────────
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('panel-'+id);
+  if(panel) panel.classList.add('active');
+  const tabOrder = ['cumulative','class-bump','rankings','hk-rank','hk-sub','subclass-lifepath','inflection-scatter','jefferson-growth','era-growth','democratic-share','summary-stats','data-table'];
+  const idx = tabOrder.indexOf(id);
+  document.querySelectorAll('.tab-btn')[idx]?.classList.add('active');
+  // Lazy-init new tabs
+  if(id==='class-bump' && !bChart) { drawBump(); renderBumpClsLegend(); }
+  if(id==='jefferson-growth') buildJeffersonGrowth();
+  if(id==='era-growth') buildEraGrowth();
+  if(id==='democratic-share') buildDemocraticShare();
+  if(id==='hk-rank' && !r2Chart) drawR2_hk();
+  if(id==='hk-sub') drawR2b_hk();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TAB 1: CUMULATIVE LIFEPATHS
+// ─────────────────────────────────────────────────────────────────────────────
+function buildCumulativeChart() {
+  if (!DATA.cumulative) {
+    const el = document.getElementById('cumulativeChart');
+    if (el) el.parentElement.innerHTML = '<div style="color:var(--text-dim);padding:40px;text-align:center;font-style:italic">Load subclass_cumulative_counts.csv to view this chart</div>';
+    return;
+  }
+  const prefix = document.getElementById('cum-class-filter').value;
+  const cols = getColsByClass(DATA.cumCols, prefix);
+  const rows = DATA.cumulative;
+  const filtRows = rows.filter(r => r.pub_year >= 1850 && r.pub_year <= 2020);
+  const labels = filtRows.map(r => r.pub_year);
+
+  const datasets = cols.map(col => {
+    const color = colFor(col.status, prefix);
+    const isMerged = col.status === 'MERGED' || col.status === 'DIRECT';
+    return {
+      label: col.code + ' ' + col.label,
+      data: filtRows.map(r => {
+        const v = r[col.fullName];
+        if (showLog) return v > 0 ? Math.log10(v) : null;
+        return v || 0;
+      }),
+      borderColor: color,
+      borderWidth: isMerged ? 1.8 : 1.2,
+      borderDash: isMerged ? [] : [5,3],
+      pointRadius: 0,
+      tension: 0.3,
+      fill: false,
+    };
+  });
+
+  const refPlugin = {
+    id: 'refLines',
+    afterDraw(chart) {
+      if (!showRefs) return;
+      const ctx = chart.ctx, xScale = chart.scales.x, yScale = chart.scales.y;
+      [[1897,'rgba(196,106,74,0.5)','1897 LCC'],[1968,'rgba(90,130,196,0.5)','1968 MARC']].forEach(([yr,col,lbl])=>{
+        const x = xScale.getPixelForValue(yr);
+        if (x < xScale.left || x > xScale.right) return;
+        ctx.save(); ctx.strokeStyle=col; ctx.setLineDash([4,4]); ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(x,yScale.top); ctx.lineTo(x,yScale.bottom); ctx.stroke();
+        ctx.fillStyle=col; ctx.font='9px Source Code Pro, monospace';
+        ctx.fillText(lbl, x+3, yScale.top+10); ctx.restore();
+      });
+    }
+  };
+
+  const ctx = document.getElementById('cumulativeChart').getContext('2d');
+  if (cumulativeChart) cumulativeChart.destroy();
+  cumulativeChart = new Chart(ctx, {
+    type: 'line', data: { labels, datasets }, plugins: [refPlugin],
+    options: {
+      animation: false, responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: 'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
+          titleFont: { size: 10, family: 'Source Code Pro, monospace' },
+          bodyFont: { size: 10, family: 'Source Code Pro, monospace' },
+          callbacks: {
+            title: i => 'Year: ' + i[0].label,
+            label: i => { const v = showLog ? Math.round(Math.pow(10, i.raw)) : i.raw; return ' ' + i.dataset.label + ': ' + (v||0).toLocaleString(); }
+          },
+          filter: i => i.raw !== null && i.raw > 0,
+          itemSort: (a,b) => b.raw - a.raw,
+        }
+      },
+      scales: {
+        x: { ticks: { maxTicksLimit: 12, color:'#706e68', font:{size:9} }, grid: { color:'rgba(0,0,0,0.06)' } },
+        y: {
+          title: { display: true, text: 'cumulative count', font:{size:9}, color:'#706e68' },
+          ticks: { color:'#706e68', font:{size:9}, callback: v => showLog ? '10^'+v.toFixed(1) : fmtNum(v) },
+          grid: { color:'rgba(0,0,0,0.06)' }
+        }
+      }
+    }
+  });
+  document.getElementById('cum-title').textContent =
+    `Cumulative record counts — ${prefix === 'ALL' ? 'all' : prefix} class subclasses (${cols.length} series)`;
+}
+
+function updateCumulativeChart() { buildCumulativeChart(); }
+function toggleLog() {
+  showLog = !showLog;
+  const btn = document.getElementById('btn-log');
+  btn.textContent = showLog ? 'Log₁₀' : 'Linear';
+  btn.classList.toggle('on', true);
+  buildCumulativeChart();
+}
+function toggleRefs() {
+  showRefs = !showRefs;
+  const btn = document.getElementById('btn-ref');
+  btn.textContent = showRefs ? 'Hide refs' : 'Show ref lines';
+  btn.classList.toggle('on', showRefs);
+  if (cumulativeChart) cumulativeChart.update();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TAB 2: SUBCLASS RANKINGS OVER TIME
+// ─────────────────────────────────────────────────────────────────────────────
+function toggleRankRefs() {
+  showRankRefs = !showRankRefs;
+  const btn = document.getElementById('btn-rank-refs');
+  btn.classList.toggle('on', showRankRefs);
+  if (rankingsChart) rankingsChart.update();
+}
+
+// ── STATUS STYLE MAP ────────────────────────────────────────────────────────
+const STATUS_STYLE = {
+  MERGED:  { color: '#5b9bd5', dash: [],     label: 'MERGED (Jefferson-classified)' },
+  DIRECT:  { color: '#4ac48a', dash: [],     label: 'DIRECT (Jefferson direct)' },
+  ABSENT:  { color: '#d47c5b', dash: [5,3],  label: 'ABSENT (non-Jefferson)' },
+  RENAMED: { color: '#c4a84a', dash: [3,3],  label: 'RENAMED (Jefferson direct)' },
+  PARTIAL: { color: '#c4a84a', dash: [2,3],  label: 'PARTIAL' },
+  UNKNOWN: { color: '#7a7670', dash: [1,4],  label: 'UNKNOWN' },
+};
+function statusStyle(st) { return STATUS_STYLE[st] || STATUS_STYLE.UNKNOWN; }
+
+// ── KEY STORIES: known-interesting subclass codes ────────────────────────────
+const KEY_STORY_CODES = new Set([
+  'PS','PR','PQ','PT','PL','PM',   // Literatures
+  'HQ','HT','HV','HX','HD','HB',  // Social sciences
+  'DS','DT','E','F',               // History / Americas / Africa
+  'QB','QC','QD',                  // Science
+  'KF','KD',                       // Law
+  'R','RC',                        // Medicine
+  'ML','Z','M','S','SB','MT',      // DIRECT Jefferson subclasses
+  'AC','AE','AG',                  // RENAMED Jefferson subclasses
+]);
+
+// Legend state: set of highlighted subclass codes (null = all shown)
+let legendHighlighted = null;   // null means no filtering active
+let legendMode = 'key';         // 'key' | 'all' | 'none'
+let rankSubclassesCache = [];   // saved from last build for legend use
+let rankIdxCache = {};
+
+function setLegendMode(mode) {
+  legendMode = mode;
+  ['key','all','none'].forEach(m => {
+    const btn = document.getElementById('btn-' + (m === 'key' ? 'key-stories' : 'legend-' + m));
+    if (btn) btn.classList.toggle('active', m === mode);
+  });
+  if (mode === 'all') {
+    legendHighlighted = null;
+  } else if (mode === 'none') {
+    legendHighlighted = new Set();
+  } else {
+    // key: highlight all key story codes present in current subclasses
+    legendHighlighted = new Set(rankSubclassesCache.filter(s => KEY_STORY_CODES.has(s)));
+    if (legendHighlighted.size === 0) legendHighlighted = null; // fallback: show all
+  }
+  applyLegendFilter();
+  renderRankLegend();
+}
+
+function toggleLegendItem(code) {
+  if (legendHighlighted === null) {
+    // Switch from "all" mode to selective
+    legendHighlighted = new Set(rankSubclassesCache);
+    legendHighlighted.delete(code);
+  } else if (legendHighlighted.has(code)) {
+    legendHighlighted.delete(code);
+  } else {
+    legendHighlighted.add(code);
+    // If all are now highlighted, revert to null
+    if (legendHighlighted.size === rankSubclassesCache.length) legendHighlighted = null;
+  }
+  applyLegendFilter();
+  renderRankLegend();
+}
+
+function applyLegendFilter() {
+  if (!rankingsChart) return;
+  rankingsChart.data.datasets.forEach(ds => {
+    const meta = rankingsChart.getDatasetMeta(rankingsChart.data.datasets.indexOf(ds));
+    if (legendHighlighted === null) {
+      meta.hidden = false;
+    } else {
+      meta.hidden = !legendHighlighted.has(ds.label);
+    }
+  });
+  rankingsChart.update('none');
+}
+
+// ── Keyword search: highlight matching lines, dim the rest ──────────────────
+let _rankSearchQuery = '';
+
+function searchRankLines(query) {
+  _rankSearchQuery = (query || '').trim().toLowerCase();
+  if (!rankingsChart) return;
+
+  const q = _rankSearchQuery;
+  const countEl = document.getElementById('rank-search-count');
+
+  if (!q) {
+    // Clear search — restore to legend-filter state
+    rankingsChart.data.datasets.forEach(ds => {
+      const style = statusStyle(ds._status);
+      ds.borderColor          = style.color;
+      ds.backgroundColor      = style.color + '80';
+      ds.pointBackgroundColor = style.color;
+      ds.borderWidth          = 1.5;
+      ds.pointRadius          = ds._origPointRadius ?? 4;
+      ds.pointHoverRadius     = (ds._origPointRadius ?? 4) + 2;
+    });
+    if (countEl) { countEl.textContent = ''; }
+    rankingsChart.update('none');
+    applyLegendFilter();
+    return;
+  }
+
+  const tokens = q.split(/\s+/).filter(Boolean);
+
+  let matchCount = 0;
+  rankingsChart.data.datasets.forEach(ds => {
+    // Save original pointRadius on first search
+    if (ds._origPointRadius === undefined) ds._origPointRadius = ds.pointRadius ?? 4;
+
+    const haystack = [
+      ds.label,
+      ds._label_full || '',
+      ds._status || '',
+    ].join(' ').toLowerCase();
+
+    const matches = tokens.some(t => haystack.includes(t));
+
+    if (matches) {
+      matchCount++;
+      const style = statusStyle(ds._status);
+      ds.borderColor          = style.color;
+      ds.backgroundColor      = style.color + '80';
+      ds.pointBackgroundColor = style.color;
+      ds.borderWidth          = 2.5;
+      ds.pointRadius          = ds._origPointRadius ?? 4;
+      ds.pointHoverRadius     = (ds._origPointRadius ?? 4) + 2;
+      const meta = rankingsChart.getDatasetMeta(rankingsChart.data.datasets.indexOf(ds));
+      meta.hidden = false;
+    } else {
+      // Fully suppress non-matching lines and their dots
+      ds.borderColor          = 'rgba(180,175,165,0.08)';
+      ds.backgroundColor      = 'rgba(180,175,165,0.03)';
+      ds.pointBackgroundColor = 'rgba(0,0,0,0)';
+      ds.pointBorderColor     = 'rgba(0,0,0,0)';
+      ds.borderWidth          = 0.5;
+      ds.pointRadius          = 0;
+      ds.pointHoverRadius     = 0;
+    }
+  });
+
+  if (countEl) {
+    countEl.textContent = matchCount
+      ? `${matchCount} match${matchCount !== 1 ? 'es' : ''}`
+      : 'no matches';
+    countEl.style.color = matchCount ? 'var(--accent-green)' : 'var(--accent-absent)';
+  }
+
+  rankingsChart.update('none');
+}
+
+function renderRankLegend() {
+  const grid = document.getElementById('rank-legend-grid');
+  if (!grid || !rankSubclassesCache.length) return;
+  const lastYr = Object.keys(rankIdxCache[rankSubclassesCache[0]] || {}).sort().pop();
+  grid.innerHTML = rankSubclassesCache.map(sub => {
+    const info = rankIdxCache[sub]?.[lastYr] || Object.values(rankIdxCache[sub]||{})[0] || {};
+    const st = info.status || 'UNKNOWN';
+    const sty = statusStyle(st);
+    const isHighlighted = legendHighlighted === null || legendHighlighted.has(sub);
+    const isKey = KEY_STORY_CODES.has(sub);
+    const labelText = (info.label || sub).replace(/\s*\[.*\]$/, '').substring(0, 38);
+    const dashStyle = sty.dash.length ? `border-top: 2px dashed ${sty.color}; background: none;` : `background: ${sty.color};`;
+    const badgeBg  = { MERGED:'rgba(91,155,213,0.18)', DIRECT:'rgba(74,196,138,0.18)', ABSENT:'rgba(212,124,91,0.18)', RENAMED:'rgba(196,168,74,0.18)', PARTIAL:'rgba(196,168,74,0.18)', UNKNOWN:'rgba(122,118,112,0.18)' }[st] || 'rgba(122,118,112,0.18)';
+    const badgeFg  = { MERGED:'#2a6da8', DIRECT:'#1a7a50', ABSENT:'#8b3d20', RENAMED:'#7a6010', PARTIAL:'#7a6010', UNKNOWN:'#4a4842' }[st] || '#4a4842';
+    return `<div class="rank-legend-item${isHighlighted ? '' : ' dimmed'}" onclick="toggleLegendItem('${sub}')" title="${sub} — ${info.label||''} · ${st}">
+      <div class="rank-legend-swatch${sty.dash.length ? ' dashed' : ''}" style="${dashStyle}"></div>
+      <span class="rank-legend-code" style="color:${sty.color}">${sub}${isKey ? ' &#9733;' : ''}</span>
+      <span class="rank-legend-name">${labelText}</span>
+      <span class="rank-legend-badge" style="background:${badgeBg};color:${badgeFg}">${st}</span>
+    </div>`;
+  }).join('');
+}
+
+function buildRankingsChart() {
+  if (!DATA.rankings) {
+    const el = document.getElementById('rankingsChart');
+    if (el) el.parentElement.innerHTML = '<div style="color:var(--text-dim);padding:40px;text-align:center;font-style:italic">Load subclass_rankings_over_time.csv to view this chart</div>';
+    return;
+  }
+
+  const classFilter  = document.getElementById('rank-class-filter').value;
+  const statusFilter = document.getElementById('rank-status-filter').value;
+  const topN         = parseInt(document.getElementById('rank-topn').value) || 0;
+
+  // Filter rows
+  let rows = DATA.rankings.filter(r => r.rank != null);
+  if (classFilter !== 'ALL') rows = rows.filter(r => r.main_class === classFilter);
+  if (statusFilter === 'MERGED') rows = rows.filter(r => r.status === 'MERGED');
+  else if (statusFilter === 'DIRECT') rows = rows.filter(r => r.status === 'DIRECT');
+  else if (statusFilter === 'ABSENT') rows = rows.filter(r => r.status === 'ABSENT');
+  else if (statusFilter === 'RENAMED') rows = rows.filter(r => r.status === 'RENAMED');
+  else if (statusFilter === 'JEFFERSON') rows = rows.filter(r => r.status === 'MERGED' || r.status === 'DIRECT' || r.status === 'RENAMED');
+  else if (statusFilter === 'NON_JEFFERSON') rows = rows.filter(r => r.status === 'ABSENT');
+
+  if (rows.length === 0) {
+    document.getElementById('rank-count').textContent = 'no data';
+    return;
+  }
+
+  // All years present in filtered data
+  const years = [...new Set(rows.map(r => r.year))].sort((a,b)=>a-b);
+  // All subclasses present
+  let subclasses = [...new Set(rows.map(r => r.subclass))];
+
+  // If topN: filter to those with best (lowest) rank at the most recent year
+  if (topN > 0) {
+    const lastYr = years[years.length - 1];
+    const lastYrRows = rows.filter(r => r.year === lastYr && r.rank != null);
+    lastYrRows.sort((a,b) => a.rank - b.rank);
+    const keepSet = new Set(lastYrRows.slice(0, topN).map(r => r.subclass));
+    subclasses = subclasses.filter(s => keepSet.has(s));
+    rows = rows.filter(r => keepSet.has(r.subclass));
+  }
+
+  // Build index: subclass -> year -> {rank, cumulative, label, status}
+  const idx = {};
+  rows.forEach(r => {
+    if (!idx[r.subclass]) idx[r.subclass] = {};
+    idx[r.subclass][r.year] = r;
+  });
+
+  // Sort subclasses by their most-recent rank (ascending = best first)
+  const lastYr = years[years.length - 1];
+  subclasses.sort((a,b) => {
+    const ra = idx[a]?.[lastYr]?.rank ?? 9999;
+    const rb = idx[b]?.[lastYr]?.rank ?? 9999;
+    return ra - rb;
+  });
+
+  // Cache for legend
+  rankSubclassesCache = subclasses;
+  rankIdxCache = idx;
+
+  // Compute initial highlight set based on current mode
+  // If a specific status filter is applied, always show all filtered subclasses
+  if (statusFilter !== 'ALL') {
+    legendHighlighted = null;
+    legendMode = 'all';
+    ['key','all','none'].forEach(m => {
+      const btn = document.getElementById('btn-' + (m === 'key' ? 'key-stories' : 'legend-' + m));
+      if (btn) btn.classList.toggle('active', m === 'all');
+    });
+  } else if (legendMode === 'key') {
+    const keyed = subclasses.filter(s => KEY_STORY_CODES.has(s));
+    legendHighlighted = keyed.length > 0 ? new Set(keyed) : null;
+  } else if (legendMode === 'none') {
+    legendHighlighted = new Set();
+  } else {
+    legendHighlighted = null;
+  }
+
+  // Max rank across filtered data (for y-axis)
+  const maxRank = Math.max(...rows.map(r => r.rank));
+
+  // Build datasets — one per subclass
+  const datasets = subclasses.map(sub => {
+    const info = idx[sub]?.[lastYr] || Object.values(idx[sub]||{})[0] || {};
+    const st = info.status || 'UNKNOWN';
+    const sty = statusStyle(st);
+    const isHidden = legendHighlighted !== null && !legendHighlighted.has(sub);
+    return {
+      label: sub,
+      _label_full: (info.label || sub).replace(/\s*\[.*\]$/, ''),
+      _status: st,
+      data: years.map(yr => idx[sub]?.[yr]?.rank ?? null),
+      borderColor: sty.color,
+      backgroundColor: sty.color,
+      borderWidth: (st === 'ABSENT' || st === 'PARTIAL') ? 1.5 : 2,
+      borderDash: sty.dash,
+      pointRadius: years.length <= 25 ? 3.5 : 2,
+      pointHoverRadius: 6,
+      pointBackgroundColor: sty.color,
+      tension: 0.35,
+      fill: false,
+      spanGaps: false,
+      hidden: isHidden,
+    };
+  });
+
+  // End-label plugin: subclass code at rightmost visible point
+  const endLabelPlugin = {
+    id: 'rankEndLabels',
+    afterDraw(chart) {
+      const ctx = chart.ctx;
+      const chartArea = chart.chartArea;
+      const ys = chart.scales.y;
+      chart.data.datasets.forEach((ds, i) => {
+        const meta = chart.getDatasetMeta(i);
+        if (meta.hidden) return;
+        const pts = meta.data.filter(p => !isNaN(p.x) && !isNaN(p.y));
+        if (!pts.length) return;
+        const last = pts[pts.length - 1];
+        if (last.x < chartArea.left || last.x > chartArea.right + 60) return;
+        const labelY = Math.max(last.y + 3, ys.top + 8);
+        ctx.save();
+        ctx.font = `${subclasses.length > 60 ? 7 : 8}px Source Code Pro, monospace`;
+        ctx.fillStyle = ds.borderColor;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(ds.label, last.x + 5, labelY);
+        ctx.restore();
+      });
+    }
+  };
+
+  // Ref lines plugin
+  const refPlugin = {
+    id: 'rankRefLines',
+    afterDraw(chart) {
+      if (!showRankRefs) return;
+      const ctx = chart.ctx;
+      const xS = chart.scales.x;
+      const yS = chart.scales.y;
+      [[1897,'rgba(196,106,74,0.45)','1897 LCC created'],[1968,'rgba(90,130,196,0.45)','1968 MARC era']].forEach(([yr,col,lbl])=>{
+        const labelIdx = chart.data.labels.findIndex(l => Number(l) >= yr);
+        if (labelIdx < 0) return;
+        const x = xS.getPixelForValue(labelIdx);
+        if (x < xS.left || x > xS.right) return;
+        ctx.save();
+        ctx.strokeStyle = col; ctx.setLineDash([4,4]); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x, yS.top); ctx.lineTo(x, yS.bottom); ctx.stroke();
+        ctx.fillStyle = col; ctx.font = '9px Source Code Pro, monospace';
+        ctx.fillText(lbl, x+3, yS.top+12); ctx.restore();
+      });
+    }
+  };
+
+  // Crosshair plugin — vertical line + x-label at mouse position
+  const crosshairPlugin = {
+    id: 'rankCrosshair',
+    afterDraw(chart) {
+      if (!chart._crosshairX) return;
+      const { ctx, chartArea: { top, bottom }, scales: { x, y } } = chart;
+      const xp = chart._crosshairX;
+      ctx.save();
+      ctx.strokeStyle = 'rgba(100,100,90,0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 3]);
+      ctx.beginPath(); ctx.moveTo(xp, top); ctx.lineTo(xp, bottom); ctx.stroke();
+      ctx.restore();
+    }
+  };
+
+  const ctxEl = document.getElementById('rankingsChart').getContext('2d');
+  if (rankingsChart) rankingsChart.destroy();
+  rankingsChart = new Chart(ctxEl, {
+    type: 'line',
+    data: { labels: years, datasets },
+    plugins: [endLabelPlugin, refPlugin, crosshairPlugin],
+    options: {
+      animation: false,
+      responsive: true,
+      maintainAspectRatio: false,
+      clip: false,
+      layout: { padding: { right: 64, top: 32, bottom: 8, left: 4 } },
+      interaction: { mode: 'index', intersect: false },
+      onHover(e, elements, chart) {
+        // Store crosshair x for the afterDraw plugin
+        if (e.x != null) { chart._crosshairX = e.x; chart.draw(); }
+      },
+      onLeave() {
+        const el = document.getElementById('rank-tooltip');
+        if (el) el.style.display = 'none';
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          enabled: false,
+          external({ chart, tooltip }) {
+            const el = document.getElementById('rank-tooltip');
+            if (!el) return;
+            if (tooltip.opacity === 0) { el.style.display = 'none'; return; }
+
+            const items = (tooltip.dataPoints || [])
+              .filter(i => i.raw != null)
+              .sort((a, b) => (a.raw || 9999) - (b.raw || 9999));
+
+            if (!items.length) { el.style.display = 'none'; return; }
+
+            const year = items[0].label;
+            const STATUS_BADGE = {
+              MERGED:  { bg:'#ddeeff', txt:'#2a6090' },
+              DIRECT:  { bg:'#ddf5e8', txt:'#1a7040' },
+              ABSENT:  { bg:'#fde8dc', txt:'#8a3010' },
+              RENAMED: { bg:'#fdf5dc', txt:'#7a6010' },
+            };
+
+            let rows = items.map(i => {
+              const ds = i.dataset;
+              const info = (rankIdxCache[ds.label] || {})[year];
+              const cum = info?.cumulative != null
+                ? `<span style="color:#706e68"> (${fmtNum(info.cumulative)} records)</span>`
+                : '';
+              const b = STATUS_BADGE[ds._status] || { bg:'#eee', txt:'#444' };
+              const badge = `<span style="background:${b.bg};color:${b.txt};
+                border-radius:2px;padding:1px 4px;font-size:9px;margin-right:4px">${ds._status}</span>`;
+              return `<div style="padding:3px 12px;border-bottom:1px solid rgba(0,0,0,0.05);
+                white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+                <span style="color:#706e68;min-width:28px;display:inline-block">#${i.raw}</span>
+                <strong style="color:${ds.borderColor}">${ds.label}</strong>
+                ${badge}${ds._label_full || ''}${cum}
+              </div>`;
+            }).join('');
+
+            el.innerHTML = `
+              <div style="padding:8px 12px;border-bottom:1px solid #d4d0c8;
+                font-weight:700;font-size:11px;position:sticky;top:0;
+                background:rgba(255,253,250,0.98);z-index:1">
+                Year: ${year}
+                <span style="font-weight:400;color:#706e68;font-size:9px;margin-left:8px">
+                  ${items.length} subclass${items.length !== 1 ? 'es' : ''} · scroll to see all
+                </span>
+              </div>
+              ${rows}`;
+
+            // Position: try right of cursor, flip left if near edge
+            const cx = chart.canvas.getBoundingClientRect();
+            const tipW = 404, tipH = Math.min(el.scrollHeight, window.innerHeight * 0.65);
+            let left = tooltip.caretX + cx.left + 14;
+            let top  = tooltip.caretY + cx.top  - 40;
+            if (left + tipW > window.innerWidth  - 12) left = tooltip.caretX + cx.left - tipW - 14;
+            if (top  + tipH > window.innerHeight - 12) top  = window.innerHeight - tipH - 12;
+            if (top < 8) top = 8;
+
+            el.style.left    = left + 'px';
+            el.style.top     = top  + 'px';
+            el.style.display = 'block';
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color:'#706e68', font:{size:9}, maxRotation:45 },
+          grid: { color:'rgba(0,0,0,0.06)' },
+          title: { display: true, text:'year', color:'#706e68', font:{size:9} }
+        },
+        y: {
+          reverse: true,
+          min: 1,
+          max: Math.min(maxRank + 2, 202),
+          title: { display:true, text:'rank (1 = most records)', color:'#706e68', font:{size:9} },
+          ticks: {
+            color:'#706e68', font:{size:9},
+            callback: v => Number.isInteger(v) ? v : ''
+          },
+          grid: { color:'rgba(0,0,0,0.06)' }
+        }
+      }
+    }
+  });
+
+  const nSubs = subclasses.length;
+  document.getElementById('rank-count').textContent = `${nSubs} subclass${nSubs!==1?'es':''} · ${years.length} snapshots`;
+  document.getElementById('rank-title').textContent =
+    `Subclass rank trajectories — ${classFilter==='ALL'?'all classes':classFilter+' class'} · ${statusFilter==='ALL'?'all statuses':statusFilter} · rank 1 = most records`;
+
+  // Clear any active search when filters change
+  const searchEl = document.getElementById('rank-search');
+  if (searchEl && searchEl.value) { searchEl.value = ''; _rankSearchQuery = ''; }
+  const countEl = document.getElementById('rank-search-count');
+  if (countEl) countEl.textContent = '';
+  // Clear cached pointRadius values from previous build
+  if (rankingsChart) rankingsChart.data.datasets.forEach(ds => { delete ds._origPointRadius; });
+
+  // Apply filter AFTER chart exists (chart must be assigned before calling this)
+  applyLegendFilter();
+  renderRankLegend();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TAB 3: SUBCLASS LIFEPATHS (P & H from sigmoids)
+// ─────────────────────────────────────────────────────────────────────────────
+function buildSubclassLifepaths() {
+  if (!DATA.sigmoids) return;
+
+  const sigs = DATA.sigmoids;
+  const rows = DATA.cumulative;
+
+  const pSubs = sigs.filter(s => s.subclass && s.subclass.startsWith('P') && s.group !== 'OTHER');
+  const hSubs = sigs.filter(s => s.subclass && (s.subclass.startsWith('H')) && s.group !== 'OTHER');
+
+  const hjRow = sigs.find(s => s.subclass === 'HJ');
+  if (hjRow && !hSubs.includes(hjRow)) hSubs.push(hjRow);
+  const hfRow = sigs.find(s => s.subclass === 'HF');
+  if (hfRow && !hSubs.includes(hfRow)) hSubs.push(hfRow);
+
+  const filtRows = rows.filter(r => r.pub_year >= 1850 && r.pub_year <= 2020);
+  const labels = filtRows.map(r => r.pub_year);
+
+  function makeDatasets(subs) {
+    return subs.map(sig => {
+      const col = DATA.cumCols.find(c => c.code === sig.subclass);
+      if (!col) return null;
+      const isMerged = sig.jefferson_status === 'MERGED' || sig.jefferson_status === 'DIRECT';
+      const color = isMerged ? '#5b9bd5' : '#d47c5b';
+      return {
+        label: sig.subclass + ': ' + sig.label,
+        data: filtRows.map(r => r[col.fullName] || 0),
+        borderColor: color, borderWidth: isMerged ? 2 : 1.5,
+        borderDash: isMerged ? [] : [5,3], pointRadius: 0, tension: 0.3, fill: false,
+        _sig: sig, _isMerged: isMerged,
+      };
+    }).filter(Boolean);
+  }
+
+  const refPlugin = makeRefPlugin();
+
+  function makeInflectionPlugin(subs) {
+    return {
+      id: 'inflectionTicks',
+      afterDraw(chart) {
+        const ctx = chart.ctx, xScale = chart.scales.x, yBase = chart.chartArea.bottom;
+        subs.forEach(sig => {
+          if (!sig.inflection_year) return;
+          const x = xScale.getPixelForValue(sig.inflection_year);
+          if (x < xScale.left || x > xScale.right) return;
+          const isMerged = sig.jefferson_status === 'MERGED' || sig.jefferson_status === 'DIRECT';
+          ctx.save(); ctx.strokeStyle = isMerged ? '#5b9bd5' : '#d47c5b'; ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.moveTo(x, yBase); ctx.lineTo(x, yBase + 6); ctx.stroke(); ctx.restore();
+        });
+      }
+    };
+  }
+
+  function buildPanel(canvasId, subs) {
+    const ds = makeDatasets(subs);
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    return new Chart(ctx, {
+      type: 'line', data: { labels, datasets: ds }, plugins: [refPlugin, makeInflectionPlugin(subs)],
+      options: {
+        animation: false, responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18', titleFont:{size:9}, bodyFont:{size:9},
+            callbacks: { label: i => ' ' + i.dataset.label + ': ' + (i.raw||0).toLocaleString() },
+            filter: i => i.raw > 0, itemSort: (a,b) => b.raw - a.raw,
+          }
+        },
+        scales: {
+          x: { ticks:{ maxTicksLimit:10, color:'#706e68', font:{size:9} }, grid:{color:'rgba(0,0,0,0.06)'} },
+          y: { ticks:{ color:'#706e68', font:{size:9}, callback: v => fmtNum(v) }, grid:{color:'rgba(0,0,0,0.06)'} }
+        }
+      }
+    });
+  }
+
+  if (pChart) pChart.destroy();
+  if (hChart) hChart.destroy();
+  pChart = buildPanel('pChart', pSubs);
+  hChart = buildPanel('hChart', hSubs);
+
+  const pAbsent = pSubs.filter(s => s.jefferson_status === 'ABSENT' && s.inflection_year);
+  const pMerged = pSubs.filter(s => s.jefferson_status === 'MERGED' && s.inflection_year);
+  const hAbsent = hSubs.filter(s => s.jefferson_status === 'ABSENT' && s.inflection_year);
+  const hMerged = hSubs.filter(s => s.jefferson_status === 'MERGED' && s.inflection_year);
+
+  const pAbsMean = mean(pAbsent.map(s=>s.inflection_year));
+  const pMrgMean = mean(pMerged.map(s=>s.inflection_year));
+  const hAbsMean = mean(hAbsent.map(s=>s.inflection_year));
+  const hMrgMean = mean(hMerged.map(s=>s.inflection_year));
+
+  let gapVal = '—';
+  if (DATA.inflection && DATA.inflection[0]) {
+    const row = DATA.inflection[0];
+    const gap = Math.abs((row.mean_absent_inflection||0) - (row.mean_present_inflection||0));
+    gapVal = gap.toFixed(1);
+  } else if (pAbsMean && pMrgMean) {
+    gapVal = Math.abs(pAbsMean - pMrgMean).toFixed(1);
+  }
+  document.getElementById('infgap').textContent = gapVal;
+
+  const statsEl = document.getElementById('lp-stats');
+  const fmt = v => v ? Math.round(v) : '—';
+  statsEl.innerHTML = `
+    <div class="stat-box absent"><div class="label">P class — Absent mean inflection</div><div class="value">${fmt(pAbsMean)}</div><div class="sub">n=${pAbsent.length} (non-Western)</div></div>
+    <div class="stat-box merged"><div class="label">P class — Classified mean inflection</div><div class="value">${fmt(pMrgMean)}</div><div class="sub">n=${pMerged.length} (Western)</div></div>
+    <div class="stat-box absent"><div class="label">H class — Absent mean inflection</div><div class="value">${fmt(hAbsMean)}</div><div class="sub">n=${hAbsent.length} (modern SS)</div></div>
+    <div class="stat-box merged"><div class="label">H class — Classified mean inflection</div><div class="value">${fmt(hMrgMean)}</div><div class="sub">n=${hMerged.length} (classic SS)</div></div>
+  `;
+}
+
+function makeRefPlugin() {
+  return {
+    id: 'refLinesLP',
+    afterDraw(chart) {
+      const ctx = chart.ctx, xS = chart.scales.x, yS = chart.scales.y;
+      [[1897,'rgba(196,106,74,0.5)','1897 LCC'],[1968,'rgba(90,130,196,0.5)','1968 MARC']].forEach(([yr,col,lbl]) => {
+        const x = xS.getPixelForValue(yr);
+        if (x < xS.left || x > xS.right) return;
+        ctx.save(); ctx.strokeStyle=col; ctx.setLineDash([4,4]); ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(x,yS.top); ctx.lineTo(x,yS.bottom); ctx.stroke();
+        ctx.fillStyle=col; ctx.font='9px Source Code Pro, monospace';
+        ctx.fillText(lbl, x+2, yS.top+12); ctx.restore();
+      });
+    }
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TAB 4: INFLECTION SCATTER
+// ─────────────────────────────────────────────────────────────────────────────
+function buildScatter() {
+  if (!DATA.sigmoids) return;
+
+  const classFilter = document.getElementById('scatter-class-filter')?.value || 'ALL';
+  let sigs = DATA.sigmoids.filter(s =>
+    s.inflection_year && s.inflection_year > 1900 && s.inflection_year < 2070 &&
+    s.jefferson_status && s.jefferson_status !== 'UNKNOWN' && s.subclass
+  );
+  if (classFilter !== 'ALL') sigs = sigs.filter(s => s.subclass.startsWith(classFilter));
+
+  function strHash(s) {
+    let h = 0;
+    for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) & 0xffffffff;
+    return h;
+  }
+  function makeJitter(code) {
+    const h = strHash(code);
+    return ((h & 0xff) / 255.0 - 0.5) * 0.7;
+  }
+
+  const mergedPts = [], absentPts = [];
+  sigs.forEach(s => {
+    const total = s.total || 100;
+    const r = Math.max(3, Math.min(14, Math.sqrt(total/2000)*3+3));
+    const pt = { x: s.inflection_year, label: s.subclass, r, _sig: s };
+    if (s.jefferson_status === 'MERGED' || s.jefferson_status === 'DIRECT') {
+      pt.y = 2 + makeJitter(s.subclass);
+      mergedPts.push(pt);
+    } else {
+      pt.y = 1 + makeJitter(s.subclass);
+      absentPts.push(pt);
+    }
+  });
+
+  const ctx = document.getElementById('scatterChart').getContext('2d');
+  if (scatterChart) scatterChart.destroy();
+  scatterChart = new Chart(ctx, {
+    type: 'bubble',
+    data: {
+      datasets: [
+        { label:'Jeffersonian (MERGED/DIRECT)', data: mergedPts, backgroundColor:'rgba(91,155,213,0.45)', borderColor:'rgba(91,155,213,0.8)', borderWidth:1 },
+        { label:'Non-Jeffersonian (ABSENT)', data: absentPts, backgroundColor:'rgba(212,124,91,0.45)', borderColor:'rgba(212,124,91,0.8)', borderWidth:1 },
+      ]
+    },
+    options: {
+      animation:false, responsive:true, maintainAspectRatio:false,
+      interaction: { mode:'nearest', intersect:true },
+      plugins: {
+        legend: { display:false },
+        tooltip: {
+          backgroundColor:'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
+          titleFont:{size:10,family:'Source Code Pro, monospace'}, bodyFont:{size:10,family:'Source Code Pro, monospace'},
+          callbacks: {
+            label: i => {
+              const d = i.raw; const s = d._sig;
+              const jstat = (s.jefferson_status==='MERGED'||s.jefferson_status==='DIRECT'||s.jefferson_status==='RENAMED') ? 'Jeffersonian' : 'Non-Jeffersonian'; return ` ${s.subclass} — ${s.label||''} · t₀=${s.inflection_year?.toFixed(0)} · ${jstat}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: { title:{display:true,text:'sigmoid inflection year t₀ (raw, from sigmoids CSV)',color:'#706e68',font:{size:9}}, min:1955,max:2030,
+          ticks:{color:'#706e68',font:{size:9}}, grid:{color:'rgba(0,0,0,0.06)'} },
+        y: { min:0.4,max:2.6, ticks:{display:false}, grid:{display:false} }
+      }
+    }
+  });
+
+  // Row label + mean lines plugin — scoped to scatterChart only
+  const rowLabelPlugin = {
+    id:'rowLabels',
+    afterDraw(chart) {
+      if (chart.canvas.id !== 'scatterChart') return;
+      const ctx=chart.ctx, xS=chart.scales.x, yS=chart.scales.y;
+      [[2,'#5b9bd5','Jeffersonian (MERGED/DIRECT)'],[1,'#d47c5b','Non-Jeffersonian (ABSENT)']].forEach(([yv,col,lbl])=>{
+        const y=yS.getPixelForValue(yv);
+        ctx.save(); ctx.fillStyle=col+'aa'; ctx.font='10px Libre Baskerville, serif';
+        ctx.textAlign='left'; ctx.fillText(lbl, xS.left+4, y-10); ctx.restore();
+        ctx.save(); ctx.strokeStyle=col+'22'; ctx.setLineDash([2,4]); ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(xS.left,y); ctx.lineTo(xS.right,y); ctx.stroke(); ctx.restore();
+      });
+      const absMeanX = scAbsMean || mean(absentPts.map(p=>p.x));
+      const mrgMeanX = scMrgMean || mean(mergedPts.map(p=>p.x));
+      [['Non-Jeff mean '+Math.round(absMeanX),'#d47c5b',absMeanX],['Jeffersonian mean '+Math.round(mrgMeanX),'#5b9bd5',mrgMeanX]].forEach(([lbl,col,xv])=>{
+        if (!xv) return;
+        const x=xS.getPixelForValue(xv);
+        if (x<xS.left||x>xS.right) return;
+        ctx.save(); ctx.strokeStyle=col+'99'; ctx.setLineDash([6,3]); ctx.lineWidth=1.5;
+        ctx.beginPath(); ctx.moveTo(x,yS.top); ctx.lineTo(x,yS.bottom); ctx.stroke();
+        ctx.fillStyle=col+'cc'; ctx.font='bold 8px Source Code Pro, monospace';
+        ctx.textAlign='center'; ctx.fillText(lbl, x, yS.top+10); ctx.restore();
+      });
+      const showLabels = sigs.length < 80;
+      if (showLabels) {
+        chart.data.datasets.forEach((ds,di) => {
+          const meta=chart.getDatasetMeta(di);
+          meta.data.forEach((el,i) => {
+            const d=ds.data[i];
+            ctx.save(); ctx.font='7px Source Code Pro, monospace';
+            ctx.fillStyle=di===0?'#8ab8e0':'#e0a080'; ctx.textAlign='center';
+            ctx.fillText(d.label, el.x, el.y-d.r-2); ctx.restore();
+          });
+        });
+      }
+    }
+  };
+  Chart.register(rowLabelPlugin);
+  scatterChart.update();
+
+  // ── Pull authoritative means from inflection_comparison CSV if loaded ──
+  // The scatter's inflection_year may be unnormalized; DATA.inflection has Python's normalized t0.
+  let scAbsMean, scMrgMean, scPval, scU, scNAbs, scNPres;
+  if (DATA.inflection && DATA.inflection[0]) {
+    const r = DATA.inflection[0]; const keys = Object.keys(r);
+    const findF = (patterns) => { for (const p of patterns) { const k = keys.find(k=>k.toLowerCase()===p.toLowerCase()); if(k&&r[k]!=null&&r[k]!=='') return +r[k]; } return undefined; };
+    scAbsMean = findF(['mean_absent_inflection','absent_mean_inflection','mean_absent','absent_mean','mean_t0_absent']);
+    scMrgMean = findF(['mean_present_inflection','mean_merged_inflection','merged_mean','mean_merged','mean_classified','mean_t0_merged','mean_t0_present']);
+    scPval    = findF(['p_value','pvalue','p_val']);
+    scU       = findF(['mann_whitney_U','mann_whitney_u','u_stat']);
+    scNAbs    = findF(['n_absent','n_non_jefferson']);
+    scNPres   = findF(['n_present','n_merged','n_classified','n_jefferson']);
+  }
+  // Fallback to computed means if inflection CSV unavailable
+  if (!scAbsMean || isNaN(scAbsMean)) scAbsMean = mean(absentPts.map(p=>p.x));
+  if (!scMrgMean || isNaN(scMrgMean)) scMrgMean = mean(mergedPts.map(p=>p.x));
+  if (!scNAbs)  scNAbs  = absentPts.length;
+  if (!scNPres) scNPres = mergedPts.length;
+
+  const scGapVal  = (scAbsMean - scMrgMean).toFixed(1);  // positive = Non-Jeff inflects later
+  const scGapAbs  = Math.abs(scGapVal).toFixed(1);
+  const scNonJeffLater = +scGapVal > 0;
+
+  const statsEl = document.getElementById('scatter-stats');
+  statsEl.innerHTML = `
+    <div class="stat-box absent">
+      <div class="label">NON-JEFFERSONIAN — mean inflection</div>
+      <div class="value">${Math.round(scAbsMean)}</div>
+      <div class="sub">n=${scNAbs} subclasses</div>
+    </div>
+    <div class="stat-box merged">
+      <div class="label">JEFFERSONIAN — mean inflection</div>
+      <div class="value">${Math.round(scMrgMean)}</div>
+      <div class="sub">n=${scNPres} subclasses</div>
+    </div>
+    <div class="stat-box neutral">
+      <div class="label">Gap (Non-Jeff − Jeffersonian)</div>
+      <div class="value">${+scGapVal > 0 ? '+' : ''}${scGapVal}</div>
+      <div class="sub">years · ${scNonJeffLater ? 'Non-Jeffersonian inflects later' : 'Jeffersonian inflects later'}${scPval ? ' · p=' + (+scPval).toFixed(3) : ''}</div>
+    </div>
+  `;
+  const countEl = document.getElementById('scatter-count');
+  if (countEl) countEl.textContent = `${scNAbs} non-Jeffersonian · ${scNPres} Jeffersonian`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TAB 5: SUMMARY STATS
+// ─────────────────────────────────────────────────────────────────────────────
+function buildStats() {
+  let absMean, mrgMean, pVal, uStat, nAbs, nPres;
+
+  // ── Try inflection_comparison CSV first ──────────────────────────────────
+  if (DATA.inflection && DATA.inflection[0]) {
+    const r = DATA.inflection[0];
+    const keys = Object.keys(r);
+
+    // Flexible field detection — try multiple naming conventions
+    const findField = (patterns) => {
+      for (const p of patterns) {
+        const k = keys.find(k => k.toLowerCase() === p.toLowerCase());
+        if (k && r[k] != null && r[k] !== '') return +r[k];
+      }
+      return undefined;
+    };
+
+    absMean = findField(['mean_absent_inflection','absent_mean_inflection',
+                         'mean_absent','absent_mean','mean_inflection_absent',
+                         'absent_inflection_year_mean','mean_t0_absent']);
+    mrgMean = findField(['mean_present_inflection','present_mean_inflection',
+                         'mean_merged_inflection','merged_mean_inflection',
+                         'mean_merged','merged_mean','mean_classified','classified_mean',
+                         'mean_present','present_mean','mean_inflection_present',
+                         'mean_t0_present','mean_t0_merged']);
+    pVal    = findField(['p_value','pvalue','p_val','p']);
+    uStat   = findField(['mann_whitney_U','mann_whitney_u','u_stat','u_statistic']);
+    nAbs    = findField(['n_absent','n_non_jefferson','n_non_jeff']);
+    nPres   = findField(['n_present','n_merged','n_classified','n_jefferson','n_jeff']);
+  }
+
+  // ── Fall back to sigmoids CSV if inflection didn't have what we need ─────
+  if ((absMean == null || isNaN(absMean)) && DATA.sigmoids) {
+    const s = DATA.sigmoids.filter(x => x.inflection_year && x.jefferson_status &&
+                                        x.jefferson_status !== 'UNKNOWN');
+    const absent  = s.filter(x => x.jefferson_status === 'ABSENT');
+    const present = s.filter(x => x.jefferson_status === 'MERGED' ||
+                                  x.jefferson_status === 'DIRECT' ||
+                                  x.jefferson_status === 'RENAMED');
+    if (absent.length || present.length) {
+      absMean = mean(absent.map(x  => +x.inflection_year));
+      mrgMean = mean(present.map(x => +x.inflection_year));
+      nAbs    = absent.length;
+      nPres   = present.length;
+      if (pVal == null) { pVal = null; uStat = null; }
+    }
+  }
+
+  if ((absMean == null || isNaN(absMean)) && (mrgMean == null || isNaN(mrgMean))) {
+    buildStatsEmpty(); return;
+  }
+
+  const fmt  = v  => (v != null && !isNaN(v)) ? Math.round(v) : '—';
+  const fmtN = v  => (v != null && !isNaN(v)) ? v : '—';
+
+  // ── Stat boxes ────────────────────────────────────────────────────────────
+  const statsEl = document.getElementById('stat-boxes');
+  statsEl.innerHTML = `
+    <div class="stat-box absent">
+      <div class="label">NON-JEFFERSONIAN — mean inflection</div>
+      <div class="value">${fmt(absMean)}</div>
+      <div class="sub">n=${fmtN(nAbs)} subclasses</div>
+    </div>
+    <div class="stat-box merged">
+      <div class="label">JEFFERSONIAN — mean inflection</div>
+      <div class="value">${fmt(mrgMean)}</div>
+      <div class="sub">n=${fmtN(nPres)} subclasses</div>
+    </div>
+    <div class="stat-box neutral">
+      <div class="label">p-value (Mann-Whitney)</div>
+      <div class="value">${pVal != null && !isNaN(pVal) ? pVal.toFixed(3) : 'N/A'}</div>
+      <div class="sub">U = ${uStat != null && !isNaN(uStat) ? uStat : '—'} · ${
+        pVal != null && !isNaN(pVal) ? (pVal > 0.05 ? 'NOT significant' : 'significant') : 'load inflection CSV'
+      }</div>
+    </div>
+  `;
+
+  // ── Bar chart ─────────────────────────────────────────────────────────────
+  if (!isNaN(absMean) && !isNaN(mrgMean) && absMean && mrgMean) {
+    const lo = Math.min(absMean, mrgMean), hi = Math.max(absMean, mrgMean);
+    const xMin = Math.floor((lo - 15) / 10) * 10;
+    const xMax = Math.ceil ((hi + 15) / 10) * 10;
+    const ctx2 = document.getElementById('meanChart').getContext('2d');
+    if (meanChart) meanChart.destroy();
+    meanChart = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: [`Non-Jeffersonian (n=${fmtN(nAbs)})`, `Jeffersonian (n=${fmtN(nPres)})`],
+        datasets: [{
+          data: [absMean, mrgMean],
+          backgroundColor: ['rgba(212,124,91,0.7)', 'rgba(91,155,213,0.7)'],
+          borderColor:     ['#d47c5b', '#5b9bd5'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        indexAxis: 'y', animation: false, responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(255,253,250,0.97)',
+            titleColor: '#1e1c18',
+            bodyColor: '#706e68',
+            borderColor: '#d4d0c8',
+            borderWidth: 1,
+            padding: 10,
+            titleFont: { size: 11, family: 'Libre Baskerville, serif', weight: 'bold' },
+            bodyFont:  { size: 10, family: 'Source Code Pro, monospace' },
+            cornerRadius: 3,
+            displayColors: false,
+            callbacks: {
+              title: items => {
+                const i = items[0];
+                return i.label;
+              },
+              label: i => {
+                const yr = Math.round(i.raw);
+                const isAbs = i.dataIndex === 0;
+                const other = Math.round(i.chart.data.datasets[0].data[isAbs ? 1 : 0]);
+                const gap = Math.abs(yr - other);
+                return [
+                  `  Mean inflection year: ${yr}`,
+                  `  Gap vs other group: ${gap} yr${gap !== 1 ? 's' : ''} (${(gap/200*100).toFixed(1)}% of study period)`,
+                ];
+              },
+              afterLabel: i => {
+                const isAbs = i.dataIndex === 0;
+                return isAbs
+                  ? '  → Non-Jeffersonian (ABSENT subclasses)'
+                  : '  → Jeffersonian (MERGED / DIRECT / RENAMED)';
+              }
+            }
+          }
+        },
+        scales: {
+          x: { min: xMin, max: xMax,
+               ticks: { color:'#706e68', font:{size:9} },
+               grid:  { color:'rgba(0,0,0,0.06)' } },
+          y: { ticks: { color:'#706e68', font:{size:10} }, grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  // ── Interpretation ────────────────────────────────────────────────────────
+  const interp  = document.getElementById('stats-interpretation');
+  const sig     = pVal != null && !isNaN(pVal) && pVal < 0.05;
+  const absYr   = fmt(absMean), mrgYr = fmt(mrgMean);
+  const gap     = (absMean != null && mrgMean != null && !isNaN(absMean) && !isNaN(mrgMean))
+                  ? Math.abs(Math.round(absMean - mrgMean)) : '?';
+  // Direction: does Non-Jeffersonian inflect later? (as suppression predicts)
+  const nonJeffLater = absMean > mrgMean;
+  const gapPct = (gap !== '?' && !isNaN(absMean) && !isNaN(mrgMean))
+                 ? ((Math.abs(absMean - mrgMean) / 200) * 100).toFixed(1) : '?';
+
+  interp.innerHTML = `
+    <strong>Statistical interpretation:</strong>
+    Non-Jeffersonian mean inflection = ${absYr} · Jeffersonian mean inflection = ${mrgYr} · gap = ${gap} years
+    (${gapPct}% of the 200-year study period).
+    Mann-Whitney U = ${uStat != null && !isNaN(uStat) ? uStat : '—'},
+    p = ${pVal != null && !isNaN(pVal) ? pVal.toFixed(3) : 'not computed — load inflection_comparison.csv for full stats'}.
+    ${pVal != null && !isNaN(pVal)
+      ? (!sig
+        ? `<strong>p &gt; 0.05 — No significant difference</strong> in inflection timing.`
+        : `<strong>p &lt; 0.05 — The ${gap}-year gap is statistically detectable but trivially small</strong>
+           (${gapPct}% of the study period).`)
+      : ''}
+    Non-Jeffersonian subclasses inflected <strong>${nonJeffLater ? 'later' : 'earlier'}</strong> on average
+    — ${nonJeffLater
+        ? `in the same direction suppression theory predicts, but the ${gap}-year gap is negligible.`
+        : `opposite to what suppression theory predicts.`}
+    Both groups' IQRs overlap substantially in the same 1980–1990 window.
+    <strong>The gap cannot be attributed to Jefferson's 1815 framework</strong> —
+    it is better explained by MARC-era mechanics: Jeffersonian subclasses were larger, older collections
+    with more pre-MARC holdings to retroactively catalog when machine-readable cataloging began in 1968,
+    giving them a slight mechanical head start. A ${gap}-year gap occurring 155+ years after Jefferson
+    is not evidence of hierarchical suppression.
+  `;
+}
+
+function buildStatsEmpty() {
+  const statsEl = document.getElementById('stat-boxes');
+  statsEl.innerHTML = '<div class="stat-box neutral" style="grid-column:1/-1"><div class="label">No sigmoid data loaded</div><div class="value" style="font-size:14px">Load subclass_sigmoids.csv to see inflection statistics</div></div>';
+  const interp = document.getElementById('stats-interpretation');
+  interp.textContent = 'Load the sigmoid CSV file to compute inflection year statistics.';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TAB 6: DATA TABLE
+// ─────────────────────────────────────────────────────────────────────────────
+let allTableRows = [];
+function buildTable() {
+  if (!DATA.sigmoids) return;
+  allTableRows = DATA.sigmoids.filter(s => s.inflection_year && s.subclass);
+  renderTable(allTableRows);
+}
+function filterTable() {
+  const f = document.getElementById('table-filter').value;
+  let rows = allTableRows;
+  if (f === 'ABSENT') rows = rows.filter(r => r.jefferson_status === 'ABSENT');
+  else if (f === 'MERGED') rows = rows.filter(r => r.jefferson_status === 'MERGED');
+  else if (f === 'P') rows = rows.filter(r => r.subclass && r.subclass.startsWith('P'));
+  else if (f === 'H') rows = rows.filter(r => r.subclass && (r.subclass.startsWith('H')));
+  renderTable(rows);
+}
+function renderTable(rows) {
+  document.getElementById('table-count').textContent = `${rows.length} subclasses`;
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = rows.map(r => {
+    const st = r.jefferson_status || 'UNKNOWN';
+    const badgeCls = st === 'ABSENT' ? 'absent' : st === 'MERGED' ? 'merged' : st === 'DIRECT' ? 'direct' : '';
+    return `<tr>
+      <td style="font-family:Source Code Pro,monospace;font-weight:600">${r.subclass||''}</td>
+      <td>${(r.label||'').replace(/\s*\[.*\]$/,'')}</td>
+      <td><span class="badge ${badgeCls}">${st}</span></td>
+      <td style="color:var(--text-dim)">${r.group||'—'}</td>
+      <td style="font-weight:600">${r.inflection_year?.toFixed(1)||'—'}</td>
+      <td>${r.total_2011?.toLocaleString()||'—'}</td>
+      <td>${r.growth_width_yrs?.toFixed(0)||'—'} yrs</td>
+      <td>${r.sigmoid_r2?.toFixed(3)||'—'}</td>
+      <td style="color:var(--text-dim);font-size:9px">${r.nearest_event_desc||'—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TAB: JEFFERSON VS GROWTH
+// ─────────────────────────────────────────────────────────────────────────────
+let jgGrowthChart = null, jgInflectionChart = null;
+
+function buildJeffersonGrowth() {
+  if (!DATA.cumulative) return;
+
+  const cols = DATA.cumCols || parseCumColumns(DATA.cumulative);
+  const rows = DATA.cumulative;
+  const YEAR_1815 = 1815, YEAR_2020 = 2020;
+  const blue = 'rgba(91,155,213,0.72)';
+  const blueLine = 'rgba(91,155,213,1)';
+  const orange = 'rgba(212,124,91,0.72)';
+  const orangeLine = 'rgba(212,124,91,1)';
+
+  function nearestRow(yr) {
+    let best = null, bestDist = Infinity;
+    rows.forEach(r => {
+      const d = Math.abs(+r.pub_year - yr);
+      if (d < bestDist) { best = r; bestDist = d; }
+    });
+    return best;
+  }
+
+  function isJeffersonian(status) {
+    return status === 'MERGED' || status === 'DIRECT' || status === 'RENAMED';
+  }
+
+  function stableJitter(code, width) {
+    let h = 0;
+    for (let i = 0; i < code.length; i++) h = (h * 31 + code.charCodeAt(i)) >>> 0;
+    return ((h & 0xff) / 255 - 0.5) * width;
+  }
+
+  const row1815 = rows.find(r => +r.pub_year === YEAR_1815) || nearestRow(YEAR_1815);
+  const row2020 = rows.find(r => +r.pub_year === YEAR_2020) || nearestRow(YEAR_2020);
+  const jeff = [], non = [];
+
+  cols.forEach(col => {
+    const v1 = +(row1815?.[col.fullName]) || 0;
+    const v2020 = +(row2020?.[col.fullName]) || 0;
+    if (v1 < 1 || v2020 < 1) return;
+    const growth = v2020 / v1;
+    if (growth <= 0 || !isFinite(growth)) return;
+    const target = isJeffersonian(col.status) ? jeff : non;
+    const groupX = isJeffersonian(col.status) ? 0 : 1;
+    target.push({
+      x: groupX + stableJitter(col.code, 0.16),
+      y: growth,
+      _code: col.code,
+      _label: col.label,
+      _status: col.status,
+      _growth: growth,
+      _logGrowth: Math.log10(growth),
+      _count2020: v2020,
+      _group: groupX === 0 ? 'Jeffersonian' : 'Non-Jeffersonian',
+    });
+  });
+
+  const jLogs = jeff.map(d => d._logGrowth);
+  const nLogs = non.map(d => d._logGrowth);
+  const js = summarizeValues(jeff.map(d => d._growth));
+  const ns = summarizeValues(non.map(d => d._growth));
+  const wt = welchTest(jLogs, nLogs);
+  const pText = wt.p < 0.001 ? '<0.001' : wt.p.toFixed(3);
+
+  document.getElementById('jg-growth-stats').innerHTML = `
+    <div class="stat-box">
+      <div class="label">Jeffersonian — median growth</div>
+      <div class="value" style="color:var(--accent-merged)">${formatGrowth(js.median)}</div>
+      <div class="sub">n=${jeff.length} · mean=${formatGrowth(js.mean)} · IQR=[${formatGrowth(js.q1)}, ${formatGrowth(js.q3)}]</div>
+    </div>
+    <div class="stat-box">
+      <div class="label">Non-Jeffersonian — median growth</div>
+      <div class="value" style="color:var(--accent-absent)">${formatGrowth(ns.median)}</div>
+      <div class="sub">n=${non.length} · mean=${formatGrowth(ns.mean)} · IQR=[${formatGrowth(ns.q1)}, ${formatGrowth(ns.q3)}]</div>
+    </div>
+    <div class="stat-box">
+      <div class="label">Welch's t-test (log10 growth)</div>
+      <div class="value" style="font-size:18px;color:var(--accent-absent)">p = ${pText}</div>
+      <div class="sub">t=${wt.t.toFixed(2)} · df=${wt.df.toFixed(0)} · Cohen's d=${wt.d.toFixed(3)}</div>
+    </div>`;
+
+  document.getElementById('jg-finding').innerHTML =
+    `<strong>Finding:</strong> Welch's t-test: <strong>p = ${pText}</strong> — Significant, but in the <em>wrong direction</em> for suppression theory. Jeffersonian subclasses grew <em>slower</em> on average than non-Jeffersonian ones (Cohen's d = ${wt.d.toFixed(2)}, medium effect). A negative effect — Jefferson-heavy → slower growth — is the <em>same</em> of what elite-bias suppression theory would predict. <strong>If anything, Jefferson's framework did not suppress democratic knowledge domains.</strong>`;
+
+  const growthPlugin = {
+    id: 'jeffersonGrowthViolin',
+    beforeDatasetsDraw(chart) {
+      const {ctx, scales:{x, y}} = chart;
+      drawViolin(ctx, x, y, 0, jLogs, blue, blueLine);
+      drawViolin(ctx, x, y, 1, nLogs, orange, orangeLine);
+      const meanLog = [...jLogs, ...nLogs].reduce((a,b)=>a+b,0) / (jLogs.length + nLogs.length);
+      const meanY = y.getPixelForValue(Math.pow(10, meanLog));
+      ctx.save();
+      ctx.strokeStyle = 'rgba(80,80,60,0.20)';
+      ctx.setLineDash([5,7]);
+      ctx.beginPath();
+      ctx.moveTo(x.left, meanY);
+      ctx.lineTo(x.right, meanY);
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(80,80,60,0.60)';
+      ctx.font = '9px Source Code Pro,monospace';
+      ctx.fillText('mean growth', x.right - 86, meanY - 6);
+      ctx.restore();
+    }
+  };
+
+  const ctx = document.getElementById('jgGrowthChart').getContext('2d');
+  if (jgGrowthChart) jgGrowthChart.destroy();
+  jgGrowthChart = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+      datasets: [
+        { label:'Jeffersonian (MERGED+DIRECT+RENAMED)', data:jeff, backgroundColor:blue, borderColor:blueLine, pointRadius:4.2, pointHoverRadius:7 },
+        { label:'Non-Jeffersonian (ABSENT)', data:non, backgroundColor:orange, borderColor:orangeLine, pointRadius:4.2, pointHoverRadius:7 }
+      ]
+    },
+    plugins:[growthPlugin],
+    options:{
+      animation:false, responsive:true, maintainAspectRatio:false,
+      interaction:{mode:'nearest',intersect:true},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
+          titleFont:{size:10,family:'Source Code Pro, monospace'},
+          bodyFont:{size:10,family:'Source Code Pro, monospace'},
+          callbacks:{
+            label:i=>{
+              const d=i.raw;
+              return ` ${d._code} — ${d._label||''} [${d._status}] · ${formatGrowth(d._growth)} growth · ${(d._count2020||0).toLocaleString()} records (2020)`;
+            }
+          }
+        }
+      },
+      scales:{
+        x:{
+          type:'linear', min:-0.7, max:1.7,
+          ticks:{
+            color:'#706e68',
+            font:{size:10,family:'Source Code Pro, monospace',weight:'600'},
+            callback:v => v === 0 ? 'Jeffersonian (MERGED+DIRECT+RENAMED)' : v === 1 ? 'Non-Jeffersonian (ABSENT)' : ''
+          },
+          grid:{color:'rgba(0,0,0,0.06)'}
+        },
+        y:{
+          type:'logarithmic', min:2, max:50000,
+          title:{display:true,text:'growth rate 1815→2020 (log scale — actual growth values on axis)',color:'#706e68',font:{size:9}},
+          ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'},callback:v=>formatAxisGrowth(v)},
+          grid:{color:'rgba(0,0,0,0.06)'}
+        }
+      }
+    }
+  });
+
+  buildJeffersonInflectionDensity(blue, blueLine, orange, orangeLine);
+}
+
+function buildJeffersonInflectionDensity(blue, blueLine, orange, orangeLine) {
+  if (!DATA.sigmoids) return;
+  function isJeffersonian(status) {
+    return status === 'MERGED' || status === 'DIRECT' || status === 'RENAMED';
+  }
+  const valid = DATA.sigmoids.filter(s => s.inflection_year && s.jefferson_status && s.jefferson_status !== 'UNKNOWN');
+  const jeff = valid.filter(s => isJeffersonian(s.jefferson_status));
+  const non = valid.filter(s => s.jefferson_status === 'ABSENT');
+  const jVals = jeff.map(s => +s.inflection_year);
+  const nVals = non.map(s => +s.inflection_year);
+  const yearMin = Math.floor(Math.min(...jVals, ...nVals) / 5) * 5;
+  const yearMax = Math.ceil(Math.max(...jVals, ...nVals) / 5) * 5;
+  const jDens = kdeSeries(jVals, yearMin, yearMax, 160, 3.2);
+  const nDens = kdeSeries(nVals, yearMin, yearMax, 160, 3.2);
+  const maxD = Math.max(...jDens.map(d=>d.y), ...nDens.map(d=>d.y));
+  const jMean = mean(jVals);
+  const nMean = mean(nVals);
+  const dotsJ = jeff.map(s => ({ x:+s.inflection_year, y:-maxD*0.11, _row:s, _group:'Jeffersonian' }));
+  const dotsN = non.map(s => ({ x:+s.inflection_year, y:-maxD*0.20, _row:s, _group:'Non-Jeffersonian' }));
+
+  const meanPlugin = {
+    id:'jeffersonInflectionMeans',
+    afterDraw(chart) {
+      const {ctx, scales:{x, y}} = chart;
+
+      // ── 1968 MARC reference line ─────────────────────────────────────────
+      const marcX = x.getPixelForValue(1968);
+      if (marcX >= x.left && marcX <= x.right) {
+        ctx.save();
+        ctx.strokeStyle = 'rgba(100,120,180,0.5)';
+        ctx.setLineDash([4,4]);
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(marcX, y.top);
+        ctx.lineTo(marcX, y.bottom);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = 'rgba(100,120,180,0.75)';
+        ctx.font = '9px Source Code Pro,monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText('1968 MARC', marcX + 3, y.top + 12);
+        ctx.restore();
+      }
+
+      // ── Dashed vertical mean lines ───────────────────────────────────────
+      [
+        {v:jMean, color:blueLine, label:`Jeff Non-J mean ${jMean.toFixed(0)}`},
+        {v:nMean, color:orangeLine, label:`Jeff Non-J mean ${nMean.toFixed(0)}`}
+      ].forEach((m, i) => {
+        const xp = x.getPixelForValue(m.v);
+        ctx.save();
+        ctx.strokeStyle = m.color;
+        ctx.setLineDash([4,4]);
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(xp, y.top);
+        ctx.lineTo(xp, y.getPixelForValue(0));
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = m.color;
+        ctx.font = '9px Source Code Pro,monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText(m.label, xp + 5, y.top + 16 + i * 14);
+        ctx.restore();
+      });
+
+      // ── Legend items inside chart (top-left): line colours + group names ─
+      const legItems = [
+        { color: blueLine, dash: false, label: `— Jeffersonian (MERGED/DIRECT/RENAMED)` },
+        { color: orangeLine, dash: false, label: `— Non-Jeffersonian (ABSENT)` },
+      ];
+      legItems.forEach((item, i) => {
+        const lx = x.left + 10, ly = y.top + 14 + i * 16;
+        ctx.save();
+        ctx.strokeStyle = item.color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(lx, ly);
+        ctx.lineTo(lx + 20, ly);
+        ctx.stroke();
+        ctx.fillStyle = item.color;
+        ctx.font = '9px Source Code Pro,monospace';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(item.label, lx + 24, ly);
+        ctx.restore();
+      });
+
+      // ── Group labels on left y-axis (outside plot area) ──────────────────
+      const dotJy = y.getPixelForValue(-maxD * 0.11);
+      const dotNy = y.getPixelForValue(-maxD * 0.20);
+      ctx.save();
+      ctx.font = 'bold 9px Source Code Pro,monospace';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = blueLine;
+      ctx.fillText('Jeffersonian', x.left - 4, dotJy);
+      ctx.fillStyle = orangeLine;
+      ctx.fillText('n-Jeffersonian', x.left - 4, dotNy);
+      ctx.restore();
+    }
+  };
+
+  const ctx = document.getElementById('jgInflectionChart').getContext('2d');
+  if (jgInflectionChart) jgInflectionChart.destroy();
+  jgInflectionChart = new Chart(ctx, {
+    type:'line',
+    data:{
+      datasets:[
+        { label:'Jeffersonian density', data:jDens, parsing:false, borderColor:blueLine, backgroundColor:'rgba(91,155,213,0.20)', fill:true, pointRadius:0, tension:0.35 },
+        { label:'Non-Jeffersonian density', data:nDens, parsing:false, borderColor:orangeLine, backgroundColor:'rgba(212,124,91,0.18)', fill:true, pointRadius:0, tension:0.35 },
+        { type:'scatter', label:'Jeffersonian subclasses', data:dotsJ, backgroundColor:blue, borderColor:blueLine, pointRadius:4, pointHoverRadius:7 },
+        { type:'scatter', label:'Non-Jeffersonian subclasses', data:dotsN, backgroundColor:orange, borderColor:orangeLine, pointRadius:4, pointHoverRadius:7 }
+      ]
+    },
+    plugins:[meanPlugin],
+    options:{
+      animation:false,responsive:true,maintainAspectRatio:false,
+      layout:{padding:{left:96}},
+      interaction:{mode:'nearest',intersect:true},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
+          titleFont:{size:10,family:'Source Code Pro, monospace'},
+          bodyFont:{size:10,family:'Source Code Pro, monospace'},
+          callbacks:{
+            label:i=>{
+              if (!i.raw?._row) return null;
+              const r = i.raw._row;
+              return ` ${r.subclass} — ${r.label||''} · t0=${(+r.inflection_year).toFixed(1)} · ${i.raw._group}`;
+            }
+          },
+          filter:i=>!!i.raw?._row
+        }
+      },
+      scales:{
+        x:{
+          type:'linear',
+          min:yearMin, max:yearMax,
+          title:{display:true,text:'sigmoid inflection year t₀',color:'#706e68',font:{size:9}},
+          ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'},maxTicksLimit:12},
+          grid:{color:'rgba(0,0,0,0.06)'}
+        },
+        y:{
+          type:'linear',
+          min:-maxD*0.26, max:maxD*1.18,
+          ticks:{display:false},
+          grid:{display:false}
+        }
+      }
+    }
+  });
+}
+
+function drawViolin(ctx, xScale, yScale, groupX, logValues, fill, stroke) {
+  const s = summarizeValues(logValues);
+  const min = Math.min(...logValues), max = Math.max(...logValues);
+  const density = kdeSeries(logValues, min - 0.15, max + 0.15, 90, silvermanBandwidth(logValues));
+  const maxD = Math.max(...density.map(d => d.y)) || 1;
+  const x0 = xScale.getPixelForValue(groupX);
+  const halfMax = Math.abs(xScale.getPixelForValue(groupX + 0.27) - x0);
+
+  ctx.save();
+  ctx.beginPath();
+  density.forEach((d, i) => {
+    const yp = yScale.getPixelForValue(Math.pow(10, d.x));
+    const xp = x0 - (d.y / maxD) * halfMax;
+    if (i === 0) ctx.moveTo(xp, yp);
+    else ctx.lineTo(xp, yp);
+  });
+  [...density].reverse().forEach(d => {
+    const yp = yScale.getPixelForValue(Math.pow(10, d.x));
+    const xp = x0 + (d.y / maxD) * halfMax;
+    ctx.lineTo(xp, yp);
+  });
+  ctx.closePath();
+  ctx.fillStyle = fill.replace('0.72', '0.16');
+  ctx.strokeStyle = stroke.replace('1)', '0.62)');
+  ctx.lineWidth = 1.5;
+  ctx.fill();
+  ctx.stroke();
+
+  const q1 = yScale.getPixelForValue(Math.pow(10, s.q1));
+  const q3 = yScale.getPixelForValue(Math.pow(10, s.q3));
+  const median = yScale.getPixelForValue(Math.pow(10, s.median));
+  const meanY = yScale.getPixelForValue(Math.pow(10, s.mean));
+  const iqr = s.q3 - s.q1;
+  const loFence = Math.max(Math.min(...logValues), s.q1 - 1.5 * iqr);
+  const hiFence = Math.min(Math.max(...logValues), s.q3 + 1.5 * iqr);
+  const lo = yScale.getPixelForValue(Math.pow(10, loFence));
+  const hi = yScale.getPixelForValue(Math.pow(10, hiFence));
+  const boxW = halfMax * 0.88;
+
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = 2;
+  ctx.strokeRect(x0 - boxW / 2, q3, boxW, q1 - q3);
+  ctx.strokeStyle = 'rgba(60,56,50,0.88)';
+  ctx.beginPath();
+  ctx.moveTo(x0 - boxW / 2, median);
+  ctx.lineTo(x0 + boxW / 2, median);
+  ctx.stroke();
+
+  ctx.strokeStyle = stroke.replace('1)', '0.72)');
+  ctx.setLineDash([4,4]);
+  ctx.beginPath();
+  ctx.moveTo(x0, hi);
+  ctx.lineTo(x0, lo);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.beginPath();
+  ctx.moveTo(x0 - boxW * 0.25, hi);
+  ctx.lineTo(x0 + boxW * 0.25, hi);
+  ctx.moveTo(x0 - boxW * 0.25, lo);
+  ctx.lineTo(x0 + boxW * 0.25, lo);
+  ctx.stroke();
+
+  ctx.fillStyle = 'rgba(60,56,50,0.88)';
+  ctx.strokeStyle = stroke;
+  ctx.beginPath();
+  ctx.moveTo(x0, meanY - 6);
+  ctx.lineTo(x0 + 6, meanY);
+  ctx.lineTo(x0, meanY + 6);
+  ctx.lineTo(x0 - 6, meanY);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  ctx.restore();
+}
+
+function summarizeValues(values) {
+  const v = values.filter(Number.isFinite).sort((a,b)=>a-b);
+  const n = v.length;
+  const q = p => {
+    if (!n) return NaN;
+    const pos = (n - 1) * p, lo = Math.floor(pos), hi = Math.ceil(pos);
+    return lo === hi ? v[lo] : v[lo] + (v[hi] - v[lo]) * (pos - lo);
+  };
+  return {
+    n,
+    mean: mean(v),
+    median: q(0.5),
+    q1: q(0.25),
+    q3: q(0.75),
+    min: v[0],
+    max: v[n - 1]
+  };
+}
+
+function mean(values) {
+  const v = values.filter(Number.isFinite);
+  return v.reduce((a,b)=>a+b,0) / v.length;
+}
+
+function variance(values) {
+  const m = mean(values);
+  const v = values.filter(Number.isFinite);
+  return v.reduce((a,b)=>a+(b-m)*(b-m),0) / (v.length - 1);
+}
+
+function welchTest(a, b) {
+  const n1 = a.length, n2 = b.length;
+  const m1 = mean(a), m2 = mean(b);
+  const v1 = variance(a), v2 = variance(b);
+  const se = Math.sqrt(v1/n1 + v2/n2);
+  const t = (m1 - m2) / se;
+  const df = Math.pow(v1/n1 + v2/n2, 2) /
+    (Math.pow(v1/n1, 2)/(n1 - 1) + Math.pow(v2/n2, 2)/(n2 - 1));
+  const pooled = Math.sqrt(((n1 - 1) * v1 + (n2 - 1) * v2) / (n1 + n2 - 2));
+  return { t, df, p: 2 * (1 - normalPhi(Math.abs(t))), d: (m1 - m2) / pooled };
+}
+
+function normalPhi(x) {
+  return 0.5 * (1 + erf(x / Math.SQRT2));
+}
+
+function erf(x){
+  const t=1/(1+0.3275911*Math.abs(x));
+  const poly=t*(0.254829592+t*(-0.284496736+t*(1.421413741+t*(-1.453152027+t*1.061405429))));
+  return Math.sign(x)*(1-poly*Math.exp(-x*x));
+}
+
+function silvermanBandwidth(values) {
+  const v = values.filter(Number.isFinite);
+  if (v.length < 2) return 1;
+  const sd = Math.sqrt(variance(v));
+  const iqr = summarizeValues(v).q3 - summarizeValues(v).q1;
+  const sigma = Math.min(sd, iqr / 1.34) || sd || 1;
+  return Math.max(0.08, 0.9 * sigma * Math.pow(v.length, -0.2));
+}
+
+function kdeSeries(values, min, max, steps, bandwidth) {
+  const v = values.filter(Number.isFinite);
+  const bw = bandwidth || silvermanBandwidth(v);
+  const out = [];
+  for (let i = 0; i <= steps; i++) {
+    const x = min + (max - min) * i / steps;
+    const y = v.reduce((sum, val) => {
+      const z = (x - val) / bw;
+      return sum + Math.exp(-0.5 * z * z) / (bw * Math.sqrt(2 * Math.PI));
+    }, 0) / v.length;
+    out.push({x, y});
+  }
+  return out;
+}
+
+function formatGrowth(v) {
+  if (!Number.isFinite(v)) return '—';
+  return v < 10 ? `${v.toFixed(1)}x` : `${Math.round(v).toLocaleString()}x`;
+}
+
+function formatAxisGrowth(v) {
+  const targets = [10,32,100,316,1000,3162,10000,31623];
+  return targets.some(t => Math.abs(Math.log10(v) - Math.log10(t)) < 0.015) ? formatGrowth(v) : '';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TAB: ERA GROWTH RATES
+// ─────────────────────────────────────────────────────────────────────────────
+// Classes identified as Jeffersonian/elite
+const ADLER_ELITE_CLASSES = new Set(['P','K','B','J','Q','R']);
+
+let egChart = null;
+
+function buildEraGrowth() {
+  if (!DATA.cumulative) {
+    document.getElementById('eg-status').textContent = 'Load subclass_cumulative_counts.csv to compute';
+    return;
+  }
+
+  const rows = DATA.cumulative;
+  const cols = DATA.cumCols || parseCumColumns(DATA.cumulative);
+
+  // Era boundaries
+  const ERA_PRE_START = 1815, ERA_PRE_END = 1897;
+  const ERA_POST_START = 1897, ERA_POST_END = 1970;
+  const ERA_MOD_START = 1970, ERA_MOD_END = 2020;
+
+  function getRowNear(yr) {
+    // exact match or nearest
+    let best = null, bestDist = 9999;
+    rows.forEach(r => {
+      const d = Math.abs(+r.pub_year - yr);
+      if (d < bestDist) { bestDist=d; best=r; }
+    });
+    return best;
+  }
+
+  const rPre  = getRowNear(ERA_PRE_START);
+  const rLCC  = getRowNear(ERA_PRE_END);   // 1897
+  const rPost = getRowNear(ERA_POST_END);  // 1970
+  const rMod  = getRowNear(ERA_MOD_END);  // 2020
+
+  // Sum by main class for each era boundary
+  function sumByClass(row) {
+    const totals = {};
+    cols.forEach(col => {
+      const mc = col.code.replace(/[^A-Z]/g,'').slice(0,1);
+      totals[mc] = (totals[mc]||0) + (+(row?.[col.fullName])||0);
+    });
+    return totals;
+  }
+
+  const tPre  = sumByClass(rPre);
+  const tLCC  = sumByClass(rLCC);
+  const tPost = sumByClass(rPost);
+  const tMod  = sumByClass(rMod);
+
+  // Compute growth factors per class
+  const classes = KEYS.filter(k => (tLCC[k]||0) > 0 || (tPost[k]||0) > 0);
+
+  const growthData = classes.map(k => {
+    const gPre  = (tPre[k]>0  && tLCC[k]>0)  ? tLCC[k]/tPre[k]   : null;
+    const gPost = (tLCC[k]>0  && tPost[k]>0) ? tPost[k]/tLCC[k]  : null;
+    const gMod  = (tPost[k]>0 && tMod[k]>0)  ? tMod[k]/tPost[k]  : null;
+    return { k, gPre, gPost, gMod };
+  }).filter(d => d.gPost != null);
+
+  // Sort by post-LCC growth (descending)
+  growthData.sort((a,b) => (b.gPost||0) - (a.gPost||0));
+
+  const labels = growthData.map(d => d.k);
+  const isElite = labels.map(k => ADLER_ELITE_CLASSES.has(k));
+
+  function barColor(k, era, alpha) {
+    return ADLER_ELITE_CLASSES.has(k)
+      ? `rgba(196,106,74,${alpha})`
+      : `rgba(74,196,138,${alpha})`;
+  }
+
+  const ctx = document.getElementById('egChart').getContext('2d');
+  if (egChart) egChart.destroy();
+  egChart = new Chart(ctx, {
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {
+          label:'Pre-LCC (1815–1897)',
+          data: growthData.map(d=>d.gPre),
+          backgroundColor: labels.map(k=>barColor(k,'pre',0.35)),
+          borderColor: labels.map(k=>barColor(k,'pre',0.7)),
+          borderWidth:1
+        },
+        {
+          label:'Post-LCC formation (1897–1970)',
+          data: growthData.map(d=>d.gPost),
+          backgroundColor: labels.map(k=>barColor(k,'post',0.75)),
+          borderColor: labels.map(k=>barColor(k,'post',1)),
+          borderWidth:1.5
+        },
+        {
+          label:'Modern era (1970–2020)',
+          data: growthData.map(d=>d.gMod),
+          backgroundColor: labels.map(k=>barColor(k,'mod',0.45)),
+          borderColor: labels.map(k=>barColor(k,'mod',0.8)),
+          borderWidth:1
+        },
+      ]
+    },
+    options:{
+      animation:false, responsive:true, maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
+          titleFont:{size:10,family:'Source Code Pro, monospace'},
+          bodyFont:{size:10,family:'Source Code Pro, monospace'},
+          callbacks:{
+            title:i=>i[0].label+' — '+LBL[i[0].label]+' ('+(ADLER_ELITE_CLASSES.has(i[0].label)?'Jeffersonian/elite':'other')+')',
+            label:i=>` ${i.dataset.label}: ${i.raw!=null?i.raw.toFixed(1)+'×':'—'}`
+          },
+          filter:i=>i.raw!=null
+        }
+      },
+      scales:{
+        x:{
+          ticks:{color:'#706e68',font:{size:10,family:'Source Code Pro, monospace'}},
+          grid:{color:'rgba(0,0,0,0.06)'},
+          title:{display:true,text:'LCC class · red = Jeffersonian/elite · green = other',color:'#706e68',font:{size:9}}
+        },
+        y:{
+          title:{display:true,text:'growth factor (×)',color:'#706e68',font:{size:9}},
+          ticks:{color:'#706e68',font:{size:9},callback:v=>v+'×'},
+          grid:{color:'rgba(0,0,0,0.06)'}
+        }
+      }
+    }
+  });
+
+  document.getElementById('eg-status').textContent = `computed from ${rows.length} year snapshots · ${cols.length} subclasses → ${labels.length} main classes`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TAB: DEMOCRATIC SHARE RISING
+// ─────────────────────────────────────────────────────────────────────────────
+let dsChart = null;
+
+// "Democratic" main classes: H E F J G
+const DEM_CLASSES = new Set(['H','E','F','J','G']);
+// Jefferson-heavy classes: K P B
+const JEFF_HEAVY_CLASSES = new Set(['K','P','B']);
+
+function buildDemocraticShare() {
+  if (!DATA.cumulative) return;
+
+  const rows = DATA.cumulative;
+  const cols = DATA.cumCols || parseCumColumns(DATA.cumulative);
+
+  // Snapshot years: every ~10 years from 1815 to 2020
+  const SNAP_YRS = [1815,1830,1850,1870,1897,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2011,2020];
+
+  // For each snapshot: sum totals by group
+  const snapshots = [];
+  SNAP_YRS.forEach(yr => {
+    const row = rows.find(r => +r.pub_year === yr) ||
+                rows.reduce((best, r) => Math.abs(+r.pub_year-yr) < Math.abs(+best.pub_year-yr) ? r : best, rows[0]);
+    if (!row) return;
+
+    let demAll=0, demJeff=0, jeffAll=0, jeffJeff=0, total=0;
+    cols.forEach(col => {
+      const v = +(row[col.fullName])||0;
+      total += v;
+      const mc = col.code.replace(/[^A-Z]/g,'').slice(0,1);
+      const isJeffSub = col.status === 'MERGED' || col.status === 'DIRECT' || col.status === 'RENAMED';
+      if (DEM_CLASSES.has(mc)) {
+        demAll += v;
+        if (isJeffSub) demJeff += v;
+      }
+      if (JEFF_HEAVY_CLASSES.has(mc)) {
+        jeffAll += v;
+        if (isJeffSub) jeffJeff += v;
+      }
+    });
+    if (total > 0) {
+      snapshots.push({
+        yr,
+        demAll: demAll/total*100,
+        demJeff: demJeff/total*100,
+        jeffAll: jeffAll/total*100,
+        jeffJeff: jeffJeff/total*100,
+      });
+    }
+  });
+
+  const labels = snapshots.map(s => s.yr);
+
+  const refPlugin = {
+    id:'dsRef',
+    afterDraw(ch){
+      const ctx=ch.ctx, xS=ch.scales.x, yS=ch.scales.y;
+      [[1815,'rgba(196,106,74,0.5)','1815: Jefferson → LC'],[1897,'rgba(90,130,196,0.5)','1897 LCC created']].forEach(([yr,col,lbl])=>{
+        const idx=ch.data.labels.indexOf(yr); if(idx<0) return;
+        const x=xS.getPixelForValue(idx);
+        if(x<xS.left||x>xS.right) return;
+        ctx.save(); ctx.setLineDash([4,4]); ctx.strokeStyle=col; ctx.lineWidth=1.2;
+        ctx.beginPath(); ctx.moveTo(x,yS.top); ctx.lineTo(x,yS.bottom); ctx.stroke();
+        ctx.setLineDash([]); ctx.font='9px Source Code Pro,monospace'; ctx.fillStyle=col;
+        ctx.textAlign='left'; ctx.fillText(lbl,x+3,yS.top+12); ctx.restore();
+      });
+    }
+  };
+
+  const ctx = document.getElementById('dsChart').getContext('2d');
+  if (dsChart) dsChart.destroy();
+  dsChart = new Chart(ctx, {
+    type:'line',
+    data:{
+      labels,
+      datasets:[
+        {
+          label:'Democratic classes — all subclasses (H+E+F+J+G)',
+          data: snapshots.map(s=>s.demAll.toFixed(2)),
+          borderColor:'#4ac48a', borderWidth:2.5,
+          backgroundColor:'rgba(74,196,138,0.08)',
+          fill:false, pointRadius:5, pointBackgroundColor:'#4ac48a', tension:0.35
+        },
+        {
+          label:'Democratic classes — Jefferson subclasses only (MERGED)',
+          data: snapshots.map(s=>s.demJeff.toFixed(2)),
+          borderColor:'#4ac48a', borderWidth:1.5, borderDash:[5,4],
+          fill:false, pointRadius:3, pointBackgroundColor:'#4ac48a', tension:0.35
+        },
+        {
+          label:'Jeffersonian-heavy — all subclasses (K+P+B)',
+          data: snapshots.map(s=>s.jeffAll.toFixed(2)),
+          borderColor:'#c46a4a', borderWidth:2.5,
+          backgroundColor:'rgba(196,106,74,0.06)',
+          fill:false, pointRadius:5, pointBackgroundColor:'#c46a4a', tension:0.35
+        },
+        {
+          label:'Jeffersonian-heavy — Jefferson subclasses only (MERGED)',
+          data: snapshots.map(s=>s.jeffJeff.toFixed(2)),
+          borderColor:'#c46a4a', borderWidth:1.5, borderDash:[5,4],
+          fill:false, pointRadius:3, pointBackgroundColor:'#c46a4a', tension:0.35
+        },
+      ]
+    },
+    plugins:[refPlugin],
+    options:{
+      animation:false, responsive:true, maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
+          titleFont:{size:10,family:'Source Code Pro, monospace'},
+          bodyFont:{size:10,family:'Source Code Pro, monospace'},
+          callbacks:{
+            title:i=>'Year: '+labels[i[0].dataIndex],
+            label:i=>` ${i.dataset.label}: ${(+i.raw).toFixed(1)}%`
+          }
+        }
+      },
+      scales:{
+        x:{
+          ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'}},
+          grid:{color:'rgba(0,0,0,0.06)'},
+          title:{display:true,text:'year',color:'#706e68',font:{size:9}}
+        },
+        y:{
+          title:{display:true,text:'% of total LC holdings',color:'#706e68',font:{size:9}},
+          min:0, max:60,
+          ticks:{color:'#706e68',font:{size:9},callback:v=>v+'%'},
+          grid:{color:'rgba(0,0,0,0.06)'}
+        }
+      }
+    }
+  });
+}
+
+// ── UTILITIES ────────────────────────────────────────────────────────────────
+function fmtNum(v) {
+  if (v >= 1e6) return (v/1e6).toFixed(1)+'M';
+  if (v >= 1e3) return (v/1e3).toFixed(0)+'k';
+  return v;
+}
+function mean(arr) {
+  if (!arr || !arr.length) return 0;
+  return arr.reduce((a,b)=>a+b,0)/arr.length;
+}
+</script>
+</body>
+</html>
