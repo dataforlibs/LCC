@@ -40,9 +40,43 @@ svg{display:block;}
 .legend{display:flex;gap:18px;flex-wrap:wrap;padding:10px 0 0;color:var(--dim);font-size:11px;align-items:center;}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle;}
 .sep{color:var(--border);}
+  .site-nav {
+    padding: 8px 32px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .site-nav a, .site-nav span.nav-current {
+    padding: 5px 14px;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-size: 11px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .site-nav a { background: #4a90c4; color: #fff; }
+  .site-nav a:hover { background: #5aa0d4; }
+  .site-nav span.nav-current {
+    background: var(--surface2);
+    color: var(--text-dim);
+    cursor: default;
+  }
 </style>
 </head>
 <body>
+<nav class="site-nav">
+  <a href="index.html">Dashboard</a>
+  <span class="nav-current">Jefferson → LCC alluvial</span>
+  <a href="lcc_bubble_animation_2.html">Bubble animation</a>
+  <a href="lcc_cumulative_share_v2.html">Cumulative share</a>
+  <a href="lcc_cumulative_jefferson_split.html">Jefferson split</a>
+</nav>
 <header>
   <h1>Baconian Faculty → Jefferson 1815 Chapters → LCC Main Classes → Current Subclasses</h1>
   <div class="sub">Alluvial crosswalk: Memory · Reason · Imagination faculties → 44 Jefferson chapters → 21 LCC main classes → 202 subclasses. Flows weighted by 2020 cumulative record counts.</div>

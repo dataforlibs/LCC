@@ -457,6 +457,33 @@
              transition:opacity .15s; font-family:'Source Code Pro',monospace; }
   .hk-tog.off { opacity:.18; }
   .hk-tog:hover { background:var(--surface2); }
+  .site-nav {
+    padding: 8px 32px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .site-nav a, .site-nav span.nav-current {
+    padding: 5px 14px;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-size: 11px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .site-nav a { background: #4a90c4; color: #fff; }
+  .site-nav a:hover { background: #5aa0d4; }
+  .site-nav span.nav-current {
+    background: var(--surface2);
+    color: var(--text-dim);
+    cursor: default;
+  }
 </style>
 </head>
 <body>
@@ -497,14 +524,17 @@
     </div>
   </div>
   <button class="load-all-btn" id="render-btn" onclick="renderAll()">Render Dashboard</button>
-  <a class="load-all-btn" href="jefferson_lcc_alluvial.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Jefferson→LCC alluvial</a>
-  <a class="load-all-btn" href="lcc_bubble_animation_2.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Bubble animation</a>
-  <a class="load-all-btn" href="lcc_cumulative_share_v2.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Cumulative share</a>
-  <a class="load-all-btn" href="lcc_cumulative_jefferson_split.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Jefferson split</a>
   <span id="load-note" style="margin-left:14px;font-size:10px;color:var(--text-dim);font-style:italic;">Loading 5/5 local CSV files from /output/</span>
 </div>
 
 <!-- TABS -->
+<nav class="site-nav">
+  <span class="nav-current">Dashboard</span>
+  <a href="jefferson_lcc_alluvial.html">Jefferson → LCC alluvial</a>
+  <a href="lcc_bubble_animation_2.html">Bubble animation</a>
+  <a href="lcc_cumulative_share_v2.html">Cumulative share</a>
+  <a href="lcc_cumulative_jefferson_split.html">Jefferson split</a>
+</nav>
 <div id="tab-bar" style="display:none">
   <button class="tab-btn active" onclick="showTab('cumulative')">Cumulative lifepaths</button>
   <button class="tab-btn" onclick="showTab('class-bump')">Rankings over time</button>

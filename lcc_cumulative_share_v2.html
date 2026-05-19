@@ -19,9 +19,43 @@
   header p{font-size:11px;color:var(--text-dim);font-style:italic;}
   main{padding:24px 32px 40px;}
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  .site-nav {
+    padding: 8px 32px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .site-nav a, .site-nav span.nav-current {
+    padding: 5px 14px;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-size: 11px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .site-nav a { background: #4a90c4; color: #fff; }
+  .site-nav a:hover { background: #5aa0d4; }
+  .site-nav span.nav-current {
+    background: var(--surface2);
+    color: var(--text-dim);
+    cursor: default;
+  }
 </style>
 </head>
 <body>
+<nav class="site-nav">
+  <a href="index.html">Dashboard</a>
+  <a href="jefferson_lcc_alluvial.html">Jefferson → LCC alluvial</a>
+  <a href="lcc_bubble_animation_2.html">Bubble animation</a>
+  <span class="nav-current">Cumulative share</span>
+  <a href="lcc_cumulative_jefferson_split.html">Jefferson split</a>
+</nav>
 <header>
   <h1>Library of Congress Catalog — Cumulative Share by Decade</h1>
   <p>Publication decade distribution of the LC catalog · 1400–2020</p>
