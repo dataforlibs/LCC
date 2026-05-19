@@ -1,4 +1,32 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Catalog — Jeffersonian vs Absent Share</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#ffffff; --surface:#f5f3f0; --surface2:#eceae6; --border:#d4d0c8;
+    --text:#1e1c18; --text-dim:#706e68;
+    --color-text-primary:#1e1c18; --color-text-secondary:#706e68;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:"Libre Baskerville",Georgia,serif;font-size:13px;}
+  header{padding:24px 32px 16px;border-bottom:1px solid var(--border);}
+  header h1{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px;}
+  header p{font-size:11px;color:var(--text-dim);font-style:italic;}
+  main{padding:24px 32px 40px;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+</style>
+</head>
+<body>
+<header>
+  <h1>Library of Congress Catalog — Jeffersonian vs Absent Classification Share</h1>
+  <p>Cumulative and per-decade share of LC holdings split by Jefferson classification status · 1400–2020</p>
+</header>
+<main>
 <div style="padding:1rem 0">
 <h2 class="sr-only">Cumulative and per-decade share of LC catalog split by Jeffersonian vs absent classification</h2>
 
@@ -79,4 +107,6 @@ new Chart(document.getElementById('cc2'),{
   }
 });
 </script>
-</div>
+</main>
+</body>
+</html>

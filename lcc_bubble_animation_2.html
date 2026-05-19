@@ -4,34 +4,53 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LCC Subclass Growth 1400–2020</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  body { margin: 0; padding: 16px 20px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #fff; color: #1a1a1a; }
-  .ctrl { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
-  .btn { padding: 6px 16px; border: 1px solid #ccc; border-radius: 8px; background: transparent; color: #1a1a1a; cursor: pointer; font-size: 13px; }
-  .btn:hover { background: #f5f5f5; }
-  #yr { font-size: 30px; font-weight: 500; color: #1a1a1a; min-width: 56px; }
-  .leg { display: flex; gap: 20px; flex-wrap: wrap; font-size: 12px; color: #555; margin-bottom: 6px; }
-  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
-  #sv text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-  #tip { position: fixed; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 12px; font-size: 12px; pointer-events: none; color: #1a1a1a; opacity: 0; z-index: 999; max-width: 210px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+  :root {
+    --bg:#ffffff; --surface:#f5f3f0; --surface2:#eceae6; --border:#d4d0c8;
+    --text:#1e1c18; --text-dim:#706e68;
+    --accent-merged:#4a90c4; --accent-absent:#c46a4a;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Libre Baskerville',Georgia,serif; font-size:13px; padding:0; }
+  header { padding:24px 32px 16px; border-bottom:1px solid var(--border); }
+  header h1 { font-size:18px; font-weight:700; letter-spacing:-.01em; margin-bottom:4px; }
+  header p  { font-size:11px; color:var(--text-dim); font-style:italic; line-height:1.55; max-width:820px; }
+  .ctrl-bar { padding:10px 32px; background:var(--surface); border-bottom:1px solid var(--border); display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .btn { padding:5px 14px; border:1px solid var(--border); border-radius:3px; background:var(--surface2); color:var(--text); cursor:pointer; font-size:11px; font-family:'Source Code Pro',monospace; }
+  .btn:hover { background:var(--border); }
+  #yr { font-size:26px; font-weight:700; color:var(--text); min-width:52px; font-family:'Source Code Pro',monospace; letter-spacing:-.02em; }
+  #sl { flex:1; min-width:120px; }
+  .leg { display:flex; gap:20px; flex-wrap:wrap; padding:10px 32px; background:var(--surface); border-bottom:1px solid var(--border); font-size:11px; color:var(--text-dim); font-family:'Source Code Pro',monospace; align-items:center; }
+  .dot { width:10px; height:10px; border-radius:50%; display:inline-block; margin-right:5px; vertical-align:middle; flex-shrink:0; }
+  .note { padding:8px 32px 10px; font-size:11px; color:var(--text-dim); line-height:1.6; border-bottom:1px solid var(--border); background:var(--surface); }
+  .note strong { color:var(--text); }
+  main { padding:16px 32px 32px; }
+  #sv text { font-family:'Source Code Pro',monospace; }
+  #tip { position:fixed; background:rgba(255,253,250,0.97); border:1px solid var(--border); border-radius:3px; padding:8px 12px; font-size:11px; pointer-events:none; color:var(--text); opacity:0; z-index:999; max-width:220px; box-shadow:0 2px 8px rgba(0,0,0,0.10); font-family:'Source Code Pro',monospace; line-height:1.5; }
 </style>
 </head>
 <body>
-<h2 style="font-size:16px;font-weight:500;margin:0 0 10px">LCC Subclass Growth 1400&#x2013;2020 &mdash; 202 subclasses, grouped by Baconian faculty</h2>
-<div class="ctrl">
+<header>
+  <h1>LCC Subclass Growth 1400–2020</h1>
+  <p>202 subclasses grouped by Baconian faculty · bubble size ∝ cumulative records · y-axis log scale · hover for details</p>
+</header>
+<div class="ctrl-bar">
   <button class="btn" id="pb">&#9654; Play</button>
   <span id="yr">1400</span>
-  <input type="range" id="sl" min="0" max="15" value="0" step="1" style="flex:1;min-width:120px">
+  <input type="range" id="sl" min="0" max="15" value="0" step="1">
 </div>
 <div class="leg">
   <span><span class="dot" style="background:#4A90D9"></span>Jeffersonian (MERGED / DIRECT / RENAMED)</span>
   <span><span class="dot" style="background:#E8A87C"></span>Absent from Jefferson</span>
-  <span style="color:#999;font-size:11px">Bubble size &prop; cumulative records &middot; y-axis log scale &middot; hover for details</span>
 </div>
-<div style="font-size:11px;color:#888;margin-bottom:8px;max-width:680px;line-height:1.5">
-  <strong>Note on group assignment:</strong> All subclasses &mdash; including those absent from Jefferson &mdash; are assigned to a Baconian group by inheriting the group of their LCC parent class (e.g., all H-class subclasses &rarr; Reason, all P-class &rarr; Imagination). For Jeffersonian subclasses this reflects a genuine organizational connection; for absent subclasses it is an analytic approximation.
+<div class="note">
+  <strong>Note on group assignment:</strong> All subclasses — including those absent from Jefferson — are assigned to a Baconian group by inheriting the group of their LCC parent class (e.g., all H-class subclasses → Reason, all P-class → Imagination). For Jeffersonian subclasses this reflects a genuine organizational connection; for absent subclasses it is an analytic approximation.
 </div>
+<main>
 <svg id="sv" width="100%" style="display:block"></svg>
+</main>
 <div id="tip"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script>
