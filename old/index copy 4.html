@@ -98,8 +98,8 @@
     white-space: nowrap;
   }
   .file-status.waiting { background: #f0ede8; color: #8a8880; }
-  .file-status.loaded  { background: #eaf4ed; color: #1a7a50; }
-  .file-status.error   { background: #faeaea; color: #8b3d20; }
+  .file-status.loaded  { background: #eaf4ed; color: var(--accent-green); }
+  .file-status.error   { background: #faeaea; color: var(--accent-absent); }
 
   input[type="file"] {
     font-size: 10px;
@@ -169,8 +169,6 @@
     border-radius: 3px;
     padding: 20px;
     margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
   }
   .chart-section h3 {
     font-size: 11px;
@@ -329,10 +327,10 @@
     border-radius: 2px;
     font-size: 9px;
   }
-  .badge.absent { background: rgba(196,106,74,0.2); color: #8b3d20; }
-  .badge.merged { background: rgba(74,144,196,0.2); color: #2a6da8; }
-  .badge.direct { background: rgba(74,196,138,0.2); color: #1a7a50; }
-  .badge.renamed { background: rgba(196,168,74,0.2); color: #7a6010; }
+  .badge.absent { background: rgba(196,106,74,0.2); color: var(--accent-absent); }
+  .badge.merged { background: rgba(74,144,196,0.2); color: var(--accent-merged); }
+  .badge.direct { background: rgba(74,196,138,0.2); color: var(--accent-green); }
+  .badge.renamed { background: rgba(196,168,74,0.2); color: var(--accent-gold); }
 
   /* ── SUBCLASS LEGEND ── */
   .rank-legend-section {
@@ -341,9 +339,6 @@
     border-radius: 3px;
     padding: 14px 16px;
     margin-top: 14px;
-    position: relative;
-    z-index: 0;
-    clear: both;
   }
   .rank-legend-header {
     display: flex;
@@ -462,6 +457,33 @@
              transition:opacity .15s; font-family:'Source Code Pro',monospace; }
   .hk-tog.off { opacity:.18; }
   .hk-tog:hover { background:var(--surface2); }
+  .site-nav {
+    padding: 8px 32px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .site-nav a, .site-nav span.nav-current {
+    padding: 5px 14px;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-size: 11px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .site-nav a { background: #4a90c4; color: #fff; }
+  .site-nav a:hover { background: #5aa0d4; }
+  .site-nav span.nav-current {
+    background: var(--surface2);
+    color: var(--text-dim);
+    cursor: default;
+  }
 </style>
 </head>
 <body>
@@ -502,14 +524,17 @@
     </div>
   </div>
   <button class="load-all-btn" id="render-btn" onclick="renderAll()">Render Dashboard</button>
-  <a class="load-all-btn" href="jefferson_lcc_alluvial.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Jefferson→LCC alluvial</a>
-  <a class="load-all-btn" href="lcc_bubble_animation_2.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Bubble animation</a>
-  <a class="load-all-btn" href="lcc_cumulative_share_v2.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Cumulative share</a>
-  <a class="load-all-btn" href="lcc_cumulative_jefferson_split.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Jefferson split</a>
   <span id="load-note" style="margin-left:14px;font-size:10px;color:var(--text-dim);font-style:italic;">Loading 5/5 local CSV files from /output/</span>
 </div>
 
 <!-- TABS -->
+<nav class="site-nav">
+  <span class="nav-current">Dashboard</span>
+  <a href="jefferson_lcc_alluvial.html">Jefferson → LCC alluvial</a>
+  <a href="lcc_bubble_animation_2.html">Bubble animation</a>
+  <a href="lcc_cumulative_share_v2.html">Cumulative share</a>
+  <a href="lcc_cumulative_jefferson_split.html">Jefferson split</a>
+</nav>
 <div id="tab-bar" style="display:none">
   <button class="tab-btn active" onclick="showTab('cumulative')">Cumulative lifepaths</button>
   <button class="tab-btn" onclick="showTab('class-bump')">Rankings over time</button>
@@ -996,16 +1021,17 @@ function renderBumpClsLegend(){
 
 
 function drawBump(){
-  const labPlugin={id:'bumpLbl',afterDatasetsDraw(ch){
-    const ctx=ch.ctx;
+  const labPlugin={id:'bumpLbl',afterDraw(ch){
+    const ctx=ch.ctx, ys=ch.scales.y;
     ch.data.datasets.forEach((ds,di)=>{
       if(!bVis[ds._key]) return;
       const el=ch.getDatasetMeta(di).data[BUMP_YRS.length-1]; if(!el) return;
+      const labelY=Math.max(el.y, ys.top+7);
       ctx.save();
       ctx.font='bold 9px Source Code Pro,monospace';
       ctx.fillStyle=COL[ds._key];
       ctx.textAlign='left'; ctx.textBaseline='middle';
-      ctx.fillText(ds._key,el.x+5,el.y);
+      ctx.fillText(ds._key,el.x+5,labelY);
       ctx.restore();
     });
   }};
@@ -1030,7 +1056,8 @@ function drawBump(){
     plugins:[bumpRefPlugin,labPlugin],
     options:{
       responsive:true,maintainAspectRatio:false,animation:false,
-      layout:{padding:{right:30,top:6,bottom:6}},
+      layout:{padding:{right:44,top:36,bottom:6,left:4}},
+      clip:false,
       interaction:{mode:'index',intersect:false},
       scales:{
         x:{ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'}},
@@ -1045,8 +1072,6 @@ function drawBump(){
         legend:{display:false},
         tooltip:{
           backgroundColor:'rgba(255,253,250,0.97)',
-          titleColor:'#1e1c18',
-          bodyColor:'#1e1c18',
           titleFont:{size:10,family:'Source Code Pro, monospace'},
           bodyFont:{size:9,family:'Source Code Pro, monospace'},
           padding:6,
@@ -1171,6 +1196,8 @@ function drawR2_hk(){
     plugins:[hkRefPlugin],
     options:{
       responsive:true,maintainAspectRatio:false,animation:false,
+      clip:false,
+      layout:{padding:{right:64,top:32,bottom:8,left:4}},
       interaction:{mode:'index',intersect:false},
       scales:{
         x:{ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'}},
@@ -1185,8 +1212,6 @@ function drawR2_hk(){
         legend:{display:true,position:'bottom',labels:{font:{size:10,family:'Source Code Pro, monospace'},color:'#706e68',boxWidth:16}},
         tooltip:{
           backgroundColor:'rgba(255,253,250,0.97)',
-          titleColor:'#1e1c18',
-          bodyColor:'#1e1c18',
           titleFont:{size:10,family:'Source Code Pro, monospace'},
           bodyFont:{size:10,family:'Source Code Pro, monospace'},
           padding:6,
@@ -1208,8 +1233,7 @@ function buildR2bTog(hkData){
     const b=document.createElement('button');
     b.id='r2btog_'+d.code; b.className='hk-tog'; b.title=d.label;
     b.onclick=()=>{R2B_VIS[d.code]=!R2B_VIS[d.code];b.classList.toggle('off',!R2B_VIS[d.code]);updateR2b();};
-    const dotCol = d.color || (d.cls==='H' ? (d.dash==='[]'?'#4a90c4':'#7fb3d8') : (d.cls==='K' ? (d.dash==='[]'?'#c46a4a':'#d4937a') : '#7a7670'));
-    b.innerHTML=`<span style="width:8px;height:8px;border-radius:50%;background:${dotCol};display:inline-block;"></span>${d.code}`;
+    b.innerHTML=`<span style="width:8px;height:8px;border-radius:50%;background:${d.color};display:inline-block;"></span>${d.code}`;
     p.appendChild(b);
   });
 }
@@ -1247,7 +1271,7 @@ function drawR2b_hk(){
       labels:yrs,
       datasets:series.map(d=>{
         const dash=d.dash==='[]'?[]:d.dash==='[5,3]'?[5,3]:[];
-        const col = d.cls==='H' ? (d.dash==='[]'?'#4a90c4':'#7fb3d8') : (d.dash==='[]'?'#c46a4a':'#d4937a');
+        const col = d.cls==='H' ? (d.dash==='[]'?'#4a90c4':'#4a90c480') : (d.dash==='[]'?'#c46a4a':'#c46a4a80');
         return {
           label:d.label, _code:d.code, _cls:d.cls,
           data:d.ranks,
@@ -1264,6 +1288,8 @@ function drawR2b_hk(){
     plugins:[hkRefPlugin],
     options:{
       responsive:true,maintainAspectRatio:false,animation:false,
+      clip:false,
+      layout:{padding:{right:64,top:32,bottom:8,left:4}},
       interaction:{mode:'index',intersect:false},
       scales:{
         x:{ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'}},
@@ -1278,8 +1304,6 @@ function drawR2b_hk(){
         legend:{display:false},
         tooltip:{
           backgroundColor:'rgba(255,253,250,0.97)',
-          titleColor:'#1e1c18',
-          bodyColor:'#1e1c18',
           titleFont:{size:10,family:'Source Code Pro, monospace'},
           bodyFont:{size:9,family:'Source Code Pro, monospace'},
           padding:6,
@@ -1660,13 +1684,12 @@ function renderRankLegend() {
     const isKey = KEY_STORY_CODES.has(sub);
     const labelText = (info.label || sub).replace(/\s*\[.*\]$/, '').substring(0, 38);
     const dashStyle = sty.dash.length ? `border-top: 2px dashed ${sty.color}; background: none;` : `background: ${sty.color};`;
-    const badgeBg  = { MERGED:'rgba(91,155,213,0.18)', DIRECT:'rgba(74,196,138,0.18)', ABSENT:'rgba(212,124,91,0.18)', RENAMED:'rgba(196,168,74,0.18)', PARTIAL:'rgba(196,168,74,0.18)', UNKNOWN:'rgba(122,118,112,0.18)' }[st] || 'rgba(122,118,112,0.18)';
-    const badgeFg  = { MERGED:'#2a6da8', DIRECT:'#1a7a50', ABSENT:'#8b3d20', RENAMED:'#7a6010', PARTIAL:'#7a6010', UNKNOWN:'#4a4842' }[st] || '#4a4842';
+    const badgeBg = { MERGED:'rgba(91,155,213,0.18)', DIRECT:'rgba(74,196,138,0.18)', ABSENT:'rgba(212,124,91,0.18)', RENAMED:'rgba(196,168,74,0.18)', PARTIAL:'rgba(196,168,74,0.18)', UNKNOWN:'rgba(122,118,112,0.18)' }[st] || 'rgba(122,118,112,0.18)';
     return `<div class="rank-legend-item${isHighlighted ? '' : ' dimmed'}" onclick="toggleLegendItem('${sub}')" title="${sub} — ${info.label||''} · ${st}">
       <div class="rank-legend-swatch${sty.dash.length ? ' dashed' : ''}" style="${dashStyle}"></div>
       <span class="rank-legend-code" style="color:${sty.color}">${sub}${isKey ? ' &#9733;' : ''}</span>
       <span class="rank-legend-name">${labelText}</span>
-      <span class="rank-legend-badge" style="background:${badgeBg};color:${badgeFg}">${st}</span>
+      <span class="rank-legend-badge" style="background:${badgeBg};color:${sty.color}">${st}</span>
     </div>`;
   }).join('');
 }
@@ -1780,12 +1803,10 @@ function buildRankingsChart() {
   // End-label plugin: subclass code at rightmost visible point
   const endLabelPlugin = {
     id: 'rankEndLabels',
-    afterDatasetsDraw(chart) {
+    afterDraw(chart) {
       const ctx = chart.ctx;
       const chartArea = chart.chartArea;
-      ctx.save();
-      ctx.rect(chartArea.left, chartArea.top, chart.width - chartArea.left, chart.height - chartArea.top);
-      ctx.clip();
+      const ys = chart.scales.y;
       chart.data.datasets.forEach((ds, i) => {
         const meta = chart.getDatasetMeta(i);
         if (meta.hidden) return;
@@ -1793,12 +1814,15 @@ function buildRankingsChart() {
         if (!pts.length) return;
         const last = pts[pts.length - 1];
         if (last.x < chartArea.left || last.x > chartArea.right + 60) return;
+        const labelY = Math.max(last.y + 3, ys.top + 8);
+        ctx.save();
         ctx.font = `${subclasses.length > 60 ? 7 : 8}px Source Code Pro, monospace`;
         ctx.fillStyle = ds.borderColor;
         ctx.textAlign = 'left';
-        ctx.fillText(ds.label, last.x + 5, last.y + 3);
+        ctx.textBaseline = 'middle';
+        ctx.fillText(ds.label, last.x + 5, labelY);
+        ctx.restore();
       });
-      ctx.restore();
     }
   };
 
@@ -1834,7 +1858,8 @@ function buildRankingsChart() {
       animation: false,
       responsive: true,
       maintainAspectRatio: false,
-      layout: { padding: { right: 70, top: 8, bottom: 8 } },
+      clip: false,
+      layout: { padding: { right: 64, top: 32, bottom: 8, left: 4 } },
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },
@@ -2073,8 +2098,6 @@ function buildScatter() {
         legend: { display:false },
         tooltip: {
           backgroundColor:'rgba(255,253,250,0.97)',
-          titleColor:'#1e1c18',
-          bodyColor:'#1e1c18',
           titleFont:{size:10,family:'Source Code Pro, monospace'}, bodyFont:{size:10,family:'Source Code Pro, monospace'},
           callbacks: {
             label: i => {
@@ -2499,8 +2522,6 @@ function buildJeffersonGrowth() {
         legend:{display:false},
         tooltip:{
           backgroundColor:'rgba(255,253,250,0.97)',
-          titleColor:'#1e1c18',
-          bodyColor:'#1e1c18',
           titleFont:{size:10,family:'Source Code Pro, monospace'},
           bodyFont:{size:10,family:'Source Code Pro, monospace'},
           callbacks:{
@@ -2658,8 +2679,6 @@ function buildJeffersonInflectionDensity(blue, blueLine, orange, orangeLine) {
         legend:{display:false},
         tooltip:{
           backgroundColor:'rgba(255,253,250,0.97)',
-          titleColor:'#1e1c18',
-          bodyColor:'#1e1c18',
           titleFont:{size:10,family:'Source Code Pro, monospace'},
           bodyFont:{size:10,family:'Source Code Pro, monospace'},
           callbacks:{
@@ -2963,8 +2982,6 @@ function buildEraGrowth() {
         legend:{display:false},
         tooltip:{
           backgroundColor:'rgba(255,253,250,0.97)',
-          titleColor:'#1e1c18',
-          bodyColor:'#1e1c18',
           titleFont:{size:10,family:'Source Code Pro, monospace'},
           bodyFont:{size:10,family:'Source Code Pro, monospace'},
           callbacks:{
@@ -3105,8 +3122,6 @@ function buildDemocraticShare() {
         legend:{display:false},
         tooltip:{
           backgroundColor:'rgba(255,253,250,0.97)',
-          titleColor:'#1e1c18',
-          bodyColor:'#1e1c18',
           titleFont:{size:10,family:'Source Code Pro, monospace'},
           bodyFont:{size:10,family:'Source Code Pro, monospace'},
           callbacks:{
