@@ -1,0 +1,64 @@
+
+<div style="padding:1rem 0">
+<h2 class="sr-only">Cumulative share of LC catalog and per-decade share, with legend</h2>
+
+<p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px">Cumulative share of total collection by publication decade</p>
+<div style="position:relative;width:100%;height:280px;margin-bottom:2rem">
+<canvas id="cc1" role="img" aria-label="Cumulative percentage line chart. 50% of catalog published after 1985, 80% after 1975.">50% of catalog published after 1985.</canvas>
+</div>
+
+<p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px">Each decade as share of total collection</p>
+<div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--color-text-secondary)">
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#378ADD"></span>Before 1960 — 12.6% of catalog</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#E24B4A"></span>1960 onward — 87.4% of catalog</span>
+</div>
+<div style="position:relative;width:100%;height:240px">
+<canvas id="cc2" role="img" aria-label="Bar chart of each decade's share of total catalog. 2000s = 22%, 1990s = 20%, 1980s = 18%. Everything before 1960 combined = 12.6%.">The 2000s alone account for 22% of the entire catalog.</canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const decades=[1400,1410,1420,1430,1440,1450,1460,1470,1480,1490,1500,1510,1520,1530,1540,1550,1560,1570,1580,1590,1600,1610,1620,1630,1640,1650,1660,1670,1680,1690,1700,1710,1720,1730,1740,1750,1760,1770,1780,1790,1800,1810,1820,1830,1840,1850,1860,1870,1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010];
+const counts=[35,5,2,2,1,11,9,216,314,409,264,285,450,497,642,693,600,881,813,797,858,821,770,872,1193,1002,1175,1248,1645,1431,1514,1677,1760,1842,2056,2449,2736,3504,4597,7266,8018,7177,9471,11449,13217,16682,18320,23408,31752,45355,84557,90595,133181,184316,204688,264079,663024,1311575,1667150,1871821,2104085,630808];
+const total=counts.reduce((a,b)=>a+b,0);
+const labels=decades.map(d=>d+'s');
+const cumPct=[];let cum=0;
+counts.forEach(c=>{cum+=c;cumPct.push(Math.round(cum/total*1000)/10);});
+const decPct=counts.map(c=>Math.round(c/total*1000)/10);
+
+const thresholdPlugin={
+  id:'thresh',
+  afterDraw(chart){
+    const {ctx,chartArea:{left,right},scales:{x,y}}=chart;
+    [{v:50,color:'#BA7517'},{v:80,color:'#E24B4A'}].forEach(({v,color})=>{
+      const yp=y.getPixelForValue(v);
+      ctx.save();
+      ctx.beginPath();ctx.moveTo(left,yp);ctx.lineTo(right,yp);
+      ctx.strokeStyle=color;ctx.lineWidth=1;ctx.setLineDash([5,4]);ctx.stroke();
+      ctx.setLineDash([]);ctx.fillStyle=color;ctx.font='11px sans-serif';
+      ctx.textAlign='right';ctx.fillText(v+'%',right-4,yp-4);
+      ctx.restore();
+    });
+  }
+};
+
+const xScale={ticks:{autoSkip:true,maxTicksLimit:12,maxRotation:45,font:{size:10},color:'#888780'},grid:{display:false}};
+
+new Chart(document.getElementById('cc1'),{
+  type:'line',plugins:[thresholdPlugin],
+  data:{labels,datasets:[{label:'Cumulative %',data:cumPct,borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.12)',borderWidth:2,pointRadius:0,pointHoverRadius:4,fill:true,tension:0.3}]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.y}% of collection by this decade`}}},
+    scales:{x:xScale,y:{min:0,max:100,ticks:{callback:v=>v+'%',color:'#888780',font:{size:10}},grid:{color:'rgba(136,135,128,0.12)'}}}}
+});
+
+new Chart(document.getElementById('cc2'),{
+  type:'bar',
+  data:{labels,datasets:[{label:'Share of total',data:decPct,backgroundColor:decades.map(d=>d>=1960?'#E24B4A':'#378ADD'),borderWidth:0,borderRadius:2}]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.y}% of total collection`}}},
+    scales:{x:xScale,y:{ticks:{callback:v=>v+'%',color:'#888780',font:{size:10}},grid:{color:'rgba(136,135,128,0.12)'}}}
+  }
+});
+</script>
+</div>

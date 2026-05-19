@@ -1,0 +1,10 @@
+
+import pandas as pd
+
+data=pd.read_csv("subclass_raw_records.csv")#[9442072:]
+print(data.head())
+#print(data.drop_duplicates())
+#df=data.groupby('pub_year').size().reset_index(name='record_count')
+#df.to_csv("saved_years.csv")
+print(data[data['pub_year']==""])
+print(data[data['pub_year'].isna()])

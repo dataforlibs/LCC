@@ -1,0 +1,82 @@
+
+<div style="padding:1rem 0">
+<h2 class="sr-only">Cumulative and per-decade share of LC catalog split by Jeffersonian vs absent classification</h2>
+
+<p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px">Cumulative share of total collection by publication decade</p>
+<div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--color-text-secondary)">
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#378ADD"></span>Jeffersonian (MERGED / DIRECT / RENAMED)</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#E8A87C"></span>Absent from Jefferson</span>
+</div>
+<div style="position:relative;width:100%;height:280px;margin-bottom:2rem">
+<canvas id="cc1" role="img" aria-label="Cumulative percentage line chart split by Jeffersonian vs absent. Both lines reach 100% by 2010.">Jeffersonian share starts near 100% and falls steadily; absent share rises from near zero.</canvas>
+</div>
+
+<p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px">Each decade as share of total collection</p>
+<div style="position:relative;width:100%;height:260px">
+<canvas id="cc2" role="img" aria-label="Grouped bar chart showing Jeffersonian vs absent share per decade as percentage of total catalog.">Absent subclasses dominate recent decades.</canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const decades=[1400,1410,1420,1430,1440,1450,1460,1470,1480,1490,1500,1510,1520,1530,1540,1550,1560,1570,1580,1590,1600,1610,1620,1630,1640,1650,1660,1670,1680,1690,1700,1710,1720,1730,1740,1750,1760,1770,1780,1790,1800,1810,1820,1830,1840,1850,1860,1870,1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010];
+const jeff=[33,4,2,1,1,10,9,208,288,383,232,248,414,456,599,613,522,759,685,691,742,691,639,748,1017,783,928,1018,1392,1172,1255,1408,1459,1540,1714,1976,2264,2865,3673,6118,6638,5972,7621,8860,9937,12008,13526,16970,23134,33254,57083,62184,93291,124265,138547,169633,391180,745922,984158,1074617,1212694,373994];
+const absent=[2,1,0,1,0,1,0,8,26,26,32,37,36,41,43,80,78,122,128,106,116,130,131,124,176,219,247,230,253,259,259,269,301,302,342,473,472,639,924,1148,1380,1205,1850,2589,3280,4674,4794,6438,8618,12101,27474,28411,39890,60051,66141,94446,271844,565653,682992,797204,891391,256814];
+const total=jeff.reduce((a,b)=>a+b,0)+absent.reduce((a,b)=>a+b,0);
+const labels=decades.map(d=>d+'s');
+
+let cj=0,ca=0;
+const cumJ=[],cumA=[];
+jeff.forEach((j,i)=>{cj+=j;ca+=absent[i];cumJ.push(Math.round(cj/total*1000)/10);cumA.push(Math.round(ca/total*1000)/10);});
+
+const decJ=jeff.map(v=>Math.round(v/total*1000)/10);
+const decA=absent.map(v=>Math.round(v/total*1000)/10);
+
+const jTotal=Math.round(jeff.reduce((a,b)=>a+b,0)/total*100);
+const aTotal=Math.round(absent.reduce((a,b)=>a+b,0)/total*100);
+
+const jeffLine={decade:1810,label:"Jefferson's sale 1815"};
+const xScale={ticks:{autoSkip:true,maxTicksLimit:12,maxRotation:45,font:{size:10},color:'#888780'},grid:{display:false}};
+
+const eventPlugin={
+  id:'ev',
+  afterDraw(chart){
+    const {ctx,chartArea:{top,bottom},scales:{x}}=chart;
+    const idx=decades.indexOf(1810);
+    const xp=x.getPixelForValue(idx);
+    ctx.save();
+    ctx.beginPath();ctx.moveTo(xp,top);ctx.lineTo(xp,bottom);
+    ctx.strokeStyle='rgba(90,90,90,0.4)';ctx.lineWidth=1;ctx.setLineDash([4,3]);ctx.stroke();
+    ctx.setLineDash([]);ctx.fillStyle='#888780';ctx.font='10px sans-serif';
+    ctx.save();ctx.translate(xp+3,top+5);ctx.rotate(Math.PI/2);
+    ctx.fillText("Jefferson's sale 1815",0,0);ctx.restore();ctx.restore();
+  }
+};
+
+new Chart(document.getElementById('cc1'),{
+  type:'line',plugins:[eventPlugin],
+  data:{labels,datasets:[
+    {label:'Jeffersonian',data:cumJ,borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.08)',borderWidth:2,pointRadius:0,pointHoverRadius:4,fill:true,tension:0.3},
+    {label:'Absent',data:cumA,borderColor:'#E8A87C',backgroundColor:'rgba(232,168,124,0.08)',borderWidth:2,pointRadius:0,pointHoverRadius:4,fill:true,tension:0.3}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.parsed.y}% of total catalog`}}},
+    scales:{x:xScale,y:{min:0,max:70,ticks:{callback:v=>v+'%',color:'#888780',font:{size:10}},grid:{color:'rgba(136,135,128,0.12)'}}}
+  }
+});
+
+new Chart(document.getElementById('cc2'),{
+  type:'bar',
+  data:{labels,datasets:[
+    {label:`Jeffersonian (${jTotal}% total)`,data:decJ,backgroundColor:'#378ADD',borderWidth:0,borderRadius:2},
+    {label:`Absent (${aTotal}% total)`,data:decA,backgroundColor:'#E8A87C',borderWidth:0,borderRadius:2}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:true,labels:{usePointStyle:true,pointStyle:'rect',font:{size:11},color:'var(--color-text-secondary)',boxWidth:10,boxHeight:10}},
+      tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label.split('(')[0].trim()}: ${ctx.parsed.y}% of total`}}
+    },
+    scales:{x:xScale,y:{ticks:{callback:v=>v+'%',color:'#888780',font:{size:10}},grid:{color:'rgba(136,135,128,0.12)'}}}
+  }
+});
+</script>
+</div>

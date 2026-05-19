@@ -1,0 +1,117 @@
+
+<div style="padding: 1rem 0">
+<h2 class="sr-only">LC catalog record growth by decade from 1400 to 2020, with major historical events marked</h2>
+<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:8px;font-size:12px;color:var(--color-text-secondary)">
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#378ADD"></span>Records per decade</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:2px;height:10px;background:#E24B4A;display:inline-block"></span>Major event</span>
+</div>
+<div style="position:relative;width:100%;height:380px"><canvas id="growthChart" role="img" aria-label="Bar chart of LC catalog records per decade 1400–2020 with major events annotated. Growth accelerates sharply from the 1960s onward.">LC catalog growth: slow pre-1900, then rapid acceleration through 1960s–2000s.</canvas></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const decades = [1400,1410,1420,1430,1440,1450,1460,1470,1480,1490,1500,1510,1520,1530,1540,1550,1560,1570,1580,1590,1600,1610,1620,1630,1640,1650,1660,1670,1680,1690,1700,1710,1720,1730,1740,1750,1760,1770,1780,1790,1800,1810,1820,1830,1840,1850,1860,1870,1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010,2020];
+const counts = [35,5,2,2,1,11,9,216,314,409,264,285,450,498,647,699,605,884,813,798,859,823,773,873,1195,1004,1180,1254,1650,1440,1523,1680,1768,1857,2062,2467,2748,3519,4612,7290,8050,7199,9518,11518,13325,16793,18434,23517,31896,45556,85080,91223,134144,185287,206066,266034,667285,1319989,1678963,1886625,2123199,636278,2];
+const labels = decades.map(d => d+'s');
+
+const events = [
+  {decade:1450, label:'Gutenberg press', color:'#E24B4A'},
+  {decade:1620, label:'Early colonial print', color:'#E24B4A'},
+  {decade:1770, label:'American Revolution', color:'#E24B4A'},
+  {decade:1810, label:"Jefferson's sale 1815", color:'#BA7517'},
+  {decade:1860, label:'Civil War era', color:'#E24B4A'},
+  {decade:1900, label:'LC expansion begins', color:'#E24B4A'},
+  {decade:1940, label:'GI Bill 1944', color:'#E24B4A'},
+  {decade:1960, label:'NDEA + civil rights + MARC', color:'#E24B4A'},
+  {decade:1970, label:'Area studies boom', color:'#E24B4A'},
+  {decade:1990, label:'Digital cataloging', color:'#E24B4A'},
+];
+
+const eventMap = {};
+events.forEach(e => { eventMap[e.decade] = e; });
+
+const annotations = {};
+events.forEach(e => {
+  const idx = decades.indexOf(e.decade);
+  if(idx < 0) return;
+  annotations['line_'+e.decade] = {
+    type:'line', xMin:idx, xMax:idx,
+    borderColor: e.color, borderWidth:1.5,
+    borderDash:[4,3],
+    label:{
+      content: e.label,
+      display:true,
+      position:'start',
+      yAdjust: -4,
+      font:{size:10, weight:'400'},
+      color: e.color,
+      backgroundColor:'transparent',
+      padding:0
+    }
+  };
+});
+
+new Chart(document.getElementById('growthChart'), {
+  type:'bar',
+  data:{
+    labels,
+    datasets:[{
+      label:'Records',
+      data:counts,
+      backgroundColor:'#378ADD',
+      borderWidth:0,
+      borderRadius:2,
+    }]
+  },
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{
+        callbacks:{
+          label: ctx => ' '+ctx.parsed.y.toLocaleString()+' records'
+        }
+      },
+      annotation:{
+        annotations
+      }
+    },
+    scales:{
+      x:{
+        ticks:{
+          autoSkip:true,
+          maxTicksLimit:13,
+          maxRotation:45,
+          font:{size:11},
+          color:'#888780'
+        },
+        grid:{display:false}
+      },
+      y:{
+        type:'logarithmic',
+        ticks:{
+          color:'#888780',
+          font:{size:11},
+          callback: v => {
+            if([1,10,100,1000,10000,100000,1000000,2000000].includes(v))
+              return v >= 1000000 ? (v/1000000)+'M' : v >= 1000 ? (v/1000)+'K' : v;
+            return null;
+          }
+        },
+        grid:{color:'rgba(136,135,128,0.15)'}
+      }
+    }
+  },
+  plugins:[{
+    beforeInit(chart) {
+      const cdn = 'https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js';
+      if(!window.ChartAnnotation){
+        const s = document.createElement('script');
+        s.src = cdn;
+        s.onload = () => { Chart.register(window['chartjs-plugin-annotation']); chart.update(); };
+        document.head.appendChild(s);
+      }
+    }
+  }]
+});
+</script>
+</div>
