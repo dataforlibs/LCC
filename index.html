@@ -996,16 +996,17 @@ function renderBumpClsLegend(){
 
 
 function drawBump(){
-  const labPlugin={id:'bumpLbl',afterDatasetsDraw(ch){
-    const ctx=ch.ctx;
+  const labPlugin={id:'bumpLbl',afterDraw(ch){
+    const ctx=ch.ctx, ys=ch.scales.y;
     ch.data.datasets.forEach((ds,di)=>{
       if(!bVis[ds._key]) return;
       const el=ch.getDatasetMeta(di).data[BUMP_YRS.length-1]; if(!el) return;
+      const labelY=Math.max(el.y, ys.top+7);
       ctx.save();
       ctx.font='bold 9px Source Code Pro,monospace';
       ctx.fillStyle=COL[ds._key];
       ctx.textAlign='left'; ctx.textBaseline='middle';
-      ctx.fillText(ds._key,el.x+5,el.y);
+      ctx.fillText(ds._key,el.x+5,labelY);
       ctx.restore();
     });
   }};
@@ -1030,7 +1031,8 @@ function drawBump(){
     plugins:[bumpRefPlugin,labPlugin],
     options:{
       responsive:true,maintainAspectRatio:false,animation:false,
-      layout:{padding:{right:30,top:6,bottom:6}},
+      clip:false,
+      layout:{padding:{right:44,top:36,bottom:6,left:4}},
       interaction:{mode:'index',intersect:false},
       scales:{
         x:{ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'}},
@@ -1171,6 +1173,8 @@ function drawR2_hk(){
     plugins:[hkRefPlugin],
     options:{
       responsive:true,maintainAspectRatio:false,animation:false,
+      clip:false,
+      layout:{padding:{right:52,top:32,bottom:8,left:4}},
       interaction:{mode:'index',intersect:false},
       scales:{
         x:{ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'}},
@@ -1264,6 +1268,8 @@ function drawR2b_hk(){
     plugins:[hkRefPlugin],
     options:{
       responsive:true,maintainAspectRatio:false,animation:false,
+      clip:false,
+      layout:{padding:{right:52,top:32,bottom:8,left:4}},
       interaction:{mode:'index',intersect:false},
       scales:{
         x:{ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'}},
@@ -1521,6 +1527,8 @@ function buildCumulativeChart() {
         legend: { display: false },
         tooltip: {
           backgroundColor: 'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
           titleFont: { size: 10, family: 'Source Code Pro, monospace' },
           bodyFont: { size: 10, family: 'Source Code Pro, monospace' },
           callbacks: {
@@ -1780,12 +1788,10 @@ function buildRankingsChart() {
   // End-label plugin: subclass code at rightmost visible point
   const endLabelPlugin = {
     id: 'rankEndLabels',
-    afterDatasetsDraw(chart) {
+    afterDraw(chart) {
       const ctx = chart.ctx;
       const chartArea = chart.chartArea;
-      ctx.save();
-      ctx.rect(chartArea.left, chartArea.top, chart.width - chartArea.left, chart.height - chartArea.top);
-      ctx.clip();
+      const ys = chart.scales.y;
       chart.data.datasets.forEach((ds, i) => {
         const meta = chart.getDatasetMeta(i);
         if (meta.hidden) return;
@@ -1793,12 +1799,15 @@ function buildRankingsChart() {
         if (!pts.length) return;
         const last = pts[pts.length - 1];
         if (last.x < chartArea.left || last.x > chartArea.right + 60) return;
+        const labelY = Math.max(last.y + 3, ys.top + 8);
+        ctx.save();
         ctx.font = `${subclasses.length > 60 ? 7 : 8}px Source Code Pro, monospace`;
         ctx.fillStyle = ds.borderColor;
         ctx.textAlign = 'left';
-        ctx.fillText(ds.label, last.x + 5, last.y + 3);
+        ctx.textBaseline = 'middle';
+        ctx.fillText(ds.label, last.x + 5, labelY);
+        ctx.restore();
       });
-      ctx.restore();
     }
   };
 
@@ -1834,12 +1843,15 @@ function buildRankingsChart() {
       animation: false,
       responsive: true,
       maintainAspectRatio: false,
-      layout: { padding: { right: 70, top: 8, bottom: 8 } },
+      clip: false,
+      layout: { padding: { right: 64, top: 32, bottom: 8, left: 4 } },
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },
         tooltip: {
           backgroundColor: 'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18',
           titleFont: { size: 10, family: 'Source Code Pro, monospace' },
           bodyFont: { size: 10, family: 'Source Code Pro, monospace' },
           callbacks: {
@@ -1954,7 +1966,9 @@ function buildSubclassLifepaths() {
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: 'rgba(255,253,250,0.97)', titleFont:{size:9}, bodyFont:{size:9},
+            backgroundColor: 'rgba(255,253,250,0.97)',
+          titleColor:'#1e1c18',
+          bodyColor:'#1e1c18', titleFont:{size:9}, bodyFont:{size:9},
             callbacks: { label: i => ' ' + i.dataset.label + ': ' + (i.raw||0).toLocaleString() },
             filter: i => i.raw > 0, itemSort: (a,b) => b.raw - a.raw,
           }
@@ -2092,10 +2106,11 @@ function buildScatter() {
     }
   });
 
-  // Row label + mean lines plugin
+  // Row label + mean lines plugin — scoped to scatterChart only
   const rowLabelPlugin = {
     id:'rowLabels',
     afterDraw(chart) {
+      if (chart.canvas.id !== 'scatterChart') return;
       const ctx=chart.ctx, xS=chart.scales.x, yS=chart.scales.y;
       [[2,'#5b9bd5','Jeffersonian (MERGED/DIRECT)'],[1,'#d47c5b','Non-Jeffersonian (ABSENT)']].forEach(([yv,col,lbl])=>{
         const y=yS.getPixelForValue(yv);
@@ -2279,7 +2294,40 @@ function buildStats() {
         indexAxis: 'y', animation: false, responsive: true, maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
-          tooltip: { callbacks: { label: i => ' mean inflection year: ' + Math.round(i.raw) } }
+          tooltip: {
+            backgroundColor: 'rgba(255,253,250,0.97)',
+            titleColor: '#1e1c18',
+            bodyColor: '#706e68',
+            borderColor: '#d4d0c8',
+            borderWidth: 1,
+            padding: 10,
+            titleFont: { size: 11, family: 'Libre Baskerville, serif', weight: 'bold' },
+            bodyFont:  { size: 10, family: 'Source Code Pro, monospace' },
+            cornerRadius: 3,
+            displayColors: false,
+            callbacks: {
+              title: items => {
+                const i = items[0];
+                return i.label;
+              },
+              label: i => {
+                const yr = Math.round(i.raw);
+                const isAbs = i.dataIndex === 0;
+                const other = Math.round(i.chart.data.datasets[0].data[isAbs ? 1 : 0]);
+                const gap = Math.abs(yr - other);
+                return [
+                  `  Mean inflection year: ${yr}`,
+                  `  Gap vs other group: ${gap} yr${gap !== 1 ? 's' : ''} (${(gap/200*100).toFixed(1)}% of study period)`,
+                ];
+              },
+              afterLabel: i => {
+                const isAbs = i.dataIndex === 0;
+                return isAbs
+                  ? '  → Non-Jeffersonian (ABSENT subclasses)'
+                  : '  → Jeffersonian (MERGED / DIRECT / RENAMED)';
+              }
+            }
+          }
         },
         scales: {
           x: { min: xMin, max: xMax,
