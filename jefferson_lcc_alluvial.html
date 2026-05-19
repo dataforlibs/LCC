@@ -3,46 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jefferson 1815 → LCC Alluvial (corrected crosswalk)</title>
+<title>Baconian Faculty → Jefferson 1815 → LCC Alluvial</title>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
 <style>
-:root {
-  --bg:#ffffff; --surface:#f8f7f4; --surface2:#eeece8; --text:#1a1814;
-  --dim:#6b6560; --border:#d4cfc8;
-  --green:#4ac48a; --blue:#5b9bd5; --gold:#c4a84a; --orange:#d47c5b;
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+:root{
+  --bg:#ffffff; --surface:#f5f3f0; --surface2:#eceae6; --border:#d4d0c8;
+  --text:#1e1c18; --dim:#706e68;
+  --green:#4ac48a; --blue:#4a90c4; --gold:#c4a84a; --orange:#c46a4a;
 }
 *{box-sizing:border-box;}
 body{margin:0;background:var(--bg);color:var(--text);font-family:'Libre Baskerville',Georgia,serif;}
-header{padding:26px 34px 16px;border-bottom:1px solid var(--border);}
-h1{margin:0 0 6px;font-size:22px;letter-spacing:.01em;font-weight:700;}
-.sub{color:var(--dim);font-style:italic;font-size:12px;line-height:1.55;max-width:1200px;}
-.controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:12px 34px;background:#f0ede8;border-bottom:1px solid var(--border);}
+header{padding:20px 32px 14px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;}
+header h1{margin:0;font-size:18px;font-weight:700;letter-spacing:.01em;}
+header .sub{color:var(--dim);font-style:italic;font-size:11px;line-height:1.55;max-width:900px;margin-left:0;}
+.back{font-size:11px;color:var(--dim);text-decoration:none;font-family:'Source Code Pro',monospace;margin-left:auto;}
+.back:hover{color:var(--text);}
+.controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:10px 32px;background:var(--surface);border-bottom:1px solid var(--border);}
 label{color:var(--dim);font-size:11px;font-family:'Source Code Pro',monospace;}
-select,input[type=range]{background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:3px;padding:5px 8px;font-size:11px;}
-button{background:#e8f0f8;border:1px solid #a0b8d4;color:#2a5f8a;border-radius:3px;padding:5px 10px;cursor:pointer;font-size:11px;}
-button:hover{background:#d0e4f4;}
+select,input[type=range]{background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:3px;padding:4px 8px;font-size:11px;font-family:'Source Code Pro',monospace;}
+button{background:#eaf1f8;border:1px solid #b0cce0;color:#2a5f8a;border-radius:3px;padding:4px 10px;cursor:pointer;font-size:11px;font-family:'Source Code Pro',monospace;}
+button:hover{background:#d4e8f4;}
 .stats{margin-left:auto;color:var(--dim);font-size:11px;font-family:'Source Code Pro',monospace;}
-main{padding:20px 34px 40px;}
+main{padding:16px 32px 40px;}
 .chart-shell{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:auto;}
 svg{display:block;}
-.node rect{stroke:rgba(0,0,0,.18);stroke-width:.8;}
-.node text{fill:#1a1814;font-size:10.5px;dominant-baseline:middle;pointer-events:none;}
+.node rect{stroke:rgba(0,0,0,.15);stroke-width:.8;}
+.node text{fill:var(--text);font-size:10.5px;dominant-baseline:middle;pointer-events:none;}
 .node .count{fill:var(--dim);font-size:8.5px;font-family:'Source Code Pro',monospace;}
 .col-title{fill:#2a2520;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;font-family:'Source Code Pro',monospace;}
-.axis-note{fill:#6b6560;font-size:10px;font-style:italic;font-family:Georgia,serif;}
+.axis-note{fill:var(--dim);font-size:10px;font-style:italic;font-family:Georgia,serif;}
 .link{fill:none;cursor:pointer;}
 .link:hover{stroke-opacity:.82!important;}
-.tooltip{position:fixed;pointer-events:none;background:rgba(255,255,255,.97);color:var(--text);border:1px solid var(--border);border-radius:3px;padding:9px 12px;font-size:11px;max-width:380px;line-height:1.5;display:none;z-index:10;}
-.legend{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0 0;color:var(--dim);font-size:11px;align-items:center;}
+.tooltip{position:fixed;pointer-events:none;background:rgba(255,253,250,.97);color:var(--text);border:1px solid var(--border);border-radius:3px;padding:9px 12px;font-size:11px;max-width:380px;line-height:1.5;display:none;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.legend{display:flex;gap:18px;flex-wrap:wrap;padding:10px 0 0;color:var(--dim);font-size:11px;align-items:center;}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle;}
 .sep{color:var(--border);}
 </style>
 </head>
 <body>
 <header>
-  <h1>Jefferson 1815 Classification → LCC Main Classes → Current Subclasses</h1>
-  <div class="sub">Alluvial crosswalk using corrected chapter-level sources from the 1815 Jefferson hierarchy (84 entries, all levels). Left column = specific Jefferson chapter or chapter group. Flows weighted by 2020 cumulative record counts. Status reflects MERGED / DIRECT / RENAMED / ABSENT from local subclass labels.</div>
+  <h1>Baconian Faculty → Jefferson 1815 Chapters → LCC Main Classes → Current Subclasses</h1>
+  <div class="sub">Alluvial crosswalk: Memory · Reason · Imagination faculties → 44 Jefferson chapters → 21 LCC main classes → 202 subclasses. Flows weighted by 2020 cumulative record counts.</div>
+  <a class="back" href="index.html">← Back to dashboard</a>
 </header>
 <div class="controls">
   <label>Status
