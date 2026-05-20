@@ -619,6 +619,17 @@
     <button class="toggle-btn on" id="btn-log" onclick="toggleLog()">Linear</button>
     <button class="toggle-btn" id="btn-ref" onclick="toggleRefs()">Show ref lines</button>
   </div>
+  <div class="controls" style="padding-top:0;border-top:none;gap:8px">
+    <span class="control-label">🔍 Search lines:</span>
+    <input id="cum-search" type="text" placeholder="e.g. Literature, Law, ABSENT, PQ…"
+      oninput="searchCumulativeLines(this.value)"
+      style="flex:1;min-width:220px;max-width:480px;padding:5px 10px;border:1px solid var(--border);
+             border-radius:3px;background:var(--surface2);color:var(--text);
+             font-family:'Source Code Pro',monospace;font-size:11px;">
+    <button class="toggle-btn" onclick="document.getElementById('cum-search').value='';searchCumulativeLines('')"
+      style="padding:4px 10px">✕ Clear</button>
+    <span id="cum-search-count" style="font-size:10px;color:var(--text-dim);font-family:'Source Code Pro',monospace"></span>
+  </div>
   <div class="chart-section">
     <h3 id="cum-title">Cumulative record counts by subclass</h3>
     <div class="chart-wrap tall">
@@ -680,12 +691,33 @@
     <button class="toggle-btn on" id="btn-rank-refs" onclick="toggleRankRefs()">Ref lines</button>
     <span class="control-label" id="rank-count" style="margin-left:8px"></span>
   </div>
+  <!-- Search bar -->
+  <div class="controls" style="padding-top:0;border-top:none;gap:8px">
+    <span class="control-label">🔍 Search lines:</span>
+    <input id="rank-search" type="text" placeholder="e.g. Law, Music, History, ABSENT, KJ…"
+      oninput="searchRankLines(this.value)"
+      style="flex:1;min-width:220px;max-width:480px;padding:5px 10px;border:1px solid var(--border);
+             border-radius:3px;background:var(--surface2);color:var(--text);
+             font-family:'Source Code Pro',monospace;font-size:11px;">
+    <button class="toggle-btn" onclick="document.getElementById('rank-search').value='';searchRankLines('')"
+      style="padding:4px 10px">✕ Clear</button>
+    <span id="rank-search-count" style="font-size:10px;color:var(--text-dim);font-family:'Source Code Pro',monospace"></span>
+  </div>
   <div class="chart-section">
     <h3 id="rank-title">Subclass rank trajectories — 1480–2020</h3>
     <div class="chart-wrap" style="height:520px; position:relative">
       <canvas id="rankingsChart"></canvas>
     </div>
   </div>
+  <!-- Custom scrollable tooltip -->
+  <div id="rank-tooltip" style="
+    position:fixed; display:none; z-index:999;
+    background:rgba(255,253,250,0.97); border:1px solid #d4d0c8; border-radius:4px;
+    box-shadow:0 4px 16px rgba(0,0,0,0.12);
+    max-height:65vh; width:400px; overflow-y:auto;
+    font-family:'Source Code Pro',monospace; font-size:10px; color:#1e1c18;
+    pointer-events:none;
+  "></div>
   <!-- Per-subclass interactive legend -->
   <div class="rank-legend-section">
     <div class="rank-legend-header">
@@ -1553,7 +1585,67 @@ function buildCumulativeChart() {
     `Cumulative record counts — ${prefix === 'ALL' ? 'all' : prefix} class subclasses (${cols.length} series)`;
 }
 
-function updateCumulativeChart() { buildCumulativeChart(); }
+function updateCumulativeChart() {
+  const searchEl = document.getElementById('cum-search');
+  if (searchEl && searchEl.value) { searchEl.value = ''; }
+  const countEl = document.getElementById('cum-search-count');
+  if (countEl) countEl.textContent = '';
+  buildCumulativeChart();
+}
+
+// ── Keyword search for cumulativeChart ─────────────────────────────────────
+function searchCumulativeLines(query) {
+  if (!cumulativeChart) return;
+  const q = (query || '').trim().toLowerCase();
+  const countEl = document.getElementById('cum-search-count');
+
+  if (!q) {
+    cumulativeChart.data.datasets.forEach(ds => {
+      ds.borderColor  = ds._origColor  ?? ds.borderColor;
+      ds.borderWidth  = ds._origWidth  ?? ds.borderWidth;
+      ds.borderDash   = ds._origDash   ?? ds.borderDash;
+      ds.hidden       = false;
+    });
+    if (countEl) countEl.textContent = '';
+    cumulativeChart.update('none');
+    return;
+  }
+
+  const tokens = q.split(/\s+/).filter(Boolean);
+  let matchCount = 0;
+
+  cumulativeChart.data.datasets.forEach(ds => {
+    // Save originals once
+    if (ds._origColor === undefined) {
+      ds._origColor = ds.borderColor;
+      ds._origWidth = ds.borderWidth;
+      ds._origDash  = ds.borderDash ? [...ds.borderDash] : [];
+    }
+
+    const haystack = (ds.label || '').toLowerCase();
+    const matches  = tokens.some(t => haystack.includes(t));
+
+    if (matches) {
+      matchCount++;
+      ds.borderColor = ds._origColor;
+      ds.borderWidth = (ds._origWidth || 1.5) + 1;
+      ds.borderDash  = ds._origDash;
+      ds.hidden      = false;
+    } else {
+      ds.borderColor = 'rgba(180,175,165,0.08)';
+      ds.borderWidth = 0.5;
+      ds.hidden      = false;   // keep in DOM but invisible
+    }
+  });
+
+  if (countEl) {
+    countEl.textContent = matchCount
+      ? `${matchCount} match${matchCount !== 1 ? 'es' : ''}`
+      : 'no matches';
+    countEl.style.color = matchCount ? 'var(--accent-green)' : 'var(--accent-absent)';
+  }
+  cumulativeChart.update('none');
+}
 function toggleLog() {
   showLog = !showLog;
   const btn = document.getElementById('btn-log');
@@ -1653,6 +1745,62 @@ function applyLegendFilter() {
       meta.hidden = !legendHighlighted.has(ds.label);
     }
   });
+  rankingsChart.update('none');
+}
+
+// ── Keyword search: highlight matching lines, dim the rest ──────────────────
+let _rankSearchQuery = '';
+
+function searchRankLines(query) {
+  _rankSearchQuery = (query || '').trim().toLowerCase();
+  if (!rankingsChart) return;
+
+  const q = _rankSearchQuery;
+  const countEl = document.getElementById('rank-search-count');
+
+  if (!q) {
+    // Restore colours and let legendFilter decide visibility
+    rankingsChart.data.datasets.forEach((ds, i) => {
+      const style = statusStyle(ds._status);
+      ds.borderColor          = style.color;
+      ds.backgroundColor      = style.color;
+      ds.pointBackgroundColor = style.color;
+      ds.borderWidth          = (ds._status === 'ABSENT' || ds._status === 'PARTIAL') ? 1.5 : 2;
+    });
+    if (countEl) countEl.textContent = '';
+    rankingsChart.update('none');
+    applyLegendFilter();
+    return;
+  }
+
+  const tokens = q.split(/\s+/).filter(Boolean);
+  let matchCount = 0;
+
+  rankingsChart.data.datasets.forEach((ds, i) => {
+    const meta = rankingsChart.getDatasetMeta(i);
+    const haystack = [ds.label, ds._label_full || '', ds._status || ''].join(' ').toLowerCase();
+    const matches  = tokens.some(t => haystack.includes(t));
+
+    if (matches) {
+      matchCount++;
+      const style = statusStyle(ds._status);
+      ds.borderColor          = style.color;
+      ds.backgroundColor      = style.color;
+      ds.pointBackgroundColor = style.color;
+      ds.borderWidth          = (ds._status === 'ABSENT' || ds._status === 'PARTIAL') ? 2 : 2.8;
+      meta.hidden = false;
+    } else {
+      meta.hidden = true;  // fully suppresses line + all dots
+    }
+  });
+
+  if (countEl) {
+    countEl.textContent = matchCount
+      ? `${matchCount} match${matchCount !== 1 ? 'es' : ''}`
+      : 'no matches';
+    countEl.style.color = matchCount ? 'var(--accent-green)' : 'var(--accent-absent)';
+  }
+
   rankingsChart.update('none');
 }
 
@@ -1833,12 +1981,28 @@ function buildRankingsChart() {
     }
   };
 
+  // Crosshair plugin — vertical line + x-label at mouse position
+  const crosshairPlugin = {
+    id: 'rankCrosshair',
+    afterDraw(chart) {
+      if (!chart._crosshairX) return;
+      const { ctx, chartArea: { top, bottom }, scales: { x, y } } = chart;
+      const xp = chart._crosshairX;
+      ctx.save();
+      ctx.strokeStyle = 'rgba(100,100,90,0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 3]);
+      ctx.beginPath(); ctx.moveTo(xp, top); ctx.lineTo(xp, bottom); ctx.stroke();
+      ctx.restore();
+    }
+  };
+
   const ctxEl = document.getElementById('rankingsChart').getContext('2d');
   if (rankingsChart) rankingsChart.destroy();
   rankingsChart = new Chart(ctxEl, {
     type: 'line',
     data: { labels: years, datasets },
-    plugins: [endLabelPlugin, refPlugin],
+    plugins: [endLabelPlugin, refPlugin, crosshairPlugin],
     options: {
       animation: false,
       responsive: true,
@@ -1846,27 +2010,78 @@ function buildRankingsChart() {
       clip: false,
       layout: { padding: { right: 64, top: 32, bottom: 8, left: 4 } },
       interaction: { mode: 'index', intersect: false },
+      onHover(e, elements, chart) {
+        // Store crosshair x for the afterDraw plugin
+        if (e.x != null) { chart._crosshairX = e.x; chart.draw(); }
+      },
+      onLeave() {
+        const el = document.getElementById('rank-tooltip');
+        if (el) el.style.display = 'none';
+      },
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: 'rgba(255,253,250,0.97)',
-          titleColor:'#1e1c18',
-          bodyColor:'#1e1c18',
-          titleFont: { size: 10, family: 'Source Code Pro, monospace' },
-          bodyFont: { size: 10, family: 'Source Code Pro, monospace' },
-          callbacks: {
-            title: items => 'Year: ' + items[0].label,
-            label: item => {
-              const r = item.raw;
-              if (r == null) return null;
-              const sub = item.dataset.label;
-              const info = idx[sub]?.[item.label];
-              const cum = info?.cumulative != null ? ' (' + fmtNum(info.cumulative) + ' records)' : '';
-              return ` #${r}  ${sub} [${item.dataset._status}] — ${item.dataset._label_full}${cum}`;
-            },
-            filter: item => item.raw != null,
-          },
-          itemSort: (a,b) => (a.raw||9999) - (b.raw||9999),
+          enabled: false,
+          external({ chart, tooltip }) {
+            const el = document.getElementById('rank-tooltip');
+            if (!el) return;
+            if (tooltip.opacity === 0) { el.style.display = 'none'; return; }
+
+            const items = (tooltip.dataPoints || [])
+              .filter(i => i.raw != null)
+              .sort((a, b) => (a.raw || 9999) - (b.raw || 9999));
+
+            if (!items.length) { el.style.display = 'none'; return; }
+
+            const year = items[0].label;
+            const STATUS_BADGE = {
+              MERGED:  { bg:'#ddeeff', txt:'#2a6090' },
+              DIRECT:  { bg:'#ddf5e8', txt:'#1a7040' },
+              ABSENT:  { bg:'#fde8dc', txt:'#8a3010' },
+              RENAMED: { bg:'#fdf5dc', txt:'#7a6010' },
+            };
+
+            let rows = items.map(i => {
+              const ds = i.dataset;
+              const info = (rankIdxCache[ds.label] || {})[year];
+              const cum = info?.cumulative != null
+                ? `<span style="color:#706e68"> (${fmtNum(info.cumulative)} records)</span>`
+                : '';
+              const b = STATUS_BADGE[ds._status] || { bg:'#eee', txt:'#444' };
+              const badge = `<span style="background:${b.bg};color:${b.txt};
+                border-radius:2px;padding:1px 4px;font-size:9px;margin-right:4px">${ds._status}</span>`;
+              return `<div style="padding:3px 12px;border-bottom:1px solid rgba(0,0,0,0.05);
+                white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+                <span style="color:#706e68;min-width:28px;display:inline-block">#${i.raw}</span>
+                <strong style="color:${ds.borderColor}">${ds.label}</strong>
+                ${badge}${ds._label_full || ''}${cum}
+              </div>`;
+            }).join('');
+
+            el.innerHTML = `
+              <div style="padding:8px 12px;border-bottom:1px solid #d4d0c8;
+                font-weight:700;font-size:11px;position:sticky;top:0;
+                background:rgba(255,253,250,0.98);z-index:1">
+                Year: ${year}
+                <span style="font-weight:400;color:#706e68;font-size:9px;margin-left:8px">
+                  ${items.length} subclass${items.length !== 1 ? 'es' : ''} · scroll to see all
+                </span>
+              </div>
+              ${rows}`;
+
+            // Position: try right of cursor, flip left if near edge
+            const cx = chart.canvas.getBoundingClientRect();
+            const tipW = 404, tipH = Math.min(el.scrollHeight, window.innerHeight * 0.65);
+            let left = tooltip.caretX + cx.left + 14;
+            let top  = tooltip.caretY + cx.top  - 40;
+            if (left + tipW > window.innerWidth  - 12) left = tooltip.caretX + cx.left - tipW - 14;
+            if (top  + tipH > window.innerHeight - 12) top  = window.innerHeight - tipH - 12;
+            if (top < 8) top = 8;
+
+            el.style.left    = left + 'px';
+            el.style.top     = top  + 'px';
+            el.style.display = 'block';
+          }
         }
       },
       scales: {
@@ -1894,6 +2109,14 @@ function buildRankingsChart() {
   document.getElementById('rank-count').textContent = `${nSubs} subclass${nSubs!==1?'es':''} · ${years.length} snapshots`;
   document.getElementById('rank-title').textContent =
     `Subclass rank trajectories — ${classFilter==='ALL'?'all classes':classFilter+' class'} · ${statusFilter==='ALL'?'all statuses':statusFilter} · rank 1 = most records`;
+
+  // Clear any active search when filters change
+  const searchEl = document.getElementById('rank-search');
+  if (searchEl && searchEl.value) { searchEl.value = ''; _rankSearchQuery = ''; }
+  const countEl = document.getElementById('rank-search-count');
+  if (countEl) countEl.textContent = '';
+  // Clear cached pointRadius values from previous build
+  if (rankingsChart) rankingsChart.data.datasets.forEach(ds => { delete ds._origPointRadius; });
 
   // Apply filter AFTER chart exists (chart must be assigned before calling this)
   applyLegendFilter();
