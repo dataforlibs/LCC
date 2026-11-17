@@ -1,0 +1,24 @@
+ALL-SUBCLASS TESTS REPORT (regenerated)
+======================================================================
+  Total subclasses: 238   v1815=0: 26   reliable fits: 231
+  Total records: 9,500,598
+  Status: ABSENT 146, MERGED 82, DIRECT 7, RENAMED 3
+
+TEST 1 Baconian vs growth factor (v1815>=50, n=119): KW H=6.108 p=0.0472
+   Memory       n=56 mean=257x median=185x
+   Reason       n=40 mean=352x median=166x
+   Imagination  n=23 mean=454x median=335x
+
+TEST 2 Baconian vs inflection year (n=231): KW H=30.886 p=0.0000
+   Memory       n=124 mean=1982.8 median=1985.1
+   Reason       n=75 mean=1989.5 median=1990.1
+   Imagination  n=32 mean=1985.9 median=1986.0
+
+TEST 5b Spearman jeff_ch vs log growth (Jeffersonian, v1815>0, n=87): rho=-0.184 p=0.0874
+
+TEST D ABSENT vs classified inflection timing
+  ABSENT n=141 mean=1986.0 median=1987.8
+  Version A (RENAMED excl.) n=87 mean=1985.1 gap=+0.9y MW U=7399.0 p=0.0089 r=-0.206
+  Version B (RENAMED incl.) n=90 mean=1984.4 gap=+1.6y MW U=7776.0 p=0.0039 r=-0.226
+
+TEST E P-class: classified n=11 mean=1983.9; absent n=7 mean=1986.0; gap=+2.1y MW U=53.0 p=0.1055

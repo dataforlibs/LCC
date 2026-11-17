@@ -1,0 +1,12 @@
+=== fits on years 1400-2011 (cumulative normalised by the 2011 total) ===
+  reliable fits: 230 of 231 subclasses with >=50 records; compare 231 of 238 on the full 1400-2020 data
+  mean t0 absent 1984.8 (n=141), classified 1982.6 (n=89); gap +2.2 y; MW p=0.0025 (version B), 0.0062 (version A, RENAMED excluded)
+  full-data reference: gap +1.6 y, p=0.0039 (B), +0.9 y, p=0.0089 (A)
+  t0 shift vs full data (same subclasses): median -1.3 y, IQR [-1.7, -1.0]
+  growth c(2011)/c(1815): median Jeffersonian 211x (n=90), absent 414x (n=121); Welch t=-5.14, p=6.6e-07
+=== fits on years 1400-2008 (cumulative normalised by the 2008 total) ===
+  reliable fits: 229 of 231 subclasses with >=50 records; compare 231 of 238 on the full 1400-2020 data
+  mean t0 absent 1982.9 (n=141), classified 1980.6 (n=88); gap +2.4 y; MW p=0.0015 (version B), 0.0039 (version A, RENAMED excluded)
+  full-data reference: gap +1.6 y, p=0.0039 (B), +0.9 y, p=0.0089 (A)
+  t0 shift vs full data (same subclasses): median -3.2 y, IQR [-3.8, -2.5]
+  growth c(2008)/c(1815): median Jeffersonian 196x (n=90), absent 381x (n=121); Welch t=-5.11, p=7.3e-07

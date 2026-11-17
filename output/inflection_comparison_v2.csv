@@ -1,2 +1,2 @@
 mean_absent,mean_classified,median_absent,median_classified,std_absent,std_classified,gap_years,mann_whitney_U,p_value,effect_r,n_absent,n_classified,p_class_gap,p_class_p
-1984.8,1982.5,1986.6,1983.8,12.2,10.5,2.3,5868.5,0.0044,-0.238,117,81,3.9,0.0238
+1986.0,1984.4,1987.8,1985.0,12.2,7.2,1.6,7776.0,0.0039,-0.226,141,90,2.1,0.1055

@@ -1,0 +1,203 @@
+code,label,jefferson_status,parent_class,jeff_ch,baconian
+AC,General Collections,RENAMED,A,0.0,Memory
+AE,Encyclopedias (General),RENAMED,A,0.0,Memory
+AG,Dictionaries (General),RENAMED,A,0.0,Memory
+AI,Indexes,ABSENT,A,0.0,Memory
+AM,Museums / Exhibitions,ABSENT,A,0.0,Memory
+AN,Newspapers,ABSENT,A,0.0,Memory
+AS,Academies / Societies,ABSENT,A,0.0,Memory
+B,Philosophy (General),MERGED,B,2.0,Reason
+BC,Logic,MERGED,B,2.0,Reason
+BD,Speculative Philosophy,MERGED,B,2.0,Reason
+BF,Psychology,ABSENT,B,2.0,Reason
+BH,Aesthetics,MERGED,B,2.0,Reason
+BJ,Ethics,MERGED,B,2.0,Reason
+BL,Religion / Mythology,MERGED,B,2.0,Reason
+BM,Judaism,MERGED,B,2.0,Reason
+BP,Islam,MERGED,B,2.0,Reason
+BR,Christianity,MERGED,B,2.0,Reason
+BS,Bible,MERGED,B,2.0,Reason
+BT,Doctrinal Theology,MERGED,B,2.0,Reason
+BV,Practical Theology,MERGED,B,2.0,Reason
+BX,Christian Denominations,MERGED,B,2.0,Reason
+CB,History of Civilization,ABSENT,C,0.0,Memory
+CC,Archaeology,ABSENT,C,0.0,Memory
+CD,Diplomatics / Archives,ABSENT,C,0.0,Memory
+CE,Chronology,ABSENT,C,0.0,Memory
+CJ,Numismatics,ABSENT,C,0.0,Memory
+CN,Inscriptions / Epigraphy,ABSENT,C,0.0,Memory
+CR,Heraldry,ABSENT,C,0.0,Memory
+CS,Genealogy,ABSENT,C,0.0,Memory
+CT,Biography (General),ABSENT,C,0.0,Memory
+D,History (General),MERGED,D,3.0,Memory
+DA,British History,MERGED,D,3.0,Memory
+DAW,Central Europe,ABSENT,D,3.0,Memory
+DB,Austria / Bohemia,ABSENT,D,3.0,Memory
+DC,French History,MERGED,D,3.0,Memory
+DD,German History,MERGED,D,3.0,Memory
+DE,Greco-Roman World,MERGED,D,3.0,Memory
+DF,Greek History,MERGED,D,3.0,Memory
+DG,Italian History / Rome,MERGED,D,3.0,Memory
+DH,Low Countries History,ABSENT,D,3.0,Memory
+DJ,Netherlands,ABSENT,D,3.0,Memory
+DJK,Eastern Europe (General),ABSENT,D,3.0,Memory
+DK,Russia / Former Soviet States,ABSENT,D,3.0,Memory
+DL,Scandinavian History,ABSENT,D,3.0,Memory
+DP,Iberian History,ABSENT,D,3.0,Memory
+DQ,Switzerland,ABSENT,D,3.0,Memory
+DR,Balkan History,ABSENT,D,3.0,Memory
+DS,Asian History,ABSENT,D,3.0,Memory
+DT,African History,ABSENT,D,3.0,Memory
+DU,Oceania,ABSENT,D,3.0,Memory
+DX,Romani People,ABSENT,D,3.0,Memory
+E18,African American History (E185),ABSENT,E,1.0,Memory
+E99,Native Americans (E99),ABSENT,E,1.0,Memory
+G,Geography (General),MERGED,G,1.0,Reason
+GA,Mathematical Geography,MERGED,G,1.0,Reason
+GB,Physical Geography,MERGED,G,1.0,Reason
+GC,Oceanography,ABSENT,G,1.0,Reason
+GE,Environmental Sciences,ABSENT,G,1.0,Reason
+GF,Human Ecology,ABSENT,G,1.0,Reason
+GN,Anthropology,ABSENT,G,1.0,Reason
+GR,Folklore,ABSENT,G,1.0,Reason
+GT,Manners & Customs,ABSENT,G,1.0,Reason
+GV,Recreation / Leisure,ABSENT,G,1.0,Reason
+HA,Statistics,ABSENT,H,0.5,Reason
+HB,Economic Theory,ABSENT,H,0.5,Reason
+HC,Economic History,ABSENT,H,0.5,Reason
+HD,Land / Agriculture Economics,ABSENT,H,0.5,Reason
+HE,Transportation & Comms,ABSENT,H,0.5,Reason
+HF,Commerce,MERGED,H,0.5,Reason
+HG,Finance,ABSENT,H,0.5,Reason
+HJ,Public Finance,MERGED,H,0.5,Reason
+HM,Sociology,ABSENT,H,0.5,Reason
+HN,Social History,ABSENT,H,0.5,Reason
+HQ,Family / Gender / Sexuality,ABSENT,H,0.5,Reason
+HS,Societies / Clubs,ABSENT,H,0.5,Reason
+HT,Communities / Classes / Race,ABSENT,H,0.5,Reason
+HV,Social Pathology / Criminology,ABSENT,H,0.5,Reason
+HX,Socialism / Communism,ABSENT,H,0.5,Reason
+JC,Political Theory,MERGED,J,2.0,Reason
+JK,US Political Institutions,MERGED,J,2.0,Reason
+JL,Canadian / Latin American Politics,MERGED,J,2.0,Reason
+JN,European Politics,ABSENT,J,2.0,Reason
+JQ,Asian / African Politics,ABSENT,J,2.0,Reason
+JS,Local Government,ABSENT,J,2.0,Reason
+JV,Colonies / Colonialism,ABSENT,J,2.0,Reason
+JX,International Law (old),ABSENT,J,2.0,Reason
+JZ,International Relations,ABSENT,J,2.0,Reason
+K,Law (General),MERGED,K,6.0,Reason
+KB,Religious Law,MERGED,K,6.0,Reason
+KD,UK Law,MERGED,K,6.0,Reason
+KE,Canadian Law,ABSENT,K,6.0,Reason
+KF,US Law,MERGED,K,6.0,Reason
+KG,Latin American Law,ABSENT,K,6.0,Reason
+KH,South American Law,ABSENT,K,6.0,Reason
+KJ,European Law,MERGED,K,6.0,Reason
+KL,Asian / African Law,ABSENT,K,6.0,Reason
+KZ,International Law,ABSENT,K,6.0,Reason
+LA,History of Education,ABSENT,L,0.0,Memory
+LB,Theory / Practice of Education,ABSENT,L,0.0,Memory
+LC,Social Aspects of Education,ABSENT,L,0.0,Memory
+LD,US Universities,ABSENT,L,0.0,Memory
+LE,American Universities (other),ABSENT,L,0.0,Memory
+LF,European Universities,ABSENT,L,0.0,Memory
+LG,Asian / African Universities,ABSENT,L,0.0,Memory
+LH,College Publications,ABSENT,L,0.0,Memory
+LJ,Student Fraternities,ABSENT,L,0.0,Memory
+M,Music Scores,DIRECT,M,1.0,Imagination
+ML,Literature on Music,DIRECT,M,1.0,Imagination
+MT,Musical Instruction,DIRECT,M,1.0,Imagination
+N,Visual Arts (General),MERGED,N,2.0,Imagination
+NB,Sculpture,MERGED,N,2.0,Imagination
+NC,Drawing / Design,MERGED,N,2.0,Imagination
+ND,Painting,MERGED,N,2.0,Imagination
+NE,Print Media,ABSENT,N,2.0,Imagination
+NK,Decorative Arts,ABSENT,N,2.0,Imagination
+NX,Arts in General,ABSENT,N,2.0,Imagination
+P,Linguistics (General),MERGED,P,9.0,Imagination
+PA,Classical Languages & Literature,MERGED,P,9.0,Imagination
+PB,Celtic Languages,MERGED,P,9.0,Imagination
+PC,Romanic Languages,MERGED,P,9.0,Imagination
+PD,Germanic Languages (Old),MERGED,P,9.0,Imagination
+PE,English Language,MERGED,P,9.0,Imagination
+PF,West Germanic Languages,MERGED,P,9.0,Imagination
+PG,Slavic Languages & Literatures,ABSENT,P,9.0,Imagination
+PH,Uralic / Basque Languages,ABSENT,P,9.0,Imagination
+PJ,Oriental Languages & Literature,ABSENT,P,9.0,Imagination
+PK,Indo-Iranian Languages,ABSENT,P,9.0,Imagination
+PL,E Asian / African / Pacific,ABSENT,P,9.0,Imagination
+PM,Indigenous American Languages,ABSENT,P,9.0,Imagination
+PN,General Literature,MERGED,P,9.0,Imagination
+PQ,French/Italian/Spanish Lit.,MERGED,P,9.0,Imagination
+PR,English Literature,MERGED,P,9.0,Imagination
+PS,American Literature,MERGED,P,9.0,Imagination
+PT,Germanic Literature,MERGED,P,9.0,Imagination
+Q,Science (General),MERGED,Q,9.0,Memory
+QA,Mathematics,MERGED,Q,9.0,Memory
+QB,Astronomy,MERGED,Q,9.0,Memory
+QC,Physics,MERGED,Q,9.0,Memory
+QD,Chemistry,MERGED,Q,9.0,Memory
+QE,Geology / Mineralogy,MERGED,Q,9.0,Memory
+QH,Natural History / Biology,ABSENT,Q,9.0,Memory
+QK,Botany,MERGED,Q,9.0,Memory
+QL,Zoology,MERGED,Q,9.0,Memory
+QM,Human Anatomy,MERGED,Q,9.0,Memory
+QP,Physiology,ABSENT,Q,9.0,Memory
+QR,Microbiology,ABSENT,Q,9.0,Memory
+R,Medicine (General),MERGED,R,2.0,Memory
+RA,Public Health,ABSENT,R,2.0,Memory
+RB,Pathology,ABSENT,R,2.0,Memory
+RC,Internal Medicine,MERGED,R,2.0,Memory
+RD,Surgery,MERGED,R,2.0,Memory
+RE,Ophthalmology,ABSENT,R,2.0,Memory
+RF,Otorhinolaryngology,ABSENT,R,2.0,Memory
+RG,Gynecology / Obstetrics,ABSENT,R,2.0,Memory
+RJ,Pediatrics,ABSENT,R,2.0,Memory
+RK,Dentistry,ABSENT,R,2.0,Memory
+RL,Dermatology,ABSENT,R,2.0,Memory
+RM,Pharmacology,ABSENT,R,2.0,Memory
+RS,Pharmacy,ABSENT,R,2.0,Memory
+RT,Nursing,ABSENT,R,2.0,Memory
+RV,Botanic Medicine,ABSENT,R,2.0,Memory
+RX,Homeopathy,ABSENT,R,2.0,Memory
+RZ,Other Medical Systems,ABSENT,R,2.0,Memory
+S,Agriculture (General),DIRECT,S,1.0,Memory
+SB,Plant Culture,DIRECT,S,1.0,Memory
+SD,Forestry,MERGED,S,1.0,Memory
+SF,Animal Culture,MERGED,S,1.0,Memory
+SH,Aquaculture / Fisheries,ABSENT,S,1.0,Memory
+SK,Hunting / Wildlife,ABSENT,S,1.0,Memory
+T,Technology (General),MERGED,T,1.0,Memory
+TA,Engineering (General),MERGED,T,1.0,Memory
+TC,Hydraulic Engineering,MERGED,T,1.0,Memory
+TD,Environmental Technology,ABSENT,T,1.0,Memory
+TE,Highway Engineering,MERGED,T,1.0,Memory
+TF,Railroad Engineering,ABSENT,T,1.0,Memory
+TG,Bridge Engineering,MERGED,T,1.0,Memory
+TH,Building Construction,MERGED,T,1.0,Memory
+TJ,Mechanical Engineering,MERGED,T,1.0,Memory
+TK,Electrical Engineering,ABSENT,T,1.0,Memory
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1.0,Memory
+TN,Mining / Metallurgy,MERGED,T,1.0,Memory
+TP,Chemical Technology,MERGED,T,1.0,Memory
+TR,Photography,ABSENT,T,1.0,Memory
+TS,Manufactures,MERGED,T,1.0,Memory
+TX,Home Economics,ABSENT,T,1.0,Memory
+UA,Armies / Land Forces,ABSENT,U,0.0,Memory
+UB,Military Administration,ABSENT,U,0.0,Memory
+UC,Military Maintenance,ABSENT,U,0.0,Memory
+UD,Infantry,ABSENT,U,0.0,Memory
+UF,Artillery,ABSENT,U,0.0,Memory
+UG,Military Engineering,ABSENT,U,0.0,Memory
+UH,Military Medicine,ABSENT,U,0.0,Memory
+VA,Navies,ABSENT,V,0.0,Memory
+VB,Naval Administration,ABSENT,V,0.0,Memory
+VC,Naval Maintenance,ABSENT,V,0.0,Memory
+VD,Naval Seamen,ABSENT,V,0.0,Memory
+VF,Naval Ordnance,ABSENT,V,0.0,Memory
+VG,Naval Auxiliaries,ABSENT,V,0.0,Memory
+VK,Navigation / Seamanship,ABSENT,V,0.0,Memory
+VM,Naval Architecture,ABSENT,V,0.0,Memory
+Z,Books / Writing (General),DIRECT,Z,2.0,Imagination
+ZA,Information Resources,ABSENT,Z,2.0,Imagination

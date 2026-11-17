@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LC Catalog — Jeffersonian vs Absent Share</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#ffffff; --surface:#f5f3f0; --surface2:#eceae6; --border:#d4d0c8;
+    --text:#1e1c18; --text-dim:#706e68;
+    --color-text-primary:#1e1c18; --color-text-secondary:#706e68;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:"Libre Baskerville",Georgia,serif;font-size:13px;}
+  header{padding:24px 32px 16px;border-bottom:1px solid var(--border);}
+  header h1{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px;}
+  header p{font-size:11px;color:var(--text-dim);font-style:italic;}
+  main{padding:24px 32px 40px;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  /* site-nav (same on all five pages) */
+  .site-nav { padding: 8px 32px; background: #f5f3f0; border-bottom: 1px solid #d4d0c8; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .site-nav a, .site-nav span.nav-current { padding: 5px 14px; font-family: "Libre Baskerville", Georgia, serif; font-size: 11px; font-weight: 400; border-radius: 2px; letter-spacing: 0.05em; text-decoration: none; border: none; cursor: pointer; display: inline-block; line-height: 1.4; }
+  .site-nav a { background: #4a90c4; color: #fff; }
+  .site-nav a:hover { background: #5aa0d4; }
+  .site-nav span.nav-current { background: #eceae6; color: #706e68; cursor: default; }
+  /* end site-nav */
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html">Dashboard</a>
+  <a href="jefferson_lcc_alluvial.html">Jefferson → LCC alluvial</a>
+  <a href="lcc_bubble_animation_2.html">Bubble animation</a>
+  <a href="lcc_cumulative_share_v2.html">Cumulative share</a>
+  <span class="nav-current">Jefferson split</span>
+</nav>
+<!-- data-note -->
+<div class="data-note" style="margin:14px 32px 0;padding:10px 14px;border-left:3px solid #c46a4a;background:#fbf3ee;font-size:11.5px;line-height:1.55;color:#1e1c18;font-family:'Libre Baskerville',Georgia,serif;">
+<strong>Data limitation — recent publication years are incomplete in the 2016 file.</strong>
+The file is a 2016 snapshot, so it holds only the books catalogued by then. Records per publication year peak at 216,695 (2009) and are still 215,952 (2010) and 205,001 (2011),
+then fall to 191,867 (2012), 159,590 (2013), 129,045 (2014), 75,905 (2015) and 22,518 (2016); 903 records are dated 2017–2020. The pattern fits cataloguing lag (books published shortly before the snapshot not yet catalogued) rather than a fall in publishing; I have not checked it against outside publication counts. Nothing here has been removed or corrected.
+<strong>It affects the results:</strong> every 2020 total, sigmoid fit and inflection year is computed with these incomplete years.
+Refitting on 1400–2011 moves the inflection years earlier by a median of 1.3 years (3.2 years for a 2008 cutoff), so absolute inflection years depend on the cutoff.
+The Jeffersonian vs non-Jeffersonian comparison keeps its direction and significance: gap +2.2 years (Mann-Whitney p=0.0025) with the 2011 cutoff, +2.4 years (p=0.0015) with 2008, against +1.6 years (p=0.0039) using all years;
+median growth 211× (Jeffersonian) vs 414× (non-Jeffersonian) with the 2011 cutoff. Details: <code>output/sensitivity_cutoff_report.txt</code>.
+</div>
+<!-- /data-note -->
+<header>
+  <h1>Library of Congress Catalog — Jeffersonian vs Absent Classification Share</h1>
+  <p>Cumulative and per-decade share of LC holdings split by Jefferson classification status · 1400–2020 · LC MARC 2016 files, 9,500,598 records in the 238 analysed subclasses (unlisted LC subclasses have no status and are excluded)</p>
+</header>
+<main>
+<div style="padding:1rem 0">
+<h2 class="sr-only">Cumulative and per-decade share of LC catalog split by Jeffersonian vs absent classification</h2>
+
+<p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px">Cumulative share of total collection by publication decade</p>
+<div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--color-text-secondary)">
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#378ADD"></span>Jeffersonian (MERGED / DIRECT / RENAMED)</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#E8A87C"></span>Absent from Jefferson</span>
+</div>
+<div style="position:relative;width:100%;height:280px;margin-bottom:2rem">
+<canvas id="cc1" role="img" aria-label="Cumulative percentage line chart split by Jeffersonian vs absent. Both lines reach 100% by 2010.">Jeffersonian share starts near 100% and falls steadily; absent share rises from near zero.</canvas>
+</div>
+
+<p style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px">Each decade as share of total collection</p>
+<div style="position:relative;width:100%;height:260px">
+<canvas id="cc2" role="img" aria-label="Grouped bar chart showing Jeffersonian vs absent share per decade as percentage of total catalog.">Absent subclasses dominate recent decades.</canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const decades=[1400,1410,1420,1430,1440,1450,1460,1470,1480,1490,1500,1510,1520,1530,1540,1550,1560,1570,1580,1590,1600,1610,1620,1630,1640,1650,1660,1670,1680,1690,1700,1710,1720,1730,1740,1750,1760,1770,1780,1790,1800,1810,1820,1830,1840,1850,1860,1870,1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010];
+const jeff=[23, 3, 1, 2, 0, 6, 5, 254, 349, 445, 225, 242, 386, 434, 580, 616, 522, 726, 702, 701, 742, 709, 651, 764, 969, 836, 964, 1062, 1434, 1251, 1333, 1482, 1591, 1683, 1851, 2158, 2527, 3260, 4105, 6804, 7065, 6353, 7885, 9166, 10686, 13260, 16171, 16756, 21571, 29881, 51783, 57107, 81737, 106708, 118320, 143862, 359546, 687037, 778110, 937183, 1051944, 526995];
+const absent=[4, 1, 0, 1, 0, 1, 0, 12, 17, 20, 19, 22, 24, 36, 38, 54, 49, 73, 93, 86, 93, 114, 117, 121, 189, 210, 218, 222, 234, 233, 223, 300, 271, 268, 303, 442, 437, 561, 907, 1126, 1498, 1352, 2149, 3222, 4184, 5469, 5771, 7796, 11052, 16604, 33768, 36625, 51033, 74589, 80353, 115516, 304419, 607012, 714124, 867216, 994397, 473786];
+const total=jeff.reduce((a,b)=>a+b,0)+absent.reduce((a,b)=>a+b,0);
+const labels=decades.map(d=>d+'s');
+
+let cj=0,ca=0;
+const cumJ=[],cumA=[];
+jeff.forEach((j,i)=>{cj+=j;ca+=absent[i];cumJ.push(Math.round(cj/total*1000)/10);cumA.push(Math.round(ca/total*1000)/10);});
+
+const decJ=jeff.map(v=>Math.round(v/total*1000)/10);
+const decA=absent.map(v=>Math.round(v/total*1000)/10);
+
+const jTotal=Math.round(jeff.reduce((a,b)=>a+b,0)/total*100);
+const aTotal=Math.round(absent.reduce((a,b)=>a+b,0)/total*100);
+
+const jeffLine={decade:1810,label:"Jefferson's sale 1815"};
+const xScale={ticks:{autoSkip:true,maxTicksLimit:12,maxRotation:45,font:{size:10},color:'#888780'},grid:{display:false}};
+
+const eventPlugin={
+  id:'ev',
+  afterDraw(chart){
+    const {ctx,chartArea:{top,bottom},scales:{x}}=chart;
+    const idx=decades.indexOf(1810);
+    const xp=x.getPixelForValue(idx);
+    ctx.save();
+    ctx.beginPath();ctx.moveTo(xp,top);ctx.lineTo(xp,bottom);
+    ctx.strokeStyle='rgba(90,90,90,0.4)';ctx.lineWidth=1;ctx.setLineDash([4,3]);ctx.stroke();
+    ctx.setLineDash([]);ctx.fillStyle='#888780';ctx.font='10px sans-serif';
+    ctx.save();ctx.translate(xp+3,top+5);ctx.rotate(Math.PI/2);
+    ctx.fillText("Jefferson's sale 1815",0,0);ctx.restore();ctx.restore();
+  }
+};
+
+new Chart(document.getElementById('cc1'),{
+  type:'line',plugins:[eventPlugin],
+  data:{labels,datasets:[
+    {label:'Jeffersonian',data:cumJ,borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.08)',borderWidth:2,pointRadius:0,pointHoverRadius:4,fill:true,tension:0.3},
+    {label:'Absent',data:cumA,borderColor:'#E8A87C',backgroundColor:'rgba(232,168,124,0.08)',borderWidth:2,pointRadius:0,pointHoverRadius:4,fill:true,tension:0.3}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.parsed.y}% of total catalog`}}},
+    scales:{x:xScale,y:{min:0,max:70,ticks:{callback:v=>v+'%',color:'#888780',font:{size:10}},grid:{color:'rgba(136,135,128,0.12)'}}}
+  }
+});
+
+new Chart(document.getElementById('cc2'),{
+  type:'bar',
+  data:{labels,datasets:[
+    {label:`Jeffersonian (${jTotal}% total)`,data:decJ,backgroundColor:'#378ADD',borderWidth:0,borderRadius:2},
+    {label:`Absent (${aTotal}% total)`,data:decA,backgroundColor:'#E8A87C',borderWidth:0,borderRadius:2}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:true,labels:{usePointStyle:true,pointStyle:'rect',font:{size:11},color:'var(--color-text-secondary)',boxWidth:10,boxHeight:10}},
+      tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label.split('(')[0].trim()}: ${ctx.parsed.y}% of total`}}
+    },
+    scales:{x:xScale,y:{ticks:{callback:v=>v+'%',color:'#888780',font:{size:10}},grid:{color:'rgba(136,135,128,0.12)'}}}
+  }
+});
+</script>
+</main>
+</body>
+</html>

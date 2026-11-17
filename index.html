@@ -462,13 +462,38 @@
              transition:opacity .15s; font-family:'Source Code Pro',monospace; }
   .hk-tog.off { opacity:.18; }
   .hk-tog:hover { background:var(--surface2); }
+  /* site-nav (same on all five pages) */
+  .site-nav { padding: 8px 32px; background: #f5f3f0; border-bottom: 1px solid #d4d0c8; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .site-nav a, .site-nav span.nav-current { padding: 5px 14px; font-family: "Libre Baskerville", Georgia, serif; font-size: 11px; font-weight: 400; border-radius: 2px; letter-spacing: 0.05em; text-decoration: none; border: none; cursor: pointer; display: inline-block; line-height: 1.4; }
+  .site-nav a { background: #4a90c4; color: #fff; }
+  .site-nav a:hover { background: #5aa0d4; }
+  .site-nav span.nav-current { background: #eceae6; color: #706e68; cursor: default; }
+  /* end site-nav */
 </style>
 </head>
 <body>
+<nav class="site-nav">
+  <span class="nav-current">Dashboard</span>
+  <a href="jefferson_lcc_alluvial.html">Jefferson → LCC alluvial</a>
+  <a href="lcc_bubble_animation_2.html">Bubble animation</a>
+  <a href="lcc_cumulative_share_v2.html">Cumulative share</a>
+  <a href="lcc_cumulative_jefferson_split.html">Jefferson split</a>
+</nav>
+<!-- data-note -->
+<div class="data-note" style="margin:14px 32px 0;padding:10px 14px;border-left:3px solid #c46a4a;background:#fbf3ee;font-size:11.5px;line-height:1.55;color:#1e1c18;font-family:'Libre Baskerville',Georgia,serif;">
+<strong>Data limitation — recent publication years are incomplete in the 2016 file.</strong>
+The file is a 2016 snapshot, so it holds only the books catalogued by then. Records per publication year peak at 216,695 (2009) and are still 215,952 (2010) and 205,001 (2011),
+then fall to 191,867 (2012), 159,590 (2013), 129,045 (2014), 75,905 (2015) and 22,518 (2016); 903 records are dated 2017–2020. The pattern fits cataloguing lag (books published shortly before the snapshot not yet catalogued) rather than a fall in publishing; I have not checked it against outside publication counts. Nothing here has been removed or corrected.
+<strong>It affects the results:</strong> every 2020 total, sigmoid fit and inflection year is computed with these incomplete years.
+Refitting on 1400–2011 moves the inflection years earlier by a median of 1.3 years (3.2 years for a 2008 cutoff), so absolute inflection years depend on the cutoff.
+The Jeffersonian vs non-Jeffersonian comparison keeps its direction and significance: gap +2.2 years (Mann-Whitney p=0.0025) with the 2011 cutoff, +2.4 years (p=0.0015) with 2008, against +1.6 years (p=0.0039) using all years;
+median growth 211× (Jeffersonian) vs 414× (non-Jeffersonian) with the 2011 cutoff. Details: <code>output/sensitivity_cutoff_report.txt</code>.
+</div>
+<!-- /data-note -->
 
 <header>
   <h1>Library of Congress Classification — Cumulative Record Counts · 1400–2020</h1>
-  <div class="subtitle">Library of Congress Classification analysis · auto-loaded dashboard — data embedded from output</div>
+  <div class="subtitle">Library of Congress Classification analysis · auto-loaded dashboard — LC MARC 2016 files (10,543,015 records; 9,500,598 with a valid LC class and year 1400–2020; 9,500,598 in the 238 analysed subclasses = every valid LC subclass). Non-LCC call numbers (MLC, MIC, CPB, LAW …) are excluded.</div>
 </header>
 
 <!-- FILE LOADER -->
@@ -502,10 +527,6 @@
     </div>
   </div>
   <button class="load-all-btn" id="render-btn" onclick="renderAll()">Render Dashboard</button>
-  <a class="load-all-btn" href="jefferson_lcc_alluvial.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Jefferson→LCC alluvial</a>
-  <a class="load-all-btn" href="lcc_bubble_animation_2.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Bubble animation</a>
-  <a class="load-all-btn" href="lcc_cumulative_share_v2.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Cumulative share</a>
-  <a class="load-all-btn" href="lcc_cumulative_jefferson_split.html" style="display:inline-block;text-decoration:none;margin-left:8px;">Jefferson split</a>
   <span id="load-note" style="margin-left:14px;font-size:10px;color:var(--text-dim);font-style:italic;">Loading 5/5 local CSV files from /output/</span>
 </div>
 
@@ -562,9 +583,9 @@
 <div class="panel" id="panel-hk-rank">
   <div class="note-box">
     <strong>Rebuttal:</strong> H (Social Sciences) rose from rank 10 in 1815 to
-    <span style="color:#4a90c4">rank 2 by 1970</span>. K (Law — Jefferson's dominant class) fell from
-    rank 2 to <span style="color:#c46a4a">rank 6 by 2020</span>.
-    Post-LCC era (1897–1970): H grew 20× — fastest of all classes. K grew only 4.6×.
+    <span style="color:#4a90c4">rank 2 by 1970</span>. K (Law — Jefferson's dominant class) went from
+    rank 1 to <span style="color:#c46a4a">rank 5 by 2020</span>.
+    Post-LCC era (1897–1970): H grew 20×; K grew 4.6×. (Class totals include every valid LC subclass; E and F now counted.)
   </div>
   <div class="chart-section">
     <h3>H vs K — class rank in LC collection · 1815–2020</h3>
@@ -645,7 +666,7 @@
 <!-- PANEL: SUBCLASS RANKINGS OVER TIME -->
 <div class="panel" id="panel-rankings">
   <div class="note-box">
-    <strong>Reading:</strong> Each line = one LCC subclass (202 total). Rank 1 = most cumulative records at that snapshot.
+    <strong>Reading:</strong> Each line = one LCC subclass (238 total). Rank 1 = most cumulative records at that snapshot.
     <span style="color:#5b9bd5">Solid blue = MERGED (Jefferson-classified)</span> ·
     <span style="color:#4ac48a">Solid green = DIRECT (Jefferson direct)</span> ·
     <span style="color:#d47c5b">Dashed orange = ABSENT (non-Jefferson)</span> ·
@@ -758,7 +779,7 @@
   <div class="note-box">
     <strong>Inflection years:</strong> Each dot = one LCC subclass. Top row = Jeffersonian (MERGED/DIRECT). Bottom row = Non-Jeffersonian (ABSENT). Bubble size = record count.
     Dashed vertical lines show group means (from inflection_comparison.csv if loaded, otherwise computed from scatter data).
-    <em>Python analysis (normalized sigmoid): Non-Jeffersonian mean = 1985, Jeffersonian mean = 1983, gap = 2.3 years — trivially small (1.2% of 200-year study period).</em>
+    <em>Python analysis (normalized sigmoid): Non-Jeffersonian mean = 1986, Jeffersonian mean = 1984, gap = 1.6 years — trivially small (0.8% of 200-year study period).</em>
   </div>
   <div class="controls">
     <span class="control-label">Filter by class:</span>
@@ -829,7 +850,7 @@
   <div class="chart-section" style="border-left:3px solid var(--accent-green)">
     <div style="padding:2px 0 10px 0;font-size:11px;line-height:1.7;color:var(--text)">
       <strong style="color:var(--accent-green)">Finding:</strong> In the post-LCC formation era (1897–1970), the three fastest-growing classes were
-      <strong>H Social Sciences</strong>, <strong>S Agriculture</strong>, and <strong>L Education</strong>
+      <strong>H Social Sciences</strong>, <strong>L Education</strong>, and <strong>T Technology</strong>
       — all domains a suppression theory would predict to lag. Law (K) and Language &amp; Lit (P) both grew more slowly.
       <span style="color:var(--text-dim);font-size:10px">Bars sorted by post-LCC growth. Red = Jeffersonian/elite classes. Green = other classes.</span>
     </div>
@@ -861,8 +882,8 @@
     <div style="padding:2px 0 6px 0;font-size:11px;line-height:1.7;color:var(--text)">
       <strong style="color:var(--accent-green)">Finding:</strong> The share of "democratic" classes
       (H Social Sciences, E American History, F Local History, J Political Science, G Geography) in total LC holdings
-      <strong>doubled</strong> from ~11% (1815) to ~21% (2020), while Jefferson-heavy classes (K Law, P Language &amp; Lit, B Philosophy)
-      <em>fell</em> from ~44% to ~34%.
+      <strong>doubled</strong> from ~11% (1815) to ~23% (2020), while Jefferson-heavy classes (K Law, P Language &amp; Lit, B Philosophy)
+      <em>fell</em> from ~46% to ~37%.
     </div>
     <div style="padding:0 0 4px 0;font-size:11px;line-height:1.7;color:var(--accent-merged)">
       <strong>Implication:</strong> If the classification system encoded a hierarchy that privileged Jeffersonian elite knowledge,
@@ -938,10 +959,10 @@ const LBL={P:"Language & Literature",H:"Social Sciences",M:"Music",D:"World Hist
 const COL={P:"#7c3aed",H:"#0284c7",M:"#0e7490",D:"#b45309",B:"#6d28d9",Q:"#0f766e",T:"#b91c1c",K:"#1d4ed8",N:"#d97706",L:"#15803d",R:"#be185d",F:"#0369a1",G:"#854d0e",J:"#9333ea",Z:"#4d7c0f",S:"#047857",E:"#c2410c",C:"#7e22ce",U:"#94a3b8",A:"#64748b",V:"#cbd5e1"};
 const DSH={P:[],H:[],M:[],D:[5,2],B:[5,2],Q:[],T:[3,3],K:[],N:[3,3],L:[],R:[3,3],F:[],G:[5,2],J:[5,2],Z:[],C:[3,3],S:[5,2],E:[],U:[5,2],A:[3,3],V:[5,2]};
 const BUMP_YRS=[1480,1550,1600,1650,1700,1750,1800,1850,1895,1900,1920,1940,1960,1970,1980,1990,2000,2011,2020];
-const BUMP_RANKS=[{"B":1,"K":2,"P":3,"M":4,"L":5,"Q":6,"D":7,"R":8,"C":9,"A":10,"H":11,"T":12,"U":13,"E":14,"F":15,"G":16,"J":17,"N":18,"S":19,"V":20,"Z":21},{"B":1,"K":2,"P":3,"M":4,"D":5,"L":6,"R":7,"Q":8,"T":9,"G":10,"H":11,"N":12,"A":13,"J":14,"C":15,"E":16,"Z":17,"U":18,"F":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"M":5,"L":6,"Q":7,"R":8,"G":9,"T":10,"J":11,"H":12,"C":13,"N":14,"E":15,"F":16,"Z":17,"A":18,"U":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"M":5,"L":6,"Q":7,"A":8,"R":9,"G":10,"J":11,"T":12,"H":13,"F":14,"N":15,"C":16,"U":17,"E":18,"Z":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"M":5,"A":6,"Q":7,"L":8,"R":9,"G":10,"J":11,"T":12,"H":13,"F":14,"N":15,"U":16,"Z":17,"C":18,"E":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"M":5,"A":6,"Q":7,"L":8,"R":9,"G":10,"J":11,"H":12,"T":13,"F":14,"N":15,"Z":16,"U":17,"C":18,"E":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"M":4,"D":5,"A":6,"Q":7,"E":8,"L":9,"H":10,"R":11,"J":12,"G":13,"T":14,"F":15,"N":16,"Z":17,"C":18,"U":19,"S":20,"V":21},{"P":1,"B":2,"K":3,"M":4,"D":5,"A":6,"Q":7,"E":8,"H":9,"R":10,"F":11,"L":12,"J":13,"T":14,"N":15,"G":16,"Z":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"B":2,"D":3,"M":4,"K":5,"Q":6,"E":7,"A":8,"H":9,"F":10,"R":11,"T":12,"L":13,"J":14,"N":15,"G":16,"Z":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"B":2,"D":3,"M":4,"K":5,"Q":6,"E":7,"H":8,"F":9,"A":10,"T":11,"L":12,"R":13,"N":14,"J":15,"Z":16,"G":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"D":2,"B":3,"M":4,"H":5,"Q":6,"K":7,"F":8,"E":9,"T":10,"L":11,"N":12,"A":13,"J":14,"R":15,"Z":16,"G":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"D":2,"B":3,"M":4,"H":5,"Q":6,"K":7,"T":8,"F":9,"E":10,"L":11,"N":12,"J":13,"R":14,"Z":15,"G":16,"A":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"D":2,"H":3,"M":4,"B":5,"Q":6,"T":7,"K":8,"F":9,"N":10,"L":11,"J":12,"E":13,"R":14,"Z":15,"G":16,"S":17,"C":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"D":3,"B":4,"M":5,"Q":6,"T":7,"K":8,"L":9,"N":10,"F":11,"J":12,"R":13,"Z":14,"G":15,"E":16,"S":17,"C":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"D":3,"B":4,"M":5,"Q":6,"T":7,"K":8,"L":9,"N":10,"F":11,"R":12,"J":13,"G":14,"Z":15,"S":16,"E":17,"C":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"M":3,"D":4,"B":5,"Q":6,"T":7,"K":8,"N":9,"L":10,"R":11,"F":12,"G":13,"J":14,"Z":15,"C":16,"S":17,"E":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"M":3,"D":4,"B":5,"Q":6,"K":7,"T":8,"N":9,"L":10,"R":11,"F":12,"G":13,"J":14,"Z":15,"C":16,"S":17,"E":18,"U":19,"A":20,"V":21},{"P":1,"H":2,"M":3,"D":4,"B":5,"K":6,"Q":7,"T":8,"N":9,"R":10,"L":11,"G":12,"F":13,"J":14,"C":15,"Z":16,"S":17,"E":18,"U":19,"A":20,"V":21},{"P":1,"H":2,"M":3,"D":4,"B":5,"K":6,"Q":7,"T":8,"N":9,"R":10,"L":11,"G":12,"F":13,"J":14,"C":15,"Z":16,"S":17,"E":18,"U":19,"A":20,"V":21}];
-const HK_SUB={"years":[1815,1850,1897,1920,1950,1970,1990,2011,2020],"series":[{"code":"HD","label":"Land / Agriculture Economics","class":"H","status":"ABSENT","ranks":[13,11,8,2,1,1,1,1,1],"final_count":320570},{"code":"K","label":"Law (General)","class":"K","status":"MERGED","ranks":[3,4,4,4,4,5,4,2,2],"final_count":232299},{"code":"KF","label":"US Law","class":"K","status":"MERGED","ranks":[5,3,1,1,2,2,2,3,3],"final_count":191158},{"code":"HC","label":"Economic History","class":"H","status":"ABSENT","ranks":[18,17,15,10,5,3,3,4,4],"final_count":155017},{"code":"HV","label":"Social Pathology / Criminology","class":"H","status":"ABSENT","ranks":[7,7,5,8,7,6,6,5,5],"final_count":133807},{"code":"HF","label":"Commerce","class":"H","status":"MERGED","ranks":[6,6,7,6,3,4,5,6,6],"final_count":117627},{"code":"HQ","label":"Family / Gender / Sexuality","class":"H","status":"ABSENT","ranks":[12,12,13,13,12,10,7,7,7],"final_count":107072},{"code":"HG","label":"Finance","class":"H","status":"ABSENT","ranks":[10,8,6,7,6,7,8,8,8],"final_count":85584},{"code":"HB","label":"Economic Theory","class":"H","status":"ABSENT","ranks":[16,14,12,12,10,9,9,9,9],"final_count":64038},{"code":"HN","label":"Social History","class":"H","status":"ABSENT","ranks":[21,22,21,17,15,15,11,10,10],"final_count":53353},{"code":"HE","label":"Transportation / Communications","class":"H","status":"ABSENT","ranks":[11,9,9,9,9,8,10,11,11],"final_count":48735},{"code":"KH","label":"South American Law","class":"K","status":"ABSENT","ranks":[25,23,22,20,17,16,14,12,12],"final_count":47820},{"code":"KJ","label":"European Law","class":"K","status":"MERGED","ranks":[1,2,3,5,11,14,16,13,13],"final_count":45037},{"code":"HT","label":"Communities / Classes / Race","class":"H","status":"ABSENT","ranks":[14,16,19,22,22,18,13,14,14],"final_count":39829},{"code":"HM","label":"Sociology","class":"H","status":"ABSENT","ranks":[23,25,25,23,18,17,17,15,15],"final_count":37950},{"code":"HX","label":"Socialism / Communism","class":"H","status":"ABSENT","ranks":[22,21,18,14,14,12,12,16,16],"final_count":33668},{"code":"HJ","label":"Public Finance","class":"H","status":"MERGED","ranks":[8,10,11,11,13,13,15,17,17],"final_count":29505},{"code":"KD","label":"UK Law","class":"K","status":"MERGED","ranks":[2,1,2,3,8,11,18,18,18],"final_count":22633},{"code":"KG","label":"Latin American Law","class":"K","status":"ABSENT","ranks":[19,18,14,16,16,19,20,19,19],"final_count":18652},{"code":"KL","label":"Asian / African Law","class":"K","status":"ABSENT","ranks":[15,19,23,24,24,25,25,20,20],"final_count":16293},{"code":"HA","label":"Statistics","class":"H","status":"ABSENT","ranks":[20,20,20,18,19,20,19,21,21],"final_count":14766},{"code":"KB","label":"Religious Law","class":"K","status":"MERGED","ranks":[4,5,10,15,20,22,23,22,22],"final_count":8015},{"code":"KE","label":"Canadian Law","class":"K","status":"ABSENT","ranks":[24,24,24,25,25,24,21,23,23],"final_count":7870},{"code":"KZ","label":"International Law","class":"K","status":"ABSENT","ranks":[9,13,16,21,23,23,24,24,24],"final_count":7726},{"code":"HS","label":"Societies / Clubs","class":"H","status":"ABSENT","ranks":[17,15,17,19,21,21,22,25,25],"final_count":6384}],"n":25};
-const RANK_DATA=[{"y":1815,"H":10,"K":2},{"y":1850,"H":9,"K":3},{"y":1897,"H":9,"K":5},{"y":1920,"H":5,"K":7},{"y":1950,"H":4,"K":8},{"y":1970,"H":2,"K":8},{"y":1990,"H":2,"K":8},{"y":2011,"H":2,"K":6},{"y":2020,"H":2,"K":6}];
-const R2B_DS=[{"code":"HD","label":"HD: Land / Agriculture Economics","cls":"H","color":"#0c4a6e","dash":"[5,3]","ranks":[13,11,8,2,1,1,1,1,1]},{"code":"K","label":"K: Law (General)","cls":"K","color":"#7f1d1d","dash":"[]","ranks":[3,4,4,4,4,5,4,2,2]},{"code":"KF","label":"KF: US Law","cls":"K","color":"#991b1b","dash":"[]","ranks":[5,3,1,1,2,2,2,3,3]},{"code":"HC","label":"HC: Economic History","cls":"H","color":"#075985","dash":"[5,3]","ranks":[18,17,15,10,5,3,3,4,4]},{"code":"HV","label":"HV: Social Pathology / Criminology","cls":"H","color":"#0369a1","dash":"[5,3]","ranks":[7,7,5,8,7,6,6,5,5]},{"code":"HF","label":"HF: Commerce","cls":"H","color":"#0284c7","dash":"[]","ranks":[6,6,7,6,3,4,5,6,6]},{"code":"HQ","label":"HQ: Family / Gender / Sexuality","cls":"H","color":"#0ea5e9","dash":"[5,3]","ranks":[12,12,13,13,12,10,7,7,7]},{"code":"HG","label":"HG: Finance","cls":"H","color":"#38bdf8","dash":"[5,3]","ranks":[10,8,6,7,6,7,8,8,8]},{"code":"HB","label":"HB: Economic Theory","cls":"H","color":"#7dd3fc","dash":"[5,3]","ranks":[16,14,12,12,10,9,9,9,9]},{"code":"HN","label":"HN: Social History","cls":"H","color":"#1e3a5f","dash":"[5,3]","ranks":[21,22,21,17,15,15,11,10,10]},{"code":"HE","label":"HE: Transportation / Communications","cls":"H","color":"#1d4ed8","dash":"[5,3]","ranks":[11,9,9,9,9,8,10,11,11]},{"code":"KH","label":"KH: South American Law","cls":"K","color":"#b91c1c","dash":"[5,3]","ranks":[25,23,22,20,17,16,14,12,12]},{"code":"KJ","label":"KJ: European Law","cls":"K","color":"#dc2626","dash":"[]","ranks":[1,2,3,5,11,14,16,13,13]},{"code":"HT","label":"HT: Communities / Classes / Race","cls":"H","color":"#2563eb","dash":"[5,3]","ranks":[14,16,19,22,22,18,13,14,14]},{"code":"HM","label":"HM: Sociology","cls":"H","color":"#3b82f6","dash":"[5,3]","ranks":[23,25,25,23,18,17,17,15,15]},{"code":"HX","label":"HX: Socialism / Communism","cls":"H","color":"#60a5fa","dash":"[5,3]","ranks":[22,21,18,14,14,12,12,16,16]},{"code":"HJ","label":"HJ: Public Finance","cls":"H","color":"#93c5fd","dash":"[]","ranks":[8,10,11,11,13,13,15,17,17]},{"code":"KD","label":"KD: UK Law","cls":"K","color":"#ef4444","dash":"[]","ranks":[2,1,2,3,8,11,18,18,18]},{"code":"KG","label":"KG: Latin American Law","cls":"K","color":"#f87171","dash":"[5,3]","ranks":[19,18,14,16,16,19,20,19,19]},{"code":"KL","label":"KL: Asian / African Law","cls":"K","color":"#fca5a5","dash":"[5,3]","ranks":[15,19,23,24,24,25,25,20,20]},{"code":"HA","label":"HA: Statistics","cls":"H","color":"#bfdbfe","dash":"[5,3]","ranks":[20,20,20,18,19,20,19,21,21]},{"code":"KB","label":"KB: Religious Law","cls":"K","color":"#fecaca","dash":"[]","ranks":[4,5,10,15,20,22,23,22,22]},{"code":"KE","label":"KE: Canadian Law","cls":"K","color":"#fee2e2","dash":"[5,3]","ranks":[24,24,24,25,25,24,21,23,23]},{"code":"KZ","label":"KZ: International Law","cls":"K","color":"#450a0a","dash":"[5,3]","ranks":[9,13,16,21,23,23,24,24,24]},{"code":"HS","label":"HS: Societies / Clubs","cls":"H","color":"#dbeafe","dash":"[5,3]","ranks":[17,15,17,19,21,21,22,25,25]}];
+const BUMP_RANKS=[{"B":1,"K":2,"P":3,"D":4,"R":5,"Q":6,"L":7,"C":8,"U":9,"H":10,"M":11,"T":12,"A":13,"N":14,"G":15,"F":16,"J":17,"Z":18,"S":19,"E":20,"V":21},{"B":1,"K":2,"P":3,"D":4,"R":5,"Q":6,"G":7,"T":8,"M":9,"A":10,"N":11,"H":12,"J":13,"Z":14,"C":15,"E":16,"L":17,"U":18,"F":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"Q":5,"R":6,"G":7,"J":8,"T":9,"M":10,"N":11,"C":12,"E":13,"H":14,"Z":15,"F":16,"A":17,"U":18,"L":19,"S":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"Q":5,"A":6,"R":7,"G":8,"J":9,"F":10,"H":11,"M":12,"T":13,"N":14,"U":15,"C":16,"Z":17,"E":18,"S":19,"L":20,"V":21},{"K":1,"B":2,"P":3,"D":4,"A":5,"Q":6,"M":7,"R":8,"G":9,"J":10,"T":11,"F":12,"N":13,"H":14,"U":15,"Z":16,"C":17,"E":18,"S":19,"V":20,"L":21},{"K":1,"B":2,"P":3,"D":4,"A":5,"M":6,"Q":7,"R":8,"G":9,"J":10,"F":11,"H":12,"T":13,"N":14,"Z":15,"U":16,"C":17,"E":18,"S":19,"L":20,"V":21},{"K":1,"B":2,"P":3,"M":4,"D":5,"A":6,"Q":7,"E":8,"R":9,"H":10,"J":11,"G":12,"T":13,"F":14,"N":15,"Z":16,"U":17,"C":18,"S":19,"L":20,"V":21},{"P":1,"B":2,"K":3,"D":4,"A":5,"M":6,"Q":7,"E":8,"H":9,"R":10,"F":11,"J":12,"T":13,"N":14,"G":15,"Z":16,"S":17,"C":18,"U":19,"L":20,"V":21},{"P":1,"B":2,"D":3,"K":4,"Q":5,"E":6,"M":7,"A":8,"F":9,"H":10,"R":11,"T":12,"J":13,"N":14,"G":15,"Z":16,"C":17,"S":18,"L":19,"U":20,"V":21},{"P":1,"B":2,"D":3,"K":4,"Q":5,"E":6,"H":7,"M":8,"F":9,"A":10,"T":11,"R":12,"N":13,"J":14,"Z":15,"G":16,"C":17,"L":18,"S":19,"U":20,"V":21},{"P":1,"D":2,"B":3,"H":4,"Q":5,"K":6,"F":7,"E":8,"T":9,"M":10,"N":11,"A":12,"R":13,"J":14,"Z":15,"G":16,"L":17,"C":18,"S":19,"U":20,"V":21},{"P":1,"D":2,"B":3,"H":4,"Q":5,"K":6,"T":7,"F":8,"E":9,"N":10,"M":11,"J":12,"R":13,"Z":14,"G":15,"L":16,"A":17,"S":18,"C":19,"U":20,"V":21},{"P":1,"D":2,"H":3,"B":4,"Q":5,"K":6,"T":7,"F":8,"N":9,"E":10,"J":11,"R":12,"Z":13,"M":14,"G":15,"L":16,"S":17,"A":18,"C":19,"U":20,"V":21},{"P":1,"H":2,"D":3,"B":4,"Q":5,"T":6,"K":7,"N":8,"F":9,"J":10,"R":11,"L":12,"Z":13,"G":14,"E":15,"M":16,"S":17,"C":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"D":3,"B":4,"Q":5,"T":6,"K":7,"N":8,"F":9,"R":10,"L":11,"J":12,"G":13,"Z":14,"S":15,"E":16,"M":17,"C":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"D":3,"B":4,"Q":5,"T":6,"K":7,"N":8,"R":9,"F":10,"G":11,"J":12,"L":13,"Z":14,"S":15,"E":16,"M":17,"C":18,"A":19,"U":20,"V":21},{"P":1,"H":2,"D":3,"B":4,"Q":5,"K":6,"T":7,"N":8,"R":9,"F":10,"G":11,"J":12,"L":13,"Z":14,"S":15,"E":16,"M":17,"C":18,"U":19,"A":20,"V":21},{"P":1,"H":2,"D":3,"B":4,"K":5,"Q":6,"T":7,"N":8,"R":9,"G":10,"F":11,"J":12,"L":13,"Z":14,"S":15,"M":16,"E":17,"C":18,"U":19,"A":20,"V":21},{"P":1,"H":2,"D":3,"B":4,"K":5,"Q":6,"T":7,"N":8,"R":9,"G":10,"F":11,"J":12,"L":13,"Z":14,"S":15,"E":16,"M":17,"C":18,"U":19,"A":20,"V":21}];
+const HK_SUB={"years":[1815,1850,1897,1920,1950,1970,1990,2011,2020],"series":[{"code":"HD","label":"Land / Agriculture Economics","class":"H","status":"ABSENT","ranks":[13,11,8,3,1,1,1,1,1],"final_count":331977},{"code":"KF","label":"US Law","class":"K","status":"MERGED","ranks":[5,3,2,1,2,2,2,2,2],"final_count":196693},{"code":"HC","label":"Economic History","class":"H","status":"ABSENT","ranks":[18,18,17,10,4,3,3,3,3],"final_count":161101},{"code":"HV","label":"Social Pathology / Criminology","class":"H","status":"ABSENT","ranks":[7,7,5,8,7,5,5,4,4],"final_count":141307},{"code":"HF","label":"Commerce","class":"H","status":"MERGED","ranks":[6,6,7,5,3,4,4,5,5],"final_count":121368},{"code":"HQ","label":"Family / Gender / Sexuality","class":"H","status":"ABSENT","ranks":[12,12,13,13,12,8,6,6,6],"final_count":112450},{"code":"HG","label":"Finance","class":"H","status":"ABSENT","ranks":[11,8,6,6,5,6,7,8,8],"final_count":88389},{"code":"HB","label":"Economic Theory","class":"H","status":"ABSENT","ranks":[16,15,12,12,10,9,9,9,9],"final_count":66143},{"code":"HN","label":"Social History","class":"H","status":"ABSENT","ranks":[23,25,24,18,17,15,11,10,10],"final_count":56194},{"code":"KJ","label":"European Law","class":"K","status":"MERGED","ranks":[2,2,3,4,8,11,13,11,11],"final_count":52817},{"code":"KH","label":"South American Law","class":"K","status":"ABSENT","ranks":[28,24,20,21,18,16,15,12,13],"final_count":51888},{"code":"HE","label":"Transportation / Communications","class":"H","status":"ABSENT","ranks":[21,14,10,9,9,7,10,13,14],"final_count":49936},{"code":"K","label":"Law (General)","class":"K","status":"MERGED","ranks":[9,10,14,15,15,17,17,15,15],"final_count":46724},{"code":"HT","label":"Communities / Classes / Race","class":"H","status":"ABSENT","ranks":[14,16,22,25,26,19,14,16,16],"final_count":42046},{"code":"HM","label":"Sociology","class":"H","status":"ABSENT","ranks":[25,27,28,26,22,18,18,17,17],"final_count":40545},{"code":"HX","label":"Socialism / Communism","class":"H","status":"ABSENT","ranks":[24,23,19,16,14,13,12,18,18],"final_count":34767},{"code":"HJ","label":"Public Finance","class":"H","status":"MERGED","ranks":[8,9,11,11,13,14,16,19,19],"final_count":30446},{"code":"KD","label":"UK Law","class":"K","status":"MERGED","ranks":[1,1,1,2,6,12,19,20,20],"final_count":23667},{"code":"KG","label":"Latin American Law","class":"K","status":"ABSENT","ranks":[19,19,15,17,16,21,22,21,21],"final_count":19910},{"code":"KL","label":"Asian / African Law","class":"K","status":"ABSENT","ranks":[15,20,25,28,28,30,33,23,23],"final_count":18007},{"code":"HA","label":"Statistics","class":"H","status":"ABSENT","ranks":[22,22,23,23,23,22,21,24,24],"final_count":15105},{"code":"KB","label":"Religious Law","class":"K","status":"MERGED","ranks":[4,5,9,14,20,24,24,26,26],"final_count":11669},{"code":"KZ","label":"International Law","class":"K","status":"ABSENT","ranks":[10,13,16,19,24,26,28,27,27],"final_count":9939},{"code":"KE","label":"Canadian Law","class":"K","status":"ABSENT","ranks":[26,26,27,27,27,28,25,28,28],"final_count":8227},{"code":"HS","label":"Societies / Clubs","class":"H","status":"ABSENT","ranks":[17,17,18,24,25,25,27,31,31],"final_count":6633}]};
+const RANK_DATA=[{"y":1815,"H":10,"K":1},{"y":1850,"H":9,"K":3},{"y":1897,"H":10,"K":4},{"y":1920,"H":4,"K":6},{"y":1950,"H":3,"K":6},{"y":1970,"H":2,"K":7},{"y":1990,"H":2,"K":7},{"y":2011,"H":2,"K":5},{"y":2020,"H":2,"K":5}];
+const R2B_DS=[{"code":"HD","label":"HD: Land / Agriculture Economics","cls":"H","color":"#0c4a6e","dash":"[5,3]","ranks":[13,11,8,3,1,1,1,1,1]},{"code":"K","label":"K: Law (General)","cls":"K","color":"#7f1d1d","dash":"[]","ranks":[9,10,14,15,15,17,17,15,15]},{"code":"KF","label":"KF: US Law","cls":"K","color":"#991b1b","dash":"[]","ranks":[5,3,2,1,2,2,2,2,2]},{"code":"HC","label":"HC: Economic History","cls":"H","color":"#075985","dash":"[5,3]","ranks":[18,18,17,10,4,3,3,3,3]},{"code":"HV","label":"HV: Social Pathology / Criminology","cls":"H","color":"#0369a1","dash":"[5,3]","ranks":[7,7,5,8,7,5,5,4,4]},{"code":"HF","label":"HF: Commerce","cls":"H","color":"#0284c7","dash":"[]","ranks":[6,6,7,5,3,4,4,5,5]},{"code":"HQ","label":"HQ: Family / Gender / Sexuality","cls":"H","color":"#0ea5e9","dash":"[5,3]","ranks":[12,12,13,13,12,8,6,6,6]},{"code":"HG","label":"HG: Finance","cls":"H","color":"#38bdf8","dash":"[5,3]","ranks":[11,8,6,6,5,6,7,8,8]},{"code":"HB","label":"HB: Economic Theory","cls":"H","color":"#7dd3fc","dash":"[5,3]","ranks":[16,15,12,12,10,9,9,9,9]},{"code":"HN","label":"HN: Social History","cls":"H","color":"#1e3a5f","dash":"[5,3]","ranks":[23,25,24,18,17,15,11,10,10]},{"code":"HE","label":"HE: Transportation / Communications","cls":"H","color":"#1d4ed8","dash":"[5,3]","ranks":[21,14,10,9,9,7,10,13,14]},{"code":"KH","label":"KH: South American Law","cls":"K","color":"#b91c1c","dash":"[5,3]","ranks":[28,24,20,21,18,16,15,12,13]},{"code":"KJ","label":"KJ: European Law","cls":"K","color":"#dc2626","dash":"[]","ranks":[2,2,3,4,8,11,13,11,11]},{"code":"HT","label":"HT: Communities / Classes / Race","cls":"H","color":"#2563eb","dash":"[5,3]","ranks":[14,16,22,25,26,19,14,16,16]},{"code":"HM","label":"HM: Sociology","cls":"H","color":"#3b82f6","dash":"[5,3]","ranks":[25,27,28,26,22,18,18,17,17]},{"code":"HX","label":"HX: Socialism / Communism","cls":"H","color":"#60a5fa","dash":"[5,3]","ranks":[24,23,19,16,14,13,12,18,18]},{"code":"HJ","label":"HJ: Public Finance","cls":"H","color":"#93c5fd","dash":"[]","ranks":[8,9,11,11,13,14,16,19,19]},{"code":"KD","label":"KD: UK Law","cls":"K","color":"#ef4444","dash":"[]","ranks":[1,1,1,2,6,12,19,20,20]},{"code":"KG","label":"KG: Latin American Law","cls":"K","color":"#f87171","dash":"[5,3]","ranks":[19,19,15,17,16,21,22,21,21]},{"code":"KL","label":"KL: Asian / African Law","cls":"K","color":"#fca5a5","dash":"[5,3]","ranks":[15,20,25,28,28,30,33,23,23]},{"code":"HA","label":"HA: Statistics","cls":"H","color":"#bfdbfe","dash":"[5,3]","ranks":[22,22,23,23,23,22,21,24,24]},{"code":"KB","label":"KB: Religious Law","cls":"K","color":"#fecaca","dash":"[]","ranks":[4,5,9,14,20,24,24,26,26]},{"code":"KE","label":"KE: Canadian Law","cls":"K","color":"#fee2e2","dash":"[5,3]","ranks":[26,26,27,27,27,28,25,28,28]},{"code":"KZ","label":"KZ: International Law","cls":"K","color":"#450a0a","dash":"[5,3]","ranks":[10,13,16,19,24,26,28,27,27]},{"code":"HS","label":"HS: Societies / Clubs","cls":"H","color":"#dbeafe","dash":"[5,3]","ranks":[17,17,18,24,25,25,27,31,31]}];
 const R2B_VIS={};
 R2B_DS.forEach(d=>{R2B_VIS[d.code]=true;});
 
@@ -1132,7 +1153,7 @@ function computeHKSubRanks() {
   if (!DATA.rankings) return null;
 
   // Collect all H+K subclasses
-  const hkRows = DATA.rankings.filter(r => r.main_class === 'H' || r.main_class === 'K');
+  const hkRows = DATA.rankings.filter(r => (r.main_class === 'H' || r.main_class === 'K') && r.status !== 'OTHER');
   if (!hkRows.length) return null;
 
   const years = [...new Set(hkRows.map(r => r.year))].sort((a,b)=>a-b);
@@ -2093,7 +2114,7 @@ function buildRankingsChart() {
         y: {
           reverse: true,
           min: 1,
-          max: Math.min(maxRank + 2, 202),
+          max: Math.min(maxRank + 2, 238),
           title: { display:true, text:'rank (1 = most records)', color:'#706e68', font:{size:9} },
           ticks: {
             color:'#706e68', font:{size:9},
@@ -2323,7 +2344,7 @@ function buildScatter() {
       },
       scales: {
         x: { title:{display:true,text:'sigmoid inflection year t₀ (raw, from sigmoids CSV)',color:'#706e68',font:{size:9}}, min:1955,max:2030,
-          ticks:{color:'#706e68',font:{size:9}}, grid:{color:'rgba(0,0,0,0.06)'} },
+          ticks:{color:'#706e68',font:{size:9}, callback:v=>String(v)}, grid:{color:'rgba(0,0,0,0.06)'} },
         y: { min:0.4,max:2.6, ticks:{display:false}, grid:{display:false} }
       }
     }
@@ -2344,14 +2365,14 @@ function buildScatter() {
       });
       const absMeanX = scAbsMean || mean(absentPts.map(p=>p.x));
       const mrgMeanX = scMrgMean || mean(mergedPts.map(p=>p.x));
-      [['Non-Jeff mean '+Math.round(absMeanX),'#d47c5b',absMeanX],['Jeffersonian mean '+Math.round(mrgMeanX),'#5b9bd5',mrgMeanX]].forEach(([lbl,col,xv])=>{
+      [['Non-Jeffersonian mean t₀ '+Math.round(absMeanX),'#d47c5b',absMeanX,'left'],['Jeffersonian mean t₀ '+Math.round(mrgMeanX),'#5b9bd5',mrgMeanX,'right']].forEach(([lbl,col,xv,al])=>{
         if (!xv) return;
         const x=xS.getPixelForValue(xv);
         if (x<xS.left||x>xS.right) return;
         ctx.save(); ctx.strokeStyle=col+'99'; ctx.setLineDash([6,3]); ctx.lineWidth=1.5;
         ctx.beginPath(); ctx.moveTo(x,yS.top); ctx.lineTo(x,yS.bottom); ctx.stroke();
         ctx.fillStyle=col+'cc'; ctx.font='bold 8px Source Code Pro, monospace';
-        ctx.textAlign='center'; ctx.fillText(lbl, x, yS.top+10); ctx.restore();
+        ctx.textAlign=al; ctx.fillText(lbl, x+(al==='left'?4:-4), yS.top+10); ctx.restore();
       });
       const showLabels = sigs.length < 80;
       if (showLabels) {
@@ -2682,7 +2703,7 @@ function buildJeffersonGrowth() {
   const row2020 = rows.find(r => +r.pub_year === YEAR_2020) || nearestRow(YEAR_2020);
   const jeff = [], non = [];
 
-  cols.forEach(col => {
+  cols.filter(c => c.status !== 'OTHER').forEach(col => {
     const v1 = +(row1815?.[col.fullName]) || 0;
     const v2020 = +(row2020?.[col.fullName]) || 0;
     if (v1 < 1 || v2020 < 1) return;
@@ -2851,8 +2872,8 @@ function buildJeffersonInflectionDensity(blue, blueLine, orange, orangeLine) {
 
       // ── Dashed vertical mean lines ───────────────────────────────────────
       [
-        {v:jMean, color:blueLine, label:`Jeff Non-J mean ${jMean.toFixed(0)}`},
-        {v:nMean, color:orangeLine, label:`Jeff Non-J mean ${nMean.toFixed(0)}`}
+        {v:jMean, color:blueLine, label:`Jeffersonian mean t₀ ${jMean.toFixed(0)}`},
+        {v:nMean, color:orangeLine, label:`Non-Jeffersonian mean t₀ ${nMean.toFixed(0)}`}
       ].forEach((m, i) => {
         const xp = x.getPixelForValue(m.v);
         ctx.save();
@@ -2948,7 +2969,7 @@ function buildJeffersonInflectionDensity(blue, blueLine, orange, orangeLine) {
           type:'linear',
           min:yearMin, max:yearMax,
           title:{display:true,text:'sigmoid inflection year t₀',color:'#706e68',font:{size:9}},
-          ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'},maxTicksLimit:12},
+          ticks:{color:'#706e68',font:{size:9,family:'Source Code Pro, monospace'},maxTicksLimit:12,callback:v=>String(v)},
           grid:{color:'rgba(0,0,0,0.06)'}
         },
         y:{

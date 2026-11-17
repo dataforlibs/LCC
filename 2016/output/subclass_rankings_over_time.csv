@@ -1,0 +1,3809 @@
+subclass,label,status,main_class,year,rank,cumulative
+A,General Works (unclassed),ABSENT,A,1480,,0
+AC,General Collections,RENAMED,A,1480,,0
+AE,Encyclopedias (General),RENAMED,A,1480,25.0,1
+AG,Dictionaries (General),RENAMED,A,1480,,0
+AI,Indexes,ABSENT,A,1480,,0
+AM,Museums / Exhibitions,ABSENT,A,1480,,0
+AN,Newspapers,ABSENT,A,1480,,0
+AP,Periodicals (General),ABSENT,A,1480,,0
+AS,Academies / Societies,ABSENT,A,1480,,0
+AY,Yearbooks / Almanacs,ABSENT,A,1480,,0
+AZ,History of Scholarship,ABSENT,A,1480,,0
+B,Philosophy (General),MERGED,B,1480,9.0,10
+BC,Logic,MERGED,B,1480,25.0,1
+BD,Speculative Philosophy,MERGED,B,1480,,0
+BF,Psychology,ABSENT,B,1480,25.0,1
+BH,Aesthetics,MERGED,B,1480,,0
+BJ,Ethics,MERGED,B,1480,10.0,7
+BL,Religion / Mythology,MERGED,B,1480,16.0,2
+BM,Judaism,MERGED,B,1480,25.0,1
+BP,Islam,MERGED,B,1480,14.0,3
+BQ,Buddhism,MERGED,B,1480,12.0,4
+BR,Christianity,MERGED,B,1480,6.0,17
+BS,Bible,MERGED,B,1480,3.0,32
+BT,Doctrinal Theology,MERGED,B,1480,8.0,15
+BV,Practical Theology,MERGED,B,1480,6.0,17
+BX,Christian Denominations,MERGED,B,1480,1.0,70
+C,Auxiliary Sciences of History (General),ABSENT,C,1480,,0
+CB,History of Civilization,ABSENT,C,1480,,0
+CC,Archaeology,ABSENT,C,1480,,0
+CD,Diplomatics / Archives,ABSENT,C,1480,,0
+CE,Chronology,ABSENT,C,1480,16.0,2
+CJ,Numismatics,ABSENT,C,1480,,0
+CN,Inscriptions / Epigraphy,ABSENT,C,1480,,0
+CR,Heraldry,ABSENT,C,1480,,0
+CS,Genealogy,ABSENT,C,1480,,0
+CT,Biography (General),ABSENT,C,1480,,0
+D,History (General),MERGED,D,1480,,0
+DA,British History,MERGED,D,1480,,0
+DAW,Central Europe,ABSENT,D,1480,,0
+DB,Austria / Bohemia,ABSENT,D,1480,,0
+DC,French History,MERGED,D,1480,,0
+DD,German History,MERGED,D,1480,,0
+DE,Greco-Roman World,MERGED,D,1480,,0
+DF,Greek History,MERGED,D,1480,25.0,1
+DG,Italian History / Rome,MERGED,D,1480,,0
+DH,Low Countries History,ABSENT,D,1480,,0
+DJ,Netherlands,ABSENT,D,1480,,0
+DJK,Eastern Europe (General),ABSENT,D,1480,,0
+DK,Russia / Former Soviet States,ABSENT,D,1480,,0
+DL,Scandinavian History,ABSENT,D,1480,,0
+DP,Iberian History,ABSENT,D,1480,,0
+DQ,Switzerland,ABSENT,D,1480,,0
+DR,Balkan History,ABSENT,D,1480,25.0,1
+DS,Asian History,ABSENT,D,1480,12.0,4
+DT,African History,ABSENT,D,1480,,0
+DU,Oceania,ABSENT,D,1480,,0
+DX,Romani People,ABSENT,D,1480,,0
+E,American History (General),MERGED,E,1480,,0
+E18,African American History (E185),ABSENT,E,1480,,0
+E99,Native Americans (E99),ABSENT,E,1480,,0
+F,US Local / Latin American History,MERGED,F,1480,,0
+G,Geography (General),MERGED,G,1480,,0
+GA,Mathematical Geography,MERGED,G,1480,,0
+GB,Physical Geography,MERGED,G,1480,,0
+GC,Oceanography,ABSENT,G,1480,,0
+GE,Environmental Sciences,ABSENT,G,1480,,0
+GF,Human Ecology,ABSENT,G,1480,,0
+GN,Anthropology,ABSENT,G,1480,,0
+GR,Folklore,ABSENT,G,1480,,0
+GT,Manners & Customs,ABSENT,G,1480,,0
+GV,Recreation / Leisure,ABSENT,G,1480,,0
+H,Social Sciences (General),ABSENT,H,1480,,0
+HA,Statistics,ABSENT,H,1480,,0
+HB,Economic Theory,ABSENT,H,1480,,0
+HC,Economic History,ABSENT,H,1480,,0
+HD,Land / Agriculture Economics,ABSENT,H,1480,,0
+HE,Transportation & Comms,ABSENT,H,1480,,0
+HF,Commerce,MERGED,H,1480,,0
+HG,Finance,ABSENT,H,1480,,0
+HJ,Public Finance,MERGED,H,1480,25.0,1
+HM,Sociology,ABSENT,H,1480,,0
+HN,Social History,ABSENT,H,1480,,0
+HQ,Family / Gender / Sexuality,ABSENT,H,1480,,0
+HS,Societies / Clubs,ABSENT,H,1480,,0
+HT,Communities / Classes / Race,ABSENT,H,1480,,0
+HV,Social Pathology / Criminology,ABSENT,H,1480,,0
+HX,Socialism / Communism,ABSENT,H,1480,,0
+J,Political Science (General),MERGED,J,1480,,0
+JA,Political Science (General works),MERGED,J,1480,,0
+JC,Political Theory,MERGED,J,1480,,0
+JF,Political Institutions (General),MERGED,J,1480,,0
+JJ,"Political Institutions (Europe, other)",MERGED,J,1480,,0
+JK,US Political Institutions,MERGED,J,1480,,0
+JL,Canadian / Latin American Politics,MERGED,J,1480,,0
+JN,European Politics,ABSENT,J,1480,,0
+JQ,Asian / African Politics,ABSENT,J,1480,,0
+JS,Local Government,ABSENT,J,1480,,0
+JV,Colonies / Colonialism,ABSENT,J,1480,,0
+JX,International Law (old),ABSENT,J,1480,,0
+JZ,International Relations,ABSENT,J,1480,,0
+K,Law (General),MERGED,K,1480,25.0,1
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1480,,0
+KB,Religious Law,MERGED,K,1480,2.0,60
+KD,UK Law,MERGED,K,1480,25.0,1
+KE,Canadian Law,ABSENT,K,1480,,0
+KF,US Law,MERGED,K,1480,,0
+KG,Latin American Law,ABSENT,K,1480,,0
+KH,South American Law,ABSENT,K,1480,,0
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1480,,0
+KJ,European Law,MERGED,K,1480,3.0,32
+KK,Law of Europe (KK),MERGED,K,1480,16.0,2
+KL,Asian / African Law,ABSENT,K,1480,,0
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1480,16.0,2
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1480,,0
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1480,,0
+KQ,Law of Africa (KQ),ABSENT,K,1480,,0
+KR,Law of Africa (KR),ABSENT,K,1480,,0
+KS,Law of Africa (KS),ABSENT,K,1480,,0
+KT,Law of Africa (KT),ABSENT,K,1480,,0
+KU,Law of Pacific Area (KU),ABSENT,K,1480,,0
+KV,Law of Pacific Area (KV),ABSENT,K,1480,,0
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1480,,0
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1480,,0
+KZ,International Law,ABSENT,K,1480,,0
+L,Education (General),ABSENT,L,1480,,0
+LA,History of Education,ABSENT,L,1480,25.0,1
+LB,Theory / Practice of Education,ABSENT,L,1480,,0
+LC,Social Aspects of Education,ABSENT,L,1480,25.0,1
+LD,US Universities,ABSENT,L,1480,,0
+LE,American Universities (other),ABSENT,L,1480,,0
+LF,European Universities,ABSENT,L,1480,,0
+LG,Asian / African Universities,ABSENT,L,1480,,0
+LH,College Publications,ABSENT,L,1480,,0
+LJ,Student Fraternities,ABSENT,L,1480,,0
+LT,Textbooks,ABSENT,L,1480,,0
+M,Music Scores,DIRECT,M,1480,,0
+ML,Literature on Music,DIRECT,M,1480,25.0,1
+MT,Musical Instruction,DIRECT,M,1480,,0
+N,Visual Arts (General),MERGED,N,1480,,0
+NB,Sculpture,MERGED,N,1480,,0
+NC,Drawing / Design,MERGED,N,1480,,0
+ND,Painting,MERGED,N,1480,,0
+NE,Print Media,ABSENT,N,1480,,0
+NK,Decorative Arts,ABSENT,N,1480,,0
+NX,Arts in General,ABSENT,N,1480,,0
+NA,Architecture,DIRECT,N,1480,,0
+P,Linguistics (General),MERGED,P,1480,,0
+PA,Classical Languages & Literature,MERGED,P,1480,5.0,29
+PB,Celtic Languages,MERGED,P,1480,,0
+PC,Romanic Languages,MERGED,P,1480,,0
+PD,Germanic Languages (Old),MERGED,P,1480,,0
+PE,English Language,MERGED,P,1480,,0
+PF,West Germanic Languages,MERGED,P,1480,,0
+PG,Slavic Languages & Literatures,ABSENT,P,1480,,0
+PH,Uralic / Basque Languages,ABSENT,P,1480,,0
+PJ,Oriental Languages & Literature,ABSENT,P,1480,,0
+PK,Indo-Iranian Languages,ABSENT,P,1480,,0
+PL,E Asian / African / Pacific,ABSENT,P,1480,25.0,1
+PM,Indigenous American Languages,ABSENT,P,1480,,0
+PN,General Literature,MERGED,P,1480,,0
+PQ,French/Italian/Spanish Lit.,MERGED,P,1480,11.0,5
+PR,English Literature,MERGED,P,1480,,0
+PS,American Literature,MERGED,P,1480,,0
+PT,Germanic Literature,MERGED,P,1480,,0
+PZ,Fiction / Juvenile Literature,ABSENT,P,1480,,0
+Q,Science (General),MERGED,Q,1480,,0
+QA,Mathematics,MERGED,Q,1480,,0
+QB,Astronomy,MERGED,Q,1480,14.0,3
+QC,Physics,MERGED,Q,1480,,0
+QD,Chemistry,MERGED,Q,1480,,0
+QE,Geology / Mineralogy,MERGED,Q,1480,,0
+QH,Natural History / Biology,ABSENT,Q,1480,,0
+QK,Botany,MERGED,Q,1480,,0
+QL,Zoology,MERGED,Q,1480,,0
+QM,Human Anatomy,MERGED,Q,1480,,0
+QP,Physiology,ABSENT,Q,1480,16.0,2
+QR,Microbiology,ABSENT,Q,1480,,0
+R,Medicine (General),MERGED,R,1480,16.0,2
+RA,Public Health,ABSENT,R,1480,16.0,2
+RB,Pathology,ABSENT,R,1480,,0
+RC,Internal Medicine,MERGED,R,1480,,0
+RD,Surgery,MERGED,R,1480,,0
+RE,Ophthalmology,ABSENT,R,1480,,0
+RF,Otorhinolaryngology,ABSENT,R,1480,,0
+RG,Gynecology / Obstetrics,ABSENT,R,1480,,0
+RJ,Pediatrics,ABSENT,R,1480,,0
+RK,Dentistry,ABSENT,R,1480,,0
+RL,Dermatology,ABSENT,R,1480,,0
+RM,Pharmacology,ABSENT,R,1480,,0
+RS,Pharmacy,ABSENT,R,1480,16.0,2
+RT,Nursing,ABSENT,R,1480,,0
+RV,Botanic Medicine,ABSENT,R,1480,,0
+RX,Homeopathy,ABSENT,R,1480,,0
+RZ,Other Medical Systems,ABSENT,R,1480,,0
+S,Agriculture (General),DIRECT,S,1480,,0
+SB,Plant Culture,DIRECT,S,1480,,0
+SD,Forestry,MERGED,S,1480,,0
+SF,Animal Culture,MERGED,S,1480,,0
+SH,Aquaculture / Fisheries,ABSENT,S,1480,,0
+SK,Hunting / Wildlife,ABSENT,S,1480,,0
+T,Technology (General),MERGED,T,1480,,0
+TA,Engineering (General),MERGED,T,1480,,0
+TC,Hydraulic Engineering,MERGED,T,1480,,0
+TD,Environmental Technology,ABSENT,T,1480,,0
+TE,Highway Engineering,MERGED,T,1480,,0
+TF,Railroad Engineering,ABSENT,T,1480,,0
+TG,Bridge Engineering,MERGED,T,1480,,0
+TH,Building Construction,MERGED,T,1480,,0
+TJ,Mechanical Engineering,MERGED,T,1480,,0
+TK,Electrical Engineering,ABSENT,T,1480,,0
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1480,,0
+TN,Mining / Metallurgy,MERGED,T,1480,,0
+TP,Chemical Technology,MERGED,T,1480,,0
+TR,Photography,ABSENT,T,1480,,0
+TS,Manufactures,MERGED,T,1480,,0
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1480,,0
+TX,Home Economics,ABSENT,T,1480,25.0,1
+U,Military Science (General),ABSENT,U,1480,16.0,2
+UA,Armies / Land Forces,ABSENT,U,1480,,0
+UB,Military Administration,ABSENT,U,1480,,0
+UC,Military Maintenance,ABSENT,U,1480,,0
+UD,Infantry,ABSENT,U,1480,,0
+UE,Cavalry / Armor,ABSENT,U,1480,,0
+UF,Artillery,ABSENT,U,1480,,0
+UG,Military Engineering,ABSENT,U,1480,,0
+UH,Military Medicine,ABSENT,U,1480,,0
+V,Naval Science (General),ABSENT,V,1480,,0
+VA,Navies,ABSENT,V,1480,,0
+VB,Naval Administration,ABSENT,V,1480,,0
+VC,Naval Maintenance,ABSENT,V,1480,,0
+VD,Naval Seamen,ABSENT,V,1480,,0
+VE,Marines,ABSENT,V,1480,,0
+VF,Naval Ordnance,ABSENT,V,1480,,0
+VG,Naval Auxiliaries,ABSENT,V,1480,,0
+VK,Navigation / Seamanship,ABSENT,V,1480,,0
+VM,Naval Architecture,ABSENT,V,1480,,0
+Z,Books / Writing (General),DIRECT,Z,1480,,0
+ZA,Information Resources,ABSENT,Z,1480,,0
+A,General Works (unclassed),ABSENT,A,1550,,0
+AC,General Collections,RENAMED,A,1550,60.0,3
+AE,Encyclopedias (General),RENAMED,A,1550,28.0,12
+AG,Dictionaries (General),RENAMED,A,1550,70.0,2
+AI,Indexes,ABSENT,A,1550,,0
+AM,Museums / Exhibitions,ABSENT,A,1550,,0
+AN,Newspapers,ABSENT,A,1550,,0
+AP,Periodicals (General),ABSENT,A,1550,,0
+AS,Academies / Societies,ABSENT,A,1550,,0
+AY,Yearbooks / Almanacs,ABSENT,A,1550,83.0,1
+AZ,History of Scholarship,ABSENT,A,1550,70.0,2
+B,Philosophy (General),MERGED,B,1550,10.0,58
+BC,Logic,MERGED,B,1550,60.0,3
+BD,Speculative Philosophy,MERGED,B,1550,83.0,1
+BF,Psychology,ABSENT,B,1550,26.0,14
+BH,Aesthetics,MERGED,B,1550,,0
+BJ,Ethics,MERGED,B,1550,22.0,19
+BL,Religion / Mythology,MERGED,B,1550,52.0,5
+BM,Judaism,MERGED,B,1550,11.0,54
+BP,Islam,MERGED,B,1550,39.0,7
+BQ,Buddhism,MERGED,B,1550,33.0,9
+BR,Christianity,MERGED,B,1550,5.0,269
+BS,Bible,MERGED,B,1550,6.0,162
+BT,Doctrinal Theology,MERGED,B,1550,9.0,93
+BV,Practical Theology,MERGED,B,1550,8.0,98
+BX,Christian Denominations,MERGED,B,1550,3.0,379
+C,Auxiliary Sciences of History (General),ABSENT,C,1550,,0
+CB,History of Civilization,ABSENT,C,1550,60.0,3
+CC,Archaeology,ABSENT,C,1550,,0
+CD,Diplomatics / Archives,ABSENT,C,1550,,0
+CE,Chronology,ABSENT,C,1550,46.0,6
+CJ,Numismatics,ABSENT,C,1550,,0
+CN,Inscriptions / Epigraphy,ABSENT,C,1550,70.0,2
+CR,Heraldry,ABSENT,C,1550,83.0,1
+CS,Genealogy,ABSENT,C,1550,,0
+CT,Biography (General),ABSENT,C,1550,,0
+D,History (General),MERGED,D,1550,18.0,26
+DA,British History,MERGED,D,1550,28.0,12
+DAW,Central Europe,ABSENT,D,1550,,0
+DB,Austria / Bohemia,ABSENT,D,1550,83.0,1
+DC,French History,MERGED,D,1550,60.0,3
+DD,German History,MERGED,D,1550,20.0,21
+DE,Greco-Roman World,MERGED,D,1550,83.0,1
+DF,Greek History,MERGED,D,1550,52.0,5
+DG,Italian History / Rome,MERGED,D,1550,15.0,40
+DH,Low Countries History,ABSENT,D,1550,,0
+DJ,Netherlands,ABSENT,D,1550,,0
+DJK,Eastern Europe (General),ABSENT,D,1550,,0
+DK,Russia / Former Soviet States,ABSENT,D,1550,83.0,1
+DL,Scandinavian History,ABSENT,D,1550,,0
+DP,Iberian History,ABSENT,D,1550,60.0,3
+DQ,Switzerland,ABSENT,D,1550,83.0,1
+DR,Balkan History,ABSENT,D,1550,34.0,8
+DS,Asian History,ABSENT,D,1550,24.0,18
+DT,African History,ABSENT,D,1550,,0
+DU,Oceania,ABSENT,D,1550,,0
+DX,Romani People,ABSENT,D,1550,,0
+E,American History (General),MERGED,E,1550,28.0,12
+E18,African American History (E185),ABSENT,E,1550,,0
+E99,Native Americans (E99),ABSENT,E,1550,,0
+F,US Local / Latin American History,MERGED,F,1550,54.0,4
+G,Geography (General),MERGED,G,1550,19.0,23
+GA,Mathematical Geography,MERGED,G,1550,34.0,8
+GB,Physical Geography,MERGED,G,1550,83.0,1
+GC,Oceanography,ABSENT,G,1550,,0
+GE,Environmental Sciences,ABSENT,G,1550,,0
+GF,Human Ecology,ABSENT,G,1550,,0
+GN,Anthropology,ABSENT,G,1550,,0
+GR,Folklore,ABSENT,G,1550,,0
+GT,Manners & Customs,ABSENT,G,1550,34.0,8
+GV,Recreation / Leisure,ABSENT,G,1550,70.0,2
+H,Social Sciences (General),ABSENT,H,1550,,0
+HA,Statistics,ABSENT,H,1550,,0
+HB,Economic Theory,ABSENT,H,1550,70.0,2
+HC,Economic History,ABSENT,H,1550,,0
+HD,Land / Agriculture Economics,ABSENT,H,1550,,0
+HE,Transportation & Comms,ABSENT,H,1550,,0
+HF,Commerce,MERGED,H,1550,70.0,2
+HG,Finance,ABSENT,H,1550,54.0,4
+HJ,Public Finance,MERGED,H,1550,83.0,1
+HM,Sociology,ABSENT,H,1550,,0
+HN,Social History,ABSENT,H,1550,83.0,1
+HQ,Family / Gender / Sexuality,ABSENT,H,1550,54.0,4
+HS,Societies / Clubs,ABSENT,H,1550,,0
+HT,Communities / Classes / Race,ABSENT,H,1550,,0
+HV,Social Pathology / Criminology,ABSENT,H,1550,70.0,2
+HX,Socialism / Communism,ABSENT,H,1550,,0
+J,Political Science (General),MERGED,J,1550,83.0,1
+JA,Political Science (General works),MERGED,J,1550,,0
+JC,Political Theory,MERGED,J,1550,31.0,11
+JF,Political Institutions (General),MERGED,J,1550,,0
+JJ,"Political Institutions (Europe, other)",MERGED,J,1550,,0
+JK,US Political Institutions,MERGED,J,1550,,0
+JL,Canadian / Latin American Politics,MERGED,J,1550,,0
+JN,European Politics,ABSENT,J,1550,54.0,4
+JQ,Asian / African Politics,ABSENT,J,1550,,0
+JS,Local Government,ABSENT,J,1550,,0
+JV,Colonies / Colonialism,ABSENT,J,1550,,0
+JX,International Law (old),ABSENT,J,1550,,0
+JZ,International Relations,ABSENT,J,1550,,0
+K,Law (General),MERGED,K,1550,34.0,8
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1550,,0
+KB,Religious Law,MERGED,K,1550,4.0,325
+KD,UK Law,MERGED,K,1550,7.0,118
+KE,Canadian Law,ABSENT,K,1550,,0
+KF,US Law,MERGED,K,1550,83.0,1
+KG,Latin American Law,ABSENT,K,1550,,0
+KH,South American Law,ABSENT,K,1550,,0
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1550,,0
+KJ,European Law,MERGED,K,1550,1.0,527
+KK,Law of Europe (KK),MERGED,K,1550,14.0,42
+KL,Asian / African Law,ABSENT,K,1550,,0
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1550,60.0,3
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1550,,0
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1550,,0
+KQ,Law of Africa (KQ),ABSENT,K,1550,,0
+KR,Law of Africa (KR),ABSENT,K,1550,,0
+KS,Law of Africa (KS),ABSENT,K,1550,,0
+KT,Law of Africa (KT),ABSENT,K,1550,,0
+KU,Law of Pacific Area (KU),ABSENT,K,1550,,0
+KV,Law of Pacific Area (KV),ABSENT,K,1550,,0
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1550,,0
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1550,,0
+KZ,International Law,ABSENT,K,1550,83.0,1
+L,Education (General),ABSENT,L,1550,,0
+LA,History of Education,ABSENT,L,1550,70.0,2
+LB,Theory / Practice of Education,ABSENT,L,1550,46.0,6
+LC,Social Aspects of Education,ABSENT,L,1550,83.0,1
+LD,US Universities,ABSENT,L,1550,,0
+LE,American Universities (other),ABSENT,L,1550,,0
+LF,European Universities,ABSENT,L,1550,,0
+LG,Asian / African Universities,ABSENT,L,1550,,0
+LH,College Publications,ABSENT,L,1550,,0
+LJ,Student Fraternities,ABSENT,L,1550,,0
+LT,Textbooks,ABSENT,L,1550,,0
+M,Music Scores,DIRECT,M,1550,70.0,2
+ML,Literature on Music,DIRECT,M,1550,20.0,21
+MT,Musical Instruction,DIRECT,M,1550,60.0,3
+N,Visual Arts (General),MERGED,N,1550,83.0,1
+NB,Sculpture,MERGED,N,1550,,0
+NC,Drawing / Design,MERGED,N,1550,70.0,2
+ND,Painting,MERGED,N,1550,,0
+NE,Print Media,ABSENT,N,1550,39.0,7
+NK,Decorative Arts,ABSENT,N,1550,70.0,2
+NX,Arts in General,ABSENT,N,1550,,0
+NA,Architecture,DIRECT,N,1550,39.0,7
+P,Linguistics (General),MERGED,P,1550,83.0,1
+PA,Classical Languages & Literature,MERGED,P,1550,2.0,405
+PB,Celtic Languages,MERGED,P,1550,,0
+PC,Romanic Languages,MERGED,P,1550,34.0,8
+PD,Germanic Languages (Old),MERGED,P,1550,,0
+PE,English Language,MERGED,P,1550,,0
+PF,West Germanic Languages,MERGED,P,1550,83.0,1
+PG,Slavic Languages & Literatures,ABSENT,P,1550,,0
+PH,Uralic / Basque Languages,ABSENT,P,1550,,0
+PJ,Oriental Languages & Literature,ABSENT,P,1550,24.0,18
+PK,Indo-Iranian Languages,ABSENT,P,1550,,0
+PL,E Asian / African / Pacific,ABSENT,P,1550,39.0,7
+PM,Indigenous American Languages,ABSENT,P,1550,,0
+PN,General Literature,MERGED,P,1550,39.0,7
+PQ,French/Italian/Spanish Lit.,MERGED,P,1550,12.0,49
+PR,English Literature,MERGED,P,1550,60.0,3
+PS,American Literature,MERGED,P,1550,,0
+PT,Germanic Literature,MERGED,P,1550,22.0,19
+PZ,Fiction / Juvenile Literature,ABSENT,P,1550,,0
+Q,Science (General),MERGED,Q,1550,54.0,4
+QA,Mathematics,MERGED,Q,1550,39.0,7
+QB,Astronomy,MERGED,Q,1550,17.0,30
+QC,Physics,MERGED,Q,1550,46.0,6
+QD,Chemistry,MERGED,Q,1550,83.0,1
+QE,Geology / Mineralogy,MERGED,Q,1550,,0
+QH,Natural History / Biology,ABSENT,Q,1550,83.0,1
+QK,Botany,MERGED,Q,1550,46.0,6
+QL,Zoology,MERGED,Q,1550,70.0,2
+QM,Human Anatomy,MERGED,Q,1550,46.0,6
+QP,Physiology,ABSENT,Q,1550,60.0,3
+QR,Microbiology,ABSENT,Q,1550,,0
+R,Medicine (General),MERGED,R,1550,12.0,49
+RA,Public Health,ABSENT,R,1550,31.0,11
+RB,Pathology,ABSENT,R,1550,,0
+RC,Internal Medicine,MERGED,R,1550,83.0,1
+RD,Surgery,MERGED,R,1550,54.0,4
+RE,Ophthalmology,ABSENT,R,1550,,0
+RF,Otorhinolaryngology,ABSENT,R,1550,,0
+RG,Gynecology / Obstetrics,ABSENT,R,1550,83.0,1
+RJ,Pediatrics,ABSENT,R,1550,,0
+RK,Dentistry,ABSENT,R,1550,,0
+RL,Dermatology,ABSENT,R,1550,,0
+RM,Pharmacology,ABSENT,R,1550,83.0,1
+RS,Pharmacy,ABSENT,R,1550,39.0,7
+RT,Nursing,ABSENT,R,1550,,0
+RV,Botanic Medicine,ABSENT,R,1550,,0
+RX,Homeopathy,ABSENT,R,1550,,0
+RZ,Other Medical Systems,ABSENT,R,1550,,0
+S,Agriculture (General),DIRECT,S,1550,60.0,3
+SB,Plant Culture,DIRECT,S,1550,,0
+SD,Forestry,MERGED,S,1550,,0
+SF,Animal Culture,MERGED,S,1550,,0
+SH,Aquaculture / Fisheries,ABSENT,S,1550,,0
+SK,Hunting / Wildlife,ABSENT,S,1550,,0
+T,Technology (General),MERGED,T,1550,,0
+TA,Engineering (General),MERGED,T,1550,83.0,1
+TC,Hydraulic Engineering,MERGED,T,1550,,0
+TD,Environmental Technology,ABSENT,T,1550,,0
+TE,Highway Engineering,MERGED,T,1550,,0
+TF,Railroad Engineering,ABSENT,T,1550,,0
+TG,Bridge Engineering,MERGED,T,1550,,0
+TH,Building Construction,MERGED,T,1550,,0
+TJ,Mechanical Engineering,MERGED,T,1550,,0
+TK,Electrical Engineering,ABSENT,T,1550,,0
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1550,,0
+TN,Mining / Metallurgy,MERGED,T,1550,83.0,1
+TP,Chemical Technology,MERGED,T,1550,83.0,1
+TR,Photography,ABSENT,T,1550,,0
+TS,Manufactures,MERGED,T,1550,,0
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1550,,0
+TX,Home Economics,ABSENT,T,1550,16.0,31
+U,Military Science (General),ABSENT,U,1550,46.0,6
+UA,Armies / Land Forces,ABSENT,U,1550,,0
+UB,Military Administration,ABSENT,U,1550,,0
+UC,Military Maintenance,ABSENT,U,1550,,0
+UD,Infantry,ABSENT,U,1550,,0
+UE,Cavalry / Armor,ABSENT,U,1550,,0
+UF,Artillery,ABSENT,U,1550,,0
+UG,Military Engineering,ABSENT,U,1550,83.0,1
+UH,Military Medicine,ABSENT,U,1550,,0
+V,Naval Science (General),ABSENT,V,1550,,0
+VA,Navies,ABSENT,V,1550,,0
+VB,Naval Administration,ABSENT,V,1550,,0
+VC,Naval Maintenance,ABSENT,V,1550,,0
+VD,Naval Seamen,ABSENT,V,1550,,0
+VE,Marines,ABSENT,V,1550,,0
+VF,Naval Ordnance,ABSENT,V,1550,,0
+VG,Naval Auxiliaries,ABSENT,V,1550,,0
+VK,Navigation / Seamanship,ABSENT,V,1550,70.0,2
+VM,Naval Architecture,ABSENT,V,1550,83.0,1
+Z,Books / Writing (General),DIRECT,Z,1550,27.0,13
+ZA,Information Resources,ABSENT,Z,1550,,0
+A,General Works (unclassed),ABSENT,A,1600,,0
+AC,General Collections,RENAMED,A,1600,49.0,15
+AE,Encyclopedias (General),RENAMED,A,1600,50.0,14
+AG,Dictionaries (General),RENAMED,A,1600,90.0,4
+AI,Indexes,ABSENT,A,1600,,0
+AM,Museums / Exhibitions,ABSENT,A,1600,,0
+AN,Newspapers,ABSENT,A,1600,,0
+AP,Periodicals (General),ABSENT,A,1600,,0
+AS,Academies / Societies,ABSENT,A,1600,,0
+AY,Yearbooks / Almanacs,ABSENT,A,1600,95.0,3
+AZ,History of Scholarship,ABSENT,A,1600,105.0,2
+B,Philosophy (General),MERGED,B,1600,16.0,75
+BC,Logic,MERGED,B,1600,95.0,3
+BD,Speculative Philosophy,MERGED,B,1600,95.0,3
+BF,Psychology,ABSENT,B,1600,28.0,35
+BH,Aesthetics,MERGED,B,1600,,0
+BJ,Ethics,MERGED,B,1600,24.0,46
+BL,Religion / Mythology,MERGED,B,1600,64.0,9
+BM,Judaism,MERGED,B,1600,10.0,146
+BP,Islam,MERGED,B,1600,65.0,8
+BQ,Buddhism,MERGED,B,1600,52.0,13
+BR,Christianity,MERGED,B,1600,5.0,334
+BS,Bible,MERGED,B,1600,8.0,255
+BT,Doctrinal Theology,MERGED,B,1600,12.0,116
+BV,Practical Theology,MERGED,B,1600,11.0,126
+BX,Christian Denominations,MERGED,B,1600,3.0,603
+C,Auxiliary Sciences of History (General),ABSENT,C,1600,,0
+CB,History of Civilization,ABSENT,C,1600,82.0,5
+CC,Archaeology,ABSENT,C,1600,,0
+CD,Diplomatics / Archives,ABSENT,C,1600,,0
+CE,Chronology,ABSENT,C,1600,56.0,11
+CJ,Numismatics,ABSENT,C,1600,65.0,8
+CN,Inscriptions / Epigraphy,ABSENT,C,1600,105.0,2
+CR,Heraldry,ABSENT,C,1600,60.0,10
+CS,Genealogy,ABSENT,C,1600,69.0,7
+CT,Biography (General),ABSENT,C,1600,60.0,10
+D,History (General),MERGED,D,1600,23.0,49
+DA,British History,MERGED,D,1600,17.0,65
+DAW,Central Europe,ABSENT,D,1600,,0
+DB,Austria / Bohemia,ABSENT,D,1600,82.0,5
+DC,French History,MERGED,D,1600,33.0,29
+DD,German History,MERGED,D,1600,36.0,27
+DE,Greco-Roman World,MERGED,D,1600,95.0,3
+DF,Greek History,MERGED,D,1600,53.0,12
+DG,Italian History / Rome,MERGED,D,1600,13.0,96
+DH,Low Countries History,ABSENT,D,1600,60.0,10
+DJ,Netherlands,ABSENT,D,1600,120.0,1
+DJK,Eastern Europe (General),ABSENT,D,1600,,0
+DK,Russia / Former Soviet States,ABSENT,D,1600,65.0,8
+DL,Scandinavian History,ABSENT,D,1600,95.0,3
+DP,Iberian History,ABSENT,D,1600,39.0,23
+DQ,Switzerland,ABSENT,D,1600,120.0,1
+DR,Balkan History,ABSENT,D,1600,43.0,19
+DS,Asian History,ABSENT,D,1600,19.0,58
+DT,African History,ABSENT,D,1600,95.0,3
+DU,Oceania,ABSENT,D,1600,,0
+DX,Romani People,ABSENT,D,1600,,0
+E,American History (General),MERGED,E,1600,22.0,50
+E18,African American History (E185),ABSENT,E,1600,,0
+E99,Native Americans (E99),ABSENT,E,1600,,0
+F,US Local / Latin American History,MERGED,F,1600,27.0,38
+G,Geography (General),MERGED,G,1600,15.0,77
+GA,Mathematical Geography,MERGED,G,1600,44.0,18
+GB,Physical Geography,MERGED,G,1600,105.0,2
+GC,Oceanography,ABSENT,G,1600,,0
+GE,Environmental Sciences,ABSENT,G,1600,,0
+GF,Human Ecology,ABSENT,G,1600,,0
+GN,Anthropology,ABSENT,G,1600,,0
+GR,Folklore,ABSENT,G,1600,120.0,1
+GT,Manners & Customs,ABSENT,G,1600,46.0,17
+GV,Recreation / Leisure,ABSENT,G,1600,65.0,8
+H,Social Sciences (General),ABSENT,H,1600,,0
+HA,Statistics,ABSENT,H,1600,120.0,1
+HB,Economic Theory,ABSENT,H,1600,76.0,6
+HC,Economic History,ABSENT,H,1600,120.0,1
+HD,Land / Agriculture Economics,ABSENT,H,1600,105.0,2
+HE,Transportation & Comms,ABSENT,H,1600,,0
+HF,Commerce,MERGED,H,1600,82.0,5
+HG,Finance,ABSENT,H,1600,82.0,5
+HJ,Public Finance,MERGED,H,1600,90.0,4
+HM,Sociology,ABSENT,H,1600,,0
+HN,Social History,ABSENT,H,1600,120.0,1
+HQ,Family / Gender / Sexuality,ABSENT,H,1600,56.0,11
+HS,Societies / Clubs,ABSENT,H,1600,,0
+HT,Communities / Classes / Race,ABSENT,H,1600,120.0,1
+HV,Social Pathology / Criminology,ABSENT,H,1600,69.0,7
+HX,Socialism / Communism,ABSENT,H,1600,,0
+J,Political Science (General),MERGED,J,1600,120.0,1
+JA,Political Science (General works),MERGED,J,1600,,0
+JC,Political Theory,MERGED,J,1600,18.0,59
+JF,Political Institutions (General),MERGED,J,1600,,0
+JJ,"Political Institutions (Europe, other)",MERGED,J,1600,,0
+JK,US Political Institutions,MERGED,J,1600,,0
+JL,Canadian / Latin American Politics,MERGED,J,1600,,0
+JN,European Politics,ABSENT,J,1600,53.0,12
+JQ,Asian / African Politics,ABSENT,J,1600,,0
+JS,Local Government,ABSENT,J,1600,120.0,1
+JV,Colonies / Colonialism,ABSENT,J,1600,,0
+JX,International Law (old),ABSENT,J,1600,105.0,2
+JZ,International Relations,ABSENT,J,1600,,0
+K,Law (General),MERGED,K,1600,34.0,28
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1600,,0
+KB,Religious Law,MERGED,K,1600,4.0,529
+KD,UK Law,MERGED,K,1600,6.0,292
+KE,Canadian Law,ABSENT,K,1600,,0
+KF,US Law,MERGED,K,1600,120.0,1
+KG,Latin American Law,ABSENT,K,1600,95.0,3
+KH,South American Law,ABSENT,K,1600,,0
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1600,,0
+KJ,European Law,MERGED,K,1600,1.0,1541
+KK,Law of Europe (KK),MERGED,K,1600,7.0,266
+KL,Asian / African Law,ABSENT,K,1600,,0
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1600,95.0,3
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1600,120.0,1
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1600,,0
+KQ,Law of Africa (KQ),ABSENT,K,1600,,0
+KR,Law of Africa (KR),ABSENT,K,1600,,0
+KS,Law of Africa (KS),ABSENT,K,1600,,0
+KT,Law of Africa (KT),ABSENT,K,1600,,0
+KU,Law of Pacific Area (KU),ABSENT,K,1600,,0
+KV,Law of Pacific Area (KV),ABSENT,K,1600,,0
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1600,,0
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1600,,0
+KZ,International Law,ABSENT,K,1600,76.0,6
+L,Education (General),ABSENT,L,1600,,0
+LA,History of Education,ABSENT,L,1600,105.0,2
+LB,Theory / Practice of Education,ABSENT,L,1600,69.0,7
+LC,Social Aspects of Education,ABSENT,L,1600,120.0,1
+LD,US Universities,ABSENT,L,1600,,0
+LE,American Universities (other),ABSENT,L,1600,,0
+LF,European Universities,ABSENT,L,1600,69.0,7
+LG,Asian / African Universities,ABSENT,L,1600,,0
+LH,College Publications,ABSENT,L,1600,,0
+LJ,Student Fraternities,ABSENT,L,1600,,0
+LT,Textbooks,ABSENT,L,1600,,0
+M,Music Scores,DIRECT,M,1600,105.0,2
+ML,Literature on Music,DIRECT,M,1600,25.0,42
+MT,Musical Instruction,DIRECT,M,1600,56.0,11
+N,Visual Arts (General),MERGED,N,1600,76.0,6
+NB,Sculpture,MERGED,N,1600,,0
+NC,Drawing / Design,MERGED,N,1600,69.0,7
+ND,Painting,MERGED,N,1600,120.0,1
+NE,Print Media,ABSENT,N,1600,47.0,16
+NK,Decorative Arts,ABSENT,N,1600,105.0,2
+NX,Arts in General,ABSENT,N,1600,,0
+NA,Architecture,DIRECT,N,1600,41.0,21
+P,Linguistics (General),MERGED,P,1600,95.0,3
+PA,Classical Languages & Literature,MERGED,P,1600,2.0,656
+PB,Celtic Languages,MERGED,P,1600,,0
+PC,Romanic Languages,MERGED,P,1600,38.0,24
+PD,Germanic Languages (Old),MERGED,P,1600,,0
+PE,English Language,MERGED,P,1600,120.0,1
+PF,West Germanic Languages,MERGED,P,1600,105.0,2
+PG,Slavic Languages & Literatures,ABSENT,P,1600,,0
+PH,Uralic / Basque Languages,ABSENT,P,1600,,0
+PJ,Oriental Languages & Literature,ABSENT,P,1600,28.0,35
+PK,Indo-Iranian Languages,ABSENT,P,1600,,0
+PL,E Asian / African / Pacific,ABSENT,P,1600,50.0,14
+PM,Indigenous American Languages,ABSENT,P,1600,105.0,2
+PN,General Literature,MERGED,P,1600,30.0,34
+PQ,French/Italian/Spanish Lit.,MERGED,P,1600,9.0,172
+PR,English Literature,MERGED,P,1600,32.0,32
+PS,American Literature,MERGED,P,1600,,0
+PT,Germanic Literature,MERGED,P,1600,41.0,21
+PZ,Fiction / Juvenile Literature,ABSENT,P,1600,,0
+Q,Science (General),MERGED,Q,1600,56.0,11
+QA,Mathematics,MERGED,Q,1600,30.0,34
+QB,Astronomy,MERGED,Q,1600,20.0,56
+QC,Physics,MERGED,Q,1600,47.0,16
+QD,Chemistry,MERGED,Q,1600,69.0,7
+QE,Geology / Mineralogy,MERGED,Q,1600,,0
+QH,Natural History / Biology,ABSENT,Q,1600,90.0,4
+QK,Botany,MERGED,Q,1600,44.0,18
+QL,Zoology,MERGED,Q,1600,76.0,6
+QM,Human Anatomy,MERGED,Q,1600,60.0,10
+QP,Physiology,ABSENT,Q,1600,90.0,4
+QR,Microbiology,ABSENT,Q,1600,,0
+R,Medicine (General),MERGED,R,1600,14.0,86
+RA,Public Health,ABSENT,R,1600,36.0,27
+RB,Pathology,ABSENT,R,1600,,0
+RC,Internal Medicine,MERGED,R,1600,69.0,7
+RD,Surgery,MERGED,R,1600,82.0,5
+RE,Ophthalmology,ABSENT,R,1600,120.0,1
+RF,Otorhinolaryngology,ABSENT,R,1600,,0
+RG,Gynecology / Obstetrics,ABSENT,R,1600,82.0,5
+RJ,Pediatrics,ABSENT,R,1600,120.0,1
+RK,Dentistry,ABSENT,R,1600,,0
+RL,Dermatology,ABSENT,R,1600,,0
+RM,Pharmacology,ABSENT,R,1600,90.0,4
+RS,Pharmacy,ABSENT,R,1600,40.0,22
+RT,Nursing,ABSENT,R,1600,,0
+RV,Botanic Medicine,ABSENT,R,1600,,0
+RX,Homeopathy,ABSENT,R,1600,,0
+RZ,Other Medical Systems,ABSENT,R,1600,,0
+S,Agriculture (General),DIRECT,S,1600,76.0,6
+SB,Plant Culture,DIRECT,S,1600,76.0,6
+SD,Forestry,MERGED,S,1600,,0
+SF,Animal Culture,MERGED,S,1600,95.0,3
+SH,Aquaculture / Fisheries,ABSENT,S,1600,,0
+SK,Hunting / Wildlife,ABSENT,S,1600,105.0,2
+T,Technology (General),MERGED,T,1600,120.0,1
+TA,Engineering (General),MERGED,T,1600,82.0,5
+TC,Hydraulic Engineering,MERGED,T,1600,,0
+TD,Environmental Technology,ABSENT,T,1600,,0
+TE,Highway Engineering,MERGED,T,1600,,0
+TF,Railroad Engineering,ABSENT,T,1600,,0
+TG,Bridge Engineering,MERGED,T,1600,,0
+TH,Building Construction,MERGED,T,1600,120.0,1
+TJ,Mechanical Engineering,MERGED,T,1600,105.0,2
+TK,Electrical Engineering,ABSENT,T,1600,,0
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1600,,0
+TN,Mining / Metallurgy,MERGED,T,1600,82.0,5
+TP,Chemical Technology,MERGED,T,1600,105.0,2
+TR,Photography,ABSENT,T,1600,,0
+TS,Manufactures,MERGED,T,1600,120.0,1
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1600,,0
+TX,Home Economics,ABSENT,T,1600,20.0,56
+U,Military Science (General),ABSENT,U,1600,34.0,28
+UA,Armies / Land Forces,ABSENT,U,1600,,0
+UB,Military Administration,ABSENT,U,1600,,0
+UC,Military Maintenance,ABSENT,U,1600,,0
+UD,Infantry,ABSENT,U,1600,,0
+UE,Cavalry / Armor,ABSENT,U,1600,,0
+UF,Artillery,ABSENT,U,1600,105.0,2
+UG,Military Engineering,ABSENT,U,1600,105.0,2
+UH,Military Medicine,ABSENT,U,1600,,0
+V,Naval Science (General),ABSENT,V,1600,,0
+VA,Navies,ABSENT,V,1600,,0
+VB,Naval Administration,ABSENT,V,1600,,0
+VC,Naval Maintenance,ABSENT,V,1600,,0
+VD,Naval Seamen,ABSENT,V,1600,,0
+VE,Marines,ABSENT,V,1600,,0
+VF,Naval Ordnance,ABSENT,V,1600,,0
+VG,Naval Auxiliaries,ABSENT,V,1600,,0
+VK,Navigation / Seamanship,ABSENT,V,1600,53.0,12
+VM,Naval Architecture,ABSENT,V,1600,120.0,1
+Z,Books / Writing (General),DIRECT,Z,1600,26.0,39
+ZA,Information Resources,ABSENT,Z,1600,,0
+A,General Works (unclassed),ABSENT,A,1650,,0
+AC,General Collections,RENAMED,A,1650,13.0,207
+AE,Encyclopedias (General),RENAMED,A,1650,71.0,15
+AG,Dictionaries (General),RENAMED,A,1650,91.0,9
+AI,Indexes,ABSENT,A,1650,,0
+AM,Museums / Exhibitions,ABSENT,A,1650,,0
+AN,Newspapers,ABSENT,A,1650,,0
+AP,Periodicals (General),ABSENT,A,1650,,0
+AS,Academies / Societies,ABSENT,A,1650,,0
+AY,Yearbooks / Almanacs,ABSENT,A,1650,122.0,3
+AZ,History of Scholarship,ABSENT,A,1650,122.0,3
+B,Philosophy (General),MERGED,B,1650,20.0,121
+BC,Logic,MERGED,B,1650,103.0,6
+BD,Speculative Philosophy,MERGED,B,1650,96.0,8
+BF,Psychology,ABSENT,B,1650,35.0,62
+BH,Aesthetics,MERGED,B,1650,,0
+BJ,Ethics,MERGED,B,1650,31.0,75
+BL,Religion / Mythology,MERGED,B,1650,63.0,18
+BM,Judaism,MERGED,B,1650,15.0,176
+BP,Islam,MERGED,B,1650,88.0,10
+BQ,Buddhism,MERGED,B,1650,46.0,32
+BR,Christianity,MERGED,B,1650,7.0,392
+BS,Bible,MERGED,B,1650,8.0,362
+BT,Doctrinal Theology,MERGED,B,1650,14.0,205
+BV,Practical Theology,MERGED,B,1650,12.0,216
+BX,Christian Denominations,MERGED,B,1650,2.0,933
+C,Auxiliary Sciences of History (General),ABSENT,C,1650,,0
+CB,History of Civilization,ABSENT,C,1650,103.0,6
+CC,Archaeology,ABSENT,C,1650,140.0,1
+CD,Diplomatics / Archives,ABSENT,C,1650,140.0,1
+CE,Chronology,ABSENT,C,1650,76.0,14
+CJ,Numismatics,ABSENT,C,1650,83.0,12
+CN,Inscriptions / Epigraphy,ABSENT,C,1650,127.0,2
+CR,Heraldry,ABSENT,C,1650,57.0,22
+CS,Genealogy,ABSENT,C,1650,60.0,19
+CT,Biography (General),ABSENT,C,1650,76.0,14
+D,History (General),MERGED,D,1650,22.0,100
+DA,British History,MERGED,D,1650,10.0,293
+DAW,Central Europe,ABSENT,D,1650,,0
+DB,Austria / Bohemia,ABSENT,D,1650,83.0,12
+DC,French History,MERGED,D,1650,26.0,90
+DD,German History,MERGED,D,1650,40.0,41
+DE,Greco-Roman World,MERGED,D,1650,103.0,6
+DF,Greek History,MERGED,D,1650,57.0,22
+DG,Italian History / Rome,MERGED,D,1650,17.0,148
+DH,Low Countries History,ABSENT,D,1650,41.0,39
+DJ,Netherlands,ABSENT,D,1650,71.0,15
+DJK,Eastern Europe (General),ABSENT,D,1650,140.0,1
+DK,Russia / Former Soviet States,ABSENT,D,1650,49.0,29
+DL,Scandinavian History,ABSENT,D,1650,76.0,14
+DP,Iberian History,ABSENT,D,1650,35.0,62
+DQ,Switzerland,ABSENT,D,1650,127.0,2
+DR,Balkan History,ABSENT,D,1650,56.0,23
+DS,Asian History,ABSENT,D,1650,21.0,117
+DT,African History,ABSENT,D,1650,85.0,11
+DU,Oceania,ABSENT,D,1650,140.0,1
+DX,Romani People,ABSENT,D,1650,,0
+E,American History (General),MERGED,E,1650,28.0,83
+E18,African American History (E185),ABSENT,E,1650,,0
+E99,Native Americans (E99),ABSENT,E,1650,140.0,1
+F,US Local / Latin American History,MERGED,F,1650,18.0,135
+G,Geography (General),MERGED,G,1650,16.0,155
+GA,Mathematical Geography,MERGED,G,1650,59.0,21
+GB,Physical Geography,MERGED,G,1650,127.0,2
+GC,Oceanography,ABSENT,G,1650,,0
+GE,Environmental Sciences,ABSENT,G,1650,,0
+GF,Human Ecology,ABSENT,G,1650,,0
+GN,Anthropology,ABSENT,G,1650,,0
+GR,Folklore,ABSENT,G,1650,140.0,1
+GT,Manners & Customs,ABSENT,G,1650,50.0,28
+GV,Recreation / Leisure,ABSENT,G,1650,67.0,16
+H,Social Sciences (General),ABSENT,H,1650,,0
+HA,Statistics,ABSENT,H,1650,127.0,2
+HB,Economic Theory,ABSENT,H,1650,91.0,9
+HC,Economic History,ABSENT,H,1650,140.0,1
+HD,Land / Agriculture Economics,ABSENT,H,1650,67.0,16
+HE,Transportation & Comms,ABSENT,H,1650,,0
+HF,Commerce,MERGED,H,1650,54.0,25
+HG,Finance,ABSENT,H,1650,96.0,8
+HJ,Public Finance,MERGED,H,1650,63.0,18
+HM,Sociology,ABSENT,H,1650,,0
+HN,Social History,ABSENT,H,1650,140.0,1
+HQ,Family / Gender / Sexuality,ABSENT,H,1650,60.0,19
+HS,Societies / Clubs,ABSENT,H,1650,,0
+HT,Communities / Classes / Race,ABSENT,H,1650,114.0,4
+HV,Social Pathology / Criminology,ABSENT,H,1650,67.0,16
+HX,Socialism / Communism,ABSENT,H,1650,,0
+J,Political Science (General),MERGED,J,1650,140.0,1
+JA,Political Science (General works),MERGED,J,1650,,0
+JC,Political Theory,MERGED,J,1650,23.0,98
+JF,Political Institutions (General),MERGED,J,1650,127.0,2
+JJ,"Political Institutions (Europe, other)",MERGED,J,1650,,0
+JK,US Political Institutions,MERGED,J,1650,,0
+JL,Canadian / Latin American Politics,MERGED,J,1650,,0
+JN,European Politics,ABSENT,J,1650,38.0,52
+JQ,Asian / African Politics,ABSENT,J,1650,140.0,1
+JS,Local Government,ABSENT,J,1650,127.0,2
+JV,Colonies / Colonialism,ABSENT,J,1650,,0
+JX,International Law (old),ABSENT,J,1650,88.0,10
+JZ,International Relations,ABSENT,J,1650,140.0,1
+K,Law (General),MERGED,K,1650,37.0,54
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1650,,0
+KB,Religious Law,MERGED,K,1650,4.0,647
+KD,UK Law,MERGED,K,1650,5.0,595
+KE,Canadian Law,ABSENT,K,1650,,0
+KF,US Law,MERGED,K,1650,114.0,4
+KG,Latin American Law,ABSENT,K,1650,114.0,4
+KH,South American Law,ABSENT,K,1650,140.0,1
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1650,,0
+KJ,European Law,MERGED,K,1650,1.0,2017
+KK,Law of Europe (KK),MERGED,K,1650,6.0,490
+KL,Asian / African Law,ABSENT,K,1650,140.0,1
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1650,122.0,3
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1650,109.0,5
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1650,140.0,1
+KQ,Law of Africa (KQ),ABSENT,K,1650,,0
+KR,Law of Africa (KR),ABSENT,K,1650,,0
+KS,Law of Africa (KS),ABSENT,K,1650,,0
+KT,Law of Africa (KT),ABSENT,K,1650,,0
+KU,Law of Pacific Area (KU),ABSENT,K,1650,,0
+KV,Law of Pacific Area (KV),ABSENT,K,1650,,0
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1650,,0
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1650,,0
+KZ,International Law,ABSENT,K,1650,54.0,25
+L,Education (General),ABSENT,L,1650,,0
+LA,History of Education,ABSENT,L,1650,122.0,3
+LB,Theory / Practice of Education,ABSENT,L,1650,99.0,7
+LC,Social Aspects of Education,ABSENT,L,1650,114.0,4
+LD,US Universities,ABSENT,L,1650,,0
+LE,American Universities (other),ABSENT,L,1650,,0
+LF,European Universities,ABSENT,L,1650,88.0,10
+LG,Asian / African Universities,ABSENT,L,1650,,0
+LH,College Publications,ABSENT,L,1650,,0
+LJ,Student Fraternities,ABSENT,L,1650,,0
+LT,Textbooks,ABSENT,L,1650,,0
+M,Music Scores,DIRECT,M,1650,109.0,5
+ML,Literature on Music,DIRECT,M,1650,25.0,91
+MT,Musical Instruction,DIRECT,M,1650,63.0,18
+N,Visual Arts (General),MERGED,N,1650,63.0,18
+NB,Sculpture,MERGED,N,1650,114.0,4
+NC,Drawing / Design,MERGED,N,1650,76.0,14
+ND,Painting,MERGED,N,1650,109.0,5
+NE,Print Media,ABSENT,N,1650,53.0,27
+NK,Decorative Arts,ABSENT,N,1650,91.0,9
+NX,Arts in General,ABSENT,N,1650,,0
+NA,Architecture,DIRECT,N,1650,46.0,32
+P,Linguistics (General),MERGED,P,1650,103.0,6
+PA,Classical Languages & Literature,MERGED,P,1650,3.0,813
+PB,Celtic Languages,MERGED,P,1650,140.0,1
+PC,Romanic Languages,MERGED,P,1650,44.0,33
+PD,Germanic Languages (Old),MERGED,P,1650,,0
+PE,English Language,MERGED,P,1650,99.0,7
+PF,West Germanic Languages,MERGED,P,1650,127.0,2
+PG,Slavic Languages & Literatures,ABSENT,P,1650,,0
+PH,Uralic / Basque Languages,ABSENT,P,1650,,0
+PJ,Oriental Languages & Literature,ABSENT,P,1650,39.0,45
+PK,Indo-Iranian Languages,ABSENT,P,1650,114.0,4
+PL,E Asian / African / Pacific,ABSENT,P,1650,32.0,67
+PM,Indigenous American Languages,ABSENT,P,1650,109.0,5
+PN,General Literature,MERGED,P,1650,33.0,64
+PQ,French/Italian/Spanish Lit.,MERGED,P,1650,11.0,258
+PR,English Literature,MERGED,P,1650,9.0,301
+PS,American Literature,MERGED,P,1650,122.0,3
+PT,Germanic Literature,MERGED,P,1650,44.0,33
+PZ,Fiction / Juvenile Literature,ABSENT,P,1650,127.0,2
+Q,Science (General),MERGED,Q,1650,42.0,37
+QA,Mathematics,MERGED,Q,1650,33.0,64
+QB,Astronomy,MERGED,Q,1650,23.0,98
+QC,Physics,MERGED,Q,1650,48.0,30
+QD,Chemistry,MERGED,Q,1650,76.0,14
+QE,Geology / Mineralogy,MERGED,Q,1650,127.0,2
+QH,Natural History / Biology,ABSENT,Q,1650,71.0,15
+QK,Botany,MERGED,Q,1650,50.0,28
+QL,Zoology,MERGED,Q,1650,76.0,14
+QM,Human Anatomy,MERGED,Q,1650,71.0,15
+QP,Physiology,ABSENT,Q,1650,96.0,8
+QR,Microbiology,ABSENT,Q,1650,,0
+R,Medicine (General),MERGED,R,1650,19.0,124
+RA,Public Health,ABSENT,R,1650,42.0,37
+RB,Pathology,ABSENT,R,1650,127.0,2
+RC,Internal Medicine,MERGED,R,1650,67.0,16
+RD,Surgery,MERGED,R,1650,91.0,9
+RE,Ophthalmology,ABSENT,R,1650,140.0,1
+RF,Otorhinolaryngology,ABSENT,R,1650,,0
+RG,Gynecology / Obstetrics,ABSENT,R,1650,103.0,6
+RJ,Pediatrics,ABSENT,R,1650,127.0,2
+RK,Dentistry,ABSENT,R,1650,,0
+RL,Dermatology,ABSENT,R,1650,,0
+RM,Pharmacology,ABSENT,R,1650,85.0,11
+RS,Pharmacy,ABSENT,R,1650,50.0,28
+RT,Nursing,ABSENT,R,1650,,0
+RV,Botanic Medicine,ABSENT,R,1650,,0
+RX,Homeopathy,ABSENT,R,1650,,0
+RZ,Other Medical Systems,ABSENT,R,1650,,0
+S,Agriculture (General),DIRECT,S,1650,71.0,15
+SB,Plant Culture,DIRECT,S,1650,82.0,13
+SD,Forestry,MERGED,S,1650,140.0,1
+SF,Animal Culture,MERGED,S,1650,91.0,9
+SH,Aquaculture / Fisheries,ABSENT,S,1650,140.0,1
+SK,Hunting / Wildlife,ABSENT,S,1650,103.0,6
+T,Technology (General),MERGED,T,1650,140.0,1
+TA,Engineering (General),MERGED,T,1650,85.0,11
+TC,Hydraulic Engineering,MERGED,T,1650,,0
+TD,Environmental Technology,ABSENT,T,1650,,0
+TE,Highway Engineering,MERGED,T,1650,,0
+TF,Railroad Engineering,ABSENT,T,1650,,0
+TG,Bridge Engineering,MERGED,T,1650,,0
+TH,Building Construction,MERGED,T,1650,140.0,1
+TJ,Mechanical Engineering,MERGED,T,1650,99.0,7
+TK,Electrical Engineering,ABSENT,T,1650,,0
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1650,,0
+TN,Mining / Metallurgy,MERGED,T,1650,99.0,7
+TP,Chemical Technology,MERGED,T,1650,127.0,2
+TR,Photography,ABSENT,T,1650,,0
+TS,Manufactures,MERGED,T,1650,114.0,4
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1650,,0
+TX,Home Economics,ABSENT,T,1650,30.0,78
+U,Military Science (General),ABSENT,U,1650,29.0,80
+UA,Armies / Land Forces,ABSENT,U,1650,,0
+UB,Military Administration,ABSENT,U,1650,,0
+UC,Military Maintenance,ABSENT,U,1650,140.0,1
+UD,Infantry,ABSENT,U,1650,140.0,1
+UE,Cavalry / Armor,ABSENT,U,1650,140.0,1
+UF,Artillery,ABSENT,U,1650,109.0,5
+UG,Military Engineering,ABSENT,U,1650,114.0,4
+UH,Military Medicine,ABSENT,U,1650,140.0,1
+V,Naval Science (General),ABSENT,V,1650,,0
+VA,Navies,ABSENT,V,1650,,0
+VB,Naval Administration,ABSENT,V,1650,,0
+VC,Naval Maintenance,ABSENT,V,1650,,0
+VD,Naval Seamen,ABSENT,V,1650,,0
+VE,Marines,ABSENT,V,1650,,0
+VF,Naval Ordnance,ABSENT,V,1650,,0
+VG,Naval Auxiliaries,ABSENT,V,1650,,0
+VK,Navigation / Seamanship,ABSENT,V,1650,60.0,19
+VM,Naval Architecture,ABSENT,V,1650,127.0,2
+Z,Books / Writing (General),DIRECT,Z,1650,27.0,85
+ZA,Information Resources,ABSENT,Z,1650,,0
+A,General Works (unclassed),ABSENT,A,1700,,0
+AC,General Collections,RENAMED,A,1700,5.0,908
+AE,Encyclopedias (General),RENAMED,A,1700,69.0,32
+AG,Dictionaries (General),RENAMED,A,1700,83.0,22
+AI,Indexes,ABSENT,A,1700,,0
+AM,Museums / Exhibitions,ABSENT,A,1700,161.0,1
+AN,Newspapers,ABSENT,A,1700,,0
+AP,Periodicals (General),ABSENT,A,1700,161.0,1
+AS,Academies / Societies,ABSENT,A,1700,150.0,2
+AY,Yearbooks / Almanacs,ABSENT,A,1700,127.0,5
+AZ,History of Scholarship,ABSENT,A,1700,120.0,6
+B,Philosophy (General),MERGED,B,1700,17.0,225
+BC,Logic,MERGED,B,1700,107.0,9
+BD,Speculative Philosophy,MERGED,B,1700,102.0,11
+BF,Psychology,ABSENT,B,1700,35.0,118
+BH,Aesthetics,MERGED,B,1700,,0
+BJ,Ethics,MERGED,B,1700,33.0,119
+BL,Religion / Mythology,MERGED,B,1700,50.0,49
+BM,Judaism,MERGED,B,1700,18.0,222
+BP,Islam,MERGED,B,1700,100.0,12
+BQ,Buddhism,MERGED,B,1700,33.0,119
+BR,Christianity,MERGED,B,1700,12.0,444
+BS,Bible,MERGED,B,1700,11.0,464
+BT,Doctrinal Theology,MERGED,B,1700,16.0,276
+BV,Practical Theology,MERGED,B,1700,14.0,326
+BX,Christian Denominations,MERGED,B,1700,2.0,1285
+C,Auxiliary Sciences of History (General),ABSENT,C,1700,,0
+CB,History of Civilization,ABSENT,C,1700,120.0,6
+CC,Archaeology,ABSENT,C,1700,161.0,1
+CD,Diplomatics / Archives,ABSENT,C,1700,150.0,2
+CE,Chronology,ABSENT,C,1700,89.0,20
+CJ,Numismatics,ABSENT,C,1700,86.0,21
+CN,Inscriptions / Epigraphy,ABSENT,C,1700,139.0,3
+CR,Heraldry,ABSENT,C,1700,59.0,39
+CS,Genealogy,ABSENT,C,1700,72.0,30
+CT,Biography (General),ABSENT,C,1700,89.0,20
+D,History (General),MERGED,D,1700,29.0,147
+DA,British History,MERGED,D,1700,10.0,548
+DAW,Central Europe,ABSENT,D,1700,,0
+DB,Austria / Bohemia,ABSENT,D,1700,78.0,26
+DC,French History,MERGED,D,1700,25.0,165
+DD,German History,MERGED,D,1700,42.0,68
+DE,Greco-Roman World,MERGED,D,1700,113.0,8
+DF,Greek History,MERGED,D,1700,67.0,33
+DG,Italian History / Rome,MERGED,D,1700,23.0,197
+DH,Low Countries History,ABSENT,D,1700,44.0,57
+DJ,Netherlands,ABSENT,D,1700,75.0,28
+DJK,Eastern Europe (General),ABSENT,D,1700,150.0,2
+DK,Russia / Former Soviet States,ABSENT,D,1700,51.0,47
+DL,Scandinavian History,ABSENT,D,1700,63.0,36
+DP,Iberian History,ABSENT,D,1700,37.0,95
+DQ,Switzerland,ABSENT,D,1700,139.0,3
+DR,Balkan History,ABSENT,D,1700,69.0,32
+DS,Asian History,ABSENT,D,1700,15.0,285
+DT,African History,ABSENT,D,1700,86.0,21
+DU,Oceania,ABSENT,D,1700,161.0,1
+DX,Romani People,ABSENT,D,1700,,0
+E,American History (General),MERGED,E,1700,36.0,113
+E18,African American History (E185),ABSENT,E,1700,,0
+E99,Native Americans (E99),ABSENT,E,1700,150.0,2
+F,US Local / Latin American History,MERGED,F,1700,18.0,222
+G,Geography (General),MERGED,G,1700,20.0,213
+GA,Mathematical Geography,MERGED,G,1700,82.0,24
+GB,Physical Geography,MERGED,G,1700,150.0,2
+GC,Oceanography,ABSENT,G,1700,161.0,1
+GE,Environmental Sciences,ABSENT,G,1700,,0
+GF,Human Ecology,ABSENT,G,1700,,0
+GN,Anthropology,ABSENT,G,1700,161.0,1
+GR,Folklore,ABSENT,G,1700,139.0,3
+GT,Manners & Customs,ABSENT,G,1700,51.0,47
+GV,Recreation / Leisure,ABSENT,G,1700,66.0,35
+H,Social Sciences (General),ABSENT,H,1700,,0
+HA,Statistics,ABSENT,H,1700,139.0,3
+HB,Economic Theory,ABSENT,H,1700,98.0,14
+HC,Economic History,ABSENT,H,1700,139.0,3
+HD,Land / Agriculture Economics,ABSENT,H,1700,73.0,29
+HE,Transportation & Comms,ABSENT,H,1700,161.0,1
+HF,Commerce,MERGED,H,1700,56.0,41
+HG,Finance,ABSENT,H,1700,83.0,22
+HJ,Public Finance,MERGED,H,1700,73.0,29
+HM,Sociology,ABSENT,H,1700,,0
+HN,Social History,ABSENT,H,1700,161.0,1
+HQ,Family / Gender / Sexuality,ABSENT,H,1700,67.0,33
+HS,Societies / Clubs,ABSENT,H,1700,,0
+HT,Communities / Classes / Race,ABSENT,H,1700,130.0,4
+HV,Social Pathology / Criminology,ABSENT,H,1700,81.0,25
+HX,Socialism / Communism,ABSENT,H,1700,150.0,2
+J,Political Science (General),MERGED,J,1700,120.0,6
+JA,Political Science (General works),MERGED,J,1700,,0
+JC,Political Theory,MERGED,J,1700,27.0,154
+JF,Political Institutions (General),MERGED,J,1700,139.0,3
+JJ,"Political Institutions (Europe, other)",MERGED,J,1700,,0
+JK,US Political Institutions,MERGED,J,1700,,0
+JL,Canadian / Latin American Politics,MERGED,J,1700,,0
+JN,European Politics,ABSENT,J,1700,37.0,95
+JQ,Asian / African Politics,ABSENT,J,1700,113.0,8
+JS,Local Government,ABSENT,J,1700,113.0,8
+JV,Colonies / Colonialism,ABSENT,J,1700,,0
+JX,International Law (old),ABSENT,J,1700,71.0,31
+JZ,International Relations,ABSENT,J,1700,130.0,4
+K,Law (General),MERGED,K,1700,40.0,75
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1700,,0
+KB,Religious Law,MERGED,K,1700,6.0,754
+KD,UK Law,MERGED,K,1700,3.0,1267
+KE,Canadian Law,ABSENT,K,1700,,0
+KF,US Law,MERGED,K,1700,93.0,19
+KG,Latin American Law,ABSENT,K,1700,120.0,6
+KH,South American Law,ABSENT,K,1700,161.0,1
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1700,,0
+KJ,European Law,MERGED,K,1700,1.0,2414
+KK,Law of Europe (KK),MERGED,K,1700,7.0,685
+KL,Asian / African Law,ABSENT,K,1700,150.0,2
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1700,139.0,3
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1700,107.0,9
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1700,161.0,1
+KQ,Law of Africa (KQ),ABSENT,K,1700,,0
+KR,Law of Africa (KR),ABSENT,K,1700,,0
+KS,Law of Africa (KS),ABSENT,K,1700,,0
+KT,Law of Africa (KT),ABSENT,K,1700,,0
+KU,Law of Pacific Area (KU),ABSENT,K,1700,,0
+KV,Law of Pacific Area (KV),ABSENT,K,1700,,0
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1700,,0
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1700,,0
+KZ,International Law,ABSENT,K,1700,43.0,58
+L,Education (General),ABSENT,L,1700,,0
+LA,History of Education,ABSENT,L,1700,139.0,3
+LB,Theory / Practice of Education,ABSENT,L,1700,107.0,9
+LC,Social Aspects of Education,ABSENT,L,1700,130.0,4
+LD,US Universities,ABSENT,L,1700,,0
+LE,American Universities (other),ABSENT,L,1700,,0
+LF,European Universities,ABSENT,L,1700,102.0,11
+LG,Asian / African Universities,ABSENT,L,1700,,0
+LH,College Publications,ABSENT,L,1700,,0
+LJ,Student Fraternities,ABSENT,L,1700,,0
+LT,Textbooks,ABSENT,L,1700,,0
+M,Music Scores,DIRECT,M,1700,117.0,7
+ML,Literature on Music,DIRECT,M,1700,9.0,575
+MT,Musical Instruction,DIRECT,M,1700,59.0,39
+N,Visual Arts (General),MERGED,N,1700,58.0,40
+NB,Sculpture,MERGED,N,1700,127.0,5
+NC,Drawing / Design,MERGED,N,1700,86.0,21
+ND,Painting,MERGED,N,1700,89.0,20
+NE,Print Media,ABSENT,N,1700,59.0,39
+NK,Decorative Arts,ABSENT,N,1700,94.0,18
+NX,Arts in General,ABSENT,N,1700,107.0,9
+NA,Architecture,DIRECT,N,1700,44.0,57
+P,Linguistics (General),MERGED,P,1700,104.0,10
+PA,Classical Languages & Literature,MERGED,P,1700,4.0,964
+PB,Celtic Languages,MERGED,P,1700,150.0,2
+PC,Romanic Languages,MERGED,P,1700,49.0,52
+PD,Germanic Languages (Old),MERGED,P,1700,,0
+PE,English Language,MERGED,P,1700,100.0,12
+PF,West Germanic Languages,MERGED,P,1700,130.0,4
+PG,Slavic Languages & Literatures,ABSENT,P,1700,161.0,1
+PH,Uralic / Basque Languages,ABSENT,P,1700,,0
+PJ,Oriental Languages & Literature,ABSENT,P,1700,46.0,55
+PK,Indo-Iranian Languages,ABSENT,P,1700,117.0,7
+PL,E Asian / African / Pacific,ABSENT,P,1700,22.0,208
+PM,Indigenous American Languages,ABSENT,P,1700,104.0,10
+PN,General Literature,MERGED,P,1700,32.0,126
+PQ,French/Italian/Spanish Lit.,MERGED,P,1700,13.0,395
+PR,English Literature,MERGED,P,1700,8.0,595
+PS,American Literature,MERGED,P,1700,127.0,5
+PT,Germanic Literature,MERGED,P,1700,51.0,47
+PZ,Fiction / Juvenile Literature,ABSENT,P,1700,130.0,4
+Q,Science (General),MERGED,Q,1700,39.0,87
+QA,Mathematics,MERGED,Q,1700,30.0,146
+QB,Astronomy,MERGED,Q,1700,28.0,149
+QC,Physics,MERGED,Q,1700,41.0,72
+QD,Chemistry,MERGED,Q,1700,55.0,43
+QE,Geology / Mineralogy,MERGED,Q,1700,120.0,6
+QH,Natural History / Biology,ABSENT,Q,1700,62.0,37
+QK,Botany,MERGED,Q,1700,56.0,41
+QL,Zoology,MERGED,Q,1700,63.0,36
+QM,Human Anatomy,MERGED,Q,1700,54.0,45
+QP,Physiology,ABSENT,Q,1700,76.0,27
+QR,Microbiology,ABSENT,Q,1700,,0
+R,Medicine (General),MERGED,R,1700,21.0,211
+RA,Public Health,ABSENT,R,1700,46.0,55
+RB,Pathology,ABSENT,R,1700,139.0,3
+RC,Internal Medicine,MERGED,R,1700,63.0,36
+RD,Surgery,MERGED,R,1700,94.0,18
+RE,Ophthalmology,ABSENT,R,1700,130.0,4
+RF,Otorhinolaryngology,ABSENT,R,1700,161.0,1
+RG,Gynecology / Obstetrics,ABSENT,R,1700,107.0,9
+RJ,Pediatrics,ABSENT,R,1700,139.0,3
+RK,Dentistry,ABSENT,R,1700,,0
+RL,Dermatology,ABSENT,R,1700,,0
+RM,Pharmacology,ABSENT,R,1700,78.0,26
+RS,Pharmacy,ABSENT,R,1700,48.0,53
+RT,Nursing,ABSENT,R,1700,,0
+RV,Botanic Medicine,ABSENT,R,1700,,0
+RX,Homeopathy,ABSENT,R,1700,,0
+RZ,Other Medical Systems,ABSENT,R,1700,,0
+S,Agriculture (General),DIRECT,S,1700,89.0,20
+SB,Plant Culture,DIRECT,S,1700,76.0,27
+SD,Forestry,MERGED,S,1700,150.0,2
+SF,Animal Culture,MERGED,S,1700,94.0,18
+SH,Aquaculture / Fisheries,ABSENT,S,1700,130.0,4
+SK,Hunting / Wildlife,ABSENT,S,1700,120.0,6
+T,Technology (General),MERGED,T,1700,130.0,4
+TA,Engineering (General),MERGED,T,1700,97.0,16
+TC,Hydraulic Engineering,MERGED,T,1700,139.0,3
+TD,Environmental Technology,ABSENT,T,1700,161.0,1
+TE,Highway Engineering,MERGED,T,1700,,0
+TF,Railroad Engineering,ABSENT,T,1700,,0
+TG,Bridge Engineering,MERGED,T,1700,,0
+TH,Building Construction,MERGED,T,1700,161.0,1
+TJ,Mechanical Engineering,MERGED,T,1700,104.0,10
+TK,Electrical Engineering,ABSENT,T,1700,,0
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1700,161.0,1
+TN,Mining / Metallurgy,MERGED,T,1700,99.0,13
+TP,Chemical Technology,MERGED,T,1700,107.0,9
+TR,Photography,ABSENT,T,1700,,0
+TS,Manufactures,MERGED,T,1700,120.0,6
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1700,161.0,1
+TX,Home Economics,ABSENT,T,1700,26.0,163
+U,Military Science (General),ABSENT,U,1700,31.0,136
+UA,Armies / Land Forces,ABSENT,U,1700,117.0,7
+UB,Military Administration,ABSENT,U,1700,150.0,2
+UC,Military Maintenance,ABSENT,U,1700,161.0,1
+UD,Infantry,ABSENT,U,1700,161.0,1
+UE,Cavalry / Armor,ABSENT,U,1700,161.0,1
+UF,Artillery,ABSENT,U,1700,113.0,8
+UG,Military Engineering,ABSENT,U,1700,83.0,22
+UH,Military Medicine,ABSENT,U,1700,161.0,1
+V,Naval Science (General),ABSENT,V,1700,161.0,1
+VA,Navies,ABSENT,V,1700,150.0,2
+VB,Naval Administration,ABSENT,V,1700,,0
+VC,Naval Maintenance,ABSENT,V,1700,,0
+VD,Naval Seamen,ABSENT,V,1700,,0
+VE,Marines,ABSENT,V,1700,,0
+VF,Naval Ordnance,ABSENT,V,1700,,0
+VG,Naval Auxiliaries,ABSENT,V,1700,,0
+VK,Navigation / Seamanship,ABSENT,V,1700,78.0,26
+VM,Naval Architecture,ABSENT,V,1700,130.0,4
+Z,Books / Writing (General),DIRECT,Z,1700,24.0,167
+ZA,Information Resources,ABSENT,Z,1700,,0
+A,General Works (unclassed),ABSENT,A,1750,174.0,1
+AC,General Collections,RENAMED,A,1750,4.0,1733
+AE,Encyclopedias (General),RENAMED,A,1750,81.0,39
+AG,Dictionaries (General),RENAMED,A,1750,88.0,32
+AI,Indexes,ABSENT,A,1750,,0
+AM,Museums / Exhibitions,ABSENT,A,1750,165.0,2
+AN,Newspapers,ABSENT,A,1750,,0
+AP,Periodicals (General),ABSENT,A,1750,152.0,4
+AS,Academies / Societies,ABSENT,A,1750,165.0,2
+AY,Yearbooks / Almanacs,ABSENT,A,1750,137.0,7
+AZ,History of Scholarship,ABSENT,A,1750,137.0,7
+B,Philosophy (General),MERGED,B,1750,21.0,325
+BC,Logic,MERGED,B,1750,117.0,12
+BD,Speculative Philosophy,MERGED,B,1750,108.0,15
+BF,Psychology,ABSENT,B,1750,35.0,171
+BH,Aesthetics,MERGED,B,1750,,0
+BJ,Ethics,MERGED,B,1750,34.0,176
+BL,Religion / Mythology,MERGED,B,1750,42.0,111
+BM,Judaism,MERGED,B,1750,18.0,359
+BP,Islam,MERGED,B,1750,105.0,18
+BQ,Buddhism,MERGED,B,1750,31.0,200
+BR,Christianity,MERGED,B,1750,14.0,560
+BS,Bible,MERGED,B,1750,13.0,591
+BT,Doctrinal Theology,MERGED,B,1750,15.0,440
+BV,Practical Theology,MERGED,B,1750,12.0,631
+BX,Christian Denominations,MERGED,B,1750,2.0,1896
+C,Auxiliary Sciences of History (General),ABSENT,C,1750,,0
+CB,History of Civilization,ABSENT,C,1750,130.0,8
+CC,Archaeology,ABSENT,C,1750,174.0,1
+CD,Diplomatics / Archives,ABSENT,C,1750,165.0,2
+CE,Chronology,ABSENT,C,1750,99.0,22
+CJ,Numismatics,ABSENT,C,1750,86.0,33
+CN,Inscriptions / Epigraphy,ABSENT,C,1750,141.0,6
+CR,Heraldry,ABSENT,C,1750,66.0,58
+CS,Genealogy,ABSENT,C,1750,74.0,48
+CT,Biography (General),ABSENT,C,1750,83.0,37
+D,History (General),MERGED,D,1750,29.0,220
+DA,British History,MERGED,D,1750,10.0,804
+DAW,Central Europe,ABSENT,D,1750,,0
+DB,Austria / Bohemia,ABSENT,D,1750,78.0,41
+DC,French History,MERGED,D,1750,26.0,234
+DD,German History,MERGED,D,1750,48.0,89
+DE,Greco-Roman World,MERGED,D,1750,117.0,12
+DF,Greek History,MERGED,D,1750,85.0,36
+DG,Italian History / Rome,MERGED,D,1750,25.0,247
+DH,Low Countries History,ABSENT,D,1750,61.0,68
+DJ,Netherlands,ABSENT,D,1750,74.0,48
+DJK,Eastern Europe (General),ABSENT,D,1750,165.0,2
+DK,Russia / Former Soviet States,ABSENT,D,1750,58.0,71
+DL,Scandinavian History,ABSENT,D,1750,69.0,52
+DP,Iberian History,ABSENT,D,1750,39.0,128
+DQ,Switzerland,ABSENT,D,1750,146.0,5
+DR,Balkan History,ABSENT,D,1750,82.0,38
+DS,Asian History,ABSENT,D,1750,16.0,431
+DT,African History,ABSENT,D,1750,83.0,37
+DU,Oceania,ABSENT,D,1750,174.0,1
+DX,Romani People,ABSENT,D,1750,,0
+E,American History (General),MERGED,E,1750,36.0,168
+E18,African American History (E185),ABSENT,E,1750,,0
+E99,Native Americans (E99),ABSENT,E,1750,130.0,8
+F,US Local / Latin American History,MERGED,F,1750,17.0,369
+G,Geography (General),MERGED,G,1750,23.0,291
+GA,Mathematical Geography,MERGED,G,1750,90.0,31
+GB,Physical Geography,MERGED,G,1750,146.0,5
+GC,Oceanography,ABSENT,G,1750,174.0,1
+GE,Environmental Sciences,ABSENT,G,1750,,0
+GF,Human Ecology,ABSENT,G,1750,,0
+GN,Anthropology,ABSENT,G,1750,165.0,2
+GR,Folklore,ABSENT,G,1750,156.0,3
+GT,Manners & Customs,ABSENT,G,1750,64.0,60
+GV,Recreation / Leisure,ABSENT,G,1750,45.0,95
+H,Social Sciences (General),ABSENT,H,1750,,0
+HA,Statistics,ABSENT,H,1750,156.0,3
+HB,Economic Theory,ABSENT,H,1750,108.0,15
+HC,Economic History,ABSENT,H,1750,130.0,8
+HD,Land / Agriculture Economics,ABSENT,H,1750,77.0,43
+HE,Transportation & Comms,ABSENT,H,1750,165.0,2
+HF,Commerce,MERGED,H,1750,51.0,82
+HG,Finance,ABSENT,H,1750,71.0,50
+HJ,Public Finance,MERGED,H,1750,73.0,49
+HM,Sociology,ABSENT,H,1750,,0
+HN,Social History,ABSENT,H,1750,141.0,6
+HQ,Family / Gender / Sexuality,ABSENT,H,1750,68.0,53
+HS,Societies / Clubs,ABSENT,H,1750,165.0,2
+HT,Communities / Classes / Race,ABSENT,H,1750,146.0,5
+HV,Social Pathology / Criminology,ABSENT,H,1750,76.0,47
+HX,Socialism / Communism,ABSENT,H,1750,156.0,3
+J,Political Science (General),MERGED,J,1750,117.0,12
+JA,Political Science (General works),MERGED,J,1750,,0
+JC,Political Theory,MERGED,J,1750,33.0,178
+JF,Political Institutions (General),MERGED,J,1750,152.0,4
+JJ,"Political Institutions (Europe, other)",MERGED,J,1750,,0
+JK,US Political Institutions,MERGED,J,1750,174.0,1
+JL,Canadian / Latin American Politics,MERGED,J,1750,,0
+JN,European Politics,ABSENT,J,1750,38.0,146
+JQ,Asian / African Politics,ABSENT,J,1750,90.0,31
+JS,Local Government,ABSENT,J,1750,105.0,18
+JV,Colonies / Colonialism,ABSENT,J,1750,165.0,2
+JX,International Law (old),ABSENT,J,1750,59.0,70
+JZ,International Relations,ABSENT,J,1750,152.0,4
+K,Law (General),MERGED,K,1750,41.0,113
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1750,,0
+KB,Religious Law,MERGED,K,1750,9.0,854
+KD,UK Law,MERGED,K,1750,3.0,1834
+KE,Canadian Law,ABSENT,K,1750,,0
+KF,US Law,MERGED,K,1750,52.0,80
+KG,Latin American Law,ABSENT,K,1750,123.0,10
+KH,South American Law,ABSENT,K,1750,174.0,1
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1750,,0
+KJ,European Law,MERGED,K,1750,1.0,2754
+KK,Law of Europe (KK),MERGED,K,1750,8.0,929
+KL,Asian / African Law,ABSENT,K,1750,113.0,14
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1750,156.0,3
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1750,108.0,15
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1750,174.0,1
+KQ,Law of Africa (KQ),ABSENT,K,1750,,0
+KR,Law of Africa (KR),ABSENT,K,1750,,0
+KS,Law of Africa (KS),ABSENT,K,1750,,0
+KT,Law of Africa (KT),ABSENT,K,1750,,0
+KU,Law of Pacific Area (KU),ABSENT,K,1750,,0
+KV,Law of Pacific Area (KV),ABSENT,K,1750,,0
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1750,,0
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1750,,0
+KZ,International Law,ABSENT,K,1750,43.0,109
+L,Education (General),ABSENT,L,1750,,0
+LA,History of Education,ABSENT,L,1750,152.0,4
+LB,Theory / Practice of Education,ABSENT,L,1750,102.0,20
+LC,Social Aspects of Education,ABSENT,L,1750,141.0,6
+LD,US Universities,ABSENT,L,1750,156.0,3
+LE,American Universities (other),ABSENT,L,1750,,0
+LF,European Universities,ABSENT,L,1750,102.0,20
+LG,Asian / African Universities,ABSENT,L,1750,,0
+LH,College Publications,ABSENT,L,1750,,0
+LJ,Student Fraternities,ABSENT,L,1750,,0
+LT,Textbooks,ABSENT,L,1750,174.0,1
+M,Music Scores,DIRECT,M,1750,130.0,8
+ML,Literature on Music,DIRECT,M,1750,5.0,1545
+MT,Musical Instruction,DIRECT,M,1750,49.0,88
+N,Visual Arts (General),MERGED,N,1750,62.0,65
+NB,Sculpture,MERGED,N,1750,141.0,6
+NC,Drawing / Design,MERGED,N,1750,86.0,33
+ND,Painting,MERGED,N,1750,79.0,40
+NE,Print Media,ABSENT,N,1750,71.0,50
+NK,Decorative Arts,ABSENT,N,1750,95.0,30
+NX,Arts in General,ABSENT,N,1750,125.0,9
+NA,Architecture,DIRECT,N,1750,44.0,99
+P,Linguistics (General),MERGED,P,1750,117.0,12
+PA,Classical Languages & Literature,MERGED,P,1750,6.0,1148
+PB,Celtic Languages,MERGED,P,1750,141.0,6
+PC,Romanic Languages,MERGED,P,1750,60.0,69
+PD,Germanic Languages (Old),MERGED,P,1750,,0
+PE,English Language,MERGED,P,1750,90.0,31
+PF,West Germanic Languages,MERGED,P,1750,130.0,8
+PG,Slavic Languages & Literatures,ABSENT,P,1750,174.0,1
+PH,Uralic / Basque Languages,ABSENT,P,1750,174.0,1
+PJ,Oriental Languages & Literature,ABSENT,P,1750,54.0,75
+PK,Indo-Iranian Languages,ABSENT,P,1750,117.0,12
+PL,E Asian / African / Pacific,ABSENT,P,1750,19.0,328
+PM,Indigenous American Languages,ABSENT,P,1750,114.0,13
+PN,General Literature,MERGED,P,1750,32.0,198
+PQ,French/Italian/Spanish Lit.,MERGED,P,1750,11.0,652
+PR,English Literature,MERGED,P,1750,7.0,1087
+PS,American Literature,MERGED,P,1750,108.0,15
+PT,Germanic Literature,MERGED,P,1750,57.0,72
+PZ,Fiction / Juvenile Literature,ABSENT,P,1750,99.0,22
+Q,Science (General),MERGED,Q,1750,40.0,116
+QA,Mathematics,MERGED,Q,1750,24.0,280
+QB,Astronomy,MERGED,Q,1750,30.0,216
+QC,Physics,MERGED,Q,1750,37.0,155
+QD,Chemistry,MERGED,Q,1750,63.0,61
+QE,Geology / Mineralogy,MERGED,Q,1750,108.0,15
+QH,Natural History / Biology,ABSENT,Q,1750,56.0,73
+QK,Botany,MERGED,Q,1750,53.0,78
+QL,Zoology,MERGED,Q,1750,65.0,59
+QM,Human Anatomy,MERGED,Q,1750,45.0,95
+QP,Physiology,ABSENT,Q,1750,79.0,40
+QR,Microbiology,ABSENT,Q,1750,,0
+R,Medicine (General),MERGED,R,1750,22.0,312
+RA,Public Health,ABSENT,R,1750,55.0,74
+RB,Pathology,ABSENT,R,1750,137.0,7
+RC,Internal Medicine,MERGED,R,1750,50.0,86
+RD,Surgery,MERGED,R,1750,95.0,30
+RE,Ophthalmology,ABSENT,R,1750,123.0,10
+RF,Otorhinolaryngology,ABSENT,R,1750,156.0,3
+RG,Gynecology / Obstetrics,ABSENT,R,1750,114.0,13
+RJ,Pediatrics,ABSENT,R,1750,146.0,5
+RK,Dentistry,ABSENT,R,1750,,0
+RL,Dermatology,ABSENT,R,1750,174.0,1
+RM,Pharmacology,ABSENT,R,1750,66.0,58
+RS,Pharmacy,ABSENT,R,1750,47.0,93
+RT,Nursing,ABSENT,R,1750,,0
+RV,Botanic Medicine,ABSENT,R,1750,,0
+RX,Homeopathy,ABSENT,R,1750,,0
+RZ,Other Medical Systems,ABSENT,R,1750,,0
+S,Agriculture (General),DIRECT,S,1750,97.0,28
+SB,Plant Culture,DIRECT,S,1750,70.0,51
+SD,Forestry,MERGED,S,1750,146.0,5
+SF,Animal Culture,MERGED,S,1750,88.0,32
+SH,Aquaculture / Fisheries,ABSENT,S,1750,137.0,7
+SK,Hunting / Wildlife,ABSENT,S,1750,125.0,9
+T,Technology (General),MERGED,T,1750,125.0,9
+TA,Engineering (General),MERGED,T,1750,98.0,24
+TC,Hydraulic Engineering,MERGED,T,1750,125.0,9
+TD,Environmental Technology,ABSENT,T,1750,174.0,1
+TE,Highway Engineering,MERGED,T,1750,174.0,1
+TF,Railroad Engineering,ABSENT,T,1750,,0
+TG,Bridge Engineering,MERGED,T,1750,174.0,1
+TH,Building Construction,MERGED,T,1750,130.0,8
+TJ,Mechanical Engineering,MERGED,T,1750,101.0,21
+TK,Electrical Engineering,ABSENT,T,1750,,0
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1750,174.0,1
+TN,Mining / Metallurgy,MERGED,T,1750,104.0,19
+TP,Chemical Technology,MERGED,T,1750,107.0,16
+TR,Photography,ABSENT,T,1750,,0
+TS,Manufactures,MERGED,T,1750,125.0,9
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1750,156.0,3
+TX,Home Economics,ABSENT,T,1750,27.0,232
+U,Military Science (General),ABSENT,U,1750,28.0,222
+UA,Armies / Land Forces,ABSENT,U,1750,114.0,13
+UB,Military Administration,ABSENT,U,1750,146.0,5
+UC,Military Maintenance,ABSENT,U,1750,156.0,3
+UD,Infantry,ABSENT,U,1750,174.0,1
+UE,Cavalry / Armor,ABSENT,U,1750,156.0,3
+UF,Artillery,ABSENT,U,1750,117.0,12
+UG,Military Engineering,ABSENT,U,1750,90.0,31
+UH,Military Medicine,ABSENT,U,1750,174.0,1
+V,Naval Science (General),ABSENT,V,1750,174.0,1
+VA,Navies,ABSENT,V,1750,165.0,2
+VB,Naval Administration,ABSENT,V,1750,,0
+VC,Naval Maintenance,ABSENT,V,1750,,0
+VD,Naval Seamen,ABSENT,V,1750,,0
+VE,Marines,ABSENT,V,1750,,0
+VF,Naval Ordnance,ABSENT,V,1750,,0
+VG,Naval Auxiliaries,ABSENT,V,1750,,0
+VK,Navigation / Seamanship,ABSENT,V,1750,90.0,31
+VM,Naval Architecture,ABSENT,V,1750,130.0,8
+Z,Books / Writing (General),DIRECT,Z,1750,20.0,326
+ZA,Information Resources,ABSENT,Z,1750,,0
+A,General Works (unclassed),ABSENT,A,1800,200.0,1
+AC,General Collections,RENAMED,A,1800,2.0,4250
+AE,Encyclopedias (General),RENAMED,A,1800,100.0,58
+AG,Dictionaries (General),RENAMED,A,1800,98.0,61
+AI,Indexes,ABSENT,A,1800,,0
+AM,Museums / Exhibitions,ABSENT,A,1800,179.0,5
+AN,Newspapers,ABSENT,A,1800,,0
+AP,Periodicals (General),ABSENT,A,1800,164.0,9
+AS,Academies / Societies,ABSENT,A,1800,148.0,16
+AY,Yearbooks / Almanacs,ABSENT,A,1800,154.0,14
+AZ,History of Scholarship,ABSENT,A,1800,158.0,12
+B,Philosophy (General),MERGED,B,1800,26.0,460
+BC,Logic,MERGED,B,1800,146.0,17
+BD,Speculative Philosophy,MERGED,B,1800,132.0,27
+BF,Psychology,ABSENT,B,1800,41.0,270
+BH,Aesthetics,MERGED,B,1800,164.0,9
+BJ,Ethics,MERGED,B,1800,31.0,356
+BL,Religion / Mythology,MERGED,B,1800,43.0,246
+BM,Judaism,MERGED,B,1800,21.0,567
+BP,Islam,MERGED,B,1800,136.0,25
+BQ,Buddhism,MERGED,B,1800,35.0,320
+BR,Christianity,MERGED,B,1800,17.0,726
+BS,Bible,MERGED,B,1800,14.0,843
+BT,Doctrinal Theology,MERGED,B,1800,18.0,720
+BV,Practical Theology,MERGED,B,1800,10.0,1246
+BX,Christian Denominations,MERGED,B,1800,4.0,2946
+C,Auxiliary Sciences of History (General),ABSENT,C,1800,,0
+CB,History of Civilization,ABSENT,C,1800,140.0,22
+CC,Archaeology,ABSENT,C,1800,184.0,4
+CD,Diplomatics / Archives,ABSENT,C,1800,158.0,12
+CE,Chronology,ABSENT,C,1800,128.0,30
+CJ,Numismatics,ABSENT,C,1800,106.0,50
+CN,Inscriptions / Epigraphy,ABSENT,C,1800,164.0,9
+CR,Heraldry,ABSENT,C,1800,84.0,76
+CS,Genealogy,ABSENT,C,1800,87.0,69
+CT,Biography (General),ABSENT,C,1800,70.0,116
+D,History (General),MERGED,D,1800,32.0,348
+DA,British History,MERGED,D,1800,11.0,1226
+DAW,Central Europe,ABSENT,D,1800,,0
+DB,Austria / Bohemia,ABSENT,D,1800,95.0,64
+DC,French History,MERGED,D,1800,15.0,776
+DD,German History,MERGED,D,1800,64.0,137
+DE,Greco-Roman World,MERGED,D,1800,150.0,15
+DF,Greek History,MERGED,D,1800,99.0,60
+DG,Italian History / Rome,MERGED,D,1800,30.0,359
+DH,Low Countries History,ABSENT,D,1800,82.0,77
+DJ,Netherlands,ABSENT,D,1800,91.0,65
+DJK,Eastern Europe (General),ABSENT,D,1800,176.0,6
+DK,Russia / Former Soviet States,ABSENT,D,1800,55.0,174
+DL,Scandinavian History,ABSENT,D,1800,82.0,77
+DP,Iberian History,ABSENT,D,1800,47.0,200
+DQ,Switzerland,ABSENT,D,1800,131.0,28
+DR,Balkan History,ABSENT,D,1800,100.0,58
+DS,Asian History,ABSENT,D,1800,19.0,701
+DT,African History,ABSENT,D,1800,81.0,82
+DU,Oceania,ABSENT,D,1800,140.0,22
+DX,Romani People,ABSENT,D,1800,200.0,1
+E,American History (General),MERGED,E,1800,7.0,1563
+E18,African American History (E185),ABSENT,E,1800,200.0,1
+E99,Native Americans (E99),ABSENT,E,1800,145.0,18
+F,US Local / Latin American History,MERGED,F,1800,16.0,749
+G,Geography (General),MERGED,G,1800,25.0,475
+GA,Mathematical Geography,MERGED,G,1800,113.0,44
+GB,Physical Geography,MERGED,G,1800,150.0,15
+GC,Oceanography,ABSENT,G,1800,193.0,2
+GE,Environmental Sciences,ABSENT,G,1800,,0
+GF,Human Ecology,ABSENT,G,1800,200.0,1
+GN,Anthropology,ABSENT,G,1800,174.0,7
+GR,Folklore,ABSENT,G,1800,179.0,5
+GT,Manners & Customs,ABSENT,G,1800,79.0,93
+GV,Recreation / Leisure,ABSENT,G,1800,44.0,239
+H,Social Sciences (General),ABSENT,H,1800,188.0,3
+HA,Statistics,ABSENT,H,1800,170.0,8
+HB,Economic Theory,ABSENT,H,1800,104.0,53
+HC,Economic History,ABSENT,H,1800,109.0,47
+HD,Land / Agriculture Economics,ABSENT,H,1800,74.0,103
+HE,Transportation & Comms,ABSENT,H,1800,139.0,23
+HF,Commerce,MERGED,H,1800,45.0,236
+HG,Finance,ABSENT,H,1800,71.0,110
+HJ,Public Finance,MERGED,H,1800,50.0,191
+HM,Sociology,ABSENT,H,1800,176.0,6
+HN,Social History,ABSENT,H,1800,161.0,11
+HQ,Family / Gender / Sexuality,ABSENT,H,1800,69.0,121
+HS,Societies / Clubs,ABSENT,H,1800,100.0,58
+HT,Communities / Classes / Race,ABSENT,H,1800,87.0,69
+HV,Social Pathology / Criminology,ABSENT,H,1800,57.0,169
+HX,Socialism / Communism,ABSENT,H,1800,170.0,8
+J,Political Science (General),MERGED,J,1800,119.0,38
+JA,Political Science (General works),MERGED,J,1800,122.0,35
+JC,Political Theory,MERGED,J,1800,33.0,333
+JF,Political Institutions (General),MERGED,J,1800,156.0,13
+JJ,"Political Institutions (Europe, other)",MERGED,J,1800,,0
+JK,US Political Institutions,MERGED,J,1800,86.0,72
+JL,Canadian / Latin American Politics,MERGED,J,1800,200.0,1
+JN,European Politics,ABSENT,J,1800,39.0,287
+JQ,Asian / African Politics,ABSENT,J,1800,89.0,68
+JS,Local Government,ABSENT,J,1800,115.0,41
+JV,Colonies / Colonialism,ABSENT,J,1800,174.0,7
+JX,International Law (old),ABSENT,J,1800,68.0,129
+JZ,International Relations,ABSENT,J,1800,176.0,6
+K,Law (General),MERGED,K,1800,55.0,174
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1800,,0
+KB,Religious Law,MERGED,K,1800,13.0,914
+KD,UK Law,MERGED,K,1800,5.0,2874
+KE,Canadian Law,ABSENT,K,1800,184.0,4
+KF,US Law,MERGED,K,1800,24.0,478
+KG,Latin American Law,ABSENT,K,1800,120.0,37
+KH,South American Law,ABSENT,K,1800,188.0,3
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1800,,0
+KJ,European Law,MERGED,K,1800,3.0,3061
+KK,Law of Europe (KK),MERGED,K,1800,12.0,1131
+KL,Asian / African Law,ABSENT,K,1800,89.0,68
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1800,188.0,3
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1800,130.0,29
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1800,200.0,1
+KQ,Law of Africa (KQ),ABSENT,K,1800,,0
+KR,Law of Africa (KR),ABSENT,K,1800,,0
+KS,Law of Africa (KS),ABSENT,K,1800,,0
+KT,Law of Africa (KT),ABSENT,K,1800,,0
+KU,Law of Pacific Area (KU),ABSENT,K,1800,,0
+KV,Law of Pacific Area (KV),ABSENT,K,1800,,0
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1800,,0
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1800,,0
+KZ,International Law,ABSENT,K,1800,60.0,158
+L,Education (General),ABSENT,L,1800,200.0,1
+LA,History of Education,ABSENT,L,1800,164.0,9
+LB,Theory / Practice of Education,ABSENT,L,1800,111.0,45
+LC,Social Aspects of Education,ABSENT,L,1800,124.0,34
+LD,US Universities,ABSENT,L,1800,114.0,42
+LE,American Universities (other),ABSENT,L,1800,,0
+LF,European Universities,ABSENT,L,1800,128.0,30
+LG,Asian / African Universities,ABSENT,L,1800,,0
+LH,College Publications,ABSENT,L,1800,,0
+LJ,Student Fraternities,ABSENT,L,1800,200.0,1
+LT,Textbooks,ABSENT,L,1800,188.0,3
+M,Music Scores,DIRECT,M,1800,150.0,15
+ML,Literature on Music,DIRECT,M,1800,1.0,4986
+MT,Musical Instruction,DIRECT,M,1800,52.0,184
+N,Visual Arts (General),MERGED,N,1800,62.0,145
+NB,Sculpture,MERGED,N,1800,158.0,12
+NC,Drawing / Design,MERGED,N,1800,96.0,63
+ND,Painting,MERGED,N,1800,72.0,109
+NE,Print Media,ABSENT,N,1800,73.0,105
+NK,Decorative Arts,ABSENT,N,1800,91.0,65
+NX,Arts in General,ABSENT,N,1800,162.0,10
+NA,Architecture,DIRECT,N,1800,48.0,194
+P,Linguistics (General),MERGED,P,1800,107.0,48
+PA,Classical Languages & Literature,MERGED,P,1800,8.0,1439
+PB,Celtic Languages,MERGED,P,1800,144.0,19
+PC,Romanic Languages,MERGED,P,1800,66.0,133
+PD,Germanic Languages (Old),MERGED,P,1800,179.0,5
+PE,English Language,MERGED,P,1800,54.0,179
+PF,West Germanic Languages,MERGED,P,1800,136.0,25
+PG,Slavic Languages & Literatures,ABSENT,P,1800,105.0,52
+PH,Uralic / Basque Languages,ABSENT,P,1800,193.0,2
+PJ,Oriental Languages & Literature,ABSENT,P,1800,74.0,103
+PK,Indo-Iranian Languages,ABSENT,P,1800,117.0,39
+PL,E Asian / African / Pacific,ABSENT,P,1800,22.0,533
+PM,Indigenous American Languages,ABSENT,P,1800,132.0,27
+PN,General Literature,MERGED,P,1800,28.0,395
+PQ,French/Italian/Spanish Lit.,MERGED,P,1800,9.0,1348
+PR,English Literature,MERGED,P,1800,6.0,2336
+PS,American Literature,MERGED,P,1800,42.0,256
+PT,Germanic Literature,MERGED,P,1800,46.0,225
+PZ,Fiction / Juvenile Literature,ABSENT,P,1800,58.0,167
+Q,Science (General),MERGED,Q,1800,51.0,186
+QA,Mathematics,MERGED,Q,1800,23.0,490
+QB,Astronomy,MERGED,Q,1800,37.0,302
+QC,Physics,MERGED,Q,1800,34.0,323
+QD,Chemistry,MERGED,Q,1800,53.0,182
+QE,Geology / Mineralogy,MERGED,Q,1800,97.0,62
+QH,Natural History / Biology,ABSENT,Q,1800,40.0,276
+QK,Botany,MERGED,Q,1800,49.0,193
+QL,Zoology,MERGED,Q,1800,59.0,163
+QM,Human Anatomy,MERGED,Q,1800,67.0,132
+QP,Physiology,ABSENT,Q,1800,74.0,103
+QR,Microbiology,ABSENT,Q,1800,200.0,1
+R,Medicine (General),MERGED,R,1800,27.0,428
+RA,Public Health,ABSENT,R,1800,61.0,147
+RB,Pathology,ABSENT,R,1800,143.0,21
+RC,Internal Medicine,MERGED,R,1800,38.0,299
+RD,Surgery,MERGED,R,1800,91.0,65
+RE,Ophthalmology,ABSENT,R,1800,127.0,33
+RF,Otorhinolaryngology,ABSENT,R,1800,184.0,4
+RG,Gynecology / Obstetrics,ABSENT,R,1800,116.0,40
+RJ,Pediatrics,ABSENT,R,1800,154.0,14
+RK,Dentistry,ABSENT,R,1800,200.0,1
+RL,Dermatology,ABSENT,R,1800,188.0,3
+RM,Pharmacology,ABSENT,R,1800,77.0,102
+RS,Pharmacy,ABSENT,R,1800,65.0,134
+RT,Nursing,ABSENT,R,1800,,0
+RV,Botanic Medicine,ABSENT,R,1800,,0
+RX,Homeopathy,ABSENT,R,1800,,0
+RZ,Other Medical Systems,ABSENT,R,1800,193.0,2
+S,Agriculture (General),DIRECT,S,1800,78.0,101
+SB,Plant Culture,DIRECT,S,1800,63.0,144
+SD,Forestry,MERGED,S,1800,162.0,10
+SF,Animal Culture,MERGED,S,1800,80.0,92
+SH,Aquaculture / Fisheries,ABSENT,S,1800,150.0,15
+SK,Hunting / Wildlife,ABSENT,S,1800,148.0,16
+T,Technology (General),MERGED,T,1800,124.0,34
+TA,Engineering (General),MERGED,T,1800,110.0,46
+TC,Hydraulic Engineering,MERGED,T,1800,124.0,34
+TD,Environmental Technology,ABSENT,T,1800,179.0,5
+TE,Highway Engineering,MERGED,T,1800,193.0,2
+TF,Railroad Engineering,ABSENT,T,1800,,0
+TG,Bridge Engineering,MERGED,T,1800,179.0,5
+TH,Building Construction,MERGED,T,1800,120.0,37
+TJ,Mechanical Engineering,MERGED,T,1800,122.0,35
+TK,Electrical Engineering,ABSENT,T,1800,193.0,2
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1800,91.0,65
+TN,Mining / Metallurgy,MERGED,T,1800,111.0,45
+TP,Chemical Technology,MERGED,T,1800,107.0,48
+TR,Photography,ABSENT,T,1800,,0
+TS,Manufactures,MERGED,T,1800,132.0,27
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1800,164.0,9
+TX,Home Economics,ABSENT,T,1800,29.0,382
+U,Military Science (General),ABSENT,U,1800,36.0,315
+UA,Armies / Land Forces,ABSENT,U,1800,117.0,39
+UB,Military Administration,ABSENT,U,1800,132.0,27
+UC,Military Maintenance,ABSENT,U,1800,170.0,8
+UD,Infantry,ABSENT,U,1800,146.0,17
+UE,Cavalry / Armor,ABSENT,U,1800,156.0,13
+UF,Artillery,ABSENT,U,1800,138.0,24
+UG,Military Engineering,ABSENT,U,1800,103.0,56
+UH,Military Medicine,ABSENT,U,1800,193.0,2
+V,Naval Science (General),ABSENT,V,1800,170.0,8
+VA,Navies,ABSENT,V,1800,164.0,9
+VB,Naval Administration,ABSENT,V,1800,184.0,4
+VC,Naval Maintenance,ABSENT,V,1800,193.0,2
+VD,Naval Seamen,ABSENT,V,1800,,0
+VE,Marines,ABSENT,V,1800,200.0,1
+VF,Naval Ordnance,ABSENT,V,1800,200.0,1
+VG,Naval Auxiliaries,ABSENT,V,1800,,0
+VK,Navigation / Seamanship,ABSENT,V,1800,84.0,76
+VM,Naval Architecture,ABSENT,V,1800,140.0,22
+Z,Books / Writing (General),DIRECT,Z,1800,20.0,686
+ZA,Information Resources,ABSENT,Z,1800,,0
+A,General Works (unclassed),ABSENT,A,1815,203.0,1
+AC,General Collections,RENAMED,A,1815,2.0,5329
+AE,Encyclopedias (General),RENAMED,A,1815,107.0,62
+AG,Dictionaries (General),RENAMED,A,1815,90.0,82
+AI,Indexes,ABSENT,A,1815,,0
+AM,Museums / Exhibitions,ABSENT,A,1815,181.0,6
+AN,Newspapers,ABSENT,A,1815,,0
+AP,Periodicals (General),ABSENT,A,1815,162.0,14
+AS,Academies / Societies,ABSENT,A,1815,149.0,21
+AY,Yearbooks / Almanacs,ABSENT,A,1815,159.0,15
+AZ,History of Scholarship,ABSENT,A,1815,166.0,12
+B,Philosophy (General),MERGED,B,1815,27.0,507
+BC,Logic,MERGED,B,1815,150.0,19
+BD,Speculative Philosophy,MERGED,B,1815,139.0,29
+BF,Psychology,ABSENT,B,1815,42.0,309
+BH,Aesthetics,MERGED,B,1815,159.0,15
+BJ,Ethics,MERGED,B,1815,31.0,421
+BL,Religion / Mythology,MERGED,B,1815,45.0,288
+BM,Judaism,MERGED,B,1815,22.0,663
+BP,Islam,MERGED,B,1815,139.0,29
+BQ,Buddhism,MERGED,B,1815,37.0,360
+BR,Christianity,MERGED,B,1815,19.0,814
+BS,Bible,MERGED,B,1815,15.0,965
+BT,Doctrinal Theology,MERGED,B,1815,20.0,791
+BV,Practical Theology,MERGED,B,1815,11.0,1373
+BX,Christian Denominations,MERGED,B,1815,4.0,3195
+C,Auxiliary Sciences of History (General),ABSENT,C,1815,,0
+CB,History of Civilization,ABSENT,C,1815,142.0,28
+CC,Archaeology,ABSENT,C,1815,187.0,4
+CD,Diplomatics / Archives,ABSENT,C,1815,152.0,18
+CE,Chronology,ABSENT,C,1815,133.0,33
+CJ,Numismatics,ABSENT,C,1815,111.0,60
+CN,Inscriptions / Epigraphy,ABSENT,C,1815,170.0,10
+CR,Heraldry,ABSENT,C,1815,87.0,86
+CS,Genealogy,ABSENT,C,1815,94.0,79
+CT,Biography (General),ABSENT,C,1815,71.0,151
+D,History (General),MERGED,D,1815,32.0,414
+DA,British History,MERGED,D,1815,10.0,1503
+DAW,Central Europe,ABSENT,D,1815,,0
+DB,Austria / Bohemia,ABSENT,D,1815,101.0,69
+DC,French History,MERGED,D,1815,14.0,1020
+DD,German History,MERGED,D,1815,68.0,156
+DE,Greco-Roman World,MERGED,D,1815,147.0,22
+DF,Greek History,MERGED,D,1815,96.0,76
+DG,Italian History / Rome,MERGED,D,1815,33.0,409
+DH,Low Countries History,ABSENT,D,1815,93.0,80
+DJ,Netherlands,ABSENT,D,1815,101.0,69
+DJK,Eastern Europe (General),ABSENT,D,1815,179.0,7
+DK,Russia / Former Soviet States,ABSENT,D,1815,53.0,220
+DL,Scandinavian History,ABSENT,D,1815,84.0,97
+DP,Iberian History,ABSENT,D,1815,49.0,252
+DQ,Switzerland,ABSENT,D,1815,129.0,37
+DR,Balkan History,ABSENT,D,1815,104.0,66
+DS,Asian History,ABSENT,D,1815,17.0,837
+DT,African History,ABSENT,D,1815,82.0,106
+DU,Oceania,ABSENT,D,1815,139.0,29
+DX,Romani People,ABSENT,D,1815,196.0,2
+E,American History (General),MERGED,E,1815,7.0,2065
+E18,African American History (E185),ABSENT,E,1815,203.0,1
+E99,Native Americans (E99),ABSENT,E,1815,147.0,22
+F,US Local / Latin American History,MERGED,F,1815,13.0,1037
+G,Geography (General),MERGED,G,1815,25.0,555
+GA,Mathematical Geography,MERGED,G,1815,124.0,44
+GB,Physical Geography,MERGED,G,1815,150.0,19
+GC,Oceanography,ABSENT,G,1815,196.0,2
+GE,Environmental Sciences,ABSENT,G,1815,,0
+GF,Human Ecology,ABSENT,G,1815,203.0,1
+GN,Anthropology,ABSENT,G,1815,165.0,13
+GR,Folklore,ABSENT,G,1815,181.0,6
+GT,Manners & Customs,ABSENT,G,1815,79.0,122
+GV,Recreation / Leisure,ABSENT,G,1815,44.0,295
+H,Social Sciences (General),ABSENT,H,1815,192.0,3
+HA,Statistics,ABSENT,H,1815,144.0,24
+HB,Economic Theory,ABSENT,H,1815,101.0,69
+HC,Economic History,ABSENT,H,1815,107.0,62
+HD,Land / Agriculture Economics,ABSENT,H,1815,80.0,118
+HE,Transportation & Comms,ABSENT,H,1815,134.0,30
+HF,Commerce,MERGED,H,1815,46.0,286
+HG,Finance,ABSENT,H,1815,69.0,154
+HJ,Public Finance,MERGED,H,1815,57.0,209
+HM,Sociology,ABSENT,H,1815,177.0,8
+HN,Social History,ABSENT,H,1815,166.0,12
+HQ,Family / Gender / Sexuality,ABSENT,H,1815,75.0,137
+HS,Societies / Clubs,ABSENT,H,1815,104.0,66
+HT,Communities / Classes / Race,ABSENT,H,1815,90.0,82
+HV,Social Pathology / Criminology,ABSENT,H,1815,55.0,218
+HX,Socialism / Communism,ABSENT,H,1815,175.0,9
+J,Political Science (General),MERGED,J,1815,107.0,62
+JA,Political Science (General works),MERGED,J,1815,112.0,57
+JC,Political Theory,MERGED,J,1815,38.0,354
+JF,Political Institutions (General),MERGED,J,1815,162.0,14
+JJ,"Political Institutions (Europe, other)",MERGED,J,1815,,0
+JK,US Political Institutions,MERGED,J,1815,81.0,115
+JL,Canadian / Latin American Politics,MERGED,J,1815,203.0,1
+JN,European Politics,ABSENT,J,1815,43.0,308
+JQ,Asian / African Politics,ABSENT,J,1815,97.0,75
+JS,Local Government,ABSENT,J,1815,117.0,51
+JV,Colonies / Colonialism,ABSENT,J,1815,170.0,10
+JX,International Law (old),ABSENT,J,1815,63.0,172
+JZ,International Relations,ABSENT,J,1815,177.0,8
+K,Law (General),MERGED,K,1815,60.0,194
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1815,,0
+KB,Religious Law,MERGED,K,1815,16.0,917
+KD,UK Law,MERGED,K,1815,3.0,3222
+KE,Canadian Law,ABSENT,K,1815,184.0,5
+KF,US Law,MERGED,K,1815,21.0,738
+KG,Latin American Law,ABSENT,K,1815,122.0,46
+KH,South American Law,ABSENT,K,1815,192.0,3
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1815,,0
+KJ,European Law,MERGED,K,1815,5.0,3165
+KK,Law of Europe (KK),MERGED,K,1815,12.0,1212
+KL,Asian / African Law,ABSENT,K,1815,98.0,73
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1815,192.0,3
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1815,131.0,36
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1815,203.0,1
+KQ,Law of Africa (KQ),ABSENT,K,1815,,0
+KR,Law of Africa (KR),ABSENT,K,1815,,0
+KS,Law of Africa (KS),ABSENT,K,1815,,0
+KT,Law of Africa (KT),ABSENT,K,1815,,0
+KU,Law of Pacific Area (KU),ABSENT,K,1815,,0
+KV,Law of Pacific Area (KV),ABSENT,K,1815,,0
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1815,,0
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1815,,0
+KZ,International Law,ABSENT,K,1815,64.0,166
+L,Education (General),ABSENT,L,1815,203.0,1
+LA,History of Education,ABSENT,L,1815,166.0,12
+LB,Theory / Practice of Education,ABSENT,L,1815,107.0,62
+LC,Social Aspects of Education,ABSENT,L,1815,124.0,44
+LD,US Universities,ABSENT,L,1815,114.0,54
+LE,American Universities (other),ABSENT,L,1815,203.0,1
+LF,European Universities,ABSENT,L,1815,129.0,37
+LG,Asian / African Universities,ABSENT,L,1815,,0
+LH,College Publications,ABSENT,L,1815,,0
+LJ,Student Fraternities,ABSENT,L,1815,196.0,2
+LT,Textbooks,ABSENT,L,1815,187.0,4
+M,Music Scores,DIRECT,M,1815,155.0,17
+ML,Literature on Music,DIRECT,M,1815,1.0,6261
+MT,Musical Instruction,DIRECT,M,1815,59.0,196
+N,Visual Arts (General),MERGED,N,1815,62.0,182
+NB,Sculpture,MERGED,N,1815,152.0,18
+NC,Drawing / Design,MERGED,N,1815,88.0,84
+ND,Painting,MERGED,N,1815,69.0,154
+NE,Print Media,ABSENT,N,1815,74.0,139
+NK,Decorative Arts,ABSENT,N,1815,95.0,77
+NX,Arts in General,ABSENT,N,1815,170.0,10
+NA,Architecture,DIRECT,N,1815,51.0,225
+P,Linguistics (General),MERGED,P,1815,113.0,56
+PA,Classical Languages & Literature,MERGED,P,1815,9.0,1545
+PB,Celtic Languages,MERGED,P,1815,143.0,25
+PC,Romanic Languages,MERGED,P,1815,65.0,159
+PD,Germanic Languages (Old),MERGED,P,1815,170.0,10
+PE,English Language,MERGED,P,1815,50.0,242
+PF,West Germanic Languages,MERGED,P,1815,134.0,30
+PG,Slavic Languages & Literatures,ABSENT,P,1815,82.0,106
+PH,Uralic / Basque Languages,ABSENT,P,1815,187.0,4
+PJ,Oriental Languages & Literature,ABSENT,P,1815,78.0,124
+PK,Indo-Iranian Languages,ABSENT,P,1815,100.0,70
+PL,E Asian / African / Pacific,ABSENT,P,1815,23.0,644
+PM,Indigenous American Languages,ABSENT,P,1815,134.0,30
+PN,General Literature,MERGED,P,1815,26.0,517
+PQ,French/Italian/Spanish Lit.,MERGED,P,1815,8.0,1682
+PR,English Literature,MERGED,P,1815,6.0,3131
+PS,American Literature,MERGED,P,1815,35.0,374
+PT,Germanic Literature,MERGED,P,1815,47.0,283
+PZ,Fiction / Juvenile Literature,ABSENT,P,1815,30.0,422
+Q,Science (General),MERGED,Q,1815,54.0,219
+QA,Mathematics,MERGED,Q,1815,24.0,607
+QB,Astronomy,MERGED,Q,1815,40.0,341
+QC,Physics,MERGED,Q,1815,36.0,369
+QD,Chemistry,MERGED,Q,1815,52.0,221
+QE,Geology / Mineralogy,MERGED,Q,1815,85.0,95
+QH,Natural History / Biology,ABSENT,Q,1815,41.0,318
+QK,Botany,MERGED,Q,1815,48.0,255
+QL,Zoology,MERGED,Q,1815,56.0,211
+QM,Human Anatomy,MERGED,Q,1815,71.0,151
+QP,Physiology,ABSENT,Q,1815,76.0,126
+QR,Microbiology,ABSENT,Q,1815,203.0,1
+R,Medicine (General),MERGED,R,1815,28.0,481
+RA,Public Health,ABSENT,R,1815,58.0,200
+RB,Pathology,ABSENT,R,1815,134.0,30
+RC,Internal Medicine,MERGED,R,1815,34.0,408
+RD,Surgery,MERGED,R,1815,90.0,82
+RE,Ophthalmology,ABSENT,R,1815,118.0,50
+RF,Otorhinolaryngology,ABSENT,R,1815,187.0,4
+RG,Gynecology / Obstetrics,ABSENT,R,1815,116.0,53
+RJ,Pediatrics,ABSENT,R,1815,152.0,18
+RK,Dentistry,ABSENT,R,1815,192.0,3
+RL,Dermatology,ABSENT,R,1815,184.0,5
+RM,Pharmacology,ABSENT,R,1815,73.0,144
+RS,Pharmacy,ABSENT,R,1815,65.0,159
+RT,Nursing,ABSENT,R,1815,,0
+RV,Botanic Medicine,ABSENT,R,1815,,0
+RX,Homeopathy,ABSENT,R,1815,,0
+RZ,Other Medical Systems,ABSENT,R,1815,196.0,2
+S,Agriculture (General),DIRECT,S,1815,67.0,157
+SB,Plant Culture,DIRECT,S,1815,61.0,190
+SD,Forestry,MERGED,S,1815,157.0,16
+SF,Animal Culture,MERGED,S,1815,76.0,126
+SH,Aquaculture / Fisheries,ABSENT,S,1815,159.0,15
+SK,Hunting / Wildlife,ABSENT,S,1815,155.0,17
+T,Technology (General),MERGED,T,1815,121.0,48
+TA,Engineering (General),MERGED,T,1815,114.0,54
+TC,Hydraulic Engineering,MERGED,T,1815,127.0,43
+TD,Environmental Technology,ABSENT,T,1815,184.0,5
+TE,Highway Engineering,MERGED,T,1815,196.0,2
+TF,Railroad Engineering,ABSENT,T,1815,,0
+TG,Bridge Engineering,MERGED,T,1815,179.0,7
+TH,Building Construction,MERGED,T,1815,127.0,43
+TJ,Mechanical Engineering,MERGED,T,1815,124.0,44
+TK,Electrical Engineering,ABSENT,T,1815,196.0,2
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1815,89.0,83
+TN,Mining / Metallurgy,MERGED,T,1815,120.0,49
+TP,Chemical Technology,MERGED,T,1815,99.0,72
+TR,Photography,ABSENT,T,1815,,0
+TS,Manufactures,MERGED,T,1815,132.0,35
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1815,170.0,10
+TX,Home Economics,ABSENT,T,1815,29.0,442
+U,Military Science (General),ABSENT,U,1815,39.0,344
+UA,Armies / Land Forces,ABSENT,U,1815,118.0,50
+UB,Military Administration,ABSENT,U,1815,122.0,46
+UC,Military Maintenance,ABSENT,U,1815,175.0,9
+UD,Infantry,ABSENT,U,1815,144.0,24
+UE,Cavalry / Armor,ABSENT,U,1815,157.0,16
+UF,Artillery,ABSENT,U,1815,134.0,30
+UG,Military Engineering,ABSENT,U,1815,106.0,64
+UH,Military Medicine,ABSENT,U,1815,187.0,4
+V,Naval Science (General),ABSENT,V,1815,162.0,14
+VA,Navies,ABSENT,V,1815,166.0,12
+VB,Naval Administration,ABSENT,V,1815,181.0,6
+VC,Naval Maintenance,ABSENT,V,1815,196.0,2
+VD,Naval Seamen,ABSENT,V,1815,,0
+VE,Marines,ABSENT,V,1815,203.0,1
+VF,Naval Ordnance,ABSENT,V,1815,203.0,1
+VG,Naval Auxiliaries,ABSENT,V,1815,,0
+VK,Navigation / Seamanship,ABSENT,V,1815,86.0,88
+VM,Naval Architecture,ABSENT,V,1815,144.0,24
+Z,Books / Writing (General),DIRECT,Z,1815,18.0,829
+ZA,Information Resources,ABSENT,Z,1815,,0
+A,General Works (unclassed),ABSENT,A,1850,217.0,1
+AC,General Collections,RENAMED,A,1850,1.0,8645
+AE,Encyclopedias (General),RENAMED,A,1850,134.0,76
+AG,Dictionaries (General),RENAMED,A,1850,113.0,111
+AI,Indexes,ABSENT,A,1850,,0
+AM,Museums / Exhibitions,ABSENT,A,1850,197.0,9
+AN,Newspapers,ABSENT,A,1850,,0
+AP,Periodicals (General),ABSENT,A,1850,168.0,34
+AS,Academies / Societies,ABSENT,A,1850,168.0,34
+AY,Yearbooks / Almanacs,ABSENT,A,1850,142.0,56
+AZ,History of Scholarship,ABSENT,A,1850,183.0,20
+B,Philosophy (General),MERGED,B,1850,31.0,760
+BC,Logic,MERGED,B,1850,157.0,39
+BD,Speculative Philosophy,MERGED,B,1850,145.0,50
+BF,Psychology,ABSENT,B,1850,40.0,562
+BH,Aesthetics,MERGED,B,1850,174.0,28
+BJ,Ethics,MERGED,B,1850,37.0,639
+BL,Religion / Mythology,MERGED,B,1850,45.0,497
+BM,Judaism,MERGED,B,1850,28.0,871
+BP,Islam,MERGED,B,1850,155.0,41
+BQ,Buddhism,MERGED,B,1850,54.0,420
+BR,Christianity,MERGED,B,1850,21.0,1134
+BS,Bible,MERGED,B,1850,16.0,1549
+BT,Doctrinal Theology,MERGED,B,1850,22.0,1115
+BV,Practical Theology,MERGED,B,1850,12.0,2055
+BX,Christian Denominations,MERGED,B,1850,5.0,4508
+C,Auxiliary Sciences of History (General),ABSENT,C,1850,,0
+CB,History of Civilization,ABSENT,C,1850,151.0,46
+CC,Archaeology,ABSENT,C,1850,206.0,6
+CD,Diplomatics / Archives,ABSENT,C,1850,160.0,37
+CE,Chronology,ABSENT,C,1850,148.0,47
+CJ,Numismatics,ABSENT,C,1850,110.0,115
+CN,Inscriptions / Epigraphy,ABSENT,C,1850,185.0,18
+CR,Heraldry,ABSENT,C,1850,102.0,134
+CS,Genealogy,ABSENT,C,1850,92.0,182
+CT,Biography (General),ABSENT,C,1850,66.0,312
+D,History (General),MERGED,D,1850,29.0,814
+DA,British History,MERGED,D,1850,10.0,2648
+DAW,Central Europe,ABSENT,D,1850,,0
+DB,Austria / Bohemia,ABSENT,D,1850,95.0,159
+DC,French History,MERGED,D,1850,15.0,1865
+DD,German History,MERGED,D,1850,67.0,308
+DE,Greco-Roman World,MERGED,D,1850,148.0,47
+DF,Greek History,MERGED,D,1850,87.0,201
+DG,Italian History / Rome,MERGED,D,1850,32.0,742
+DH,Low Countries History,ABSENT,D,1850,102.0,134
+DJ,Netherlands,ABSENT,D,1850,127.0,85
+DJK,Eastern Europe (General),ABSENT,D,1850,204.0,7
+DK,Russia / Former Soviet States,ABSENT,D,1850,49.0,448
+DL,Scandinavian History,ABSENT,D,1850,94.0,173
+DP,Iberian History,ABSENT,D,1850,55.0,418
+DQ,Switzerland,ABSENT,D,1850,124.0,87
+DR,Balkan History,ABSENT,D,1850,109.0,124
+DS,Asian History,ABSENT,D,1850,17.0,1520
+DT,African History,ABSENT,D,1850,63.0,329
+DU,Oceania,ABSENT,D,1850,113.0,111
+DX,Romani People,ABSENT,D,1850,194.0,11
+E,American History (General),MERGED,E,1850,4.0,4584
+E18,African American History (E185),ABSENT,E,1850,158.0,38
+E99,Native Americans (E99),ABSENT,E,1850,129.0,82
+F,US Local / Latin American History,MERGED,F,1850,8.0,2884
+G,Geography (General),MERGED,G,1850,27.0,876
+GA,Mathematical Geography,MERGED,G,1850,143.0,54
+GB,Physical Geography,MERGED,G,1850,163.0,35
+GC,Oceanography,ABSENT,G,1850,200.0,8
+GE,Environmental Sciences,ABSENT,G,1850,,0
+GF,Human Ecology,ABSENT,G,1850,214.0,2
+GN,Anthropology,ABSENT,G,1850,139.0,60
+GR,Folklore,ABSENT,G,1850,189.0,15
+GT,Manners & Customs,ABSENT,G,1850,93.0,178
+GV,Recreation / Leisure,ABSENT,G,1850,48.0,471
+H,Social Sciences (General),ABSENT,H,1850,194.0,11
+HA,Statistics,ABSENT,H,1850,144.0,51
+HB,Economic Theory,ABSENT,H,1850,85.0,207
+HC,Economic History,ABSENT,H,1850,102.0,134
+HD,Land / Agriculture Economics,ABSENT,H,1850,75.0,250
+HE,Transportation & Comms,ABSENT,H,1850,83.0,210
+HF,Commerce,MERGED,H,1850,39.0,568
+HG,Finance,ABSENT,H,1850,53.0,422
+HJ,Public Finance,MERGED,H,1850,64.0,328
+HM,Sociology,ABSENT,H,1850,183.0,20
+HN,Social History,ABSENT,H,1850,160.0,37
+HQ,Family / Gender / Sexuality,ABSENT,H,1850,78.0,241
+HS,Societies / Clubs,ABSENT,H,1850,98.0,154
+HT,Communities / Classes / Race,ABSENT,H,1850,96.0,157
+HV,Social Pathology / Criminology,ABSENT,H,1850,41.0,560
+HX,Socialism / Communism,ABSENT,H,1850,148.0,47
+J,Political Science (General),MERGED,J,1850,120.0,95
+JA,Political Science (General works),MERGED,J,1850,124.0,87
+JC,Political Theory,MERGED,J,1850,52.0,426
+JF,Political Institutions (General),MERGED,J,1850,177.0,26
+JJ,"Political Institutions (Europe, other)",MERGED,J,1850,,0
+JK,US Political Institutions,MERGED,J,1850,61.0,337
+JL,Canadian / Latin American Politics,MERGED,J,1850,163.0,35
+JN,European Politics,ABSENT,J,1850,51.0,438
+JQ,Asian / African Politics,ABSENT,J,1850,112.0,114
+JS,Local Government,ABSENT,J,1850,116.0,105
+JV,Colonies / Colonialism,ABSENT,J,1850,152.0,45
+JX,International Law (old),ABSENT,J,1850,70.0,301
+JZ,International Relations,ABSENT,J,1850,191.0,12
+K,Law (General),MERGED,K,1850,69.0,302
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1850,,0
+KB,Religious Law,MERGED,K,1850,25.0,963
+KD,UK Law,MERGED,K,1850,6.0,4170
+KE,Canadian Law,ABSENT,K,1850,180.0,23
+KF,US Law,MERGED,K,1850,13.0,2007
+KG,Latin American Law,ABSENT,K,1850,110.0,115
+KH,South American Law,ABSENT,K,1850,158.0,38
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1850,209.0,4
+KJ,European Law,MERGED,K,1850,7.0,3554
+KK,Law of Europe (KK),MERGED,K,1850,18.0,1456
+KL,Asian / African Law,ABSENT,K,1850,117.0,98
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1850,211.0,3
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1850,138.0,61
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1850,217.0,1
+KQ,Law of Africa (KQ),ABSENT,K,1850,,0
+KR,Law of Africa (KR),ABSENT,K,1850,,0
+KS,Law of Africa (KS),ABSENT,K,1850,,0
+KT,Law of Africa (KT),ABSENT,K,1850,,0
+KU,Law of Pacific Area (KU),ABSENT,K,1850,217.0,1
+KV,Law of Pacific Area (KV),ABSENT,K,1850,,0
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1850,,0
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1850,217.0,1
+KZ,International Law,ABSENT,K,1850,79.0,231
+L,Education (General),ABSENT,L,1850,187.0,17
+LA,History of Education,ABSENT,L,1850,121.0,94
+LB,Theory / Practice of Education,ABSENT,L,1850,91.0,190
+LC,Social Aspects of Education,ABSENT,L,1850,101.0,136
+LD,US Universities,ABSENT,L,1850,89.0,196
+LE,American Universities (other),ABSENT,L,1850,211.0,3
+LF,European Universities,ABSENT,L,1850,132.0,79
+LG,Asian / African Universities,ABSENT,L,1850,217.0,1
+LH,College Publications,ABSENT,L,1850,214.0,2
+LJ,Student Fraternities,ABSENT,L,1850,204.0,7
+LT,Textbooks,ABSENT,L,1850,200.0,8
+M,Music Scores,DIRECT,M,1850,173.0,29
+ML,Literature on Music,DIRECT,M,1850,2.0,8195
+MT,Musical Instruction,DIRECT,M,1850,77.0,243
+N,Visual Arts (General),MERGED,N,1850,60.0,344
+NB,Sculpture,MERGED,N,1850,140.0,58
+NC,Drawing / Design,MERGED,N,1850,88.0,199
+ND,Painting,MERGED,N,1850,65.0,315
+NE,Print Media,ABSENT,N,1850,74.0,265
+NK,Decorative Arts,ABSENT,N,1850,97.0,156
+NX,Arts in General,ABSENT,N,1850,194.0,11
+NA,Architecture,DIRECT,N,1850,47.0,474
+P,Linguistics (General),MERGED,P,1850,121.0,94
+PA,Classical Languages & Literature,MERGED,P,1850,14.0,1975
+PB,Celtic Languages,MERGED,P,1850,147.0,49
+PC,Romanic Languages,MERGED,P,1850,68.0,306
+PD,Germanic Languages (Old),MERGED,P,1850,175.0,27
+PE,English Language,MERGED,P,1850,38.0,610
+PF,West Germanic Languages,MERGED,P,1850,127.0,85
+PG,Slavic Languages & Literatures,ABSENT,P,1850,56.0,393
+PH,Uralic / Basque Languages,ABSENT,P,1850,190.0,14
+PJ,Oriental Languages & Literature,ABSENT,P,1850,72.0,283
+PK,Indo-Iranian Languages,ABSENT,P,1850,86.0,203
+PL,E Asian / African / Pacific,ABSENT,P,1850,23.0,1077
+PM,Indigenous American Languages,ABSENT,P,1850,134.0,76
+PN,General Literature,MERGED,P,1850,26.0,920
+PQ,French/Italian/Spanish Lit.,MERGED,P,1850,11.0,2519
+PR,English Literature,MERGED,P,1850,3.0,4928
+PS,American Literature,MERGED,P,1850,20.0,1364
+PT,Germanic Literature,MERGED,P,1850,36.0,659
+PZ,Fiction / Juvenile Literature,ABSENT,P,1850,9.0,2660
+Q,Science (General),MERGED,Q,1850,57.0,389
+QA,Mathematics,MERGED,Q,1850,24.0,1076
+QB,Astronomy,MERGED,Q,1850,43.0,525
+QC,Physics,MERGED,Q,1850,42.0,530
+QD,Chemistry,MERGED,Q,1850,58.0,366
+QE,Geology / Mineralogy,MERGED,Q,1850,71.0,296
+QH,Natural History / Biology,ABSENT,Q,1850,46.0,488
+QK,Botany,MERGED,Q,1850,44.0,520
+QL,Zoology,MERGED,Q,1850,35.0,680
+QM,Human Anatomy,MERGED,Q,1850,76.0,245
+QP,Physiology,ABSENT,Q,1850,82.0,218
+QR,Microbiology,ABSENT,Q,1850,217.0,1
+R,Medicine (General),MERGED,R,1850,33.0,719
+RA,Public Health,ABSENT,R,1850,62.0,335
+RB,Pathology,ABSENT,R,1850,136.0,72
+RC,Internal Medicine,MERGED,R,1850,30.0,808
+RD,Surgery,MERGED,R,1850,90.0,193
+RE,Ophthalmology,ABSENT,R,1850,124.0,87
+RF,Otorhinolaryngology,ABSENT,R,1850,191.0,12
+RG,Gynecology / Obstetrics,ABSENT,R,1850,106.0,128
+RJ,Pediatrics,ABSENT,R,1850,156.0,40
+RK,Dentistry,ABSENT,R,1850,172.0,30
+RL,Dermatology,ABSENT,R,1850,182.0,21
+RM,Pharmacology,ABSENT,R,1850,80.0,230
+RS,Pharmacy,ABSENT,R,1850,81.0,219
+RT,Nursing,ABSENT,R,1850,217.0,1
+RV,Botanic Medicine,ABSENT,R,1850,177.0,26
+RX,Homeopathy,ABSENT,R,1850,185.0,18
+RZ,Other Medical Systems,ABSENT,R,1850,207.0,5
+S,Agriculture (General),DIRECT,S,1850,73.0,277
+SB,Plant Culture,DIRECT,S,1850,59.0,349
+SD,Forestry,MERGED,S,1850,170.0,33
+SF,Animal Culture,MERGED,S,1850,83.0,210
+SH,Aquaculture / Fisheries,ABSENT,S,1850,152.0,45
+SK,Hunting / Wildlife,ABSENT,S,1850,163.0,35
+T,Technology (General),MERGED,T,1850,108.0,127
+TA,Engineering (General),MERGED,T,1850,121.0,94
+TC,Hydraulic Engineering,MERGED,T,1850,100.0,143
+TD,Environmental Technology,ABSENT,T,1850,163.0,35
+TE,Highway Engineering,MERGED,T,1850,197.0,9
+TF,Railroad Engineering,ABSENT,T,1850,145.0,50
+TG,Bridge Engineering,MERGED,T,1850,179.0,25
+TH,Building Construction,MERGED,T,1850,130.0,81
+TJ,Mechanical Engineering,MERGED,T,1850,119.0,97
+TK,Electrical Engineering,ABSENT,T,1850,200.0,8
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1850,105.0,130
+TN,Mining / Metallurgy,MERGED,T,1850,115.0,109
+TP,Chemical Technology,MERGED,T,1850,99.0,145
+TR,Photography,ABSENT,T,1850,200.0,8
+TS,Manufactures,MERGED,T,1850,133.0,78
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1850,163.0,35
+TX,Home Economics,ABSENT,T,1850,34.0,692
+U,Military Science (General),ABSENT,U,1850,50.0,442
+UA,Armies / Land Forces,ABSENT,U,1850,117.0,98
+UB,Military Administration,ABSENT,U,1850,130.0,81
+UC,Military Maintenance,ABSENT,U,1850,191.0,12
+UD,Infantry,ABSENT,U,1850,171.0,32
+UE,Cavalry / Armor,ABSENT,U,1850,181.0,22
+UF,Artillery,ABSENT,U,1850,152.0,45
+UG,Military Engineering,ABSENT,U,1850,136.0,72
+UH,Military Medicine,ABSENT,U,1850,207.0,5
+V,Naval Science (General),ABSENT,V,1850,160.0,37
+VA,Navies,ABSENT,V,1850,175.0,27
+VB,Naval Administration,ABSENT,V,1850,187.0,17
+VC,Naval Maintenance,ABSENT,V,1850,211.0,3
+VD,Naval Seamen,ABSENT,V,1850,,0
+VE,Marines,ABSENT,V,1850,214.0,2
+VF,Naval Ordnance,ABSENT,V,1850,197.0,9
+VG,Naval Auxiliaries,ABSENT,V,1850,209.0,4
+VK,Navigation / Seamanship,ABSENT,V,1850,106.0,128
+VM,Naval Architecture,ABSENT,V,1850,140.0,58
+Z,Books / Writing (General),DIRECT,Z,1850,19.0,1451
+ZA,Information Resources,ABSENT,Z,1850,,0
+A,General Works (unclassed),ABSENT,A,1897,229.0,1
+AC,General Collections,RENAMED,A,1897,6.0,9826
+AE,Encyclopedias (General),RENAMED,A,1897,176.0,104
+AG,Dictionaries (General),RENAMED,A,1897,157.0,155
+AI,Indexes,ABSENT,A,1897,216.0,10
+AM,Museums / Exhibitions,ABSENT,A,1897,204.0,24
+AN,Newspapers,ABSENT,A,1897,,0
+AP,Periodicals (General),ABSENT,A,1897,192.0,57
+AS,Academies / Societies,ABSENT,A,1897,127.0,243
+AY,Yearbooks / Almanacs,ABSENT,A,1897,181.0,85
+AZ,History of Scholarship,ABSENT,A,1897,201.0,30
+B,Philosophy (General),MERGED,B,1897,35.0,1602
+BC,Logic,MERGED,B,1897,177.0,103
+BD,Speculative Philosophy,MERGED,B,1897,143.0,189
+BF,Psychology,ABSENT,B,1897,27.0,1935
+BH,Aesthetics,MERGED,B,1897,186.0,67
+BJ,Ethics,MERGED,B,1897,49.0,1222
+BL,Religion / Mythology,MERGED,B,1897,42.0,1361
+BM,Judaism,MERGED,B,1897,36.0,1565
+BP,Islam,MERGED,B,1897,134.0,206
+BQ,Buddhism,MERGED,B,1897,82.0,627
+BR,Christianity,MERGED,B,1897,30.0,1835
+BS,Bible,MERGED,B,1897,20.0,2903
+BT,Doctrinal Theology,MERGED,B,1897,26.0,1962
+BV,Practical Theology,MERGED,B,1897,18.0,3217
+BX,Christian Denominations,MERGED,B,1897,7.0,7702
+C,Auxiliary Sciences of History (General),ABSENT,C,1897,225.0,2
+CB,History of Civilization,ABSENT,C,1897,178.0,102
+CC,Archaeology,ABSENT,C,1897,208.0,21
+CD,Diplomatics / Archives,ABSENT,C,1897,152.0,168
+CE,Chronology,ABSENT,C,1897,180.0,95
+CJ,Numismatics,ABSENT,C,1897,113.0,325
+CN,Inscriptions / Epigraphy,ABSENT,C,1897,187.0,66
+CR,Heraldry,ABSENT,C,1897,125.0,248
+CS,Genealogy,ABSENT,C,1897,48.0,1265
+CT,Biography (General),ABSENT,C,1897,62.0,913
+D,History (General),MERGED,D,1897,28.0,1921
+DA,British History,MERGED,D,1897,10.0,5284
+DAW,Central Europe,ABSENT,D,1897,,0
+DB,Austria / Bohemia,ABSENT,D,1897,92.0,473
+DC,French History,MERGED,D,1897,16.0,3964
+DD,German History,MERGED,D,1897,66.0,869
+DE,Greco-Roman World,MERGED,D,1897,173.0,114
+DF,Greek History,MERGED,D,1897,101.0,414
+DG,Italian History / Rome,MERGED,D,1897,34.0,1604
+DH,Low Countries History,ABSENT,D,1897,123.0,259
+DJ,Netherlands,ABSENT,D,1897,159.0,144
+DJK,Eastern Europe (General),ABSENT,D,1897,217.0,9
+DK,Russia / Former Soviet States,ABSENT,D,1897,46.0,1326
+DL,Scandinavian History,ABSENT,D,1897,91.0,479
+DP,Iberian History,ABSENT,D,1897,70.0,809
+DQ,Switzerland,ABSENT,D,1897,129.0,233
+DR,Balkan History,ABSENT,D,1897,94.0,444
+DS,Asian History,ABSENT,D,1897,15.0,4068
+DT,African History,ABSENT,D,1897,52.0,1192
+DU,Oceania,ABSENT,D,1897,99.0,425
+DX,Romani People,ABSENT,D,1897,196.0,48
+E,American History (General),MERGED,E,1897,1.0,12637
+E18,African American History (E185),ABSENT,E,1897,126.0,244
+E99,Native Americans (E99),ABSENT,E,1897,140.0,197
+F,US Local / Latin American History,MERGED,F,1897,4.0,10447
+G,Geography (General),MERGED,G,1897,31.0,1683
+GA,Mathematical Geography,MERGED,G,1897,179.0,98
+GB,Physical Geography,MERGED,G,1897,161.0,142
+GC,Oceanography,ABSENT,G,1897,193.0,56
+GE,Environmental Sciences,ABSENT,G,1897,229.0,1
+GF,Human Ecology,ABSENT,G,1897,217.0,9
+GN,Anthropology,ABSENT,G,1897,97.0,435
+GR,Folklore,ABSENT,G,1897,149.0,172
+GT,Manners & Customs,ABSENT,G,1897,118.0,297
+GV,Recreation / Leisure,ABSENT,G,1897,38.0,1513
+H,Social Sciences (General),ABSENT,H,1897,156.0,157
+HA,Statistics,ABSENT,H,1897,139.0,199
+HB,Economic Theory,ABSENT,H,1897,71.0,801
+HC,Economic History,ABSENT,H,1897,100.0,418
+HD,Land / Agriculture Economics,ABSENT,H,1897,55.0,1133
+HE,Transportation & Comms,ABSENT,H,1897,61.0,953
+HF,Commerce,MERGED,H,1897,50.0,1221
+HG,Finance,ABSENT,H,1897,44.0,1347
+HJ,Public Finance,MERGED,H,1897,64.0,879
+HM,Sociology,ABSENT,H,1897,182.0,82
+HN,Social History,ABSENT,H,1897,141.0,196
+HQ,Family / Gender / Sexuality,ABSENT,H,1897,76.0,710
+HS,Societies / Clubs,ABSENT,H,1897,107.0,353
+HT,Communities / Classes / Race,ABSENT,H,1897,133.0,208
+HV,Social Pathology / Criminology,ABSENT,H,1897,41.0,1370
+HX,Socialism / Communism,ABSENT,H,1897,124.0,255
+J,Political Science (General),MERGED,J,1897,146.0,182
+JA,Political Science (General works),MERGED,J,1897,167.0,128
+JC,Political Theory,MERGED,J,1897,77.0,696
+JF,Political Institutions (General),MERGED,J,1897,170.0,116
+JJ,"Political Institutions (Europe, other)",MERGED,J,1897,,0
+JK,US Political Institutions,MERGED,J,1897,33.0,1652
+JL,Canadian / Latin American Politics,MERGED,J,1897,158.0,145
+JN,European Politics,ABSENT,J,1897,72.0,767
+JQ,Asian / African Politics,ABSENT,J,1897,148.0,178
+JS,Local Government,ABSENT,J,1897,116.0,302
+JV,Colonies / Colonialism,ABSENT,J,1897,154.0,162
+JX,International Law (old),ABSENT,J,1897,64.0,879
+JZ,International Relations,ABSENT,J,1897,206.0,22
+K,Law (General),MERGED,K,1897,78.0,663
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1897,,0
+KB,Religious Law,MERGED,K,1897,56.0,1101
+KD,UK Law,MERGED,K,1897,11.0,5206
+KE,Canadian Law,ABSENT,K,1897,170.0,116
+KF,US Law,MERGED,K,1897,12.0,5005
+KG,Latin American Law,ABSENT,K,1897,90.0,492
+KH,South American Law,ABSENT,K,1897,130.0,223
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1897,206.0,22
+KJ,European Law,MERGED,K,1897,14.0,4426
+KK,Law of Europe (KK),MERGED,K,1897,23.0,2078
+KL,Asian / African Law,ABSENT,K,1897,155.0,160
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1897,224.0,4
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1897,131.0,216
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1897,209.0,16
+KQ,Law of Africa (KQ),ABSENT,K,1897,221.0,7
+KR,Law of Africa (KR),ABSENT,K,1897,213.0,12
+KS,Law of Africa (KS),ABSENT,K,1897,229.0,1
+KT,Law of Africa (KT),ABSENT,K,1897,221.0,7
+KU,Law of Pacific Area (KU),ABSENT,K,1897,217.0,9
+KV,Law of Pacific Area (KV),ABSENT,K,1897,225.0,2
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1897,,0
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1897,229.0,1
+KZ,International Law,ABSENT,K,1897,98.0,434
+L,Education (General),ABSENT,L,1897,166.0,130
+LA,History of Education,ABSENT,L,1897,95.0,440
+LB,Theory / Practice of Education,ABSENT,L,1897,75.0,713
+LC,Social Aspects of Education,ABSENT,L,1897,109.0,339
+LD,US Universities,ABSENT,L,1897,81.0,633
+LE,American Universities (other),ABSENT,L,1897,209.0,16
+LF,European Universities,ABSENT,L,1897,121.0,270
+LG,Asian / African Universities,ABSENT,L,1897,220.0,8
+LH,College Publications,ABSENT,L,1897,225.0,2
+LJ,Student Fraternities,ABSENT,L,1897,204.0,24
+LT,Textbooks,ABSENT,L,1897,214.0,11
+M,Music Scores,DIRECT,M,1897,188.0,61
+ML,Literature on Music,DIRECT,M,1897,2.0,11603
+MT,Musical Instruction,DIRECT,M,1897,102.0,402
+N,Visual Arts (General),MERGED,N,1897,58.0,1062
+NB,Sculpture,MERGED,N,1897,134.0,206
+NC,Drawing / Design,MERGED,N,1897,88.0,558
+ND,Painting,MERGED,N,1897,60.0,1016
+NE,Print Media,ABSENT,N,1897,79.0,662
+NK,Decorative Arts,ABSENT,N,1897,80.0,646
+NX,Arts in General,ABSENT,N,1897,203.0,27
+NA,Architecture,DIRECT,N,1897,57.0,1090
+P,Linguistics (General),MERGED,P,1897,122.0,267
+PA,Classical Languages & Literature,MERGED,P,1897,17.0,3387
+PB,Celtic Languages,MERGED,P,1897,159.0,144
+PC,Romanic Languages,MERGED,P,1897,63.0,907
+PD,Germanic Languages (Old),MERGED,P,1897,147.0,179
+PE,English Language,MERGED,P,1897,37.0,1524
+PF,West Germanic Languages,MERGED,P,1897,119.0,293
+PG,Slavic Languages & Literatures,ABSENT,P,1897,29.0,1839
+PH,Uralic / Basque Languages,ABSENT,P,1897,182.0,82
+PJ,Oriental Languages & Literature,ABSENT,P,1897,69.0,822
+PK,Indo-Iranian Languages,ABSENT,P,1897,73.0,758
+PL,E Asian / African / Pacific,ABSENT,P,1897,24.0,2044
+PM,Indigenous American Languages,ABSENT,P,1897,111.0,329
+PN,General Literature,MERGED,P,1897,19.0,3034
+PQ,French/Italian/Spanish Lit.,MERGED,P,1897,9.0,6233
+PR,English Literature,MERGED,P,1897,5.0,9945
+PS,American Literature,MERGED,P,1897,8.0,6355
+PT,Germanic Literature,MERGED,P,1897,22.0,2298
+PZ,Fiction / Juvenile Literature,ABSENT,P,1897,3.0,11309
+Q,Science (General),MERGED,Q,1897,54.0,1146
+QA,Mathematics,MERGED,Q,1897,21.0,2603
+QB,Astronomy,MERGED,Q,1897,45.0,1339
+QC,Physics,MERGED,Q,1897,39.0,1478
+QD,Chemistry,MERGED,Q,1897,43.0,1349
+QE,Geology / Mineralogy,MERGED,Q,1897,53.0,1163
+QH,Natural History / Biology,ABSENT,Q,1897,59.0,1053
+QK,Botany,MERGED,Q,1897,47.0,1296
+QL,Zoology,MERGED,Q,1897,25.0,1969
+QM,Human Anatomy,MERGED,Q,1897,103.0,387
+QP,Physiology,ABSENT,Q,1897,85.0,607
+QR,Microbiology,ABSENT,Q,1897,194.0,51
+R,Medicine (General),MERGED,R,1897,51.0,1209
+RA,Public Health,ABSENT,R,1897,68.0,831
+RB,Pathology,ABSENT,R,1897,153.0,163
+RC,Internal Medicine,MERGED,R,1897,31.0,1683
+RD,Surgery,MERGED,R,1897,93.0,451
+RE,Ophthalmology,ABSENT,R,1897,137.0,200
+RF,Otorhinolaryngology,ABSENT,R,1897,188.0,61
+RG,Gynecology / Obstetrics,ABSENT,R,1897,112.0,326
+RJ,Pediatrics,ABSENT,R,1897,173.0,114
+RK,Dentistry,ABSENT,R,1897,170.0,116
+RL,Dermatology,ABSENT,R,1897,185.0,78
+RM,Pharmacology,ABSENT,R,1897,89.0,544
+RS,Pharmacy,ABSENT,R,1897,105.0,369
+RT,Nursing,ABSENT,R,1897,211.0,15
+RV,Botanic Medicine,ABSENT,R,1897,191.0,59
+RX,Homeopathy,ABSENT,R,1897,163.0,140
+RZ,Other Medical Systems,ABSENT,R,1897,195.0,49
+S,Agriculture (General),DIRECT,S,1897,85.0,607
+SB,Plant Culture,DIRECT,S,1897,67.0,864
+SD,Forestry,MERGED,S,1897,168.0,119
+SF,Animal Culture,MERGED,S,1897,83.0,622
+SH,Aquaculture / Fisheries,ABSENT,S,1897,136.0,201
+SK,Hunting / Wildlife,ABSENT,S,1897,143.0,189
+T,Technology (General),MERGED,T,1897,84.0,621
+TA,Engineering (General),MERGED,T,1897,110.0,333
+TC,Hydraulic Engineering,MERGED,T,1897,104.0,377
+TD,Environmental Technology,ABSENT,T,1897,142.0,190
+TE,Highway Engineering,MERGED,T,1897,201.0,30
+TF,Railroad Engineering,ABSENT,T,1897,137.0,200
+TG,Bridge Engineering,MERGED,T,1897,164.0,135
+TH,Building Construction,MERGED,T,1897,120.0,278
+TJ,Mechanical Engineering,MERGED,T,1897,106.0,355
+TK,Electrical Engineering,ABSENT,T,1897,127.0,243
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1897,108.0,348
+TN,Mining / Metallurgy,MERGED,T,1897,87.0,560
+TP,Chemical Technology,MERGED,T,1897,95.0,440
+TR,Photography,ABSENT,T,1897,145.0,186
+TS,Manufactures,MERGED,T,1897,115.0,308
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1897,162.0,141
+TX,Home Economics,ABSENT,T,1897,40.0,1424
+U,Military Science (General),ABSENT,U,1897,74.0,731
+UA,Armies / Land Forces,ABSENT,U,1897,114.0,321
+UB,Military Administration,ABSENT,U,1897,132.0,213
+UC,Military Maintenance,ABSENT,U,1897,188.0,61
+UD,Infantry,ABSENT,U,1897,175.0,112
+UE,Cavalry / Armor,ABSENT,U,1897,198.0,47
+UF,Artillery,ABSENT,U,1897,165.0,131
+UG,Military Engineering,ABSENT,U,1897,149.0,172
+UH,Military Medicine,ABSENT,U,1897,196.0,48
+V,Naval Science (General),ABSENT,V,1897,169.0,118
+VA,Navies,ABSENT,V,1897,182.0,82
+VB,Naval Administration,ABSENT,V,1897,199.0,39
+VC,Naval Maintenance,ABSENT,V,1897,214.0,11
+VD,Naval Seamen,ABSENT,V,1897,225.0,2
+VE,Marines,ABSENT,V,1897,223.0,6
+VF,Naval Ordnance,ABSENT,V,1897,200.0,34
+VG,Naval Auxiliaries,ABSENT,V,1897,212.0,14
+VK,Navigation / Seamanship,ABSENT,V,1897,117.0,299
+VM,Naval Architecture,ABSENT,V,1897,151.0,171
+Z,Books / Writing (General),DIRECT,Z,1897,13.0,4465
+ZA,Information Resources,ABSENT,Z,1897,,0
+A,General Works (unclassed),ABSENT,A,1920,232.0,1
+AC,General Collections,RENAMED,A,1920,9.0,10224
+AE,Encyclopedias (General),RENAMED,A,1920,180.0,175
+AG,Dictionaries (General),RENAMED,A,1920,173.0,240
+AI,Indexes,ABSENT,A,1920,221.0,17
+AM,Museums / Exhibitions,ABSENT,A,1920,198.0,77
+AN,Newspapers,ABSENT,A,1920,,0
+AP,Periodicals (General),ABSENT,A,1920,199.0,76
+AS,Academies / Societies,ABSENT,A,1920,105.0,867
+AY,Yearbooks / Almanacs,ABSENT,A,1920,195.0,98
+AZ,History of Scholarship,ABSENT,A,1920,208.0,42
+B,Philosophy (General),MERGED,B,1920,35.0,2986
+BC,Logic,MERGED,B,1920,181.0,174
+BD,Speculative Philosophy,MERGED,B,1920,132.0,506
+BF,Psychology,ABSENT,B,1920,25.0,3909
+BH,Aesthetics,MERGED,B,1920,189.0,142
+BJ,Ethics,MERGED,B,1920,62.0,2044
+BL,Religion / Mythology,MERGED,B,1920,53.0,2459
+BM,Judaism,MERGED,B,1920,55.0,2399
+BP,Islam,MERGED,B,1920,119.0,611
+BQ,Buddhism,MERGED,B,1920,100.0,953
+BR,Christianity,MERGED,B,1920,34.0,3052
+BS,Bible,MERGED,B,1920,24.0,4663
+BT,Doctrinal Theology,MERGED,B,1920,32.0,3068
+BV,Practical Theology,MERGED,B,1920,20.0,5275
+BX,Christian Denominations,MERGED,B,1920,8.0,11061
+C,Auxiliary Sciences of History (General),ABSENT,C,1920,227.0,5
+CB,History of Civilization,ABSENT,C,1920,168.0,270
+CC,Archaeology,ABSENT,C,1920,206.0,49
+CD,Diplomatics / Archives,ABSENT,C,1920,128.0,529
+CE,Chronology,ABSENT,C,1920,190.0,135
+CJ,Numismatics,ABSENT,C,1920,138.0,475
+CN,Inscriptions / Epigraphy,ABSENT,C,1920,193.0,106
+CR,Heraldry,ABSENT,C,1920,150.0,406
+CS,Genealogy,ABSENT,C,1920,31.0,3176
+CT,Biography (General),ABSENT,C,1920,76.0,1481
+D,History (General),MERGED,D,1920,12.0,8303
+DA,British History,MERGED,D,1920,13.0,8226
+DAW,Central Europe,ABSENT,D,1920,,0
+DB,Austria / Bohemia,ABSENT,D,1920,95.0,1032
+DC,French History,MERGED,D,1920,16.0,5882
+DD,German History,MERGED,D,1920,59.0,2284
+DE,Greco-Roman World,MERGED,D,1920,184.0,161
+DF,Greek History,MERGED,D,1920,112.0,735
+DG,Italian History / Rome,MERGED,D,1920,48.0,2559
+DH,Low Countries History,ABSENT,D,1920,136.0,477
+DJ,Netherlands,ABSENT,D,1920,173.0,240
+DJK,Eastern Europe (General),ABSENT,D,1920,223.0,14
+DK,Russia / Former Soviet States,ABSENT,D,1920,45.0,2685
+DL,Scandinavian History,ABSENT,D,1920,106.0,845
+DP,Iberian History,ABSENT,D,1920,80.0,1261
+DQ,Switzerland,ABSENT,D,1920,156.0,365
+DR,Balkan History,ABSENT,D,1920,86.0,1209
+DS,Asian History,ABSENT,D,1920,11.0,8499
+DT,African History,ABSENT,D,1920,52.0,2494
+DU,Oceania,ABSENT,D,1920,113.0,722
+DX,Romani People,ABSENT,D,1920,202.0,67
+E,American History (General),MERGED,E,1920,3.0,17999
+E18,African American History (E185),ABSENT,E,1920,147.0,421
+E99,Native Americans (E99),ABSENT,E,1920,160.0,352
+F,US Local / Latin American History,MERGED,F,1920,2.0,19386
+G,Geography (General),MERGED,G,1920,54.0,2429
+GA,Mathematical Geography,MERGED,G,1920,176.0,213
+GB,Physical Geography,MERGED,G,1920,152.0,381
+GC,Oceanography,ABSENT,G,1920,191.0,110
+GE,Environmental Sciences,ABSENT,G,1920,226.0,9
+GF,Human Ecology,ABSENT,G,1920,214.0,36
+GN,Anthropology,ABSENT,G,1920,98.0,987
+GR,Folklore,ABSENT,G,1920,140.0,466
+GT,Manners & Customs,ABSENT,G,1920,141.0,463
+GV,Recreation / Leisure,ABSENT,G,1920,33.0,3063
+H,Social Sciences (General),ABSENT,H,1920,120.0,603
+HA,Statistics,ABSENT,H,1920,121.0,598
+HB,Economic Theory,ABSENT,H,1920,69.0,1777
+HC,Economic History,ABSENT,H,1920,61.0,2047
+HD,Land / Agriculture Economics,ABSENT,H,1920,19.0,5397
+HE,Transportation & Comms,ABSENT,H,1920,57.0,2358
+HF,Commerce,MERGED,H,1920,29.0,3201
+HG,Finance,ABSENT,H,1920,36.0,2907
+HJ,Public Finance,MERGED,H,1920,67.0,1855
+HM,Sociology,ABSENT,H,1920,157.0,362
+HN,Social History,ABSENT,H,1920,108.0,801
+HQ,Family / Gender / Sexuality,ABSENT,H,1920,70.0,1754
+HS,Societies / Clubs,ABSENT,H,1920,122.0,584
+HT,Communities / Classes / Race,ABSENT,H,1920,144.0,433
+HV,Social Pathology / Criminology,ABSENT,H,1920,43.0,2734
+HX,Socialism / Communism,ABSENT,H,1920,91.0,1105
+J,Political Science (General),MERGED,J,1920,165.0,300
+JA,Political Science (General works),MERGED,J,1920,178.0,200
+JC,Political Theory,MERGED,J,1920,92.0,1077
+JF,Political Institutions (General),MERGED,J,1920,158.0,357
+JJ,"Political Institutions (Europe, other)",MERGED,J,1920,,0
+JK,US Political Institutions,MERGED,J,1920,40.0,2861
+JL,Canadian / Latin American Politics,MERGED,J,1920,159.0,356
+JN,European Politics,ABSENT,J,1920,78.0,1399
+JQ,Asian / African Politics,ABSENT,J,1920,153.0,379
+JS,Local Government,ABSENT,J,1920,107.0,808
+JV,Colonies / Colonialism,ABSENT,J,1920,139.0,467
+JX,International Law (old),ABSENT,J,1920,51.0,2531
+JZ,International Relations,ABSENT,J,1920,211.0,41
+K,Law (General),MERGED,K,1920,90.0,1110
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1920,232.0,1
+KB,Religious Law,MERGED,K,1920,83.0,1216
+KD,UK Law,MERGED,K,1920,18.0,5695
+KE,Canadian Law,ABSENT,K,1920,171.0,242
+KF,US Law,MERGED,K,1920,15.0,7534
+KG,Latin American Law,ABSENT,K,1920,103.0,883
+KH,South American Law,ABSENT,K,1920,118.0,616
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1920,217.0,25
+KJ,European Law,MERGED,K,1920,21.0,5043
+KK,Law of Europe (KK),MERGED,K,1920,41.0,2840
+KL,Asian / African Law,ABSENT,K,1920,175.0,224
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1920,216.0,26
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1920,117.0,618
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1920,197.0,95
+KQ,Law of Africa (KQ),ABSENT,K,1920,219.0,18
+KR,Law of Africa (KR),ABSENT,K,1920,207.0,43
+KS,Law of Africa (KS),ABSENT,K,1920,221.0,17
+KT,Law of Africa (KT),ABSENT,K,1920,212.0,39
+KU,Law of Pacific Area (KU),ABSENT,K,1920,218.0,24
+KV,Law of Pacific Area (KV),ABSENT,K,1920,229.0,4
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1920,231.0,2
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1920,232.0,1
+KZ,International Law,ABSENT,K,1920,116.0,658
+L,Education (General),ABSENT,L,1920,135.0,480
+LA,History of Education,ABSENT,L,1920,89.0,1141
+LB,Theory / Practice of Education,ABSENT,L,1920,50.0,2535
+LC,Social Aspects of Education,ABSENT,L,1920,102.0,900
+LD,US Universities,ABSENT,L,1920,93.0,1057
+LE,American Universities (other),ABSENT,L,1920,208.0,42
+LF,European Universities,ABSENT,L,1920,134.0,499
+LG,Asian / African Universities,ABSENT,L,1920,215.0,31
+LH,College Publications,ABSENT,L,1920,230.0,3
+LJ,Student Fraternities,ABSENT,L,1920,203.0,65
+LT,Textbooks,ABSENT,L,1920,224.0,13
+M,Music Scores,DIRECT,M,1920,194.0,100
+ML,Literature on Music,DIRECT,M,1920,5.0,13546
+MT,Musical Instruction,DIRECT,M,1920,109.0,799
+N,Visual Arts (General),MERGED,N,1920,46.0,2601
+NB,Sculpture,MERGED,N,1920,131.0,509
+NC,Drawing / Design,MERGED,N,1920,96.0,1029
+ND,Painting,MERGED,N,1920,47.0,2566
+NE,Print Media,ABSENT,N,1920,82.0,1229
+NK,Decorative Arts,ABSENT,N,1920,71.0,1632
+NX,Arts in General,ABSENT,N,1920,204.0,54
+NA,Architecture,DIRECT,N,1920,57.0,2358
+P,Linguistics (General),MERGED,P,1920,143.0,437
+PA,Classical Languages & Literature,MERGED,P,1920,22.0,4994
+PB,Celtic Languages,MERGED,P,1920,163.0,314
+PC,Romanic Languages,MERGED,P,1920,65.0,1883
+PD,Germanic Languages (Old),MERGED,P,1920,136.0,477
+PE,English Language,MERGED,P,1920,44.0,2733
+PF,West Germanic Languages,MERGED,P,1920,114.0,693
+PG,Slavic Languages & Literatures,ABSENT,P,1920,28.0,3463
+PH,Uralic / Basque Languages,ABSENT,P,1920,155.0,371
+PJ,Oriental Languages & Literature,ABSENT,P,1920,66.0,1875
+PK,Indo-Iranian Languages,ABSENT,P,1920,74.0,1518
+PL,E Asian / African / Pacific,ABSENT,P,1920,26.0,3785
+PM,Indigenous American Languages,ABSENT,P,1920,129.0,527
+PN,General Literature,MERGED,P,1920,14.0,7788
+PQ,French/Italian/Spanish Lit.,MERGED,P,1920,7.0,11605
+PR,English Literature,MERGED,P,1920,4.0,16710
+PS,American Literature,MERGED,P,1920,6.0,13108
+PT,Germanic Literature,MERGED,P,1920,17.0,5757
+PZ,Fiction / Juvenile Literature,ABSENT,P,1920,1.0,27222
+Q,Science (General),MERGED,Q,1920,56.0,2376
+QA,Mathematics,MERGED,Q,1920,23.0,4847
+QB,Astronomy,MERGED,Q,1920,60.0,2140
+QC,Physics,MERGED,Q,1920,30.0,3180
+QD,Chemistry,MERGED,Q,1920,38.0,2874
+QE,Geology / Mineralogy,MERGED,Q,1920,39.0,2868
+QH,Natural History / Biology,ABSENT,Q,1920,63.0,2014
+QK,Botany,MERGED,Q,1920,49.0,2552
+QL,Zoology,MERGED,Q,1920,27.0,3520
+QM,Human Anatomy,MERGED,Q,1920,124.0,557
+QP,Physiology,ABSENT,Q,1920,85.0,1210
+QR,Microbiology,ABSENT,Q,1920,167.0,279
+R,Medicine (General),MERGED,R,1920,73.0,1596
+RA,Public Health,ABSENT,R,1920,72.0,1612
+RB,Pathology,ABSENT,R,1920,162.0,322
+RC,Internal Medicine,MERGED,R,1920,42.0,2795
+RD,Surgery,MERGED,R,1920,110.0,770
+RE,Ophthalmology,ABSENT,R,1920,161.0,328
+RF,Otorhinolaryngology,ABSENT,R,1920,187.0,145
+RG,Gynecology / Obstetrics,ABSENT,R,1920,130.0,516
+RJ,Pediatrics,ABSENT,R,1920,164.0,307
+RK,Dentistry,ABSENT,R,1920,169.0,249
+RL,Dermatology,ABSENT,R,1920,186.0,151
+RM,Pharmacology,ABSENT,R,1920,101.0,945
+RS,Pharmacy,ABSENT,R,1920,127.0,536
+RT,Nursing,ABSENT,R,1920,192.0,108
+RV,Botanic Medicine,ABSENT,R,1920,199.0,76
+RX,Homeopathy,ABSENT,R,1920,177.0,208
+RZ,Other Medical Systems,ABSENT,R,1920,182.0,165
+S,Agriculture (General),DIRECT,S,1920,75.0,1499
+SB,Plant Culture,DIRECT,S,1920,64.0,1977
+SD,Forestry,MERGED,S,1920,146.0,427
+SF,Animal Culture,MERGED,S,1920,77.0,1471
+SH,Aquaculture / Fisheries,ABSENT,S,1920,147.0,421
+SK,Hunting / Wildlife,ABSENT,S,1920,142.0,462
+T,Technology (General),MERGED,T,1920,79.0,1311
+TA,Engineering (General),MERGED,T,1920,99.0,983
+TC,Hydraulic Engineering,MERGED,T,1920,104.0,876
+TD,Environmental Technology,ABSENT,T,1920,126.0,538
+TE,Highway Engineering,MERGED,T,1920,196.0,97
+TF,Railroad Engineering,ABSENT,T,1920,123.0,567
+TG,Bridge Engineering,MERGED,T,1920,166.0,287
+TH,Building Construction,MERGED,T,1920,111.0,745
+TJ,Mechanical Engineering,MERGED,T,1920,84.0,1211
+TK,Electrical Engineering,ABSENT,T,1920,97.0,990
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1920,81.0,1247
+TN,Mining / Metallurgy,MERGED,T,1920,68.0,1809
+TP,Chemical Technology,MERGED,T,1920,88.0,1166
+TR,Photography,ABSENT,T,1920,149.0,420
+TS,Manufactures,MERGED,T,1920,94.0,1035
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1920,125.0,555
+TX,Home Economics,ABSENT,T,1920,37.0,2892
+U,Military Science (General),ABSENT,U,1920,87.0,1191
+UA,Armies / Land Forces,ABSENT,U,1920,115.0,660
+UB,Military Administration,ABSENT,U,1920,145.0,432
+UC,Military Maintenance,ABSENT,U,1920,185.0,152
+UD,Infantry,ABSENT,U,1920,179.0,189
+UE,Cavalry / Armor,ABSENT,U,1920,201.0,70
+UF,Artillery,ABSENT,U,1920,170.0,244
+UG,Military Engineering,ABSENT,U,1920,154.0,372
+UH,Military Medicine,ABSENT,U,1920,188.0,144
+V,Naval Science (General),ABSENT,V,1920,172.0,241
+VA,Navies,ABSENT,V,1920,182.0,165
+VB,Naval Administration,ABSENT,V,1920,205.0,51
+VC,Naval Maintenance,ABSENT,V,1920,219.0,18
+VD,Naval Seamen,ABSENT,V,1920,227.0,5
+VE,Marines,ABSENT,V,1920,224.0,13
+VF,Naval Ordnance,ABSENT,V,1920,208.0,42
+VG,Naval Auxiliaries,ABSENT,V,1920,213.0,38
+VK,Navigation / Seamanship,ABSENT,V,1920,133.0,505
+VM,Naval Architecture,ABSENT,V,1920,151.0,384
+Z,Books / Writing (General),DIRECT,Z,1920,10.0,9396
+ZA,Information Resources,ABSENT,Z,1920,,0
+A,General Works (unclassed),ABSENT,A,1950,233.0,1
+AC,General Collections,RENAMED,A,1950,17.0,11842
+AE,Encyclopedias (General),RENAMED,A,1950,183.0,312
+AG,Dictionaries (General),RENAMED,A,1950,173.0,469
+AI,Indexes,ABSENT,A,1950,224.0,32
+AM,Museums / Exhibitions,ABSENT,A,1950,195.0,198
+AN,Newspapers,ABSENT,A,1950,,0
+AP,Periodicals (General),ABSENT,A,1950,208.0,105
+AS,Academies / Societies,ABSENT,A,1950,93.0,2710
+AY,Yearbooks / Almanacs,ABSENT,A,1950,206.0,117
+AZ,History of Scholarship,ABSENT,A,1950,205.0,122
+B,Philosophy (General),MERGED,B,1950,31.0,7507
+BC,Logic,MERGED,B,1950,175.0,449
+BD,Speculative Philosophy,MERGED,B,1950,120.0,1501
+BF,Psychology,ABSENT,B,1950,24.0,8540
+BH,Aesthetics,MERGED,B,1950,179.0,380
+BJ,Ethics,MERGED,B,1950,75.0,3522
+BL,Religion / Mythology,MERGED,B,1950,54.0,5241
+BM,Judaism,MERGED,B,1950,69.0,4209
+BP,Islam,MERGED,B,1950,126.0,1305
+BQ,Buddhism,MERGED,B,1950,118.0,1576
+BR,Christianity,MERGED,B,1950,45.0,6202
+BS,Bible,MERGED,B,1950,25.0,8350
+BT,Doctrinal Theology,MERGED,B,1950,47.0,5867
+BV,Practical Theology,MERGED,B,1950,18.0,11154
+BX,Christian Denominations,MERGED,B,1950,9.0,20569
+C,Auxiliary Sciences of History (General),ABSENT,C,1950,227.0,8
+CB,History of Civilization,ABSENT,C,1950,132.0,1173
+CC,Archaeology,ABSENT,C,1950,202.0,127
+CD,Diplomatics / Archives,ABSENT,C,1950,133.0,1166
+CE,Chronology,ABSENT,C,1950,194.0,214
+CJ,Numismatics,ABSENT,C,1950,162.0,751
+CN,Inscriptions / Epigraphy,ABSENT,C,1950,198.0,169
+CR,Heraldry,ABSENT,C,1950,166.0,672
+CS,Genealogy,ABSENT,C,1950,50.0,5783
+CT,Biography (General),ABSENT,C,1950,78.0,3451
+D,History (General),MERGED,D,1950,7.0,22063
+DA,British History,MERGED,D,1950,16.0,14035
+DAW,Central Europe,ABSENT,D,1950,,0
+DB,Austria / Bohemia,ABSENT,D,1950,91.0,2894
+DC,French History,MERGED,D,1950,20.0,9744
+DD,German History,MERGED,D,1950,42.0,6566
+DE,Greco-Roman World,MERGED,D,1950,189.0,267
+DF,Greek History,MERGED,D,1950,124.0,1370
+DG,Italian History / Rome,MERGED,D,1950,58.0,4926
+DH,Low Countries History,ABSENT,D,1950,157.0,823
+DJ,Netherlands,ABSENT,D,1950,171.0,539
+DJK,Eastern Europe (General),ABSENT,D,1950,225.0,31
+DK,Russia / Former Soviet States,ABSENT,D,1950,37.0,6736
+DL,Scandinavian History,ABSENT,D,1950,107.0,1862
+DP,Iberian History,ABSENT,D,1950,71.0,3958
+DQ,Switzerland,ABSENT,D,1950,161.0,763
+DR,Balkan History,ABSENT,D,1950,97.0,2370
+DS,Asian History,ABSENT,D,1950,12.0,20125
+DT,African History,ABSENT,D,1950,52.0,5598
+DU,Oceania,ABSENT,D,1950,109.0,1812
+DX,Romani People,ABSENT,D,1950,212.0,96
+E,American History (General),MERGED,E,1950,6.0,26569
+E18,African American History (E185),ABSENT,E,1950,152.0,899
+E99,Native Americans (E99),ABSENT,E,1950,159.0,783
+F,US Local / Latin American History,MERGED,F,1950,2.0,39257
+G,Geography (General),MERGED,G,1950,57.0,4935
+GA,Mathematical Geography,MERGED,G,1950,177.0,441
+GB,Physical Geography,MERGED,G,1950,151.0,901
+GC,Oceanography,ABSENT,G,1950,190.0,259
+GE,Environmental Sciences,ABSENT,G,1950,226.0,9
+GF,Human Ecology,ABSENT,G,1950,200.0,154
+GN,Anthropology,ABSENT,G,1950,92.0,2822
+GR,Folklore,ABSENT,G,1950,129.0,1263
+GT,Manners & Customs,ABSENT,G,1950,140.0,1047
+GV,Recreation / Leisure,ABSENT,G,1950,28.0,7771
+H,Social Sciences (General),ABSENT,H,1950,108.0,1828
+HA,Statistics,ABSENT,H,1950,125.0,1341
+HB,Economic Theory,ABSENT,H,1950,56.0,5007
+HC,Economic History,ABSENT,H,1950,22.0,8901
+HD,Land / Agriculture Economics,ABSENT,H,1950,13.0,20042
+HE,Transportation & Comms,ABSENT,H,1950,51.0,5779
+HF,Commerce,MERGED,H,1950,19.0,10548
+HG,Finance,ABSENT,H,1950,29.0,7719
+HJ,Public Finance,MERGED,H,1950,68.0,4401
+HM,Sociology,ABSENT,H,1950,117.0,1588
+HN,Social History,ABSENT,H,1950,101.0,2124
+HQ,Family / Gender / Sexuality,ABSENT,H,1950,64.0,4693
+HS,Societies / Clubs,ABSENT,H,1950,136.0,1098
+HT,Communities / Classes / Race,ABSENT,H,1950,144.0,997
+HV,Social Pathology / Criminology,ABSENT,H,1950,36.0,6925
+HX,Socialism / Communism,ABSENT,H,1950,79.0,3397
+J,Political Science (General),MERGED,J,1950,174.0,457
+JA,Political Science (General works),MERGED,J,1950,169.0,590
+JC,Political Theory,MERGED,J,1950,88.0,2966
+JF,Political Institutions (General),MERGED,J,1950,160.0,768
+JJ,"Political Institutions (Europe, other)",MERGED,J,1950,,0
+JK,US Political Institutions,MERGED,J,1950,55.0,5221
+JL,Canadian / Latin American Politics,MERGED,J,1950,148.0,959
+JN,European Politics,ABSENT,J,1950,89.0,2938
+JQ,Asian / African Politics,ABSENT,J,1950,128.0,1272
+JS,Local Government,ABSENT,J,1950,110.0,1769
+JV,Colonies / Colonialism,ABSENT,J,1950,135.0,1138
+JX,International Law (old),ABSENT,J,1950,39.0,6646
+JZ,International Relations,ABSENT,J,1950,209.0,102
+K,Law (General),MERGED,K,1950,98.0,2329
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1950,232.0,2
+KB,Religious Law,MERGED,K,1950,113.0,1682
+KD,UK Law,MERGED,K,1950,35.0,6968
+KE,Canadian Law,ABSENT,K,1950,178.0,406
+KF,US Law,MERGED,K,1950,15.0,16065
+KG,Latin American Law,ABSENT,K,1950,100.0,2169
+KH,South American Law,ABSENT,K,1950,102.0,2096
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1950,222.0,33
+KJ,European Law,MERGED,K,1950,43.0,6402
+KK,Law of Europe (KK),MERGED,K,1950,61.0,4820
+KL,Asian / African Law,ABSENT,K,1950,180.0,376
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1950,203.0,126
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1950,116.0,1612
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1950,192.0,244
+KQ,Law of Africa (KQ),ABSENT,K,1950,219.0,45
+KR,Law of Africa (KR),ABSENT,K,1950,204.0,123
+KS,Law of Africa (KS),ABSENT,K,1950,217.0,68
+KT,Law of Africa (KT),ABSENT,K,1950,197.0,176
+KU,Law of Pacific Area (KU),ABSENT,K,1950,211.0,99
+KV,Law of Pacific Area (KV),ABSENT,K,1950,228.0,5
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1950,230.0,4
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1950,233.0,1
+KZ,International Law,ABSENT,K,1950,134.0,1151
+L,Education (General),ABSENT,L,1950,111.0,1746
+LA,History of Education,ABSENT,L,1950,85.0,3126
+LB,Theory / Practice of Education,ABSENT,L,1950,23.0,8864
+LC,Social Aspects of Education,ABSENT,L,1950,96.0,2486
+LD,US Universities,ABSENT,L,1950,106.0,1879
+LE,American Universities (other),ABSENT,L,1950,196.0,181
+LF,European Universities,ABSENT,L,1950,154.0,876
+LG,Asian / African Universities,ABSENT,L,1950,207.0,106
+LH,College Publications,ABSENT,L,1950,230.0,4
+LJ,Student Fraternities,ABSENT,L,1950,199.0,159
+LT,Textbooks,ABSENT,L,1950,221.0,35
+M,Music Scores,DIRECT,M,1950,201.0,152
+ML,Literature on Music,DIRECT,M,1950,11.0,20249
+MT,Musical Instruction,DIRECT,M,1950,94.0,2642
+N,Visual Arts (General),MERGED,N,1950,44.0,6283
+NB,Sculpture,MERGED,N,1950,121.0,1463
+NC,Drawing / Design,MERGED,N,1950,95.0,2570
+ND,Painting,MERGED,N,1950,34.0,7063
+NE,Print Media,ABSENT,N,1950,99.0,2205
+NK,Decorative Arts,ABSENT,N,1950,70.0,4186
+NX,Arts in General,ABSENT,N,1950,215.0,87
+NA,Architecture,DIRECT,N,1950,49.0,5830
+P,Linguistics (General),MERGED,P,1950,144.0,997
+PA,Classical Languages & Literature,MERGED,P,1950,30.0,7709
+PB,Celtic Languages,MERGED,P,1950,167.0,666
+PC,Romanic Languages,MERGED,P,1950,67.0,4428
+PD,Germanic Languages (Old),MERGED,P,1950,156.0,841
+PE,English Language,MERGED,P,1950,53.0,5514
+PF,West Germanic Languages,MERGED,P,1950,122.0,1433
+PG,Slavic Languages & Literatures,ABSENT,P,1950,26.0,8301
+PH,Uralic / Basque Languages,ABSENT,P,1950,153.0,878
+PJ,Oriental Languages & Literature,ABSENT,P,1950,62.0,4753
+PK,Indo-Iranian Languages,ABSENT,P,1950,83.0,3268
+PL,E Asian / African / Pacific,ABSENT,P,1950,33.0,7425
+PM,Indigenous American Languages,ABSENT,P,1950,158.0,803
+PN,General Literature,MERGED,P,1950,10.0,20403
+PQ,French/Italian/Spanish Lit.,MERGED,P,1950,3.0,34311
+PR,English Literature,MERGED,P,1950,4.0,30505
+PS,American Literature,MERGED,P,1950,5.0,30229
+PT,Germanic Literature,MERGED,P,1950,14.0,17905
+PZ,Fiction / Juvenile Literature,ABSENT,P,1950,1.0,66357
+Q,Science (General),MERGED,Q,1950,46.0,5910
+QA,Mathematics,MERGED,Q,1950,21.0,9128
+QB,Astronomy,MERGED,Q,1950,77.0,3495
+QC,Physics,MERGED,Q,1950,27.0,7842
+QD,Chemistry,MERGED,Q,1950,40.0,6643
+QE,Geology / Mineralogy,MERGED,Q,1950,38.0,6721
+QH,Natural History / Biology,ABSENT,Q,1950,65.0,4652
+QK,Botany,MERGED,Q,1950,59.0,4899
+QL,Zoology,MERGED,Q,1950,32.0,7468
+QM,Human Anatomy,MERGED,Q,1950,137.0,1063
+QP,Physiology,ABSENT,Q,1950,81.0,3344
+QR,Microbiology,ABSENT,Q,1950,149.0,950
+R,Medicine (General),MERGED,R,1950,84.0,3206
+RA,Public Health,ABSENT,R,1950,73.0,3688
+RB,Pathology,ABSENT,R,1950,165.0,680
+RC,Internal Medicine,MERGED,R,1950,41.0,6638
+RD,Surgery,MERGED,R,1950,112.0,1693
+RE,Ophthalmology,ABSENT,R,1950,168.0,639
+RF,Otorhinolaryngology,ABSENT,R,1950,184.0,289
+RG,Gynecology / Obstetrics,ABSENT,R,1950,143.0,1012
+RJ,Pediatrics,ABSENT,R,1950,155.0,849
+RK,Dentistry,ABSENT,R,1950,163.0,694
+RL,Dermatology,ABSENT,R,1950,182.0,349
+RM,Pharmacology,ABSENT,R,1950,103.0,2092
+RS,Pharmacy,ABSENT,R,1950,146.0,986
+RT,Nursing,ABSENT,R,1950,170.0,558
+RV,Botanic Medicine,ABSENT,R,1950,216.0,82
+RX,Homeopathy,ABSENT,R,1950,186.0,270
+RZ,Other Medical Systems,ABSENT,R,1950,193.0,238
+S,Agriculture (General),DIRECT,S,1950,76.0,3521
+SB,Plant Culture,DIRECT,S,1950,62.0,4753
+SD,Forestry,MERGED,S,1950,127.0,1279
+SF,Animal Culture,MERGED,S,1950,74.0,3541
+SH,Aquaculture / Fisheries,ABSENT,S,1950,130.0,1229
+SK,Hunting / Wildlife,ABSENT,S,1950,131.0,1187
+T,Technology (General),MERGED,T,1950,90.0,2930
+TA,Engineering (General),MERGED,T,1950,87.0,3019
+TC,Hydraulic Engineering,MERGED,T,1950,114.0,1647
+TD,Environmental Technology,ABSENT,T,1950,147.0,985
+TE,Highway Engineering,MERGED,T,1950,185.0,280
+TF,Railroad Engineering,ABSENT,T,1950,138.0,1059
+TG,Bridge Engineering,MERGED,T,1950,164.0,693
+TH,Building Construction,MERGED,T,1950,105.0,1895
+TJ,Mechanical Engineering,MERGED,T,1950,86.0,3054
+TK,Electrical Engineering,ABSENT,T,1950,72.0,3748
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1950,60.0,4864
+TN,Mining / Metallurgy,MERGED,T,1950,66.0,4549
+TP,Chemical Technology,MERGED,T,1950,80.0,3376
+TR,Photography,ABSENT,T,1950,123.0,1387
+TS,Manufactures,MERGED,T,1950,82.0,3319
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1950,115.0,1623
+TX,Home Economics,ABSENT,T,1950,48.0,5833
+U,Military Science (General),ABSENT,U,1950,104.0,2027
+UA,Armies / Land Forces,ABSENT,U,1950,119.0,1525
+UB,Military Administration,ABSENT,U,1950,150.0,939
+UC,Military Maintenance,ABSENT,U,1950,187.0,269
+UD,Infantry,ABSENT,U,1950,188.0,268
+UE,Cavalry / Armor,ABSENT,U,1950,212.0,96
+UF,Artillery,ABSENT,U,1950,176.0,448
+UG,Military Engineering,ABSENT,U,1950,142.0,1019
+UH,Military Medicine,ABSENT,U,1950,191.0,249
+V,Naval Science (General),ABSENT,V,1950,172.0,512
+VA,Navies,ABSENT,V,1950,181.0,366
+VB,Naval Administration,ABSENT,V,1950,210.0,100
+VC,Naval Maintenance,ABSENT,V,1950,222.0,33
+VD,Naval Seamen,ABSENT,V,1950,228.0,5
+VE,Marines,ABSENT,V,1950,220.0,37
+VF,Naval Ordnance,ABSENT,V,1950,218.0,52
+VG,Naval Auxiliaries,ABSENT,V,1950,214.0,94
+VK,Navigation / Seamanship,ABSENT,V,1950,141.0,1045
+VM,Naval Architecture,ABSENT,V,1950,139.0,1048
+Z,Books / Writing (General),DIRECT,Z,1950,8.0,21628
+ZA,Information Resources,ABSENT,Z,1950,,0
+A,General Works (unclassed),ABSENT,A,1970,233.0,1
+AC,General Collections,RENAMED,A,1970,40.0,13557
+AE,Encyclopedias (General),RENAMED,A,1970,189.0,574
+AG,Dictionaries (General),RENAMED,A,1970,181.0,809
+AI,Indexes,ABSENT,A,1970,223.0,68
+AM,Museums / Exhibitions,ABSENT,A,1970,187.0,578
+AN,Newspapers,ABSENT,A,1970,,0
+AP,Periodicals (General),ABSENT,A,1970,212.0,173
+AS,Academies / Societies,ABSENT,A,1970,87.0,6607
+AY,Yearbooks / Almanacs,ABSENT,A,1970,216.0,157
+AZ,History of Scholarship,ABSENT,A,1970,203.0,334
+B,Philosophy (General),MERGED,B,1970,27.0,17564
+BC,Logic,MERGED,B,1970,174.0,1123
+BD,Speculative Philosophy,MERGED,B,1970,122.0,3421
+BF,Psychology,ABSENT,B,1970,28.0,16930
+BH,Aesthetics,MERGED,B,1970,180.0,821
+BJ,Ethics,MERGED,B,1970,95.0,5997
+BL,Religion / Mythology,MERGED,B,1970,49.0,11935
+BM,Judaism,MERGED,B,1970,77.0,7705
+BP,Islam,MERGED,B,1970,102.0,4819
+BQ,Buddhism,MERGED,B,1970,131.0,2895
+BR,Christianity,MERGED,B,1970,50.0,11511
+BS,Bible,MERGED,B,1970,35.0,15062
+BT,Doctrinal Theology,MERGED,B,1970,54.0,11153
+BV,Practical Theology,MERGED,B,1970,24.0,20165
+BX,Christian Denominations,MERGED,B,1970,11.0,37125
+C,Auxiliary Sciences of History (General),ABSENT,C,1970,228.0,13
+CB,History of Civilization,ABSENT,C,1970,132.0,2798
+CC,Archaeology,ABSENT,C,1970,194.0,505
+CD,Diplomatics / Archives,ABSENT,C,1970,139.0,2396
+CE,Chronology,ABSENT,C,1970,204.0,312
+CJ,Numismatics,ABSENT,C,1970,155.0,1677
+CN,Inscriptions / Epigraphy,ABSENT,C,1970,206.0,302
+CR,Heraldry,ABSENT,C,1970,171.0,1194
+CS,Genealogy,ABSENT,C,1970,58.0,10483
+CT,Biography (General),ABSENT,C,1970,88.0,6479
+D,History (General),MERGED,D,1970,14.0,34535
+DA,British History,MERGED,D,1970,22.0,22725
+DAW,Central Europe,ABSENT,D,1970,,0
+DB,Austria / Bohemia,ABSENT,D,1970,96.0,5880
+DC,French History,MERGED,D,1970,38.0,14527
+DD,German History,MERGED,D,1970,43.0,13131
+DE,Greco-Roman World,MERGED,D,1970,198.0,433
+DF,Greek History,MERGED,D,1970,134.0,2690
+DG,Italian History / Rome,MERGED,D,1970,72.0,8681
+DH,Low Countries History,ABSENT,D,1970,165.0,1331
+DJ,Netherlands,ABSENT,D,1970,172.0,1136
+DJK,Eastern Europe (General),ABSENT,D,1970,224.0,51
+DK,Russia / Former Soviet States,ABSENT,D,1970,37.0,15017
+DL,Scandinavian History,ABSENT,D,1970,107.0,4082
+DP,Iberian History,ABSENT,D,1970,86.0,6708
+DQ,Switzerland,ABSENT,D,1970,162.0,1429
+DR,Balkan History,ABSENT,D,1970,101.0,4945
+DS,Asian History,ABSENT,D,1970,8.0,43039
+DT,African History,ABSENT,D,1970,39.0,14267
+DU,Oceania,ABSENT,D,1970,103.0,4591
+DX,Romani People,ABSENT,D,1970,215.0,166
+E,American History (General),MERGED,E,1970,10.0,40507
+E18,African American History (E185),ABSENT,E,1970,138.0,2399
+E99,Native Americans (E99),ABSENT,E,1970,154.0,1684
+F,US Local / Latin American History,MERGED,F,1970,3.0,66821
+G,Geography (General),MERGED,G,1970,66.0,9288
+GA,Mathematical Geography,MERGED,G,1970,178.0,985
+GB,Physical Geography,MERGED,G,1970,128.0,3325
+GC,Oceanography,ABSENT,G,1970,170.0,1227
+GE,Environmental Sciences,ABSENT,G,1970,230.0,9
+GF,Human Ecology,ABSENT,G,1970,202.0,356
+GN,Anthropology,ABSENT,G,1970,94.0,6031
+GR,Folklore,ABSENT,G,1970,114.0,3648
+GT,Manners & Customs,ABSENT,G,1970,141.0,2236
+GV,Recreation / Leisure,ABSENT,G,1970,26.0,17735
+H,Social Sciences (General),ABSENT,H,1970,118.0,3525
+HA,Statistics,ABSENT,H,1970,115.0,3636
+HB,Economic Theory,ABSENT,H,1970,53.0,11177
+HC,Economic History,ABSENT,H,1970,16.0,26583
+HD,Land / Agriculture Economics,ABSENT,H,1970,4.0,52287
+HE,Transportation & Comms,ABSENT,H,1970,47.0,12333
+HF,Commerce,MERGED,H,1970,19.0,23182
+HG,Finance,ABSENT,H,1970,34.0,15536
+HJ,Public Finance,MERGED,H,1970,76.0,7794
+HM,Sociology,ABSENT,H,1970,100.0,4997
+HN,Social History,ABSENT,H,1970,84.0,6877
+HQ,Family / Gender / Sexuality,ABSENT,H,1970,52.0,11288
+HS,Societies / Clubs,ABSENT,H,1970,152.0,1753
+HT,Communities / Classes / Race,ABSENT,H,1970,104.0,4488
+HV,Social Pathology / Criminology,ABSENT,H,1970,31.0,16349
+HX,Socialism / Communism,ABSENT,H,1970,75.0,8063
+J,Political Science (General),MERGED,J,1970,177.0,1066
+JA,Political Science (General works),MERGED,J,1970,145.0,1877
+JC,Political Theory,MERGED,J,1970,97.0,5358
+JF,Political Institutions (General),MERGED,J,1970,153.0,1692
+JJ,"Political Institutions (Europe, other)",MERGED,J,1970,,0
+JK,US Political Institutions,MERGED,J,1970,70.0,8874
+JL,Canadian / Latin American Politics,MERGED,J,1970,147.0,1875
+JN,European Politics,ABSENT,J,1970,79.0,7346
+JQ,Asian / African Politics,ABSENT,J,1970,108.0,4017
+JS,Local Government,ABSENT,J,1970,110.0,3933
+JV,Colonies / Colonialism,ABSENT,J,1970,146.0,1876
+JX,International Law (old),ABSENT,J,1970,42.0,13302
+JZ,International Relations,ABSENT,J,1970,212.0,173
+K,Law (General),MERGED,K,1970,99.0,5164
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1970,232.0,2
+KB,Religious Law,MERGED,K,1970,137.0,2400
+KD,UK Law,MERGED,K,1970,65.0,9466
+KE,Canadian Law,ABSENT,K,1970,176.0,1069
+KF,US Law,MERGED,K,1970,13.0,35064
+KG,Latin American Law,ABSENT,K,1970,111.0,3901
+KH,South American Law,ABSENT,K,1970,91.0,6315
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1970,225.0,44
+KJ,European Law,MERGED,K,1970,61.0,9704
+KK,Law of Europe (KK),MERGED,K,1970,60.0,9783
+KL,Asian / African Law,ABSENT,K,1970,186.0,622
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1970,190.0,567
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1970,105.0,4170
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1970,169.0,1256
+KQ,Law of Africa (KQ),ABSENT,K,1970,210.0,249
+KR,Law of Africa (KR),ABSENT,K,1970,191.0,550
+KS,Law of Africa (KS),ABSENT,K,1970,209.0,251
+KT,Law of Africa (KT),ABSENT,K,1970,185.0,629
+KU,Law of Pacific Area (KU),ABSENT,K,1970,192.0,544
+KV,Law of Pacific Area (KV),ABSENT,K,1970,227.0,17
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1970,226.0,25
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1970,233.0,1
+KZ,International Law,ABSENT,K,1970,157.0,1639
+L,Education (General),ABSENT,L,1970,120.0,3438
+LA,History of Education,ABSENT,L,1970,74.0,8118
+LB,Theory / Practice of Education,ABSENT,L,1970,20.0,23178
+LC,Social Aspects of Education,ABSENT,L,1970,83.0,6977
+LD,US Universities,ABSENT,L,1970,133.0,2790
+LE,American Universities (other),ABSENT,L,1970,196.0,451
+LF,European Universities,ABSENT,L,1970,156.0,1671
+LG,Asian / African Universities,ABSENT,L,1970,197.0,435
+LH,College Publications,ABSENT,L,1970,231.0,6
+LJ,Student Fraternities,ABSENT,L,1970,211.0,204
+LT,Textbooks,ABSENT,L,1970,222.0,75
+M,Music Scores,DIRECT,M,1970,208.0,262
+ML,Literature on Music,DIRECT,M,1970,15.0,32260
+MT,Musical Instruction,DIRECT,M,1970,98.0,5318
+N,Visual Arts (General),MERGED,N,1970,32.0,16117
+NB,Sculpture,MERGED,N,1970,112.0,3804
+NC,Drawing / Design,MERGED,N,1970,93.0,6042
+ND,Painting,MERGED,N,1970,29.0,16573
+NE,Print Media,ABSENT,N,1970,109.0,3978
+NK,Decorative Arts,ABSENT,N,1970,67.0,9223
+NX,Arts in General,ABSENT,N,1970,188.0,575
+NA,Architecture,DIRECT,N,1970,45.0,12456
+P,Linguistics (General),MERGED,P,1970,127.0,3332
+PA,Classical Languages & Literature,MERGED,P,1970,48.0,12256
+PB,Celtic Languages,MERGED,P,1970,167.0,1282
+PC,Romanic Languages,MERGED,P,1970,71.0,8683
+PD,Germanic Languages (Old),MERGED,P,1970,161.0,1463
+PE,English Language,MERGED,P,1970,62.0,9634
+PF,West Germanic Languages,MERGED,P,1970,130.0,2899
+PG,Slavic Languages & Literatures,ABSENT,P,1970,17.0,26387
+PH,Uralic / Basque Languages,ABSENT,P,1970,135.0,2684
+PJ,Oriental Languages & Literature,ABSENT,P,1970,56.0,11065
+PK,Indo-Iranian Languages,ABSENT,P,1970,18.0,25982
+PL,E Asian / African / Pacific,ABSENT,P,1970,21.0,23104
+PM,Indigenous American Languages,ABSENT,P,1970,163.0,1403
+PN,General Literature,MERGED,P,1970,9.0,41210
+PQ,French/Italian/Spanish Lit.,MERGED,P,1970,2.0,75404
+PR,English Literature,MERGED,P,1970,5.0,50698
+PS,American Literature,MERGED,P,1970,7.0,44414
+PT,Germanic Literature,MERGED,P,1970,12.0,35266
+PZ,Fiction / Juvenile Literature,ABSENT,P,1970,1.0,124582
+Q,Science (General),MERGED,Q,1970,44.0,12846
+QA,Mathematics,MERGED,Q,1970,23.0,21832
+QB,Astronomy,MERGED,Q,1970,89.0,6433
+QC,Physics,MERGED,Q,1970,25.0,19985
+QD,Chemistry,MERGED,Q,1970,41.0,13349
+QE,Geology / Mineralogy,MERGED,Q,1970,30.0,16445
+QH,Natural History / Biology,ABSENT,Q,1970,57.0,10939
+QK,Botany,MERGED,Q,1970,68.0,9187
+QL,Zoology,MERGED,Q,1970,33.0,15901
+QM,Human Anatomy,MERGED,Q,1970,150.0,1856
+QP,Physiology,ABSENT,Q,1970,80.0,7343
+QR,Microbiology,ABSENT,Q,1970,143.0,2041
+R,Medicine (General),MERGED,R,1970,90.0,6363
+RA,Public Health,ABSENT,R,1970,73.0,8329
+RB,Pathology,ABSENT,R,1970,166.0,1308
+RC,Internal Medicine,MERGED,R,1970,36.0,15037
+RD,Surgery,MERGED,R,1970,129.0,3318
+RE,Ophthalmology,ABSENT,R,1970,173.0,1129
+RF,Otorhinolaryngology,ABSENT,R,1970,195.0,483
+RG,Gynecology / Obstetrics,ABSENT,R,1970,147.0,1875
+RJ,Pediatrics,ABSENT,R,1970,142.0,2051
+RK,Dentistry,ABSENT,R,1970,164.0,1398
+RL,Dermatology,ABSENT,R,1970,193.0,524
+RM,Pharmacology,ABSENT,R,1970,119.0,3512
+RS,Pharmacy,ABSENT,R,1970,158.0,1595
+RT,Nursing,ABSENT,R,1970,160.0,1482
+RV,Botanic Medicine,ABSENT,R,1970,220.0,84
+RX,Homeopathy,ABSENT,R,1970,205.0,303
+RZ,Other Medical Systems,ABSENT,R,1970,200.0,389
+S,Agriculture (General),DIRECT,S,1970,64.0,9548
+SB,Plant Culture,DIRECT,S,1970,59.0,9832
+SD,Forestry,MERGED,S,1970,121.0,3427
+SF,Animal Culture,MERGED,S,1970,81.0,7166
+SH,Aquaculture / Fisheries,ABSENT,S,1970,126.0,3337
+SK,Hunting / Wildlife,ABSENT,S,1970,136.0,2403
+T,Technology (General),MERGED,T,1970,92.0,6230
+TA,Engineering (General),MERGED,T,1970,69.0,8920
+TC,Hydraulic Engineering,MERGED,T,1970,122.0,3421
+TD,Environmental Technology,ABSENT,T,1970,116.0,3579
+TE,Highway Engineering,MERGED,T,1970,168.0,1279
+TF,Railroad Engineering,ABSENT,T,1970,151.0,1843
+TG,Bridge Engineering,MERGED,T,1970,175.0,1119
+TH,Building Construction,MERGED,T,1970,106.0,4137
+TJ,Mechanical Engineering,MERGED,T,1970,85.0,6778
+TK,Electrical Engineering,ABSENT,T,1970,55.0,11134
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1970,46.0,12429
+TN,Mining / Metallurgy,MERGED,T,1970,63.0,9626
+TP,Chemical Technology,MERGED,T,1970,82.0,7128
+TR,Photography,ABSENT,T,1970,125.0,3357
+TS,Manufactures,MERGED,T,1970,78.0,7442
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1970,117.0,3555
+TX,Home Economics,ABSENT,T,1970,51.0,11326
+U,Military Science (General),ABSENT,U,1970,113.0,3701
+UA,Armies / Land Forces,ABSENT,U,1970,124.0,3367
+UB,Military Administration,ABSENT,U,1970,158.0,1595
+UC,Military Maintenance,ABSENT,U,1970,184.0,672
+UD,Infantry,ABSENT,U,1970,199.0,407
+UE,Cavalry / Armor,ABSENT,U,1970,217.0,127
+UF,Artillery,ABSENT,U,1970,182.0,792
+UG,Military Engineering,ABSENT,U,1970,144.0,1976
+UH,Military Medicine,ABSENT,U,1970,201.0,381
+V,Naval Science (General),ABSENT,V,1970,179.0,971
+VA,Navies,ABSENT,V,1970,183.0,741
+VB,Naval Administration,ABSENT,V,1970,214.0,172
+VC,Naval Maintenance,ABSENT,V,1970,219.0,97
+VD,Naval Seamen,ABSENT,V,1970,229.0,11
+VE,Marines,ABSENT,V,1970,218.0,101
+VF,Naval Ordnance,ABSENT,V,1970,221.0,76
+VG,Naval Auxiliaries,ABSENT,V,1970,207.0,287
+VK,Navigation / Seamanship,ABSENT,V,1970,149.0,1861
+VM,Naval Architecture,ABSENT,V,1970,140.0,2391
+Z,Books / Writing (General),DIRECT,Z,1970,6.0,45556
+ZA,Information Resources,ABSENT,Z,1970,,0
+A,General Works (unclassed),ABSENT,A,1990,236.0,1
+AC,General Collections,RENAMED,A,1990,85.0,17904
+AE,Encyclopedias (General),RENAMED,A,1990,198.0,1070
+AG,Dictionaries (General),RENAMED,A,1990,187.0,1880
+AI,Indexes,ABSENT,A,1990,221.0,191
+AM,Museums / Exhibitions,ABSENT,A,1990,183.0,2153
+AN,Newspapers,ABSENT,A,1990,,0
+AP,Periodicals (General),ABSENT,A,1990,212.0,448
+AS,Academies / Societies,ABSENT,A,1990,103.0,13271
+AY,Yearbooks / Almanacs,ABSENT,A,1990,217.0,243
+AZ,History of Scholarship,ABSENT,A,1990,203.0,821
+B,Philosophy (General),MERGED,B,1990,31.0,41973
+BC,Logic,MERGED,B,1990,176.0,2660
+BD,Speculative Philosophy,MERGED,B,1990,127.0,8297
+BF,Psychology,ABSENT,B,1990,28.0,44091
+BH,Aesthetics,MERGED,B,1990,175.0,2669
+BJ,Ethics,MERGED,B,1990,108.0,12369
+BL,Religion / Mythology,MERGED,B,1990,44.0,31521
+BM,Judaism,MERGED,B,1990,78.0,18908
+BP,Islam,MERGED,B,1990,93.0,16438
+BQ,Buddhism,MERGED,B,1990,107.0,12668
+BR,Christianity,MERGED,B,1990,68.0,22554
+BS,Bible,MERGED,B,1990,45.0,31116
+BT,Doctrinal Theology,MERGED,B,1990,66.0,22674
+BV,Practical Theology,MERGED,B,1990,35.0,39182
+BX,Christian Denominations,MERGED,B,1990,14.0,71803
+C,Auxiliary Sciences of History (General),ABSENT,C,1990,229.0,34
+CB,History of Civilization,ABSENT,C,1990,137.0,6117
+CC,Archaeology,ABSENT,C,1990,191.0,1699
+CD,Diplomatics / Archives,ABSENT,C,1990,134.0,6404
+CE,Chronology,ABSENT,C,1990,209.0,558
+CJ,Numismatics,ABSENT,C,1990,157.0,3915
+CN,Inscriptions / Epigraphy,ABSENT,C,1990,204.0,792
+CR,Heraldry,ABSENT,C,1990,178.0,2483
+CS,Genealogy,ABSENT,C,1990,41.0,32079
+CT,Biography (General),ABSENT,C,1990,100.0,13625
+D,History (General),MERGED,D,1990,17.0,64104
+DA,British History,MERGED,D,1990,36.0,37638
+DAW,Central Europe,ABSENT,D,1990,232.0,16
+DB,Austria / Bohemia,ABSENT,D,1990,101.0,13543
+DC,French History,MERGED,D,1990,48.0,28778
+DD,German History,MERGED,D,1990,49.0,28170
+DE,Greco-Roman World,MERGED,D,1990,201.0,876
+DF,Greek History,MERGED,D,1990,135.0,6352
+DG,Italian History / Rome,MERGED,D,1990,72.0,20811
+DH,Low Countries History,ABSENT,D,1990,169.0,3101
+DJ,Netherlands,ABSENT,D,1990,170.0,3073
+DJK,Eastern Europe (General),ABSENT,D,1990,205.0,717
+DK,Russia / Former Soviet States,ABSENT,D,1990,39.0,34554
+DL,Scandinavian History,ABSENT,D,1990,121.0,9603
+DP,Iberian History,ABSENT,D,1990,88.0,17099
+DQ,Switzerland,ABSENT,D,1990,162.0,3605
+DR,Balkan History,ABSENT,D,1990,98.0,14547
+DS,Asian History,ABSENT,D,1990,5.0,128777
+DT,African History,ABSENT,D,1990,42.0,31771
+DU,Oceania,ABSENT,D,1990,116.0,9972
+DX,Romani People,ABSENT,D,1990,210.0,467
+E,American History (General),MERGED,E,1990,16.0,66007
+E18,African American History (E185),ABSENT,E,1990,151.0,4408
+E99,Native Americans (E99),ABSENT,E,1990,145.0,5136
+F,US Local / Latin American History,MERGED,F,1990,4.0,139824
+G,Geography (General),MERGED,G,1990,83.0,18281
+GA,Mathematical Geography,MERGED,G,1990,182.0,2208
+GB,Physical Geography,MERGED,G,1990,113.0,10824
+GC,Oceanography,ABSENT,G,1990,155.0,4088
+GE,Environmental Sciences,ABSENT,G,1990,220.0,199
+GF,Human Ecology,ABSENT,G,1990,181.0,2223
+GN,Anthropology,ABSENT,G,1990,87.0,17372
+GR,Folklore,ABSENT,G,1990,112.0,11241
+GT,Manners & Customs,ABSENT,G,1990,132.0,7146
+GV,Recreation / Leisure,ABSENT,G,1990,24.0,51395
+H,Social Sciences (General),ABSENT,H,1990,129.0,7654
+HA,Statistics,ABSENT,H,1990,118.0,9700
+HB,Economic Theory,ABSENT,H,1990,38.0,34791
+HC,Economic History,ABSENT,H,1990,12.0,85099
+HD,Land / Agriculture Economics,ABSENT,H,1990,2.0,181433
+HE,Transportation & Comms,ABSENT,H,1990,47.0,30558
+HF,Commerce,MERGED,H,1990,20.0,62708
+HG,Finance,ABSENT,H,1990,32.0,41868
+HJ,Public Finance,MERGED,H,1990,82.0,18447
+HM,Sociology,ABSENT,H,1990,92.0,16452
+HN,Social History,ABSENT,H,1990,58.0,25297
+HQ,Family / Gender / Sexuality,ABSENT,H,1990,27.0,44309
+HS,Societies / Clubs,ABSENT,H,1990,164.0,3564
+HT,Communities / Classes / Race,ABSENT,H,1990,73.0,20339
+HV,Social Pathology / Criminology,ABSENT,H,1990,22.0,56087
+HX,Socialism / Communism,ABSENT,H,1990,62.0,24429
+J,Political Science (General),MERGED,J,1990,161.0,3639
+JA,Political Science (General works),MERGED,J,1990,142.0,5649
+JC,Political Theory,MERGED,J,1990,104.0,13113
+JF,Political Institutions (General),MERGED,J,1990,152.0,4357
+JJ,"Political Institutions (Europe, other)",MERGED,J,1990,,0
+JK,US Political Institutions,MERGED,J,1990,94.0,15800
+JL,Canadian / Latin American Politics,MERGED,J,1990,136.0,6337
+JN,European Politics,ABSENT,J,1990,71.0,21384
+JQ,Asian / African Politics,ABSENT,J,1990,99.0,13728
+JS,Local Government,ABSENT,J,1990,119.0,9663
+JV,Colonies / Colonialism,ABSENT,J,1990,159.0,3810
+JX,International Law (old),ABSENT,J,1990,57.0,25521
+JZ,International Relations,ABSENT,J,1990,214.0,354
+K,Law (General),MERGED,K,1990,90.0,16885
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,1990,234.0,2
+KB,Religious Law,MERGED,K,1990,146.0,5110
+KD,UK Law,MERGED,K,1990,97.0,15207
+KE,Canadian Law,ABSENT,K,1990,147.0,5003
+KF,US Law,MERGED,K,1990,7.0,107589
+KG,Latin American Law,ABSENT,K,1990,128.0,8058
+KH,South American Law,ABSENT,K,1990,74.0,19818
+KI,Indigenous Law of the Americas (KI),ABSENT,K,1990,223.0,144
+KJ,European Law,MERGED,K,1990,69.0,22469
+KK,Law of Europe (KK),MERGED,K,1990,33.0,40922
+KL,Asian / African Law,ABSENT,K,1990,195.0,1381
+KM,Law of Asia / Eurasia (KM),ABSENT,K,1990,185.0,2109
+KN,Law of Asia / Eurasia (KN),ABSENT,K,1990,102.0,13307
+KP,Law of Asia / Eurasia (KP),ABSENT,K,1990,153.0,4289
+KQ,Law of Africa (KQ),ABSENT,K,1990,200.0,904
+KR,Law of Africa (KR),ABSENT,K,1990,186.0,2085
+KS,Law of Africa (KS),ABSENT,K,1990,202.0,860
+KT,Law of Africa (KT),ABSENT,K,1990,180.0,2254
+KU,Law of Pacific Area (KU),ABSENT,K,1990,184.0,2112
+KV,Law of Pacific Area (KV),ABSENT,K,1990,228.0,81
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,1990,225.0,127
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,1990,234.0,2
+KZ,International Law,ABSENT,K,1990,177.0,2640
+L,Education (General),ABSENT,L,1990,149.0,4646
+LA,History of Education,ABSENT,L,1990,67.0,22621
+LB,Theory / Practice of Education,ABSENT,L,1990,21.0,58354
+LC,Social Aspects of Education,ABSENT,L,1990,56.0,25698
+LD,US Universities,ABSENT,L,1990,154.0,4163
+LE,American Universities (other),ABSENT,L,1990,197.0,1090
+LF,European Universities,ABSENT,L,1990,163.0,3600
+LG,Asian / African Universities,ABSENT,L,1990,190.0,1735
+LH,College Publications,ABSENT,L,1990,230.0,27
+LJ,Student Fraternities,ABSENT,L,1990,216.0,267
+LT,Textbooks,ABSENT,L,1990,226.0,94
+M,Music Scores,DIRECT,M,1990,213.0,415
+ML,Literature on Music,DIRECT,M,1990,19.0,62971
+MT,Musical Instruction,DIRECT,M,1990,117.0,9732
+N,Visual Arts (General),MERGED,N,1990,25.0,50332
+NB,Sculpture,MERGED,N,1990,115.0,10504
+NC,Drawing / Design,MERGED,N,1990,96.0,15252
+ND,Painting,MERGED,N,1990,30.0,42109
+NE,Print Media,ABSENT,N,1990,123.0,9131
+NK,Decorative Arts,ABSENT,N,1990,54.0,26185
+NX,Arts in General,ABSENT,N,1990,139.0,6003
+NA,Architecture,DIRECT,N,1990,40.0,33468
+P,Linguistics (General),MERGED,P,1990,80.0,18798
+PA,Classical Languages & Literature,MERGED,P,1990,70.0,21961
+PB,Celtic Languages,MERGED,P,1990,172.0,2992
+PC,Romanic Languages,MERGED,P,1990,59.0,25223
+PD,Germanic Languages (Old),MERGED,P,1990,173.0,2722
+PE,English Language,MERGED,P,1990,81.0,18637
+PF,West Germanic Languages,MERGED,P,1990,133.0,6756
+PG,Slavic Languages & Literatures,ABSENT,P,1990,15.0,67179
+PH,Uralic / Basque Languages,ABSENT,P,1990,111.0,11346
+PJ,Oriental Languages & Literature,ABSENT,P,1990,55.0,25925
+PK,Indo-Iranian Languages,ABSENT,P,1990,23.0,55944
+PL,E Asian / African / Pacific,ABSENT,P,1990,11.0,91411
+PM,Indigenous American Languages,ABSENT,P,1990,167.0,3330
+PN,General Literature,MERGED,P,1990,9.0,99178
+PQ,French/Italian/Spanish Lit.,MERGED,P,1990,3.0,161249
+PR,English Literature,MERGED,P,1990,8.0,103734
+PS,American Literature,MERGED,P,1990,10.0,92876
+PT,Germanic Literature,MERGED,P,1990,13.0,75541
+PZ,Fiction / Juvenile Literature,ABSENT,P,1990,1.0,192566
+Q,Science (General),MERGED,Q,1990,61.0,25096
+QA,Mathematics,MERGED,Q,1990,18.0,63512
+QB,Astronomy,MERGED,Q,1990,105.0,12941
+QC,Physics,MERGED,Q,1990,29.0,42570
+QD,Chemistry,MERGED,Q,1990,60.0,25212
+QE,Geology / Mineralogy,MERGED,Q,1990,34.0,40449
+QH,Natural History / Biology,ABSENT,Q,1990,50.0,28128
+QK,Botany,MERGED,Q,1990,77.0,19219
+QL,Zoology,MERGED,Q,1990,37.0,36812
+QM,Human Anatomy,MERGED,Q,1990,168.0,3129
+QP,Physiology,ABSENT,Q,1990,75.0,19509
+QR,Microbiology,ABSENT,Q,1990,143.0,5554
+R,Medicine (General),MERGED,R,1990,95.0,15761
+RA,Public Health,ABSENT,R,1990,52.0,27601
+RB,Pathology,ABSENT,R,1990,166.0,3543
+RC,Internal Medicine,MERGED,R,1990,26.0,49803
+RD,Surgery,MERGED,R,1990,122.0,9335
+RE,Ophthalmology,ABSENT,R,1990,174.0,2710
+RF,Otorhinolaryngology,ABSENT,R,1990,194.0,1403
+RG,Gynecology / Obstetrics,ABSENT,R,1990,138.0,6020
+RJ,Pediatrics,ABSENT,R,1990,125.0,8562
+RK,Dentistry,ABSENT,R,1990,171.0,3061
+RL,Dermatology,ABSENT,R,1990,196.0,1165
+RM,Pharmacology,ABSENT,R,1990,120.0,9613
+RS,Pharmacy,ABSENT,R,1990,158.0,3848
+RT,Nursing,ABSENT,R,1990,148.0,4701
+RV,Botanic Medicine,ABSENT,R,1990,227.0,86
+RX,Homeopathy,ABSENT,R,1990,211.0,449
+RZ,Other Medical Systems,ABSENT,R,1990,199.0,939
+S,Agriculture (General),DIRECT,S,1990,65.0,23146
+SB,Plant Culture,DIRECT,S,1990,64.0,23550
+SD,Forestry,MERGED,S,1990,130.0,7626
+SF,Animal Culture,MERGED,S,1990,91.0,16798
+SH,Aquaculture / Fisheries,ABSENT,S,1990,126.0,8512
+SK,Hunting / Wildlife,ABSENT,S,1990,150.0,4484
+T,Technology (General),MERGED,T,1990,89.0,16937
+TA,Engineering (General),MERGED,T,1990,53.0,27030
+TC,Hydraulic Engineering,MERGED,T,1990,131.0,7442
+TD,Environmental Technology,ABSENT,T,1990,84.0,17968
+TE,Highway Engineering,MERGED,T,1990,160.0,3806
+TF,Railroad Engineering,ABSENT,T,1990,140.0,5892
+TG,Bridge Engineering,MERGED,T,1990,189.0,1764
+TH,Building Construction,MERGED,T,1990,109.0,12224
+TJ,Mechanical Engineering,MERGED,T,1990,76.0,19451
+TK,Electrical Engineering,ABSENT,T,1990,46.0,30950
+TL,Motor Vehicles / Aeronautics,ABSENT,T,1990,51.0,28125
+TN,Mining / Metallurgy,MERGED,T,1990,63.0,23624
+TP,Chemical Technology,MERGED,T,1990,86.0,17751
+TR,Photography,ABSENT,T,1990,110.0,11908
+TS,Manufactures,MERGED,T,1990,79.0,18811
+TT,Handicrafts / Arts and Crafts,ABSENT,T,1990,106.0,12702
+TX,Home Economics,ABSENT,T,1990,43.0,31564
+U,Military Science (General),ABSENT,U,1990,124.0,8689
+UA,Armies / Land Forces,ABSENT,U,1990,114.0,10515
+UB,Military Administration,ABSENT,U,1990,165.0,3549
+UC,Military Maintenance,ABSENT,U,1990,193.0,1491
+UD,Infantry,ABSENT,U,1990,207.0,701
+UE,Cavalry / Armor,ABSENT,U,1990,219.0,201
+UF,Artillery,ABSENT,U,1990,192.0,1532
+UG,Military Engineering,ABSENT,U,1990,141.0,5785
+UH,Military Medicine,ABSENT,U,1990,206.0,714
+V,Naval Science (General),ABSENT,V,1990,179.0,2264
+VA,Navies,ABSENT,V,1990,188.0,1794
+VB,Naval Administration,ABSENT,V,1990,215.0,283
+VC,Naval Maintenance,ABSENT,V,1990,222.0,165
+VD,Naval Seamen,ABSENT,V,1990,231.0,19
+VE,Marines,ABSENT,V,1990,218.0,210
+VF,Naval Ordnance,ABSENT,V,1990,224.0,136
+VG,Naval Auxiliaries,ABSENT,V,1990,208.0,609
+VK,Navigation / Seamanship,ABSENT,V,1990,156.0,4057
+VM,Naval Architecture,ABSENT,V,1990,144.0,5539
+Z,Books / Writing (General),DIRECT,Z,1990,6.0,116845
+ZA,Information Resources,ABSENT,Z,1990,233.0,9
+A,General Works (unclassed),ABSENT,A,2011,235.0,5
+AC,General Collections,RENAMED,A,2011,110.0,20335
+AE,Encyclopedias (General),RENAMED,A,2011,207.0,1505
+AG,Dictionaries (General),RENAMED,A,2011,193.0,2894
+AI,Indexes,ABSENT,A,2011,226.0,248
+AM,Museums / Exhibitions,ABSENT,A,2011,182.0,4485
+AN,Newspapers,ABSENT,A,2011,236.0,2
+AP,Periodicals (General),ABSENT,A,2011,216.0,613
+AS,Academies / Societies,ABSENT,A,2011,126.0,15192
+AY,Yearbooks / Almanacs,ABSENT,A,2011,223.0,325
+AZ,History of Scholarship,ABSENT,A,2011,205.0,1642
+B,Philosophy (General),MERGED,B,2011,32.0,81442
+BC,Logic,MERGED,B,2011,186.0,4321
+BD,Speculative Philosophy,MERGED,B,2011,121.0,16866
+BF,Psychology,ABSENT,B,2011,31.0,82628
+BH,Aesthetics,MERGED,B,2011,173.0,5331
+BJ,Ethics,MERGED,B,2011,104.0,23610
+BL,Religion / Mythology,MERGED,B,2011,37.0,66655
+BM,Judaism,MERGED,B,2011,61.0,45371
+BP,Islam,MERGED,B,2011,60.0,46664
+BQ,Buddhism,MERGED,B,2011,100.0,27414
+BR,Christianity,MERGED,B,2011,72.0,39381
+BS,Bible,MERGED,B,2011,43.0,60889
+BT,Doctrinal Theology,MERGED,B,2011,66.0,41116
+BV,Practical Theology,MERGED,B,2011,34.0,74726
+BX,Christian Denominations,MERGED,B,2011,16.0,122644
+C,Auxiliary Sciences of History (General),ABSENT,C,2011,231.0,56
+CB,History of Civilization,ABSENT,C,2011,143.0,10531
+CC,Archaeology,ABSENT,C,2011,187.0,4111
+CD,Diplomatics / Archives,ABSENT,C,2011,144.0,10467
+CE,Chronology,ABSENT,C,2011,213.0,984
+CJ,Numismatics,ABSENT,C,2011,163.0,6444
+CN,Inscriptions / Epigraphy,ABSENT,C,2011,204.0,1744
+CR,Heraldry,ABSENT,C,2011,178.0,4886
+CS,Genealogy,ABSENT,C,2011,46.0,55253
+CT,Biography (General),ABSENT,C,2011,102.0,25994
+D,History (General),MERGED,D,2011,19.0,111426
+DA,British History,MERGED,D,2011,47.0,53888
+DAW,Central Europe,ABSENT,D,2011,224.0,273
+DB,Austria / Bohemia,ABSENT,D,2011,108.0,21765
+DC,French History,MERGED,D,2011,64.0,44149
+DD,German History,MERGED,D,2011,62.0,45089
+DE,Greco-Roman World,MERGED,D,2011,206.0,1621
+DF,Greek History,MERGED,D,2011,138.0,11093
+DG,Italian History / Rome,MERGED,D,2011,69.0,39978
+DH,Low Countries History,ABSENT,D,2011,184.0,4353
+DJ,Netherlands,ABSENT,D,2011,177.0,4919
+DJK,Eastern Europe (General),ABSENT,D,2011,199.0,2299
+DK,Russia / Former Soviet States,ABSENT,D,2011,30.0,83400
+DL,Scandinavian History,ABSENT,D,2011,127.0,14990
+DP,Iberian History,ABSENT,D,2011,86.0,31845
+DQ,Switzerland,ABSENT,D,2011,174.0,5255
+DR,Balkan History,ABSENT,D,2011,74.0,37247
+DS,Asian History,ABSENT,D,2011,2.0,295567
+DT,African History,ABSENT,D,2011,44.0,57025
+DU,Oceania,ABSENT,D,2011,125.0,15436
+DX,Romani People,ABSENT,D,2011,211.0,1183
+E,American History (General),MERGED,E,2011,22.0,106192
+E18,African American History (E185),ABSENT,E,2011,153.0,8492
+E99,Native Americans (E99),ABSENT,E,2011,146.0,10172
+F,US Local / Latin American History,MERGED,F,2011,5.0,242947
+G,Geography (General),MERGED,G,2011,88.0,30742
+GA,Mathematical Geography,MERGED,G,2011,189.0,3664
+GB,Physical Geography,MERGED,G,2011,114.0,19695
+GC,Oceanography,ABSENT,G,2011,159.0,6837
+GE,Environmental Sciences,ABSENT,G,2011,156.0,7232
+GF,Human Ecology,ABSENT,G,2011,175.0,5165
+GN,Anthropology,ABSENT,G,2011,79.0,34161
+GR,Folklore,ABSENT,G,2011,105.0,22873
+GT,Manners & Customs,ABSENT,G,2011,116.0,18860
+GV,Recreation / Leisure,ABSENT,G,2011,22.0,106192
+H,Social Sciences (General),ABSENT,H,2011,137.0,11369
+HA,Statistics,ABSENT,H,2011,128.0,14651
+HB,Economic Theory,ABSENT,H,2011,40.0,63077
+HC,Economic History,ABSENT,H,2011,12.0,154101
+HD,Land / Agriculture Economics,ABSENT,H,2011,1.0,316467
+HE,Transportation & Comms,ABSENT,H,2011,55.0,48277
+HF,Commerce,MERGED,H,2011,18.0,115017
+HG,Finance,ABSENT,H,2011,29.0,83947
+HJ,Public Finance,MERGED,H,2011,94.0,29405
+HM,Sociology,ABSENT,H,2011,75.0,36360
+HN,Social History,ABSENT,H,2011,49.0,52643
+HQ,Family / Gender / Sexuality,ABSENT,H,2011,24.0,104708
+HS,Societies / Clubs,ABSENT,H,2011,165.0,6319
+HT,Communities / Classes / Race,ABSENT,H,2011,73.0,39252
+HV,Social Pathology / Criminology,ABSENT,H,2011,15.0,130182
+HX,Socialism / Communism,ABSENT,H,2011,81.0,33512
+J,Political Science (General),MERGED,J,2011,171.0,5543
+JA,Political Science (General works),MERGED,J,2011,139.0,11089
+JC,Political Theory,MERGED,J,2011,95.0,29266
+JF,Political Institutions (General),MERGED,J,2011,150.0,9110
+JJ,"Political Institutions (Europe, other)",MERGED,J,2011,234.0,9
+JK,US Political Institutions,MERGED,J,2011,103.0,24000
+JL,Canadian / Latin American Politics,MERGED,J,2011,134.0,13114
+JN,European Politics,ABSENT,J,2011,68.0,40208
+JQ,Asian / African Politics,ABSENT,J,2011,82.0,33368
+JS,Local Government,ABSENT,J,2011,120.0,16915
+JV,Colonies / Colonialism,ABSENT,J,2011,147.0,9402
+JX,International Law (old),ABSENT,J,2011,99.0,28067
+JZ,International Relations,ABSENT,J,2011,145.0,10380
+K,Law (General),MERGED,K,2011,65.0,41566
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,2011,236.0,2
+KB,Religious Law,MERGED,K,2011,140.0,10934
+KD,UK Law,MERGED,K,2011,107.0,22388
+KE,Canadian Law,ABSENT,K,2011,155.0,7961
+KF,US Law,MERGED,K,2011,8.0,186275
+KG,Latin American Law,ABSENT,K,2011,117.0,18680
+KH,South American Law,ABSENT,K,2011,54.0,48511
+KI,Indigenous Law of the Americas (KI),ABSENT,K,2011,226.0,248
+KJ,European Law,MERGED,K,2011,53.0,48793
+KK,Law of Europe (KK),MERGED,K,2011,26.0,100072
+KL,Asian / African Law,ABSENT,K,2011,124.0,15883
+KM,Law of Asia / Eurasia (KM),ABSENT,K,2011,164.0,6354
+KN,Law of Asia / Eurasia (KN),ABSENT,K,2011,59.0,47135
+KP,Law of Asia / Eurasia (KP),ABSENT,K,2011,119.0,17577
+KQ,Law of Africa (KQ),ABSENT,K,2011,196.0,2722
+KR,Law of Africa (KR),ABSENT,K,2011,191.0,3223
+KS,Law of Africa (KS),ABSENT,K,2011,195.0,2848
+KT,Law of Africa (KT),ABSENT,K,2011,162.0,6537
+KU,Law of Pacific Area (KU),ABSENT,K,2011,179.0,4764
+KV,Law of Pacific Area (KV),ABSENT,K,2011,219.0,431
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,2011,220.0,428
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,2011,236.0,2
+KZ,International Law,ABSENT,K,2011,152.0,8616
+L,Education (General),ABSENT,L,2011,176.0,5149
+LA,History of Education,ABSENT,L,2011,71.0,39518
+LB,Theory / Practice of Education,ABSENT,L,2011,25.0,103197
+LC,Social Aspects of Education,ABSENT,L,2011,52.0,50949
+LD,US Universities,ABSENT,L,2011,169.0,5725
+LE,American Universities (other),ABSENT,L,2011,202.0,2126
+LF,European Universities,ABSENT,L,2011,168.0,5818
+LG,Asian / African Universities,ABSENT,L,2011,190.0,3591
+LH,College Publications,ABSENT,L,2011,233.0,35
+LJ,Student Fraternities,ABSENT,L,2011,221.0,336
+LT,Textbooks,ABSENT,L,2011,229.0,112
+M,Music Scores,DIRECT,M,2011,215.0,670
+ML,Literature on Music,DIRECT,M,2011,20.0,109870
+MT,Musical Instruction,DIRECT,M,2011,129.0,14450
+N,Visual Arts (General),MERGED,N,2011,21.0,109088
+NB,Sculpture,MERGED,N,2011,113.0,19764
+NC,Drawing / Design,MERGED,N,2011,101.0,26423
+ND,Painting,MERGED,N,2011,33.0,80336
+NE,Print Media,ABSENT,N,2011,132.0,13502
+NK,Decorative Arts,ABSENT,N,2011,48.0,52672
+NX,Arts in General,ABSENT,N,2011,133.0,13472
+NA,Architecture,DIRECT,N,2011,35.0,70663
+P,Linguistics (General),MERGED,P,2011,57.0,47395
+PA,Classical Languages & Literature,MERGED,P,2011,77.0,35113
+PB,Celtic Languages,MERGED,P,2011,172.0,5344
+PC,Romanic Languages,MERGED,P,2011,63.0,44387
+PD,Germanic Languages (Old),MERGED,P,2011,188.0,3845
+PE,English Language,MERGED,P,2011,83.0,32877
+PF,West Germanic Languages,MERGED,P,2011,142.0,10900
+PG,Slavic Languages & Literatures,ABSENT,P,2011,13.0,139081
+PH,Uralic / Basque Languages,ABSENT,P,2011,112.0,19872
+PJ,Oriental Languages & Literature,ABSENT,P,2011,51.0,51393
+PK,Indo-Iranian Languages,ABSENT,P,2011,27.0,99131
+PL,E Asian / African / Pacific,ABSENT,P,2011,9.0,181470
+PM,Indigenous American Languages,ABSENT,P,2011,167.0,5922
+PN,General Literature,MERGED,P,2011,7.0,202955
+PQ,French/Italian/Spanish Lit.,MERGED,P,2011,3.0,286131
+PR,English Literature,MERGED,P,2011,10.0,177642
+PS,American Literature,MERGED,P,2011,6.0,214878
+PT,Germanic Literature,MERGED,P,2011,17.0,118274
+PZ,Fiction / Juvenile Literature,ABSENT,P,2011,4.0,279716
+Q,Science (General),MERGED,Q,2011,70.0,39881
+QA,Mathematics,MERGED,Q,2011,14.0,131547
+QB,Astronomy,MERGED,Q,2011,106.0,22487
+QC,Physics,MERGED,Q,2011,36.0,69253
+QD,Chemistry,MERGED,Q,2011,78.0,34468
+QE,Geology / Mineralogy,MERGED,Q,2011,45.0,56110
+QH,Natural History / Biology,ABSENT,Q,2011,50.0,52248
+QK,Botany,MERGED,Q,2011,90.0,30146
+QL,Zoology,MERGED,Q,2011,38.0,66637
+QM,Human Anatomy,MERGED,Q,2011,180.0,4688
+QP,Physiology,ABSENT,Q,2011,84.0,32518
+QR,Microbiology,ABSENT,Q,2011,148.0,9285
+R,Medicine (General),MERGED,R,2011,85.0,32163
+RA,Public Health,ABSENT,R,2011,41.0,62614
+RB,Pathology,ABSENT,R,2011,161.0,6608
+RC,Internal Medicine,MERGED,R,2011,28.0,98028
+RD,Surgery,MERGED,R,2011,122.0,16572
+RE,Ophthalmology,ABSENT,R,2011,183.0,4405
+RF,Otorhinolaryngology,ABSENT,R,2011,198.0,2508
+RG,Gynecology / Obstetrics,ABSENT,R,2011,136.0,11740
+RJ,Pediatrics,ABSENT,R,2011,118.0,18367
+RK,Dentistry,ABSENT,R,2011,181.0,4595
+RL,Dermatology,ABSENT,R,2011,201.0,2132
+RM,Pharmacology,ABSENT,R,2011,115.0,18894
+RS,Pharmacy,ABSENT,R,2011,157.0,7071
+RT,Nursing,ABSENT,R,2011,151.0,8930
+RV,Botanic Medicine,ABSENT,R,2011,230.0,97
+RX,Homeopathy,ABSENT,R,2011,214.0,749
+RZ,Other Medical Systems,ABSENT,R,2011,203.0,2049
+S,Agriculture (General),DIRECT,S,2011,80.0,33778
+SB,Plant Culture,DIRECT,S,2011,67.0,40506
+SD,Forestry,MERGED,S,2011,131.0,13961
+SF,Animal Culture,MERGED,S,2011,87.0,31603
+SH,Aquaculture / Fisheries,ABSENT,S,2011,130.0,14443
+SK,Hunting / Wildlife,ABSENT,S,2011,158.0,6901
+T,Technology (General),MERGED,T,2011,91.0,29985
+TA,Engineering (General),MERGED,T,2011,56.0,47857
+TC,Hydraulic Engineering,MERGED,T,2011,141.0,10924
+TD,Environmental Technology,ABSENT,T,2011,76.0,36207
+TE,Highway Engineering,MERGED,T,2011,170.0,5647
+TF,Railroad Engineering,ABSENT,T,2011,149.0,9163
+TG,Bridge Engineering,MERGED,T,2011,194.0,2853
+TH,Building Construction,MERGED,T,2011,111.0,20246
+TJ,Mechanical Engineering,MERGED,T,2011,93.0,29420
+TK,Electrical Engineering,ABSENT,T,2011,39.0,63691
+TL,Motor Vehicles / Aeronautics,ABSENT,T,2011,58.0,47276
+TN,Mining / Metallurgy,MERGED,T,2011,89.0,30424
+TP,Chemical Technology,MERGED,T,2011,97.0,28501
+TR,Photography,ABSENT,T,2011,96.0,28881
+TS,Manufactures,MERGED,T,2011,98.0,28080
+TT,Handicrafts / Arts and Crafts,ABSENT,T,2011,92.0,29892
+TX,Home Economics,ABSENT,T,2011,42.0,62082
+U,Military Science (General),ABSENT,U,2011,123.0,16217
+UA,Armies / Land Forces,ABSENT,U,2011,109.0,20710
+UB,Military Administration,ABSENT,U,2011,160.0,6800
+UC,Military Maintenance,ABSENT,U,2011,197.0,2641
+UD,Infantry,ABSENT,U,2011,210.0,1214
+UE,Cavalry / Armor,ABSENT,U,2011,222.0,326
+UF,Artillery,ABSENT,U,2011,200.0,2259
+UG,Military Engineering,ABSENT,U,2011,135.0,12148
+UH,Military Medicine,ABSENT,U,2011,208.0,1266
+V,Naval Science (General),ABSENT,V,2011,184.0,4353
+VA,Navies,ABSENT,V,2011,192.0,3140
+VB,Naval Administration,ABSENT,V,2011,218.0,434
+VC,Naval Maintenance,ABSENT,V,2011,225.0,252
+VD,Naval Seamen,ABSENT,V,2011,232.0,38
+VE,Marines,ABSENT,V,2011,217.0,582
+VF,Naval Ordnance,ABSENT,V,2011,228.0,194
+VG,Naval Auxiliaries,ABSENT,V,2011,212.0,995
+VK,Navigation / Seamanship,ABSENT,V,2011,166.0,6182
+VM,Naval Architecture,ABSENT,V,2011,154.0,8120
+Z,Books / Writing (General),DIRECT,Z,2011,11.0,164237
+ZA,Information Resources,ABSENT,Z,2011,209.0,1252
+A,General Works (unclassed),ABSENT,A,2020,235.0,5
+AC,General Collections,RENAMED,A,2020,103.0,26882
+AE,Encyclopedias (General),RENAMED,A,2020,207.0,1544
+AG,Dictionaries (General),RENAMED,A,2020,194.0,3106
+AI,Indexes,ABSENT,A,2020,227.0,248
+AM,Museums / Exhibitions,ABSENT,A,2020,182.0,4793
+AN,Newspapers,ABSENT,A,2020,236.0,3
+AP,Periodicals (General),ABSENT,A,2020,217.0,620
+AS,Academies / Societies,ABSENT,A,2020,127.0,15296
+AY,Yearbooks / Almanacs,ABSENT,A,2020,223.0,333
+AZ,History of Scholarship,ABSENT,A,2020,205.0,1806
+B,Philosophy (General),MERGED,B,2020,32.0,88199
+BC,Logic,MERGED,B,2020,187.0,4518
+BD,Speculative Philosophy,MERGED,B,2020,120.0,18380
+BF,Psychology,ABSENT,B,2020,29.0,89479
+BH,Aesthetics,MERGED,B,2020,171.0,5735
+BJ,Ethics,MERGED,B,2020,104.0,25428
+BL,Religion / Mythology,MERGED,B,2020,38.0,71882
+BM,Judaism,MERGED,B,2020,61.0,47777
+BP,Islam,MERGED,B,2020,57.0,50925
+BQ,Buddhism,MERGED,B,2020,98.0,29167
+BR,Christianity,MERGED,B,2020,70.0,42168
+BS,Bible,MERGED,B,2020,43.0,65402
+BT,Doctrinal Theology,MERGED,B,2020,66.0,44154
+BV,Practical Theology,MERGED,B,2020,34.0,80067
+BX,Christian Denominations,MERGED,B,2020,16.0,129352
+C,Auxiliary Sciences of History (General),ABSENT,C,2020,231.0,59
+CB,History of Civilization,ABSENT,C,2020,144.0,11112
+CC,Archaeology,ABSENT,C,2020,185.0,4640
+CD,Diplomatics / Archives,ABSENT,C,2020,146.0,10707
+CE,Chronology,ABSENT,C,2020,213.0,1025
+CJ,Numismatics,ABSENT,C,2020,164.0,6702
+CN,Inscriptions / Epigraphy,ABSENT,C,2020,204.0,1884
+CR,Heraldry,ABSENT,C,2020,178.0,5086
+CS,Genealogy,ABSENT,C,2020,46.0,56514
+CT,Biography (General),ABSENT,C,2020,102.0,27219
+D,History (General),MERGED,D,2020,19.0,118407
+DA,British History,MERGED,D,2020,47.0,56204
+DAW,Central Europe,ABSENT,D,2020,224.0,306
+DB,Austria / Bohemia,ABSENT,D,2020,109.0,22543
+DC,French History,MERGED,D,2020,65.0,46109
+DD,German History,MERGED,D,2020,62.0,46774
+DE,Greco-Roman World,MERGED,D,2020,206.0,1750
+DF,Greek History,MERGED,D,2020,140.0,11872
+DG,Italian History / Rome,MERGED,D,2020,68.0,42653
+DH,Low Countries History,ABSENT,D,2020,186.0,4558
+DJ,Netherlands,ABSENT,D,2020,177.0,5151
+DJK,Eastern Europe (General),ABSENT,D,2020,199.0,2429
+DK,Russia / Former Soviet States,ABSENT,D,2020,30.0,88762
+DL,Scandinavian History,ABSENT,D,2020,126.0,15638
+DP,Iberian History,ABSENT,D,2020,87.0,33888
+DQ,Switzerland,ABSENT,D,2020,175.0,5391
+DR,Balkan History,ABSENT,D,2020,75.0,40253
+DS,Asian History,ABSENT,D,2020,2.0,317638
+DT,African History,ABSENT,D,2020,44.0,61002
+DU,Oceania,ABSENT,D,2020,125.0,16106
+DX,Romani People,ABSENT,D,2020,211.0,1295
+E,American History (General),MERGED,E,2020,23.0,112551
+E18,African American History (E185),ABSENT,E,2020,153.0,9160
+E99,Native Americans (E99),ABSENT,E,2020,145.0,10846
+F,US Local / Latin American History,MERGED,F,2020,5.0,254587
+G,Geography (General),MERGED,G,2020,89.0,32436
+GA,Mathematical Geography,MERGED,G,2020,189.0,3874
+GB,Physical Geography,MERGED,G,2020,116.0,20586
+GC,Oceanography,ABSENT,G,2020,160.0,7130
+GE,Environmental Sciences,ABSENT,G,2020,156.0,8087
+GF,Human Ecology,ABSENT,G,2020,172.0,5670
+GN,Anthropology,ABSENT,G,2020,78.0,36388
+GR,Folklore,ABSENT,G,2020,106.0,24154
+GT,Manners & Customs,ABSENT,G,2020,115.0,20681
+GV,Recreation / Leisure,ABSENT,G,2020,22.0,115874
+H,Social Sciences (General),ABSENT,H,2020,139.0,12029
+HA,Statistics,ABSENT,H,2020,128.0,15105
+HB,Economic Theory,ABSENT,H,2020,42.0,66143
+HC,Economic History,ABSENT,H,2020,12.0,161101
+HD,Land / Agriculture Economics,ABSENT,H,2020,1.0,331977
+HE,Transportation & Comms,ABSENT,H,2020,59.0,49936
+HF,Commerce,MERGED,H,2020,18.0,121368
+HG,Finance,ABSENT,H,2020,31.0,88389
+HJ,Public Finance,MERGED,H,2020,96.0,30446
+HM,Sociology,ABSENT,H,2020,74.0,40545
+HN,Social History,ABSENT,H,2020,48.0,56194
+HQ,Family / Gender / Sexuality,ABSENT,H,2020,24.0,112450
+HS,Societies / Clubs,ABSENT,H,2020,165.0,6633
+HT,Communities / Classes / Race,ABSENT,H,2020,71.0,42046
+HV,Social Pathology / Criminology,ABSENT,H,2020,14.0,141307
+HX,Socialism / Communism,ABSENT,H,2020,84.0,34767
+J,Political Science (General),MERGED,J,2020,173.0,5565
+JA,Political Science (General works),MERGED,J,2020,138.0,12085
+JC,Political Theory,MERGED,J,2020,90.0,32021
+JF,Political Institutions (General),MERGED,J,2020,148.0,10093
+JJ,"Political Institutions (Europe, other)",MERGED,J,2020,234.0,13
+JK,US Political Institutions,MERGED,J,2020,105.0,25356
+JL,Canadian / Latin American Politics,MERGED,J,2020,134.0,13709
+JN,European Politics,ABSENT,J,2020,67.0,42691
+JQ,Asian / African Politics,ABSENT,J,2020,79.0,36081
+JS,Local Government,ABSENT,J,2020,123.0,17536
+JV,Colonies / Colonialism,ABSENT,J,2020,147.0,10617
+JX,International Law (old),ABSENT,J,2020,101.0,28092
+JZ,International Relations,ABSENT,J,2020,136.0,12626
+K,Law (General),MERGED,K,2020,63.0,46724
+KA,"Law (General / Jurisprudence, KA)",MERGED,K,2020,237.0,2
+KB,Religious Law,MERGED,K,2020,141.0,11669
+KD,UK Law,MERGED,K,2020,108.0,23667
+KE,Canadian Law,ABSENT,K,2020,155.0,8227
+KF,US Law,MERGED,K,2020,8.0,196693
+KG,Latin American Law,ABSENT,K,2020,117.0,19910
+KH,South American Law,ABSENT,K,2020,56.0,51888
+KI,Indigenous Law of the Americas (KI),ABSENT,K,2020,225.0,284
+KJ,European Law,MERGED,K,2020,53.0,52817
+KK,Law of Europe (KK),MERGED,K,2020,26.0,106512
+KL,Asian / African Law,ABSENT,K,2020,121.0,18007
+KM,Law of Asia / Eurasia (KM),ABSENT,K,2020,162.0,7027
+KN,Law of Asia / Eurasia (KN),ABSENT,K,2020,55.0,52571
+KP,Law of Asia / Eurasia (KP),ABSENT,K,2020,119.0,19223
+KQ,Law of Africa (KQ),ABSENT,K,2020,195.0,3019
+KR,Law of Africa (KR),ABSENT,K,2020,192.0,3317
+KS,Law of Africa (KS),ABSENT,K,2020,193.0,3113
+KT,Law of Africa (KT),ABSENT,K,2020,163.0,6991
+KU,Law of Pacific Area (KU),ABSENT,K,2020,179.0,5080
+KV,Law of Pacific Area (KV),ABSENT,K,2020,219.0,456
+KW,Law of Pacific Area / Antarctica (KW),ABSENT,K,2020,220.0,442
+KX,Law of Pacific Area / Antarctica (KX),ABSENT,K,2020,237.0,2
+KZ,International Law,ABSENT,K,2020,149.0,9939
+L,Education (General),ABSENT,L,2020,176.0,5165
+LA,History of Education,ABSENT,L,2020,73.0,41347
+LB,Theory / Practice of Education,ABSENT,L,2020,25.0,110808
+LC,Social Aspects of Education,ABSENT,L,2020,52.0,54645
+LD,US Universities,ABSENT,L,2020,169.0,5942
+LE,American Universities (other),ABSENT,L,2020,202.0,2203
+LF,European Universities,ABSENT,L,2020,168.0,6036
+LG,Asian / African Universities,ABSENT,L,2020,190.0,3769
+LH,College Publications,ABSENT,L,2020,233.0,37
+LJ,Student Fraternities,ABSENT,L,2020,221.0,348
+LT,Textbooks,ABSENT,L,2020,229.0,114
+M,Music Scores,DIRECT,M,2020,215.0,702
+ML,Literature on Music,DIRECT,M,2020,21.0,116328
+MT,Musical Instruction,DIRECT,M,2020,129.0,14977
+N,Visual Arts (General),MERGED,N,2020,20.0,116687
+NB,Sculpture,MERGED,N,2020,113.0,20719
+NC,Drawing / Design,MERGED,N,2020,100.0,28146
+ND,Painting,MERGED,N,2020,33.0,84395
+NE,Print Media,ABSENT,N,2020,133.0,13837
+NK,Decorative Arts,ABSENT,N,2020,50.0,55290
+NX,Arts in General,ABSENT,N,2020,132.0,14419
+NA,Architecture,DIRECT,N,2020,35.0,75410
+P,Linguistics (General),MERGED,P,2020,54.0,52640
+PA,Classical Languages & Literature,MERGED,P,2020,77.0,37287
+PB,Celtic Languages,MERGED,P,2020,174.0,5559
+PC,Romanic Languages,MERGED,P,2020,64.0,46445
+PD,Germanic Languages (Old),MERGED,P,2020,188.0,3940
+PE,English Language,MERGED,P,2020,82.0,34955
+PF,West Germanic Languages,MERGED,P,2020,143.0,11306
+PG,Slavic Languages & Literatures,ABSENT,P,2020,13.0,145252
+PH,Uralic / Basque Languages,ABSENT,P,2020,112.0,20883
+PJ,Oriental Languages & Literature,ABSENT,P,2020,51.0,54918
+PK,Indo-Iranian Languages,ABSENT,P,2020,28.0,104331
+PL,E Asian / African / Pacific,ABSENT,P,2020,9.0,191946
+PM,Indigenous American Languages,ABSENT,P,2020,167.0,6169
+PN,General Literature,MERGED,P,2020,7.0,221366
+PQ,French/Italian/Spanish Lit.,MERGED,P,2020,3.0,304344
+PR,English Literature,MERGED,P,2020,10.0,190194
+PS,American Literature,MERGED,P,2020,6.0,240785
+PT,Germanic Literature,MERGED,P,2020,17.0,123935
+PZ,Fiction / Juvenile Literature,ABSENT,P,2020,4.0,298785
+Q,Science (General),MERGED,Q,2020,72.0,41689
+QA,Mathematics,MERGED,Q,2020,15.0,140840
+QB,Astronomy,MERGED,Q,2020,107.0,23954
+QC,Physics,MERGED,Q,2020,36.0,73250
+QD,Chemistry,MERGED,Q,2020,80.0,35932
+QE,Geology / Mineralogy,MERGED,Q,2020,45.0,57806
+QH,Natural History / Biology,ABSENT,Q,2020,49.0,55722
+QK,Botany,MERGED,Q,2020,91.0,31564
+QL,Zoology,MERGED,Q,2020,37.0,72543
+QM,Human Anatomy,MERGED,Q,2020,180.0,4985
+QP,Physiology,ABSENT,Q,2020,81.0,35018
+QR,Microbiology,ABSENT,Q,2020,150.0,9927
+R,Medicine (General),MERGED,R,2020,83.0,34917
+RA,Public Health,ABSENT,R,2020,40.0,67199
+RB,Pathology,ABSENT,R,2020,159.0,7173
+RC,Internal Medicine,MERGED,R,2020,27.0,106464
+RD,Surgery,MERGED,R,2020,122.0,17845
+RE,Ophthalmology,ABSENT,R,2020,183.0,4650
+RF,Otorhinolaryngology,ABSENT,R,2020,198.0,2691
+RG,Gynecology / Obstetrics,ABSENT,R,2020,137.0,12433
+RJ,Pediatrics,ABSENT,R,2020,118.0,19908
+RK,Dentistry,ABSENT,R,2020,181.0,4968
+RL,Dermatology,ABSENT,R,2020,201.0,2297
+RM,Pharmacology,ABSENT,R,2020,114.0,20712
+RS,Pharmacy,ABSENT,R,2020,157.0,7560
+RT,Nursing,ABSENT,R,2020,151.0,9791
+RV,Botanic Medicine,ABSENT,R,2020,230.0,97
+RX,Homeopathy,ABSENT,R,2020,214.0,766
+RZ,Other Medical Systems,ABSENT,R,2020,203.0,2166
+S,Agriculture (General),DIRECT,S,2020,84.0,34767
+SB,Plant Culture,DIRECT,S,2020,69.0,42417
+SD,Forestry,MERGED,S,2020,131.0,14588
+SF,Animal Culture,MERGED,S,2020,86.0,33923
+SH,Aquaculture / Fisheries,ABSENT,S,2020,130.0,14969
+SK,Hunting / Wildlife,ABSENT,S,2020,161.0,7123
+T,Technology (General),MERGED,T,2020,92.0,31355
+TA,Engineering (General),MERGED,T,2020,58.0,50598
+TC,Hydraulic Engineering,MERGED,T,2020,142.0,11333
+TD,Environmental Technology,ABSENT,T,2020,76.0,37967
+TE,Highway Engineering,MERGED,T,2020,170.0,5807
+TF,Railroad Engineering,ABSENT,T,2020,152.0,9434
+TG,Bridge Engineering,MERGED,T,2020,196.0,3002
+TH,Building Construction,MERGED,T,2020,111.0,21272
+TJ,Mechanical Engineering,MERGED,T,2020,94.0,31052
+TK,Electrical Engineering,ABSENT,T,2020,39.0,68005
+TL,Motor Vehicles / Aeronautics,ABSENT,T,2020,60.0,49584
+TN,Mining / Metallurgy,MERGED,T,2020,95.0,31047
+TP,Chemical Technology,MERGED,T,2020,97.0,30303
+TR,Photography,ABSENT,T,2020,93.0,31305
+TS,Manufactures,MERGED,T,2020,99.0,29091
+TT,Handicrafts / Arts and Crafts,ABSENT,T,2020,88.0,32676
+TX,Home Economics,ABSENT,T,2020,41.0,67194
+U,Military Science (General),ABSENT,U,2020,124.0,17472
+UA,Armies / Land Forces,ABSENT,U,2020,110.0,22018
+UB,Military Administration,ABSENT,U,2020,158.0,7432
+UC,Military Maintenance,ABSENT,U,2020,197.0,2783
+UD,Infantry,ABSENT,U,2020,210.0,1296
+UE,Cavalry / Armor,ABSENT,U,2020,222.0,342
+UF,Artillery,ABSENT,U,2020,200.0,2360
+UG,Military Engineering,ABSENT,U,2020,135.0,13288
+UH,Military Medicine,ABSENT,U,2020,209.0,1397
+V,Naval Science (General),ABSENT,V,2020,184.0,4649
+VA,Navies,ABSENT,V,2020,191.0,3347
+VB,Naval Administration,ABSENT,V,2020,218.0,459
+VC,Naval Maintenance,ABSENT,V,2020,226.0,258
+VD,Naval Seamen,ABSENT,V,2020,232.0,39
+VE,Marines,ABSENT,V,2020,216.0,646
+VF,Naval Ordnance,ABSENT,V,2020,228.0,196
+VG,Naval Auxiliaries,ABSENT,V,2020,212.0,1083
+VK,Navigation / Seamanship,ABSENT,V,2020,166.0,6352
+VM,Naval Architecture,ABSENT,V,2020,154.0,8378
+Z,Books / Writing (General),DIRECT,Z,2020,11.0,167831
+ZA,Information Resources,ABSENT,Z,2020,208.0,1458
