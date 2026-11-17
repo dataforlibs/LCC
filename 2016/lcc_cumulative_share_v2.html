@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LC Catalog — Cumulative Share by Decade</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -27,9 +26,38 @@
   .site-nav span.nav-current { background: #eceae6; color: #706e68; cursor: default; }
   /* end site-nav */
 </style>
+<!-- seo-meta -->
+<title>Library of Congress Catalog: Cumulative Share by Publication Decade</title>
+<meta name="description" content="How much of the Library of Congress catalog was published in each decade, with cumulative share from 1400 to 2020, based on the 2016 MARC distribution.">
+<meta name="keywords" content="Library of Congress Classification, LCC, Thomas Jefferson, Francis Bacon, library classification, catalog growth, MARC records, sigmoid growth, digital humanities, information visualization">
+<meta name="author" content="Olha Buchel">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://dataforlibs.github.io/LCC/lcc_cumulative_share_v2.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Science for Libraries">
+<meta property="og:title" content="Library of Congress Catalog: Cumulative Share by Publication Decade">
+<meta property="og:description" content="How much of the Library of Congress catalog was published in each decade, with cumulative share from 1400 to 2020, based on the 2016 MARC distribution.">
+<meta property="og:url" content="https://dataforlibs.github.io/LCC/lcc_cumulative_share_v2.html">
+<meta property="og:image" content="https://dataforlibs.github.io/lcc.png">
+<meta property="og:image:alt" content="Median growth of Library of Congress subclasses since 1815: 437 times for subclasses not in Jefferson's scheme, 221 times for those with a counterpart">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Library of Congress Catalog: Cumulative Share by Publication Decade">
+<meta name="twitter:description" content="How much of the Library of Congress catalog was published in each decade, with cumulative share from 1400 to 2020, based on the 2016 MARC distribution.">
+<meta name="twitter:image" content="https://dataforlibs.github.io/lcc.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Library of Congress Catalog: Cumulative Share by Publication Decade", "url": "https://dataforlibs.github.io/LCC/lcc_cumulative_share_v2.html", "description": "How much of the Library of Congress catalog was published in each decade, with cumulative share from 1400 to 2020, based on the 2016 MARC distribution.", "inLanguage": "en", "author": {"@type": "Person", "name": "Olha Buchel"}, "keywords": "Library of Congress Classification, LCC, Thomas Jefferson, Francis Bacon, library classification, catalog growth, MARC records, sigmoid growth, digital humanities, information visualization", "isPartOf": {"@type": "WebSite", "name": "Data Science for Libraries", "url": "https://dataforlibs.github.io/"}}</script>
+<style id="a11y-css">
+.skip-link{position:absolute;left:-9999px;top:0;background:#1e1c18;color:#fff;padding:8px 14px;z-index:1000;font:13px sans-serif}
+.skip-link:focus{left:8px;top:8px}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #c46a4a;outline-offset:2px}
+#main-content:focus{outline:none}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+<!-- /seo-meta -->
 </head>
 <body>
-<nav class="site-nav">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav class="site-nav" aria-label="Site pages">
   <a href="index.html">Dashboard</a>
   <a href="jefferson_lcc_alluvial.html">Jefferson → LCC alluvial</a>
   <a href="lcc_bubble_animation_2.html">Bubble animation</a>
@@ -51,7 +79,7 @@ median growth 211× (Jeffersonian) vs 414× (non-Jeffersonian) with the 2011 cut
   <h1>Library of Congress Catalog — Cumulative Share by Decade</h1>
   <p>Publication decade distribution of the LC catalog · 1400–2020 · LC MARC 2016 files, 9,500,598 records with a valid LC class</p>
 </header>
-<main>
+<main id="main-content" tabindex="-1">
 <div style="padding:1rem 0">
 <h2 class="sr-only">Cumulative share of LC catalog and per-decade share, with legend</h2>
 
@@ -115,5 +143,21 @@ new Chart(document.getElementById('cc2'),{
 });
 </script>
 </main>
+<!-- a11y-js -->
+<script id="a11y-js">
+(function(){
+  document.querySelectorAll('canvas:not([aria-label]),svg[id]:not([aria-label])').forEach(function(el){
+    if(el.closest('[aria-hidden="true"]')) return;
+    var n=el, t='';
+    while(n && !t){
+      var p=n.previousElementSibling;
+      while(p && !t){ var h=p.matches('h2,h3,h4,.chart-title,.card-title')?p:p.querySelector('h2,h3,h4,.chart-title,.card-title'); if(h) t=h.textContent.trim(); p=p.previousElementSibling; }
+      n=n.parentElement;
+    }
+    el.setAttribute('role','img'); el.setAttribute('aria-label',(t||'Chart')+' (chart)');
+  });
+})();
+</script>
+<!-- /a11y-js -->
 </body>
 </html>

@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Baconian Faculty → Jefferson 1815 → LCC Alluvial</title>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
 <style>
@@ -48,9 +47,38 @@ svg{display:block;}
   .site-nav span.nav-current { background: #eceae6; color: #706e68; cursor: default; }
   /* end site-nav */
 </style>
+<!-- seo-meta -->
+<title>Jefferson 1815 to LCC Alluvial Diagram: Baconian Faculties, Chapters and Subclasses</title>
+<meta name="description" content="Alluvial diagram linking Bacon's three faculties (Memory, Reason, Imagination) to Jefferson's 1815 chapters, Library of Congress main classes and current LCC subclasses.">
+<meta name="keywords" content="Library of Congress Classification, LCC, Thomas Jefferson, Francis Bacon, library classification, catalog growth, MARC records, sigmoid growth, digital humanities, information visualization">
+<meta name="author" content="Olha Buchel">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://dataforlibs.github.io/LCC/jefferson_lcc_alluvial.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data Science for Libraries">
+<meta property="og:title" content="Jefferson 1815 to LCC Alluvial Diagram: Baconian Faculties, Chapters and Subclasses">
+<meta property="og:description" content="Alluvial diagram linking Bacon's three faculties (Memory, Reason, Imagination) to Jefferson's 1815 chapters, Library of Congress main classes and current LCC subclasses.">
+<meta property="og:url" content="https://dataforlibs.github.io/LCC/jefferson_lcc_alluvial.html">
+<meta property="og:image" content="https://dataforlibs.github.io/lcc.png">
+<meta property="og:image:alt" content="Median growth of Library of Congress subclasses since 1815: 437 times for subclasses not in Jefferson's scheme, 221 times for those with a counterpart">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jefferson 1815 to LCC Alluvial Diagram: Baconian Faculties, Chapters and Subclasses">
+<meta name="twitter:description" content="Alluvial diagram linking Bacon's three faculties (Memory, Reason, Imagination) to Jefferson's 1815 chapters, Library of Congress main classes and current LCC subclasses.">
+<meta name="twitter:image" content="https://dataforlibs.github.io/lcc.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Jefferson 1815 to LCC Alluvial Diagram: Baconian Faculties, Chapters and Subclasses", "url": "https://dataforlibs.github.io/LCC/jefferson_lcc_alluvial.html", "description": "Alluvial diagram linking Bacon's three faculties (Memory, Reason, Imagination) to Jefferson's 1815 chapters, Library of Congress main classes and current LCC subclasses.", "inLanguage": "en", "author": {"@type": "Person", "name": "Olha Buchel"}, "keywords": "Library of Congress Classification, LCC, Thomas Jefferson, Francis Bacon, library classification, catalog growth, MARC records, sigmoid growth, digital humanities, information visualization", "isPartOf": {"@type": "WebSite", "name": "Data Science for Libraries", "url": "https://dataforlibs.github.io/"}}</script>
+<style id="a11y-css">
+.skip-link{position:absolute;left:-9999px;top:0;background:#1e1c18;color:#fff;padding:8px 14px;z-index:1000;font:13px sans-serif}
+.skip-link:focus{left:8px;top:8px}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #c46a4a;outline-offset:2px}
+#main-content:focus{outline:none}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+<!-- /seo-meta -->
 </head>
 <body>
-<nav class="site-nav">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav class="site-nav" aria-label="Site pages">
   <a href="index.html">Dashboard</a>
   <span class="nav-current">Jefferson → LCC alluvial</span>
   <a href="lcc_bubble_animation_2.html">Bubble animation</a>
@@ -87,7 +115,7 @@ median growth 211× (Jeffersonian) vs 414× (non-Jeffersonian) with the 2011 cut
   <button id="showAll">show all subclasses</button>
   <div class="stats" id="stats"></div>
 </div>
-<main>
+<main id="main-content" tabindex="-1">
   <div class="chart-shell"><svg id="chart" role="img" aria-label="Alluvial chart of Jefferson 1815 chapters mapped to LCC main classes and subclasses"></svg></div>
   <div class="legend">
     <span><i class="dot" style="background:var(--green)"></i>DIRECT — Jefferson's own classification directly adopted</span>
@@ -532,5 +560,21 @@ slider.addEventListener('input',draw);
 document.getElementById('showAll').addEventListener('click',()=>{slider.value=slider.max;draw();});
 draw();
 </script>
+<!-- a11y-js -->
+<script id="a11y-js">
+(function(){
+  document.querySelectorAll('canvas:not([aria-label]),svg[id]:not([aria-label])').forEach(function(el){
+    if(el.closest('[aria-hidden="true"]')) return;
+    var n=el, t='';
+    while(n && !t){
+      var p=n.previousElementSibling;
+      while(p && !t){ var h=p.matches('h2,h3,h4,.chart-title,.card-title')?p:p.querySelector('h2,h3,h4,.chart-title,.card-title'); if(h) t=h.textContent.trim(); p=p.previousElementSibling; }
+      n=n.parentElement;
+    }
+    el.setAttribute('role','img'); el.setAttribute('aria-label',(t||'Chart')+' (chart)');
+  });
+})();
+</script>
+<!-- /a11y-js -->
 </body>
 </html>

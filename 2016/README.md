@@ -28,6 +28,7 @@ python3 scripts/07_sensitivity_cutoff.py <tables_dir> <sens_dir> 2011 2008     #
 python3 scripts/06_make_figures.py <tables_dir> <out_dir> <sens_dir>   # 3 PNG figures + decade-growth page
 python3 scripts/05_unify_nav.py <out_dir>                        # same top navigation bar on all five pages
 python3 scripts/08_add_data_notes.py <out_dir> <sens_dir>        # incomplete-years note on all five pages
+python3 scripts/09_add_meta.py <out_dir>                         # title/description/Open Graph/JSON-LD + accessibility (skip link, landmarks, chart labels)
 python3 scripts/history_class_share.py <parts_dir>/*.gz        # independent C–F check
 ```
 Run on the 2014 raw file + `meta_2014.csv`, `02_build_tables.py` reproduces the old cumulative table and Test D. `output/key_changes.csv` compares old and new counts and inflection years.
