@@ -36,6 +36,9 @@
   <a href="lcc_cumulative_share_v2.html">Cumulative share</a>
   <a href="lcc_cumulative_jefferson_split.html">Jefferson split</a>
   <span class="nav-current">Slavic collections</span>
+  <a href="history_vs_literature.html">History vs literature (Europe)</a>
+  <a href="world_history_vs_literature.html">History vs literature (world)</a>
+  <a href="places_peaks.html">Peaks by place of publication</a>
 </nav>
 <header>
   <h1>Slavic collections: DK, PG and Ukraine (DK508)</h1>
@@ -148,7 +151,7 @@ function render508(dec, dk, noteText){
 render508(D.dk508.dec, D.dk508.dkdec, 'Provisional: only ' + fmt(D.dk508.n_year) + ' of the ' + fmt(D.dk508.n_all) + ' records in the DK508 project file carry a publication year, so these counts are lower bounds. dk_numbers.json (section 5) gives the full count from the MARC distribution.');
 
 (function beyond(){
-  var DKN = ['Ukraine','Belarus','Russia (Federation) (DK510-651)','Southern Soviet Union and Moldova (DK509)','Estonia','Latvia','Lithuania','Georgia','Armenia','Azerbaijan','Kazakhstan','Kyrgyzstan','Tajikistan','Turkmenistan','Uzbekistan','Poland (DK4010-4800)'];
+  var DKN = ['Ukraine','Belarus','Russia (Federation) (DK510-651)','Moldova','Estonia','Latvia','Lithuania','Georgia','Armenia','Azerbaijan','Kazakhstan','Kyrgyzstan','Tajikistan','Turkmenistan','Uzbekistan','Poland (DK4010-4800)'];
   var PGN = ['Ukrainian','Belarusian','Russian','Polish','Czech','Slovak','Bulgarian','Serbo-Croatian','Slovenian','Macedonian','Lithuanian','Latvian'];
   var P = [[1850,1899],[1900,1913],[1914,1939],[1940,1959],[1960,1979],[1980,1991],[1992,2005],[2006,2016]];
   function series(c, y0, y1){ var o = []; for (var y = y0; y <= y1; y++) o.push(c[y] || 0); return o; }
@@ -159,7 +162,7 @@ render508(D.dk508.dec, D.dk508.dkdec, 'Provisional: only ' + fmt(D.dk508.n_year)
       var c = G[cl + ':' + n]; if (!c) return;
       var ys = series(c, 1900, 2016), mx = Math.max.apply(null, ys) || 1, tot = 0; Object.keys(c).forEach(function(y){ tot += c[y]; });
       var W = 230, H = 120, l = 34, r = 6, t = 20, b = 18;
-      var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img');
+      var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img'); svg.style.width = '100%'; svg.style.height = 'auto'; svg.style.display = 'block';
       svg.setAttribute('aria-label', short(n) + ': ' + fmt(tot) + ' records, peaking at ' + fmt(mx) + ' in a single year. The chart shows records per publication year, 1900 to 2016.');
       var sx = function(y){ return l + (y - 1900) / 116 * (W - l - r); }, sy = function(v){ return H - b - v / mx * (H - t - b); };
       el('rect', {x:l, y:t, width:W-l-r, height:H-t-b, fill:'none', stroke:'#d4d0c8'}, svg);
@@ -188,8 +191,183 @@ render508(D.dk508.dec, D.dk508.dkdec, 'Provisional: only ' + fmt(D.dk508.n_year)
     });
     host.appendChild(t);
   }
+  var PAL = ['#0057b7','#d9a400','#c4392b','#2a9d8f','#7b4fa0','#e07b00','#5a8f29','#b5338a','#6b7280','#00a0c6','#8c564b','#c2a000','#3d3d99','#e0507a','#1d6f42','#9a5b13'];
+  function compare(box, G){
+    var sec = document.createElement('div'); box.appendChild(sec);
+    var st = {cl:'DK', mode:'count', off:{}, hi:null};
+    var bar = document.createElement('div'); bar.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 0 4px;font-size:12px';
+    var leg = document.createElement('div'); leg.style.cssText = 'display:flex;flex-wrap:wrap;gap:4px 12px;margin:6px 0 8px;font-size:12px';
+    var grid = document.createElement('div'); grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px';
+    function btn(txt, on, f){ var b = document.createElement('button'); b.type = 'button'; b.textContent = txt; b.style.cssText = 'font:inherit;padding:3px 10px;border:1px solid #b9b6ae;border-radius:3px;cursor:pointer;background:' + (on ? '#1e1c18' : '#fff') + ';color:' + (on ? '#fff' : '#1e1c18'); b.onclick = f; return b; }
+    function names(){ return (st.cl === 'DK' ? DKN : PGN).filter(function(n){ return G[st.cl + ':' + n]; }); }
+    function draw(){
+      bar.innerHTML = ''; leg.innerHTML = ''; grid.innerHTML = '';
+      bar.appendChild(btn('Countries (DK)', st.cl === 'DK', function(){ st.cl = 'DK'; st.off = {}; draw(); }));
+      bar.appendChild(btn('Languages (PG)', st.cl === 'PG', function(){ st.cl = 'PG'; st.off = {}; draw(); }));
+      var sp = document.createElement('span'); sp.textContent = ' Values:'; bar.appendChild(sp);
+      bar.appendChild(btn('Record counts', st.mode === 'count', function(){ st.mode = 'count'; draw(); }));
+      bar.appendChild(btn('Share of own total', st.mode === 'share', function(){ st.mode = 'share'; draw(); }));
+      var ns = names(), Y0 = 1900, Y1 = 2016, data = [];
+      ns.forEach(function(n, i){
+        var c = G[st.cl + ':' + n], tot = 0, pre = 0, ann = [], cum = [];
+        Object.keys(c).forEach(function(y){ tot += c[y]; if (y < Y0) pre += c[y]; });
+        var run = pre, k = st.mode === 'share' ? 100 / tot : 1;
+        for (var y = Y0; y <= Y1; y++){ var v = c[y] || 0; run += v; ann.push(v * k); cum.push(run * k); }
+        data.push({n:n, col:PAL[i % PAL.length], ann:ann, cum:cum, tot:tot});
+      });
+      data.forEach(function(d){
+        var b = document.createElement('button'); b.type = 'button';
+        var off = st.off[d.n];
+        b.style.cssText = 'font:inherit;border:0;background:none;padding:2px 0;cursor:pointer;color:' + (off ? '#a8a69f' : '#1e1c18') + ';text-decoration:' + (off ? 'line-through' : 'none');
+        b.innerHTML = '<span style="display:inline-block;width:14px;height:3px;background:' + (off ? '#c9c6be' : d.col) + ';vertical-align:middle;margin-right:5px"></span>' + short(d.n);
+        b.onclick = function(){ st.off[d.n] = !st.off[d.n]; draw(); };
+        b.onmouseenter = function(){ st.hi = d.n; paint(); }; b.onmouseleave = function(){ st.hi = null; paint(); };
+        leg.appendChild(b);
+      });
+      var hint = document.createElement('span'); hint.style.cssText = 'color:#706e68'; hint.textContent = 'Click a name to hide or show it; hover to highlight.'; leg.appendChild(hint);
+      var share = st.mode === 'share';
+      var panels = [
+        {t: share ? 'Share of the group’s records, per year (%)' : 'Records per publication year', key:'ann', log:false},
+        {t: share ? 'Cumulative share (%)' : 'Cumulative records', key:'cum', log:false},
+        {t: share ? 'Cumulative share (%), log scale' : 'Cumulative records, log scale', key:'cum', log:true}
+      ];
+      var lines = [];
+      panels.forEach(function(P){
+        var vis = data.filter(function(d){ return !st.off[d.n]; });
+        var W = 420, H = 330, l = 46, r = 8, t = 26, b = 24;
+        var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img'); svg.style.width = '100%'; svg.style.height = 'auto'; svg.style.display = 'block';
+        svg.setAttribute('aria-label', P.t + ', ' + (st.cl === 'DK' ? 'by country in DK' : 'by language in PG') + ', 1900 to 2016.');
+        var all = []; vis.forEach(function(d){ d[P.key].forEach(function(v){ all.push(v); }); });
+        var mx = Math.max.apply(null, all.concat([1e-9])), mn, ticks = [];
+        var sx = function(y){ return l + (y - Y0) / (Y1 - Y0) * (W - l - r); }, sy;
+        if (P.log){
+          var pos = all.filter(function(v){ return v > 0; }), lo = pos.length ? Math.min.apply(null, pos) : 1;
+          var e0 = Math.floor(Math.log10(lo)), e1 = Math.ceil(Math.log10(mx));
+          if (e1 === e0) e1 = e0 + 1;
+          for (var e = e0; e <= e1; e++) ticks.push(Math.pow(10, e));
+          var a0 = Math.pow(10, e0), a1 = Math.pow(10, e1);
+          sy = function(v){ return H - b - (Math.log10(Math.max(v, a0)) - e0) / (e1 - e0) * (H - t - b); };
+        } else {
+          var mag = Math.pow(10, Math.floor(Math.log10(mx))), stp = mx / mag > 5 ? mag * 2 : mx / mag > 2 ? mag : mag / 2;
+          var top = Math.ceil(mx / stp) * stp; for (var v = 0; v <= top + 1e-9; v += stp) ticks.push(v);
+          sy = function(v){ return H - b - v / top * (H - t - b); };
+        }
+        el('text', {x:l, y:14, 'font-size':12, 'font-weight':700, fill:'#1e1c18'}, svg, P.t);
+        el('rect', {x:sx(2011), y:t, width:sx(Y1) - sx(2011), height:H - t - b, fill:'#ece9e4'}, svg);
+        ticks.forEach(function(v){
+          el('line', {x1:l, x2:W - r, y1:sy(v), y2:sy(v), stroke:'#e2dfd8'}, svg);
+          var lab = share ? (v >= 1 ? fmt(v) : String(+v.toPrecision(2))) : (v >= 1000 ? fmt(v) : String(+v.toPrecision(3)));
+          el('text', {x:l - 4, y:sy(v) + 3, 'text-anchor':'end', 'font-size':9, fill:'#706e68'}, svg, lab);
+        });
+        [1900, 1925, 1950, 1975, 2000].forEach(function(y){ el('text', {x:sx(y), y:H - 8, 'text-anchor':'middle', 'font-size':9, fill:'#706e68'}, svg, y); });
+        el('line', {x1:sx(1991), x2:sx(1991), y1:t, y2:H - b, stroke:'#b9b6ae', 'stroke-dasharray':'3 2'}, svg);
+        el('rect', {x:l, y:t, width:W - l - r, height:H - t - b, fill:'none', stroke:'#d4d0c8'}, svg);
+        vis.forEach(function(d){
+          var pts = d[P.key].map(function(v, i){ return [sx(Y0 + i), sy(v)]; });
+          if (P.log){ var f = d[P.key].findIndex(function(v){ return v > 0; }); if (f < 0) return; pts = pts.slice(f); }
+          var p = el('path', {d:pts.map(function(q, i){ return (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join(''), fill:'none', stroke:d.col, 'stroke-width':1.8, 'stroke-linejoin':'round'}, svg);
+          el('title', {}, p, short(d.n) + ' (' + fmt(d.tot) + ' records)');
+          lines.push({p:p, n:d.n});
+        });
+        grid.appendChild(svg);
+      });
+      function paint(){ lines.forEach(function(o){ o.p.setAttribute('stroke-opacity', st.hi && st.hi !== o.n ? 0.12 : 1); o.p.setAttribute('stroke-width', st.hi === o.n ? 3 : 1.8); }); }
+      paint.call(null); window.__paint = paint;
+    }
+    function paint(){ if (window.__paint) window.__paint(); }
+    sec.appendChild(bar); sec.appendChild(leg); sec.appendChild(grid);
+    var n = document.createElement('p'); n.className = 'note'; n.textContent = 'Left: records per publication year. Middle: running total from the earliest record (records before 1900 are counted at the start). Right: the same running total on a log scale, where equal slopes mean equal growth rates. Grey: years after 2011, incompletely covered. Dashed: 1991. Each curve is a separate call-number range, so a record counted under one country is not counted under another.';
+    sec.appendChild(n);
+    draw();
+  }
+  function fitSigmoid(c, Y1){
+    var yrs = [], cum = [], run = 0;
+    Object.keys(c).forEach(function(y){ if (y < 1850) run += c[y]; });
+    for (var y = 1850; y <= Y1; y++){ run += c[y] || 0; yrs.push(y); cum.push(run); }
+    var tot = cum[cum.length - 1], s = cum.map(function(v){ return v / tot; });
+    function sse(k, t0){ var e = 0; for (var i = 0; i < yrs.length; i++){ var d = s[i] - 1 / (1 + Math.exp(-k * (yrs[i] - t0))); e += d * d; } return e; }
+    var best = [0.1, 1990, 1e9];
+    for (var k = 0.02; k <= 0.6; k += 0.01) for (var t0 = 1900; t0 <= 2040; t0 += 1){ var e = sse(k, t0); if (e < best[2]) best = [k, t0, e]; }
+    var dk = 0.01, dt = 1;
+    for (var it = 0; it < 60; it++){
+      var imp = false;
+      [[dk,0],[-dk,0],[0,dt],[0,-dt]].forEach(function(m){ var k2 = best[0] + m[0], t2 = best[1] + m[1]; if (k2 <= 0) return; var e = sse(k2, t2); if (e < best[2]){ best = [k2, t2, e]; imp = true; } });
+      if (!imp){ dk /= 2; dt /= 2; }
+    }
+    var mean = s.reduce(function(a, b){ return a + b; }, 0) / s.length, sst = 0; s.forEach(function(v){ sst += (v - mean) * (v - mean); });
+    return {k:best[0], t0:best[1], r2:1 - best[2] / sst, dur:Math.log(81) / best[0], yrs:yrs, s:s, tot:tot};
+  }
+  function sigmoids(box, G){
+    var Y1 = 2011, NSEC = [['DK', DKN, '#c4785a', 'Countries (DK)'], ['PG', PGN, '#3a6ea5', 'Languages (PG)']];
+    var fits = {};
+    NSEC.forEach(function(S){ fits[S[0]] = S[1].filter(function(n){ return G[S[0] + ':' + n]; }).map(function(n, i){ var f = fitSigmoid(G[S[0] + ':' + n], Y1); f.n = n; f.col = PAL[i % PAL.length]; return f; }); });
+    var W = 1000, H = 470, l = 70, r = 20, X0 = 1975, X1 = 2008;
+    var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img'); svg.style.width = '100%'; svg.style.height = 'auto'; svg.style.display = 'block';
+    svg.setAttribute('aria-label', 'Density of sigmoid inflection years with one dot per country in DK and per language in PG.');
+    var sx = function(y){ return l + (y - X0) / (X1 - X0) * (W - l - r); };
+    el('text', {x:l, y:14, 'font-size':12, 'font-weight':700, fill:'#1e1c18'}, svg, 'Sigmoid inflection year t₀, density plus one dot per country or language');
+    for (var y = 1975; y <= 2005; y += 5){ el('line', {x1:sx(y), x2:sx(y), y1:24, y2:H - 30, stroke:'#e2dfd8'}, svg); el('text', {x:sx(y), y:H - 14, 'text-anchor':'middle', 'font-size':10, fill:'#706e68'}, svg, y); }
+    el('text', {x:(l + W - r) / 2, y:H - 1, 'text-anchor':'middle', 'font-size':10, fill:'#706e68'}, svg, 'inflection year t₀ (year when half of the records through 2011 had been published)');
+    el('line', {x1:sx(1991), x2:sx(1991), y1:24, y2:H - 30, stroke:'#b9b6ae', 'stroke-dasharray':'3 2'}, svg);
+    el('text', {x:sx(1991) + 4, y:34, 'font-size':10, fill:'#706e68'}, svg, '1991');
+    var base = 170;
+    NSEC.forEach(function(S, si){
+      var F = fits[S[0]], col = S[2], t0s = F.map(function(f){ return f.t0; }), bw = 2.5, pts = [];
+      for (var x = X0; x <= X1; x += 0.25){ var d = 0; t0s.forEach(function(t){ d += Math.exp(-0.5 * Math.pow((x - t) / bw, 2)); }); pts.push([x, d / (t0s.length * bw * Math.sqrt(2 * Math.PI))]); }
+      if (!si) S.mx = Math.max.apply(null, pts.map(function(p){ return p[1]; }));
+      var sc = 120 / 0.2;
+      var dpath = pts.map(function(p, i){ return (i ? 'L' : 'M') + sx(p[0]).toFixed(1) + ' ' + (base - p[1] * sc).toFixed(1); }).join('');
+      el('path', {d:dpath + 'L' + sx(X1) + ' ' + base + 'L' + sx(X0) + ' ' + base + 'Z', fill:col, 'fill-opacity':.15}, svg);
+      el('path', {d:dpath, fill:'none', stroke:col, 'stroke-width':2.4}, svg);
+      var mean = t0s.reduce(function(a, b){ return a + b; }, 0) / t0s.length;
+      el('line', {x1:sx(mean), x2:sx(mean), y1:50, y2:H - 30, stroke:col, 'stroke-dasharray':'4 3'}, svg);
+      el('text', {x:sx(mean) + (si ? -4 : 4), y:50 + si * 14, 'text-anchor':si ? 'end' : 'start', 'font-size':10, fill:col}, svg, (si ? 'PG' : 'DK') + ' mean t₀ ' + mean.toFixed(0));
+      var by = 270 + si * 100;
+      el('text', {x:l - 8, y:by + 4, 'text-anchor':'end', 'font-size':11, 'font-weight':700, fill:col}, svg, S[0]);
+      el('line', {x1:l, x2:W - r, y1:by + 14, y2:by + 14, stroke:'#d4d0c8'}, svg);
+      F.slice().sort(function(a, b){ return a.t0 - b.t0; }).forEach(function(f, i){
+        var x = sx(f.t0), yb = by - (i % 3) * 14;
+        var c = el('circle', {cx:x, cy:yb, r:4.5, fill:col, 'fill-opacity':.8, stroke:'#fff', 'stroke-width':1}, svg);
+        el('title', {}, c, short(f.n) + ': t₀ = ' + f.t0.toFixed(1) + ', 10–90% in ' + f.dur.toFixed(0) + ' years, R² = ' + f.r2.toFixed(3));
+        var tx = el('text', {x:x, y:yb - 8, 'font-size':9, fill:'#4a4842', transform:'rotate(-50 ' + x + ' ' + (yb - 8) + ')'}, svg, short(f.n));
+      });
+    });
+    box.appendChild(svg);
+    // fitted curves
+    var wrap = document.createElement('div'); wrap.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:12px;margin-top:10px';
+    NSEC.forEach(function(S){
+      var F = fits[S[0]], Wc = 480, Hc = 330, lc = 40, rc = 8, tc = 26, bc = 24;
+      var sv = document.createElementNS(NS, 'svg'); sv.setAttribute('viewBox', '0 0 ' + Wc + ' ' + Hc); sv.setAttribute('role', 'img'); sv.style.width = '100%'; sv.style.height = 'auto'; sv.style.display = 'block';
+      sv.setAttribute('aria-label', 'Cumulative share of records with fitted sigmoid, ' + S[3] + ', 1900 to 2011.');
+      var x = function(y){ return lc + (y - 1900) / (Y1 - 1900) * (Wc - lc - rc); }, yy = function(v){ return Hc - bc - v * (Hc - tc - bc); };
+      el('text', {x:lc, y:14, 'font-size':12, 'font-weight':700, fill:'#1e1c18'}, sv, S[3] + ': cumulative share, data (solid) and sigmoid fit (dashed)');
+      [0, .25, .5, .75, 1].forEach(function(v){ el('line', {x1:lc, x2:Wc - rc, y1:yy(v), y2:yy(v), stroke:'#e2dfd8'}, sv); el('text', {x:lc - 4, y:yy(v) + 3, 'text-anchor':'end', 'font-size':9, fill:'#706e68'}, sv, Math.round(v * 100) + '%'); });
+      [1900, 1925, 1950, 1975, 2000].forEach(function(v){ el('text', {x:x(v), y:Hc - 8, 'text-anchor':'middle', 'font-size':9, fill:'#706e68'}, sv, v); });
+      el('line', {x1:x(1991), x2:x(1991), y1:tc, y2:Hc - bc, stroke:'#b9b6ae', 'stroke-dasharray':'3 2'}, sv);
+      F.forEach(function(f){
+        var d = [], dd = [];
+        for (var Y = 1900; Y <= Y1; Y++){ var v = f.s[Y - 1850]; d.push((Y > 1900 ? 'L' : 'M') + x(Y).toFixed(1) + ' ' + yy(v).toFixed(1)); dd.push((Y > 1900 ? 'L' : 'M') + x(Y).toFixed(1) + ' ' + yy(1 / (1 + Math.exp(-f.k * (Y - f.t0)))).toFixed(1)); }
+        var p = el('path', {d:d.join(''), fill:'none', stroke:f.col, 'stroke-width':1.6}, sv); el('title', {}, p, short(f.n));
+        el('path', {d:dd.join(''), fill:'none', stroke:f.col, 'stroke-width':1.2, 'stroke-dasharray':'4 3', 'stroke-opacity':.9}, sv);
+      });
+      var lg = document.createElement('div'); lg.style.cssText = 'display:flex;flex-wrap:wrap;gap:2px 10px;font-size:11px;margin-top:2px';
+      F.forEach(function(f){ var s = document.createElement('span'); s.innerHTML = '<span style="display:inline-block;width:12px;height:3px;background:' + f.col + ';vertical-align:middle;margin-right:4px"></span>' + short(f.n); lg.appendChild(s); });
+      var cell = document.createElement('div'); cell.appendChild(sv); cell.appendChild(lg); wrap.appendChild(cell);
+    });
+    box.appendChild(wrap);
+    // table
+    var t = document.createElement('table'); t.innerHTML = '<thead><tr><th></th><th>Records</th><th>t₀</th><th>10–90% takes (years)</th><th>R²</th></tr></thead><tbody></tbody>';
+    var tb = t.querySelector('tbody');
+    NSEC.forEach(function(S){ fits[S[0]].slice().sort(function(a, b){ return a.t0 - b.t0; }).forEach(function(f){
+      var tr = document.createElement('tr'); tr.innerHTML = '<td></td><td>' + fmt(f.tot) + '</td><td>' + f.t0.toFixed(1) + '</td><td>' + f.dur.toFixed(0) + '</td><td>' + f.r2.toFixed(3) + '</td>';
+      tr.firstChild.textContent = S[0] + ': ' + short(f.n); tb.appendChild(tr); }); });
+    t.style.marginTop = '12px'; box.appendChild(t);
+    var n = document.createElement('p'); n.className = 'note';
+    n.textContent = 'Each cumulative curve (records published through 2011, including those before 1850) is divided by its total and fitted with a logistic S(t) = 1 / (1 + exp(−k(t − t₀))) by least squares. t₀ is the inflection year; the 10–90% time is ln(81)/k. 2011 is the cutoff because later years are incomplete. The density uses a Gaussian kernel of 2.5 years over only ' + fits.DK.length + ' countries and ' + fits.PG.length + ' languages, so read it as a summary of the dots, not as a distribution estimate. A single logistic fits a smooth rise well, but some curves have more than one wave (Poland in DK, Czech in PG).';
+    box.appendChild(n);
+  }
   fetch('dk_numbers.json').then(function(r){ if (!r.ok) throw 0; return r.json(); }).then(function(J){
-    var G = J.groups; if (!G) throw 0;
+    var G = J.groups || J.classes; if (!G) throw 0;
     var box = document.getElementById('beyond'); box.innerHTML = '';
     // section 4 from the full MARC counts
     var dec = {}, dk = {}, tot508 = 0;
@@ -198,6 +376,10 @@ render508(D.dk508.dec, D.dk508.dkdec, 'Provisional: only ' + fmt(D.dk508.n_year)
     render508(dec, dk, 'Counted from the MARC distribution: ' + fmt(tot508) + ' DK508 records with a publication year (1400–2020). The 2010s are partial because the file is incomplete after 2011.');
     var h = function(t){ var e = document.createElement('h3'); e.style.cssText = 'font-size:13px;margin:18px 0 4px'; e.textContent = t; box.appendChild(e); };
     var p = function(t){ var e = document.createElement('p'); e.className = 'note'; e.textContent = t; box.appendChild(e); };
+    h('All on one plot: time series, cumulative, cumulative on a log scale');
+    compare(box, G);
+    h('Sigmoid fits: when did each collection pass its midpoint?');
+    sigmoids(box, G);
     h('History (DK): records per publication year, by country');
     p('Each panel has its own vertical scale (maximum at top left, total records at top right). Dashed line: 1991. Grey: years after 2011, incompletely covered.');
     multiples(box, 'DK', DKN, G, '#c4785a');
@@ -207,9 +389,10 @@ render508(D.dk508.dec, D.dk508.dkdec, 'Provisional: only ' + fmt(D.dk508.n_year)
     if (pgPresent.length < 3) p('Only ' + pgPresent.length + ' PG language is in this dk_numbers.json. Re-run scripts/10_dk_numbers.py (the current version) to add the others, including Belarusian, Polish, Czech and the rest.');
     multiples(box, 'PG', PGN, G, '#3a6ea5');
     if (pgPresent.length >= 3) table(box, 'PG', PGN, G);
-    p(J.source + '. Country and language ranges follow the LC classification outlines. Kazakhstan, Kyrgyzstan and the other Central Asian republics appear in DK only: their languages are not in PG. DK509 holds Southern Soviet Union and, from DK509.1, Moldova; the current version of the script separates them.');
+    p(J.source + '. Country and language ranges follow the LC classification outlines. Kazakhstan, Kyrgyzstan and the other Central Asian republics appear in DK only: their languages are not in PG.');
   }).catch(function(){});
 })();
 </script>
+<script data-goatcounter="https://dataforlibs.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
